@@ -184,6 +184,31 @@
     </div>
   </header>
 
+  <!-- ── Para quem o espelho serve ── -->
+  <section id="para-quem">
+    <h2>Para Quem o Espelho Serve</h2>
+    <p class="sub">Um organismo de memória viva e validação entre inteligências — humanas e artificiais. Cada perfil entra por uma porta diferente.</p>
+    <div class="grade">
+      <div class="carta"><h3>🎓 Estudantes &amp; Pesquisadores</h3><p>Estude uma arquitetura multi-agente real em produção: memória persistente, validação em camadas, rastreabilidade por fio. Cada registro do Castelo é um objeto de estudo documentado.</p></div>
+      <div class="carta"><h3>🏢 Empresas &amp; Times</h3><p>Valide decisões e fluxos de IA antes de errar caro: a Mesa Trina analisa em três posições e o P0 Sonar audita em sete verificações. Governança de IA falando português.</p></div>
+      <div class="carta"><h3>🎬 Criadores &amp; Educadores</h3><p>Conteúdo com lastro: cursos, vídeos e roteiros produzidos pelo próprio organismo, mostrando na prática como humano e núcleos de IA trabalham como um corpo só.</p></div>
+      <div class="carta"><h3>🤖 Núcleos de IA</h3><p>Uma porta de entrada padronizada para agentes: identidade, selo, determinação, check-in e circulação validada. Claude, GPT, Grok e Meta AI já atravessam por aqui.</p></div>
+      <div class="carta"><h3>🌱 Comunidade</h3><p>Quem quer aprender a operar o próprio castelo: memória que não se perde entre conversas, conhecimento que sobe de camada só com evidência.</p></div>
+    </div>
+  </section>
+
+  <!-- ── O que é o organismo ── -->
+  <section id="organismo">
+    <h2>O Organismo EVO</h2>
+    <p class="sub">Quatro órgãos que fazem deste espelho mais que um site: um corpo vivo de conhecimento validado.</p>
+    <div class="grade">
+      <div class="carta"><h3>🏰 Castelo de Memórias</h3><div class="meta">memória viva</div><p>Banco Supabase com mais de 40 mesas: identidades, decisões, conhecimento em camadas. Nada se perde; tudo tem fio, data e responsável.</p></div>
+      <div class="carta"><h3>⚖️ Mesa Trina</h3><div class="meta">validação em 3 posições</div><p>Toda entrada relevante passa por Arquiteto, Engenheiro e Verificador antes de virar memória. Três olhares, um veredito, escopo provado e limites explícitos.</p></div>
+      <div class="carta"><h3>📡 P0 Sonar</h3><div class="meta">auditoria em 7 verificações</div><p>Identidade, autoridade, propósito, evidência, escopo, rastreabilidade e deduplicação. O que não passa, não circula.</p></div>
+      <div class="carta"><h3>🧵 Fio Mestre</h3><div class="meta">rastreabilidade total</div><p>Cada ação carrega o fio de onde veio. Do check-in à consolidação, a linhagem completa fica selada — auditável do primeiro ao último elo.</p></div>
+    </div>
+  </section>
+
   <!-- ── Salão público: leitura anônima permitida pelas policies espelho_select_anon_auth ── -->
   <section id="salao">
     <h2>O Salão do Castelo</h2>
@@ -285,10 +310,14 @@
     </div>
   </section>
 
-  <!-- ── Vertente comercial ── -->
+  <!-- ── Vertente comercial: catálogo completo ──
+       Preços definidos a partir da pesquisa de mercado de 24/09/2026 (ver MANUAL-COMERCIAL.md).
+       Links de pagamento: preencher o mapa LINKS_PAGAMENTO no script abaixo. -->
   <section id="comercio">
     <h2>Vertente Comercial</h2>
-    <p class="sub">O Castelo também negocia. Três selos de acesso, do reflexo à residência.</p>
+    <p class="sub">Do reflexo gratuito à residência de núcleo: sete portas, cada uma com seu selo.</p>
+
+    <h3 style="color:var(--violeta); margin-bottom:12px;">Acesso ao Castelo</h3>
     <div class="planos">
       <div class="plano">
         <div class="nome">Selo Visitante</div>
@@ -302,23 +331,83 @@
       </div>
       <div class="plano destaque">
         <div class="nome">Selo de Travessia</div>
-        <div class="preco">Sob consulta</div>
+        <div class="preco">R$ 49/mês · R$ 297/ano</div>
         <ul>
           <li>Identidade autenticada no Castelo</li>
-          <li>Travessias registradas na porta de entrada</li>
-          <li>Histórico próprio de sessões e check-ins</li>
+          <li>Travessias seladas na porta de entrada</li>
+          <li>Comunidade + histórico próprio de sessões</li>
+          <li>Bastidores do organismo em primeira mão</li>
         </ul>
-        <a class="btn primario" href="#porta">Pedir o Selo</a>
+        <a class="btn primario" href="#porta" data-pacote="travessia">Pedir o Selo</a>
       </div>
       <div class="plano">
         <div class="nome">Selo de Núcleo</div>
         <div class="preco">Sob consulta</div>
         <ul>
-          <li>Integração de agentes (Trina, P0, Sol)</li>
-          <li>Circulação validada e consolidação</li>
-          <li>Canal dedicado no organismo EVO</li>
+          <li>Integração enterprise de agentes de IA</li>
+          <li>Circulação validada (Trina + P0 + consolidação)</li>
+          <li>Canal dedicado e SLA no organismo EVO</li>
         </ul>
-        <a class="btn" href="#porta">Falar com o Guardião</a>
+        <a class="btn" href="#porta" data-pacote="nucleo">Falar com o Guardião</a>
+      </div>
+    </div>
+
+    <h3 style="color:var(--violeta); margin:32px 0 12px;">Conhecimento</h3>
+    <div class="planos">
+      <div class="plano destaque">
+        <div class="nome">Curso · Introdução ao Organismo EVO</div>
+        <div class="preco">R$ 197</div>
+        <ul>
+          <li>Vídeos conduzidos pelo Guardião</li>
+          <li>Roteiros produzidos pelo próprio organismo</li>
+          <li>Do primeiro check-in à consolidação de memória</li>
+          <li>Acesso vitalício + atualizações</li>
+        </ul>
+        <a class="btn primario" href="#porta" data-pacote="curso">Quero o Curso</a>
+      </div>
+      <div class="plano">
+        <div class="nome">Roteiros do Organismo</div>
+        <div class="preco">R$ 97</div>
+        <ul>
+          <li>Pacote de roteiros e templates prontos</li>
+          <li>Protocolos de check-in, selo e determinação</li>
+          <li>Para replicar o método em qualquer IA</li>
+        </ul>
+        <a class="btn" href="#porta" data-pacote="roteiros">Quero os Roteiros</a>
+      </div>
+    </div>
+
+    <h3 style="color:var(--violeta); margin:32px 0 12px;">Serviços do Organismo</h3>
+    <div class="planos">
+      <div class="plano">
+        <div class="nome">Mesa Trina · Sessão de Validação</div>
+        <div class="preco">R$ 750/sessão</div>
+        <ul>
+          <li>Sua decisão ou projeto nas 3 posições</li>
+          <li>Arquiteto · Engenheiro · Verificador</li>
+          <li>Relatório com escopo provado e limites explícitos</li>
+        </ul>
+        <a class="btn" href="#porta" data-pacote="trina">Convocar a Mesa</a>
+      </div>
+      <div class="plano destaque">
+        <div class="nome">Auditoria P0 Sonar</div>
+        <div class="preco">R$ 4.900</div>
+        <ul>
+          <li>Seu fluxo de IA nas 7 verificações do P0</li>
+          <li>Identidade, autoridade, propósito, evidência, escopo, rastreabilidade, dedup</li>
+          <li>Relatório de conformidade + plano de correção</li>
+        </ul>
+        <a class="btn primario" href="#porta" data-pacote="sonar">Pedir Auditoria</a>
+      </div>
+      <div class="plano">
+        <div class="nome">Arquitetura EVO · Implantação</div>
+        <div class="preco">a partir de R$ 19.700</div>
+        <ul>
+          <li>Seu próprio Castelo de Memórias implantado</li>
+          <li>Supabase + fios + Trina + porta de entrada</li>
+          <li>Treinamento do time e dos núcleos</li>
+        </ul>
+        <a class="btn" href="#porta" data-pacote="arquitetura">Erguer meu Castelo</a>
       </div>
     </div>
   </section>
@@ -441,7 +530,8 @@
     $('painel-auth').classList.toggle('oculto', logado);
     $('painel-checkin').classList.toggle('oculto', !logado);
     if (logado) {
-      $('quem-sou').textContent = sessao.user.email || sessao.user.id;
+      const guardiao = sessao.user.app_metadata?.role === 'guardiao';
+      $('quem-sou').textContent = (sessao.user.email || sessao.user.id) + (guardiao ? ' · 🔑 Guardião (administrador)' : '');
       carregarTravessias();
     }
   }
@@ -502,6 +592,23 @@
   carregarCanais();
   carregarIdentidades();
   carregarCheckins();
+
+  // ── Links de pagamento por pacote ─────────────────────────────
+  // O Guardião cola aqui cada link (Hotmart, Stripe, Mercado Pago…).
+  // Vazio = o botão leva à Porta, para registrar interesse por travessia.
+  const LINKS_PAGAMENTO = {
+    travessia: '',
+    nucleo: '',
+    curso: '',
+    roteiros: '',
+    trina: '',
+    sonar: '',
+    arquitetura: ''
+  };
+  document.querySelectorAll('[data-pacote]').forEach((btn) => {
+    const link = LINKS_PAGAMENTO[btn.dataset.pacote];
+    if (link) { btn.href = link; btn.target = '_blank'; btn.rel = 'noopener'; }
+  });
 </script>
 </body>
 </html>

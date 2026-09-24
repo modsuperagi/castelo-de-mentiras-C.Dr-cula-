@@ -128,6 +128,13 @@ const LINKS_PAGAMENTO = {
 };
 ```
 
+**Enquanto não há links (fase atual):** todo botão de oferta leva à **Lista da Turma Fundadora**
+(`#fundadores`), já com o pacote escolhido. A inscrição não pede login e cai na mesa
+`espelho_interessados` do Castelo (nome, e-mail, pacote, mensagem, status `novo`). Visitantes só
+inserem; **só o Guardião lê** — no painel do Supabase (Table Editor → `espelho_interessados`) ou
+logado no espelho. Ao contatar alguém, mude o `status` para `contatado`, depois `convertido` ou
+`descartado`: é o funil de vendas do organismo.
+
 1. Crie cada produto na plataforma de pagamento (Hotmart, Kiwify, Stripe, Mercado Pago…)
 2. Cole cada link entre as aspas do pacote correspondente
 3. Commit na branch → merge na `main` → produção atualiza sozinha

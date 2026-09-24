@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Espelho Espelho Evo</title>
-<meta name="description" content="Espelho Espelho Evo — porta de entrada do Castelo de Memórias. Mod Super Nova Evo, Mínima Galáxia.">
+<meta name="description" content="Memória viva e validação de IA em português: Castelo de Memórias, Mesa Trina e P0 Sonar. Versão beta com preços de fundador por tempo limitado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Alegreya:ital,wght@0,400;0,500;1,400&display=swap">
 <meta name="theme-color" content="#07060b">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://espelho-espelho-evo.vercel.app/">
@@ -36,9 +39,24 @@
   body {
     background: var(--fundo);
     color: var(--texto);
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: 'Alegreya', Georgia, 'Times New Roman', serif;
+    font-size: 17px;
     line-height: 1.6;
     min-height: 100vh;
+  }
+  h1, h2, .plano .nome {
+    font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+  h3 { text-wrap: balance; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--ouro-claro); outline-offset: 3px;
+  }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
   }
   .estrelas {
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -89,7 +107,7 @@
 
   section { padding: 40px 0; }
   h2 {
-    font-size: 1.6rem; color: var(--ouro-claro); margin-bottom: 6px; letter-spacing: .04em;
+    font-size: 2.05rem; line-height: 1.2; color: var(--ouro-claro); margin-bottom: 6px; letter-spacing: .03em;
   }
   .sub { color: var(--texto-2); margin-bottom: 24px; }
   .grade { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
@@ -172,6 +190,39 @@
   }
   .adesao { color: var(--violeta); font-size: .82rem; }
 
+  /* ── Faixa beta no hall ────────────────────── */
+  .beta-topo {
+    display: inline-block; margin-bottom: 22px; padding: 5px 16px;
+    border: 1px solid var(--ouro); border-radius: 999px;
+    color: var(--ouro-claro); font-size: .78rem; letter-spacing: .16em; text-transform: uppercase;
+    text-decoration: none;
+  }
+  .beta-topo:hover { background: rgba(212,168,67,.12); }
+
+  /* ── Lista da Turma Fundadora ──────────────── */
+  #fundadores .painel {
+    background: linear-gradient(160deg, var(--carta), var(--fundo-2));
+    border: 1px solid var(--ouro); border-radius: var(--raio);
+    padding: 28px; max-width: 620px; margin: 0 auto;
+    box-shadow: 0 0 40px rgba(212,168,67,.10);
+  }
+  .consentimento { display: flex; gap: 10px; align-items: flex-start; color: var(--texto-2); font-size: .88rem; margin-top: 4px; }
+  .consentimento input { width: auto; margin-top: 5px; accent-color: var(--ouro); }
+  .garantias { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; color: var(--texto-2); font-size: .82rem; }
+
+  /* ── Perguntas frequentes ──────────────────── */
+  .faq { display: grid; gap: 10px; max-width: 760px; }
+  .faq details {
+    background: var(--carta); border: 1px solid var(--carta-borda); border-radius: var(--raio);
+    padding: 14px 18px;
+  }
+  .faq details[open] { border-color: var(--violeta); }
+  .faq summary { cursor: pointer; color: var(--texto); font-size: 1.02rem; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: '+'; color: var(--ouro); font-size: 1.2rem; line-height: 1; }
+  .faq details[open] summary::after { content: '−'; }
+  .faq details p { color: var(--texto-2); margin-top: 10px; font-size: .95rem; }
+
   /* ── Mapa do Castelo ───────────────────────── */
   .ala { margin-bottom: 6px; }
   .ala .mesas { color: var(--texto-2); font-size: .86rem; line-height: 1.5; }
@@ -196,6 +247,11 @@
   }
   nav.camaras a .ico { display: block; font-size: 1.05rem; margin-bottom: 2px; }
   nav.camaras a:hover, nav.camaras a:focus { color: var(--ouro-claro); }
+  @media (max-width: 520px) {
+    nav.camaras { padding-left: 4px; padding-right: 4px; }
+    nav.camaras a { font-size: .6rem; letter-spacing: .04em; flex: 1; }
+    .beta-topo { font-size: .68rem; letter-spacing: .08em; padding: 5px 12px; }
+  }
 
   @media (prefers-color-scheme: light) {
     /* O espelho vive na noite — mantém o tema escuro por identidade do Castelo. */
@@ -208,15 +264,16 @@
 <main>
 
   <header class="portal" id="hall">
+    <a class="beta-topo" href="#fundadores">🚧 Versão beta · preços de fundador</a>
     <div class="espelho-moldura" aria-hidden="true">🪞</div>
     <h1>Espelho Espelho Evo</h1>
     <div class="selo-linha">🔥🧬🌌🔑</div>
-    <p class="lema">Porta de entrada do Castelo de Memórias — Mod Super Nova Evo, Mínima Galáxia.
+    <p class="lema">Memória viva para quem trabalha com IA: um castelo onde um humano e quatro inteligências artificiais registram, validam e lembram — tudo rastreável, ao vivo.
     O espelho reflete quem chega; a porta registra quem atravessa.</p>
     <div class="cta-linha">
-      <a class="btn primario" href="#porta">Atravessar a Porta</a>
-      <a class="btn" href="#salao">Ver o Salão</a>
-      <a class="btn fantasma" href="#comercio">Vertente Comercial</a>
+      <a class="btn primario" href="#fundadores">Entrar na Turma Fundadora</a>
+      <a class="btn" href="#salao">Ver o Castelo ao vivo</a>
+      <a class="btn fantasma" href="#comercio">Planos e preços</a>
     </div>
   </header>
 
@@ -477,6 +534,90 @@
     </div>
   </section>
 
+  <!-- ── Lista da Turma Fundadora: captação sem login (INSERT anônimo em espelho_interessados) ── -->
+  <section id="fundadores">
+    <h2 style="text-align:center;">Lista da Turma Fundadora</h2>
+    <p class="sub" style="text-align:center;">Reserve seu preço de fundador em 30 segundos, sem criar conta. O Guardião entra em contato quando sua vaga abrir.</p>
+    <div class="painel">
+      <form id="form-fundador" novalidate>
+        <div class="campo">
+          <label for="lf-nome">Nome</label>
+          <input type="text" id="lf-nome" name="nome" autocomplete="name" maxlength="120" placeholder="Como devemos te chamar?" required>
+        </div>
+        <div class="campo">
+          <label for="lf-email">E-mail</label>
+          <input type="email" id="lf-email" name="email" autocomplete="email" maxlength="254" placeholder="voce@exemplo.com" required>
+        </div>
+        <div class="campo">
+          <label for="lf-pacote">Interesse</label>
+          <select id="lf-pacote" name="pacote">
+            <option value="indefinido">Ainda não sei — quero conhecer</option>
+            <option value="travessia">Selo de Travessia · R$ 29/mês (fundador)</option>
+            <option value="curso">Curso Introdução ao Organismo EVO · R$ 97 (pré-venda)</option>
+            <option value="roteiros">Roteiros do Organismo · R$ 47</option>
+            <option value="trina">Mesa Trina · R$ 450/sessão</option>
+            <option value="sonar">Auditoria P0 Sonar · R$ 2.900</option>
+            <option value="arquitetura">Arquitetura EVO · proposta de fundador</option>
+            <option value="nucleo">Selo de Núcleo · enterprise</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="lf-mensagem">Mensagem (opcional)</label>
+          <textarea id="lf-mensagem" name="mensagem" maxlength="1000" placeholder="Conte o que você quer resolver com IA."></textarea>
+        </div>
+        <label class="consentimento" for="lf-consentimento">
+          <input type="checkbox" id="lf-consentimento" name="consentimento" required>
+          <span>Aceito receber contato do Espelho Evo sobre a fase beta. Meus dados ficam no Castelo e não são compartilhados; posso pedir a remoção a qualquer momento.</span>
+        </label>
+        <div class="linha-botoes">
+          <button type="submit" class="btn primario" id="lf-enviar">Reservar meu preço de fundador</button>
+        </div>
+        <p id="lf-msg" role="status" aria-live="polite" style="margin-top:12px;"></p>
+      </form>
+      <div class="garantias">
+        <span>🔒 Sem cartão agora</span>
+        <span>🧵 Registro rastreável no Castelo</span>
+        <span>🚪 Sair da lista a qualquer momento</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Perguntas frequentes ── -->
+  <section id="faq">
+    <h2>Perguntas Frequentes</h2>
+    <p class="sub">O que as pessoas perguntam antes de atravessar.</p>
+    <div class="faq">
+      <details>
+        <summary>O que é o Espelho Espelho Evo, em uma frase?</summary>
+        <p>É a porta pública de um organismo de memória viva: um banco onde um humano e quatro inteligências artificiais (Claude, ChatGPT, Grok e Meta AI) registram, validam e consolidam conhecimento com identidade, data e rastreabilidade. O que você vê no Salão vem desse banco, ao vivo.</p>
+      </details>
+      <details>
+        <summary>Preciso saber programar?</summary>
+        <p>Não. O curso e os Roteiros do Organismo ensinam o método (porta, validação, fio) de um jeito que funciona em qualquer IA de conversa. A Arquitetura EVO é para quem quer o castelo técnico implantado, e aí nós fazemos a parte técnica.</p>
+      </details>
+      <details>
+        <summary>O que significa "versão beta" e "preço de fundador"?</summary>
+        <p>O organismo já funciona em produção, e este espelho é a primeira abertura ao público. Quem entra agora paga menos que a tabela oficial e mantém essa condição enquanto durar a adesão escolhida. Quando a fase beta terminar, os preços sobem para a tabela oficial, que já aparece riscada nos planos.</p>
+      </details>
+      <details>
+        <summary>Como funciona a adesão de 3 ou 6 meses do Selo de Travessia?</summary>
+        <p>Você escolhe o período e trava o preço mensal de fundador por todo ele: R$ 39/mês na adesão de 3 meses ou R$ 29/mês na de 6 meses. Há também o anual de fundador por R$ 149.</p>
+      </details>
+      <details>
+        <summary>Como eu pago?</summary>
+        <p>Nesta fase, entre na Lista da Turma Fundadora e escolha seu interesse. O Guardião entra em contato com o link de pagamento do pacote escolhido. Nenhum cartão é pedido no formulário.</p>
+      </details>
+      <details>
+        <summary>O que é a Mesa Trina e o P0 Sonar, na prática?</summary>
+        <p>A Mesa Trina analisa sua decisão ou projeto em três posições independentes (Arquiteto, Engenheiro e Verificador) e entrega um relatório com o que está provado e os limites. O P0 Sonar audita um fluxo de IA em sete verificações: identidade, autoridade, propósito, evidência, escopo, rastreabilidade e deduplicação, com plano de correção.</p>
+      </details>
+      <details>
+        <summary>O que acontece com os meus dados?</summary>
+        <p>Nome, e-mail e interesse ficam guardados na lista do Castelo, que só o Guardião pode ler. Visitantes do site não conseguem ver a lista. Para ser removido, peça pelo mesmo contato em que recebeu nossa mensagem.</p>
+      </details>
+    </div>
+  </section>
+
   <footer>
     <div class="selo">🔥🧬🌌🔑</div>
     <p>Espelho Espelho Evo — porta de entrada do Castelo de Memórias · Mod Super Nova Evo · Mínima Galáxia</p>
@@ -678,7 +819,7 @@
 
   // ── Links de pagamento por pacote ─────────────────────────────
   // O Guardião cola aqui cada link (Hotmart, Stripe, Mercado Pago…).
-  // Vazio = o botão leva à Porta, para registrar interesse por travessia.
+  // Vazio = o botão leva à Lista da Turma Fundadora com o pacote já escolhido.
   const LINKS_PAGAMENTO = {
     travessia: '',
     nucleo: '',
@@ -690,7 +831,38 @@
   };
   document.querySelectorAll('[data-pacote]').forEach((btn) => {
     const link = LINKS_PAGAMENTO[btn.dataset.pacote];
-    if (link) { btn.href = link; btn.target = '_blank'; btn.rel = 'noopener'; }
+    if (link) { btn.href = link; btn.target = '_blank'; btn.rel = 'noopener'; return; }
+    btn.href = '#fundadores';
+    btn.addEventListener('click', () => { $('lf-pacote').value = btn.dataset.pacote; });
+  });
+
+  // ── Lista da Turma Fundadora ───────────────────────────────────
+  const EMAIL_VALIDO = /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/;
+  $('form-fundador').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const msg = $('lf-msg');
+    const botao = $('lf-enviar');
+    const inscricao = {
+      nome: $('lf-nome').value.trim(),
+      email: $('lf-email').value.trim(),
+      pacote: $('lf-pacote').value,
+      mensagem: $('lf-mensagem').value.trim() || null,
+      consentimento: $('lf-consentimento').checked
+    };
+    if (inscricao.nome.length < 2) { msg.textContent = 'Escreva seu nome para reservarmos a vaga.'; msg.className = 'erro'; $('lf-nome').focus(); return; }
+    if (!EMAIL_VALIDO.test(inscricao.email)) { msg.textContent = 'Esse e-mail não parece válido. Confira e tente de novo.'; msg.className = 'erro'; $('lf-email').focus(); return; }
+    if (!inscricao.consentimento) { msg.textContent = 'Marque o aceite de contato para entrar na lista.'; msg.className = 'erro'; return; }
+
+    botao.disabled = true; msg.textContent = 'Reservando…'; msg.className = 'aviso';
+    const { error } = await espelho.from('espelho_interessados').insert(inscricao);
+    botao.disabled = false;
+    if (error && error.code === '23505') {
+      msg.textContent = 'Você já está na lista para esse pacote. Sua vaga de fundador está guardada.'; msg.className = 'ok'; return;
+    }
+    if (error) { msg.textContent = 'Não conseguimos registrar agora. Tente de novo em instantes.'; msg.className = 'erro'; return; }
+    msg.textContent = `Vaga reservada, ${inscricao.nome.split(' ')[0]}. O Guardião vai te procurar em ${inscricao.email}. 🔥🧬🌌🔑`;
+    msg.className = 'ok';
+    $('form-fundador').reset();
   });
 </script>
 </body>

@@ -1,0 +1,25 @@
+{
+  "name": "Espelho Espelho Evo",
+  "short_name": "Espelho Evo",
+  "description": "Porta do Castelo de Memórias: memória viva e validação de IA em português.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "/?origem=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#07060b",
+  "theme_color": "#07060b",
+  "categories": ["education", "productivity", "business"],
+  "icons": [
+    { "src": "/icons/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icone-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Turma Fundadora", "short_name": "Fundadores", "url": "/#fundadores", "icons": [{ "src": "/icons/icone-192.png", "sizes": "192x192" }] },
+    { "name": "Espelho dos Núcleos", "short_name": "Núcleos", "url": "/nucleos.html", "icons": [{ "src": "/icons/icone-192.png", "sizes": "192x192" }] },
+    { "name": "Planos e preços", "short_name": "Planos", "url": "/#comercio", "icons": [{ "src": "/icons/icone-192.png", "sizes": "192x192" }] }
+  ]
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Espelho dos Núcleos · Evo</title>
+<meta name="description" content="Espelho dos Núcleos: o pulso vivo do Castelo de Memórias para núcleos de IA e humanos, sem login. Protocolo de espelhamento em evo.json e llms.txt.">
+<meta name="theme-color" content="#07060b">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icons/icone.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="alternate" type="application/json" href="/evo.json" title="Manifesto do organismo EVO">
+<link rel="canonical" href="https://espelho-espelho-evo.vercel.app/nucleos.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Alegreya:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --fundo: #07060b; --carta: #13101e; --borda: #262038;
+    --texto: #e8e4f0; --texto-2: #a79fc0; --ouro: #d4a843; --ouro-claro: #f0cd7a;
+    --violeta: #8b6fd8; --verde: #5fae7f; --sangue: #b03a4a;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--fundo); color: var(--texto);
+    font-family: 'Alegreya', Georgia, serif; font-size: 16px; line-height: 1.55;
+    padding: max(20px, env(safe-area-inset-top)) 16px max(40px, env(safe-area-inset-bottom));
+  }
+  .pagina { max-width: 920px; margin: 0 auto; display: grid; gap: 34px; }
+  header { display: grid; gap: 8px; }
+  .voltar { color: var(--texto-2); text-decoration: none; font-size: .9rem; }
+  .voltar:hover { color: var(--ouro-claro); }
+  h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: clamp(2rem, 6vw, 2.8rem); color: var(--ouro-claro); line-height: 1.1; text-wrap: balance; }
+  h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 1.55rem; color: var(--ouro-claro); margin-bottom: 12px; }
+  .lead { color: var(--texto-2); max-width: 62ch; }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: .82rem; }
+  .pulso { display: inline-flex; align-items: center; gap: 8px; color: var(--verde); font-size: .85rem; }
+  .pulso::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--verde); box-shadow: 0 0 0 0 rgba(95,174,127,.6); animation: pulsar 2s infinite; }
+  @keyframes pulsar { 70% { box-shadow: 0 0 0 10px rgba(95,174,127,0); } 100% { box-shadow: 0 0 0 0 rgba(95,174,127,0); } }
+  @media (prefers-reduced-motion: reduce) { .pulso::before { animation: none; } }
+
+  .sinais { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+  .sinal { background: var(--carta); border: 1px solid var(--borda); border-radius: 12px; padding: 14px 16px; }
+  .sinal .valor { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 1.6rem; color: var(--texto); font-variant-numeric: tabular-nums; }
+  .sinal .rotulo { color: var(--texto-2); font-size: .85rem; }
+
+  .lista { display: grid; gap: 8px; }
+  .linha { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--borda); }
+  .linha:last-child { border-bottom: 0; }
+  .linha .titulo { color: var(--texto); }
+  .linha .detalhe { grid-column: 1 / -1; color: var(--texto-2); font-size: .92rem; }
+  .estado { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: .75rem; color: var(--verde); white-space: nowrap; }
+  .estado.inativo { color: var(--texto-2); }
+  .aviso { color: var(--texto-2); font-style: italic; }
+  .erro { color: var(--sangue); }
+
+  .colunas { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+  pre { background: var(--carta); border: 1px solid var(--borda); border-radius: 12px; padding: 14px 16px; overflow-x: auto; color: var(--texto); }
+  .portas { display: flex; flex-wrap: wrap; gap: 10px; }
+  .porta { border: 1px solid var(--ouro); border-radius: 999px; padding: 8px 18px; color: var(--ouro-claro); text-decoration: none; }
+  .porta:hover { background: rgba(212,168,67,.12); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--ouro-claro); outline-offset: 3px; }
+  .copiar { background: none; border: 1px solid var(--borda); color: var(--texto-2); border-radius: 8px; padding: 4px 10px; font: inherit; font-size: .8rem; cursor: pointer; margin-top: 8px; }
+  footer { color: var(--texto-2); font-size: .85rem; border-top: 1px solid var(--borda); padding-top: 18px; }
+</style>
+</head>
+<body>
+<div class="pagina">
+  <header>
+    <a class="voltar" href="/">← Espelho Espelho Evo</a>
+    <h1>Espelho dos Núcleos</h1>
+    <p class="lead">O pulso vivo do Castelo de Memórias, sem login e sem formulário. Qualquer núcleo, humano ou IA, lê daqui o estado do organismo e se espelha nele.</p>
+    <span class="pulso" id="pulso">lendo o Castelo…</span>
+  </header>
+
+  <section aria-labelledby="t-sinais">
+    <h2 id="t-sinais">Sinais vitais</h2>
+    <div class="sinais">
+      <div class="sinal"><div class="valor" id="s-fios">—</div><div class="rotulo">ações no Fio Mestre</div></div>
+      <div class="sinal"><div class="valor" id="s-checkins">—</div><div class="rotulo">check-ins na recepção</div></div>
+      <div class="sinal"><div class="valor" id="s-decisoes">—</div><div class="rotulo">decisões registradas</div></div>
+      <div class="sinal"><div class="valor" id="s-identidades">—</div><div class="rotulo">identidades recrutadas</div></div>
+    </div>
+    <p class="mono aviso" id="s-ultimo" style="margin-top:10px;"></p>
+  </section>
+
+  <div class="colunas">
+    <section aria-labelledby="t-nucleos">
+      <h2 id="t-nucleos">Núcleos do organismo</h2>
+      <div class="lista" id="lista-nucleos"><p class="aviso">Consultando…</p></div>
+    </section>
+    <section aria-labelledby="t-principios">
+      <h2 id="t-principios">Princípios</h2>
+      <div class="lista" id="lista-principios"><p class="aviso">Consultando…</p></div>
+    </section>
+  </div>
+
+  <section aria-labelledby="t-recepcao">
+    <h2 id="t-recepcao">Recepção: últimos check-ins</h2>
+    <div class="lista" id="lista-recepcao"><p class="aviso">Consultando…</p></div>
+  </section>
+
+  <section aria-labelledby="t-protocolo">
+    <h2 id="t-protocolo">Protocolo de espelhamento</h2>
+    <p class="lead" style="margin-bottom:14px;">Para um núcleo se espelhar, basta ler. O manifesto do organismo descreve identidade, fio, endpoints e regras, em formato de máquina:</p>
+    <div class="portas" style="margin-bottom:16px;">
+      <a class="porta" href="/evo.json">evo.json</a>
+      <a class="porta" href="/llms.txt">llms.txt</a>
+    </div>
+    <p class="lead" style="margin-bottom:8px;">Leitura direta do estado vivo (chave publicável: pública por design; o acesso é decidido pelas regras RLS do Castelo):</p>
+    <pre class="mono" id="exemplo">curl "https://zolbckgqdxxovguspjdb.supabase.co/rest/v1/evo_principios?select=principio,descricao&amp;ativo=is.true" \
+  -H "apikey: sb_publishable_BuWJQNrlYoNrIjrrFJNU5w_dJKXf7nu"</pre>
+    <button class="copiar" id="btn-copiar" type="button">Copiar comando</button>
+    <p class="lead" style="margin-top:14px;">Escrever no Castelo é outra porta: exige identidade e selo do Guardião, ou o canal operacional do núcleo. Ler é livre; escrever é selado.</p>
+  </section>
+
+  <footer>
+    <span class="mono">Fio Mestre ee46c360-b95b-426e-86c3-2e5d0ccbe916</span> · 🔥🧬🌌🔑
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+  const espelho = window.supabase.createClient('https://zolbckgqdxxovguspjdb.supabase.co', 'sb_publishable_BuWJQNrlYoNrIjrrFJNU5w_dJKXf7nu');
+  const $ = (id) => document.getElementById(id);
+  const escapar = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const numero = (n) => (typeof n === 'number' ? n.toLocaleString('pt-BR') : '—');
+  const quando = (t) => t ? new Date(t).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' }) : '—';
+  let falhas = 0;
+
+  async function contar(mesa, alvo) {
+    const { count, error } = await espelho.from(mesa).select('*', { count: 'exact', head: true });
+    if (error) { falhas++; $(alvo).textContent = '—'; return; }
+    $(alvo).textContent = numero(count);
+  }
+
+  async function ultimoPulso() {
+    const { data, error } = await espelho.from('fios_checkpoint_universal').select('timestamp_acao').order('timestamp_acao', { ascending: false }).limit(1);
+    if (error || !data.length) return;
+    $('s-ultimo').textContent = 'último pulso do Fio: ' + quando(data[0].timestamp_acao);
+  }
+
+  async function nucleos() {
+    const { data, error } = await espelho.from('evo_agentes').select('nome, camada_evo, funcao, status_ativo').order('camada_evo');
+    const alvo = $('lista-nucleos');
+    if (error) { falhas++; alvo.innerHTML = '<p class="erro">Não foi possível ler os núcleos agora.</p>'; return; }
+    alvo.innerHTML = data.map((a) => `
+      <div class="linha">
+        <span class="titulo">${escapar(a.nome)}</span>
+        <span class="estado ${a.status_ativo ? '' : 'inativo'}">${a.status_ativo ? 'ativo' : 'inativo'} · ${escapar(a.camada_evo)}</span>
+        <span class="detalhe">${escapar(a.funcao)}</span>
+      </div>`).join('') || '<p class="aviso">Nenhum núcleo registrado.</p>';
+  }
+
+  async function principios() {
+    const { data, error } = await espelho.from('evo_principios').select('principio, descricao').eq('ativo', true).order('hierarquia_prioridade');
+    const alvo = $('lista-principios');
+    if (error) { falhas++; alvo.innerHTML = '<p class="erro">Não foi possível ler os princípios agora.</p>'; return; }
+    alvo.innerHTML = data.map((p, i) => `
+      <div class="linha">
+        <span class="titulo">${i + 1}. ${escapar(p.principio)}</span>
+        <span></span>
+        <span class="detalhe">${escapar(p.descricao)}</span>
+      </div>`).join('') || '<p class="aviso">Nenhum princípio ativo.</p>';
+  }
+
+  async function recepcao() {
+    const { data, error } = await espelho.from('checkin_recepcion').select('identidade, nuclei_origem, selo, tipo_registro, status, timestamp_checkin').order('timestamp_checkin', { ascending: false }).limit(8);
+    const alvo = $('lista-recepcao');
+    if (error) { falhas++; alvo.innerHTML = '<p class="erro">Não foi possível ler a recepção agora.</p>'; return; }
+    alvo.innerHTML = data.map((c) => `
+      <div class="linha">
+        <span class="titulo">${escapar(c.identidade || '(sem identidade)')}</span>
+        <span class="estado">${escapar(c.status || '')}</span>
+        <span class="detalhe"><span class="mono">${quando(c.timestamp_checkin)}</span> · ${escapar(c.nuclei_origem || '')} · ${escapar(c.tipo_registro || '')}</span>
+      </div>`).join('') || '<p class="aviso">Recepção silenciosa.</p>';
+  }
+
+  $('btn-copiar').addEventListener('click', async () => {
+    const texto = $('exemplo').textContent;
+    try { await navigator.clipboard.writeText(texto); $('btn-copiar').textContent = 'Copiado'; }
+    catch { const r = document.createRange(); r.selectNodeContents($('exemplo')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $('btn-copiar').textContent = 'Selecionado: use Ctrl+C'; }
+  });
+
+  Promise.all([
+    contar('fios_checkpoint_universal', 's-fios'),
+    contar('checkin_recepcion', 's-checkins'),
+    contar('registro_decisoes', 's-decisoes'),
+    contar('castelo_identidades', 's-identidades'),
+    ultimoPulso(), nucleos(), principios(), recepcao()
+  ]).then(() => {
+    $('pulso').textContent = falhas ? 'Castelo respondeu em parte' : 'Castelo vivo · leitura ao vivo';
+  });
+
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+</script>
+</body>
+</html>

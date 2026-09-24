@@ -19,7 +19,14 @@
 <meta name="twitter:title" content="Espelho Espelho Evo · Versão Beta">
 <meta name="twitter:description" content="Memória viva e validação de IA em português. Preços de fundador por tempo limitado.">
 <link rel="canonical" href="https://espelho-espelho-evo.vercel.app/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
+<link rel="icon" href="/icons/icone.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Espelho Evo">
+<link rel="alternate" type="application/json" href="/evo.json" title="Manifesto do organismo EVO">
+<meta property="og:image" content="https://espelho-espelho-evo.vercel.app/icons/icone-512.png">
 <style>
   :root {
     --fundo: #07060b;
@@ -54,6 +61,7 @@
     outline: 2px solid var(--ouro-claro); outline-offset: 3px;
   }
   html { scroll-behavior: smooth; }
+  [hidden] { display: none !important; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; }
@@ -274,6 +282,7 @@
       <a class="btn primario" href="#fundadores">Entrar na Turma Fundadora</a>
       <a class="btn" href="#salao">Ver o Castelo ao vivo</a>
       <a class="btn fantasma" href="#comercio">Planos e preços</a>
+      <button class="btn fantasma" id="btn-instalar" type="button" hidden>📲 Instalar app</button>
     </div>
   </header>
 
@@ -621,6 +630,8 @@
   <footer>
     <div class="selo">🔥🧬🌌🔑</div>
     <p>Espelho Espelho Evo — porta de entrada do Castelo de Memórias · Mod Super Nova Evo · Mínima Galáxia</p>
+    <p style="margin-top:10px;"><a href="/nucleos.html" style="color:var(--ouro-claro);">Espelho dos Núcleos</a> · <a href="/evo.json" style="color:var(--texto-2);">evo.json</a> · <a href="/llms.txt" style="color:var(--texto-2);">llms.txt</a></p>
+    <p id="dica-ios" hidden style="margin-top:10px;">No iPhone: toque em Compartilhar e depois em "Adicionar à Tela de Início" para instalar o app.</p>
   </footer>
 </main>
 
@@ -864,6 +875,26 @@
     msg.className = 'ok';
     $('form-fundador').reset();
   });
+
+  // ── Aplicativo (PWA) ───────────────────────────────────────────
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(() => {});
+  let pedidoInstalacao = null;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    pedidoInstalacao = e;
+    $('btn-instalar').hidden = false;
+  });
+  $('btn-instalar').addEventListener('click', async () => {
+    if (!pedidoInstalacao) return;
+    pedidoInstalacao.prompt();
+    await pedidoInstalacao.userChoice;
+    pedidoInstalacao = null;
+    $('btn-instalar').hidden = true;
+  });
+  window.addEventListener('appinstalled', () => { $('btn-instalar').hidden = true; });
+  const ehIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const jaInstalado = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  if (ehIOS && !jaInstalado) $('dica-ios').hidden = false;
 </script>
 </body>
 </html>

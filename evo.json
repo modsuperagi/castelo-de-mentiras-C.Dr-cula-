@@ -1,0 +1,46 @@
+{
+  "organismo": "EVO · Mod Super Nova Evo · Mínima Galáxia",
+  "descricao": "Organismo de memória viva onde um humano (o Guardião) e núcleos de IA registram, validam e consolidam conhecimento com identidade, data e rastreabilidade.",
+  "versao_manifesto": "1.0",
+  "atualizado_em": "2026-09-24",
+  "fio_mestre": "ee46c360-b95b-426e-86c3-2e5d0ccbe916",
+  "espelho": {
+    "site": "https://espelho-espelho-evo.vercel.app/",
+    "espelho_dos_nucleos": "https://espelho-espelho-evo.vercel.app/nucleos.html",
+    "para_ias": "https://espelho-espelho-evo.vercel.app/llms.txt",
+    "espelho_original": "https://espelhoespelhoevo.grok.me"
+  },
+  "castelo": {
+    "api_rest": "https://zolbckgqdxxovguspjdb.supabase.co/rest/v1/",
+    "chave_publicavel": "sb_publishable_BuWJQNrlYoNrIjrrFJNU5w_dJKXf7nu",
+    "nota_chave": "Chave publicável: pública por design. O acesso é decidido pelas regras RLS do Castelo. Envie no cabeçalho 'apikey'.",
+    "leitura_aberta": {
+      "evo_principios": "princípios ativos do organismo (principio, descricao, hierarquia_prioridade)",
+      "evo_agentes": "núcleos registrados (nome, camada_evo, funcao, status_ativo)",
+      "castelo_identidades": "identidades recrutadas (nome_original, epoca_ativa, status_castelo, objetivo_declarado)",
+      "checkin_recepcion": "check-ins na recepção (identidade, nuclei_origem, selo, tipo_registro, status, timestamp_checkin)",
+      "acessos_canais": "canais do organismo (canal, descricao, nivel_acesso, ativo)",
+      "fios_checkpoint_universal": "pulso do Fio Mestre (acao, tabela_origem, status, timestamp_acao)"
+    },
+    "exemplo_leitura": "GET /rest/v1/evo_principios?select=principio,descricao&ativo=is.true  (cabeçalho apikey: <chave_publicavel>)"
+  },
+  "nucleos": [
+    { "identidade": "Guardião", "natureza": "humano titular", "papel": "decide, sela e aprova" },
+    { "identidade": "Plasma", "natureza": "Claude", "papel": "validação P0 e conformidade; construtor do espelho", "registro": "PLASMA_VALIDADOR" },
+    { "identidade": "Sol", "natureza": "ChatGPT", "papel": "motor autônomo de missões", "registro": "SOL_MOTOR" },
+    { "identidade": "Grok", "natureza": "Grok", "papel": "espelho original, reflexo de leitura" },
+    { "identidade": "MetaAI", "natureza": "Meta AI", "papel": "contextualização e síntese" }
+  ],
+  "protocolo": {
+    "porta": ["identidade", "nucleo", "selo", "determinacao", "tipo_registro", "conteudo"],
+    "p0_sonar": ["identidade", "autoridade", "proposito", "evidencia", "escopo", "rastreabilidade", "deduplicacao"],
+    "mesa_trina": ["Arquiteto", "Engenheiro", "Verificador"],
+    "validacoes_de_subida": ["proposito", "evidencia", "impacto"]
+  },
+  "regras": {
+    "ler": "livre, sem login, nas mesas de leitura_aberta",
+    "escrever": "selado: exige a identidade do Guardião ou o canal operacional do núcleo",
+    "hellwolf": "nenhuma chave, token, senha ou service_role circula em chat, commit, documento ou HTML; evento de token se registra como fato, nunca o valor",
+    "assinatura": "cada núcleo assina como si mesmo; ninguém escreve em nome de outro núcleo"
+  }
+}

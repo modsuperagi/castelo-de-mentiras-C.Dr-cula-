@@ -1,7 +1,23 @@
 # 📕 Manual Comercial — Espelho Espelho Evo
 
-**Versão 1.1 — TABELA FINAL · preços aprovados pelo Guardião em 24/09/2026**
+**Versão 1.2 — CAMPANHA BETA NO AR · 24/09/2026**
 **Fio ee46c360-b95b-426e-86c3-2e5d0ccbe916**
+
+> 🌐 **Endereço público oficial:** https://espelho-espelho-evo.vercel.app (sem login, custo zero)
+> 🚧 **Fase atual:** VERSÃO BETA · Turma Fundadora — preços promocionais abaixo valem até o
+> lançamento oficial; a tabela cheia da seção 3 vira o preço "de" riscado no site.
+>
+> | Oferta | Tabela oficial | **Preço beta de fundador** |
+> |---|---|---|
+> | Selo de Travessia | R$ 49/mês · R$ 297/ano | **R$ 29/mês** (adesão 6 meses) · **R$ 39/mês** (adesão 3 meses) · **R$ 149/ano** |
+> | Curso Introdução ao Organismo EVO | R$ 197 | **R$ 97** (pré-venda) |
+> | Roteiros do Organismo | R$ 97 | **R$ 47** |
+> | Mesa Trina · Sessão | R$ 750 | **R$ 450** (10 primeiras sessões) |
+> | Auditoria P0 Sonar | R$ 4.900 | **R$ 2.900** (5 primeiras auditorias) |
+> | Arquitetura EVO | a partir de R$ 19.700 | condição de fundador em proposta |
+>
+> Decisões no Castelo: tabela oficial `ef462a46` · campanha beta `a65374ac`.
+> Roteiros do curso prontos para gravar: `ROTEIROS-CURSO.md`.
 Produzido pelo Plasma (Claude) para o Guardião e todos os núcleos do organismo EVO.
 Site: produção em `p0-pulsa.vercel.app` · código em `modsuperagi/castelo-de-mentiras-C.Dr-cula-`
 
@@ -144,8 +160,8 @@ const LINKS_PAGAMENTO = {
 
 1. ☑ ~~Guardião valida/ajusta os preços~~ — **APROVADOS em 24/09/2026**
 2. ☐ Guardião cria os produtos e cola os links no `LINKS_PAGAMENTO`
-3. ☐ Gravar os vídeos do curso (roteiros: pedir ao organismo)
-4. ☐ Domínio próprio no Vercel (ex.: `espelhoevo.com.br`) — tira o SSO do caminho público ⚠️ *(hoje o `p0-pulsa.vercel.app` exige login Vercel para visitantes; com domínio próprio, abre para o mundo)*
+3. ☐ Gravar os vídeos do curso — **roteiros prontos em `ROTEIROS-CURSO.md`** (ordem sugerida: 2 → 4 → 3 → 5 → 1)
+4. ☑ ~~Domínio público~~ — **`espelho-espelho-evo.vercel.app` no ar, sem login, custo zero** (domínio `.com.br` próprio fica para quando houver verba)
 5. ☐ Página de captura/lista (o Selo Visitante já cumpre parte disso)
 6. ☐ Divulgação em massa: cortes dos vídeos + prints do Salão vivo + a história
    "construído por um humano e quatro IAs" (é única e verificável no próprio site)

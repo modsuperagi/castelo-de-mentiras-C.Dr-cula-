@@ -145,6 +145,31 @@
   .fonte.espelhado .estado-fonte { color: var(--verde); }
   .fonte.selado .estado-fonte { color: var(--sangue); }
 
+  /* ── Versão beta / promoção ─────────────────── */
+  .faixa-beta {
+    background: linear-gradient(90deg, rgba(212,168,67,.16), rgba(139,111,216,.16));
+    border: 1px solid var(--ouro); border-radius: var(--raio);
+    padding: 14px 20px; text-align: center; margin-bottom: 26px;
+  }
+  .faixa-beta strong { color: var(--ouro-claro); letter-spacing: .06em; }
+  .faixa-beta span { color: var(--texto-2); font-size: .92rem; }
+  .preco-de { color: var(--texto-2); text-decoration: line-through; font-size: .85rem; letter-spacing: .05em; }
+  .preco-por { color: var(--ouro); font-size: 1.25rem; }
+  .selo-beta {
+    display: inline-block; background: var(--ouro); color: #1a1408; border-radius: 999px;
+    font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; padding: 2px 10px; margin-left: 6px;
+  }
+  .adesao { color: var(--violeta); font-size: .82rem; }
+
+  /* ── Mapa do Castelo ───────────────────────── */
+  .ala { margin-bottom: 6px; }
+  .ala .mesas { color: var(--texto-2); font-size: .86rem; line-height: 1.5; }
+  .ala .mesas code { color: var(--texto); font-size: .82rem; }
+  .acesso-tag { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; border-radius: 999px; padding: 2px 10px; border: 1px solid; }
+  .acesso-tag.aberto { color: var(--verde); border-color: var(--verde); }
+  .acesso-tag.selo { color: var(--ouro); border-color: var(--ouro); }
+  .acesso-tag.nucleo-t { color: var(--sangue); border-color: var(--sangue); }
+
   /* ── Câmaras (navegação inferior, como no Espelho original) ── */
   body { padding-bottom: 74px; }
   nav.camaras {
@@ -207,6 +232,25 @@
       <div class="carta"><h3>📡 P0 Sonar</h3><div class="meta">auditoria em 7 verificações</div><p>Identidade, autoridade, propósito, evidência, escopo, rastreabilidade e deduplicação. O que não passa, não circula.</p></div>
       <div class="carta"><h3>🧵 Fio Mestre</h3><div class="meta">rastreabilidade total</div><p>Cada ação carrega o fio de onde veio. Do check-in à consolidação, a linhagem completa fica selada — auditável do primeiro ao último elo.</p></div>
     </div>
+  </section>
+
+  <!-- ── Mapa do Castelo: o organismo inteiro, com a distinção do que é aberto, selado ou de núcleo ── -->
+  <section id="mapa">
+    <h2>O Mapa do Castelo</h2>
+    <p class="sub">Mais de 40 mesas vivas em 8 alas. <span class="acesso-tag aberto">Aberto</span> qualquer visitante lê no espelho · <span class="acesso-tag selo">Selo</span> exige identidade autenticada · <span class="acesso-tag nucleo-t">Núcleo</span> reservado ao organismo e contratos.</p>
+    <div class="grade">
+      <div class="carta ala"><h3>🚪 Porta &amp; Recepção <span class="acesso-tag aberto">Aberto</span></h3><p class="mesas"><code>evo_porta_entrada</code> · <code>checkin_recepcion</code> · <code>sessao_checkpoint</code> — quem chega, se identifica e atravessa.</p></div>
+      <div class="carta ala"><h3>📡 Validação P0 <span class="acesso-tag selo">Selo</span></h3><p class="mesas"><code>p0_validacao_completa</code> · <code>p0_audit</code> · <code>auditoria_p0_sonar</code> · <code>validacoes_obrigatorias</code> — as 7 verificações que guardam a circulação.</p></div>
+      <div class="carta ala"><h3>🫀 Coração &amp; Circulação <span class="acesso-tag nucleo-t">Núcleo</span></h3><p class="mesas"><code>coracao_motor_principal</code> · <code>trina_circulacao_principal</code> · <code>golden_circulacao_principal</code> · <code>consolidacao_circulacao_principal</code> · <code>evidencias_consolidadas</code> — o sangue do organismo.</p></div>
+      <div class="carta ala"><h3>⚖️ Mesa Trina <span class="acesso-tag selo">Selo</span></h3><p class="mesas"><code>meta_sessões_trina</code> · <code>trina_results</code> · <code>recrutas_funcoes_casa</code> — Arquiteto, Engenheiro e Verificador em sessão.</p></div>
+      <div class="carta ala"><h3>👤 Identidades <span class="acesso-tag aberto">Aberto</span></h3><p class="mesas"><code>castelo_identidades</code> · <code>evo_recrutamento_*</code> · <code>evo_agentes</code> — de Diógenes a Hellwolf, cada recruta com dossiê.</p></div>
+      <div class="carta ala"><h3>🧠 Memória Viva <span class="acesso-tag selo">Selo</span></h3><p class="mesas"><code>evo_memorias</code> · <code>meta_lab_entries</code> · <code>fluxo_conhecimento</code> · <code>consolidacoes</code> — conhecimento em camadas, com versão e auditoria.</p></div>
+      <div class="carta ala"><h3>📜 Governança <span class="acesso-tag aberto">Aberto</span></h3><p class="mesas"><code>registro_decisoes</code> · <code>registro_evolucoes</code> · <code>evo_principios</code> · <code>acessos_canais</code> · <code>fios_checkpoint_universal</code> — decisões com fio, data e responsável.</p></div>
+      <div class="carta ala"><h3>☀️ Missões Sol <span class="acesso-tag nucleo-t">Núcleo</span></h3><p class="mesas"><code>sol_missions</code> · <code>sol_tasks</code> · <code>sol_runs</code> · <code>sessions</code> — o motor autônomo de execução.</p></div>
+    </div>
+
+    <h3 style="color:var(--violeta); margin:28px 0 12px;">Princípios do Organismo</h3>
+    <div class="grade" id="lista-principios"><p class="aviso">Consultando o espelho…</p></div>
   </section>
 
   <!-- ── Salão público: leitura anônima permitida pelas policies espelho_select_anon_auth ── -->
@@ -315,6 +359,10 @@
        Links de pagamento: preencher o mapa LINKS_PAGAMENTO no script abaixo. -->
   <section id="comercio">
     <h2>Vertente Comercial</h2>
+    <div class="faixa-beta">
+      <strong>🚧 VERSÃO BETA · TURMA FUNDADORA</strong><br>
+      <span>Preços promocionais por tempo limitado — quem entra agora trava a condição de fundador. Adesões de 3 e 6 meses disponíveis. Vagas limitadas da fase beta.</span>
+    </div>
     <p class="sub">Do reflexo gratuito à residência de núcleo: sete portas, cada uma com seu selo.</p>
 
     <h3 style="color:var(--violeta); margin-bottom:12px;">Acesso ao Castelo</h3>
@@ -331,7 +379,8 @@
       </div>
       <div class="plano destaque">
         <div class="nome">Selo de Travessia</div>
-        <div class="preco">R$ 49/mês · R$ 297/ano</div>
+        <div class="preco"><span class="preco-de">R$ 49/mês</span> <span class="preco-por">R$ 29/mês</span> <span class="selo-beta">Beta</span></div>
+        <div class="adesao">na adesão de 6 meses · R$ 39/mês na de 3 meses · anual fundador <s>R$ 297</s> R$ 149</div>
         <ul>
           <li>Identidade autenticada no Castelo</li>
           <li>Travessias seladas na porta de entrada</li>
@@ -356,7 +405,8 @@
     <div class="planos">
       <div class="plano destaque">
         <div class="nome">Curso · Introdução ao Organismo EVO</div>
-        <div class="preco">R$ 197</div>
+        <div class="preco"><span class="preco-de">R$ 197</span> <span class="preco-por">R$ 97</span> <span class="selo-beta">Pré-venda</span></div>
+        <div class="adesao">preço de fundador — sobe para R$ 197 no lançamento oficial</div>
         <ul>
           <li>Vídeos conduzidos pelo Guardião</li>
           <li>Roteiros produzidos pelo próprio organismo</li>
@@ -367,7 +417,8 @@
       </div>
       <div class="plano">
         <div class="nome">Roteiros do Organismo</div>
-        <div class="preco">R$ 97</div>
+        <div class="preco"><span class="preco-de">R$ 97</span> <span class="preco-por">R$ 47</span> <span class="selo-beta">Beta</span></div>
+        <div class="adesao">por tempo limitado na fase beta</div>
         <ul>
           <li>Pacote de roteiros e templates prontos</li>
           <li>Protocolos de check-in, selo e determinação</li>
@@ -381,7 +432,8 @@
     <div class="planos">
       <div class="plano">
         <div class="nome">Mesa Trina · Sessão de Validação</div>
-        <div class="preco">R$ 750/sessão</div>
+        <div class="preco"><span class="preco-de">R$ 750</span> <span class="preco-por">R$ 450/sessão</span> <span class="selo-beta">Beta</span></div>
+        <div class="adesao">condição válida para as 10 primeiras sessões da fase beta</div>
         <ul>
           <li>Sua decisão ou projeto nas 3 posições</li>
           <li>Arquiteto · Engenheiro · Verificador</li>
@@ -391,7 +443,8 @@
       </div>
       <div class="plano destaque">
         <div class="nome">Auditoria P0 Sonar</div>
-        <div class="preco">R$ 4.900</div>
+        <div class="preco"><span class="preco-de">R$ 4.900</span> <span class="preco-por">R$ 2.900</span> <span class="selo-beta">Beta</span></div>
+        <div class="adesao">apenas as 5 primeiras auditorias da turma fundadora</div>
         <ul>
           <li>Seu fluxo de IA nas 7 verificações do P0</li>
           <li>Identidade, autoridade, propósito, evidência, escopo, rastreabilidade, dedup</li>
@@ -402,6 +455,7 @@
       <div class="plano">
         <div class="nome">Arquitetura EVO · Implantação</div>
         <div class="preco">a partir de R$ 19.700</div>
+        <div class="adesao">condição de fundador negociada em proposta na fase beta</div>
         <ul>
           <li>Seu próprio Castelo de Memórias implantado</li>
           <li>Supabase + fios + Trina + porta de entrada</li>
@@ -421,8 +475,9 @@
 <nav class="camaras" aria-label="Câmaras do Espelho">
   <a href="#hall"><span class="ico">🏰</span>Hall</a>
   <a href="#salao"><span class="ico">🧬</span>Núcleos</a>
+  <a href="#mapa"><span class="ico">🗺️</span>Castelo</a>
   <a href="#fontes"><span class="ico">⚙️</span>Motor</a>
-  <a href="#porta"><span class="ico">🔑</span>Castelo</a>
+  <a href="#porta"><span class="ico">🔑</span>Porta</a>
   <a href="#comercio"><span class="ico">🫀</span>Vivo</a>
 </nav>
 
@@ -589,9 +644,26 @@
   espelho.auth.getSession().then(({ data }) => renderizarEstadoAuth(data.session));
   espelho.auth.onAuthStateChange((_evento, sessao) => renderizarEstadoAuth(sessao));
 
+  async function carregarPrincipios() {
+    const alvo = $('lista-principios');
+    const { data, error } = await espelho
+      .from('evo_principios')
+      .select('principio, descricao, hierarquia_prioridade')
+      .eq('ativo', true)
+      .order('hierarquia_prioridade', { ascending: true });
+    if (error) { alvo.innerHTML = `<p class="erro">O espelho embaçou: ${escapar(error.message)}</p>`; return; }
+    if (!data.length) { alvo.innerHTML = '<p class="aviso">Nenhum princípio refletido.</p>'; return; }
+    alvo.innerHTML = data.map((p, i) => `
+      <div class="carta">
+        <h3>${i + 1}. ${escapar(p.principio)}</h3>
+        <p>${escapar(p.descricao || '')}</p>
+      </div>`).join('');
+  }
+
   carregarCanais();
   carregarIdentidades();
   carregarCheckins();
+  carregarPrincipios();
 
   // ── Links de pagamento por pacote ─────────────────────────────
   // O Guardião cola aqui cada link (Hotmart, Stripe, Mercado Pago…).

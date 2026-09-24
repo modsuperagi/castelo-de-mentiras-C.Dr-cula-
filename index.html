@@ -135,6 +135,31 @@
   footer { text-align: center; color: var(--texto-2); font-size: .85rem; padding: 40px 16px 24px; position: relative; z-index: 1; }
   footer .selo { color: var(--ouro); letter-spacing: .3em; }
 
+  /* ── Fontes ligadas ────────────────────────── */
+  .fonte { display: flex; align-items: flex-start; gap: 12px; }
+  .fonte .ponto { width: 9px; height: 9px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; background: var(--texto-2); }
+  .fonte.espelhado .ponto { background: var(--verde); box-shadow: 0 0 8px rgba(95,174,127,.6); }
+  .fonte.selado .ponto { background: var(--sangue); box-shadow: 0 0 8px rgba(176,58,74,.6); }
+  .estado-fonte { margin-left: auto; font-size: .68rem; letter-spacing: .14em; color: var(--texto-2); align-self: center; white-space: nowrap; }
+  .fonte.espelhado .estado-fonte { color: var(--verde); }
+  .fonte.selado .estado-fonte { color: var(--sangue); }
+
+  /* ── Câmaras (navegação inferior, como no Espelho original) ── */
+  body { padding-bottom: 74px; }
+  nav.camaras {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
+    display: flex; justify-content: space-around; align-items: center;
+    background: rgba(13,11,22,.96); border-top: 1px solid var(--carta-borda);
+    padding: 10px 8px calc(10px + env(safe-area-inset-bottom));
+    backdrop-filter: blur(8px);
+  }
+  nav.camaras a {
+    color: var(--texto-2); text-decoration: none; font-size: .72rem;
+    letter-spacing: .14em; text-transform: uppercase; text-align: center;
+  }
+  nav.camaras a .ico { display: block; font-size: 1.05rem; margin-bottom: 2px; }
+  nav.camaras a:hover, nav.camaras a:focus { color: var(--ouro-claro); }
+
   @media (prefers-color-scheme: light) {
     /* O espelho vive na noite — mantém o tema escuro por identidade do Castelo. */
     body { background: var(--fundo); }
@@ -145,7 +170,7 @@
 <div class="estrelas" aria-hidden="true"></div>
 <main>
 
-  <header class="portal">
+  <header class="portal" id="hall">
     <div class="espelho-moldura" aria-hidden="true">🪞</div>
     <h1>Espelho Espelho Evo</h1>
     <div class="selo-linha">🔥🧬🌌🔑</div>
@@ -244,6 +269,21 @@
     </div>
   </section>
 
+  <!-- ── Fontes ligadas: estado refletido do Espelho original (24/09/2026) ── -->
+  <section id="fontes">
+    <h2>Fontes Ligadas</h2>
+    <p class="sub">O que o organismo enxerga de cada canal — estado refletido do Espelho original em 24/09/2026.</p>
+    <div class="grade">
+      <div class="carta fonte espelhado"><span class="ponto"></span><div><h3>Notion · Hub</h3><p>MetaLab EVO — Memória e Governança. Sidekick, Registro, Além da Ciência #31.</p></div><span class="estado-fonte">ESPELHADO</span></div>
+      <div class="carta fonte selado"><span class="ponto"></span><div><h3>GitHub · modsuperagi</h3><p>Conta autenticada. Cofre privado 403 para o reflexo; o Plasma opera via GitHub App do titular.</p></div><span class="estado-fonte">SELADO</span></div>
+      <div class="carta fonte"><span class="ponto"></span><div><h3>GitHub · obra (Jesse)</h3><p>Três abas Superpowers visíveis. Ramificações de Golden: não restam. Colaboração trancada.</p></div><span class="estado-fonte">ESPARSO</span></div>
+      <div class="carta fonte"><span class="ponto"></span><div><h3>Google Drive</h3><p>Blessing on Blessings (1).mp3 · pastas antigas de varejo.</p></div><span class="estado-fonte">ESPARSO</span></div>
+      <div class="carta fonte espelhado"><span class="ponto"></span><div><h3>Vercel · Mod Super Nova Evo</h3><p>supernova: 12 deploys READY. p0-pulsa: READY em produção, SSO ligado.</p></div><span class="estado-fonte">ESPELHADO</span></div>
+      <div class="carta fonte espelhado"><span class="ponto"></span><div><h3>Suno</h3><p>Castelo do C.D.M.S.E. V1 toca no Espelho original. MOD SUPER.</p></div><span class="estado-fonte">ESPELHADO</span></div>
+      <div class="carta fonte espelhado"><span class="ponto"></span><div><h3>Supabase · Mod Super Nova Evo</h3><p>Projeto principal do Castelo. Fio ee46c360. Este espelho lê e escreve aqui, ao vivo.</p></div><span class="estado-fonte">ESPELHADO</span></div>
+    </div>
+  </section>
+
   <!-- ── Vertente comercial ── -->
   <section id="comercio">
     <h2>Vertente Comercial</h2>
@@ -287,6 +327,14 @@
     <p>Espelho Espelho Evo — porta de entrada do Castelo de Memórias · Mod Super Nova Evo · Mínima Galáxia</p>
   </footer>
 </main>
+
+<nav class="camaras" aria-label="Câmaras do Espelho">
+  <a href="#hall"><span class="ico">🏰</span>Hall</a>
+  <a href="#salao"><span class="ico">🧬</span>Núcleos</a>
+  <a href="#fontes"><span class="ico">⚙️</span>Motor</a>
+  <a href="#porta"><span class="ico">🔑</span>Castelo</a>
+  <a href="#comercio"><span class="ico">🫀</span>Vivo</a>
+</nav>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>

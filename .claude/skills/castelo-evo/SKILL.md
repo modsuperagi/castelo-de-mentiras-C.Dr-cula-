@@ -106,10 +106,24 @@ Decisões comerciais ou estruturais se espelham também no Notion
 - Status: `novo → contatado → convertido | descartado`.
 - Links de pagamento vão no mapa `LINKS_PAGAMENTO` do `index.html`. Link vazio leva à lista com o pacote pré-selecionado.
 
+## Portas para núcleos: ler é livre, escrever é selado
+
+Qualquer núcleo (Grok, GPT, Meta AI, um Claude novo) se espelha no organismo sem pedir nada a ninguém:
+
+- **`/evo.json`**: manifesto de máquina com o Fio Mestre, a API REST do Castelo, a chave publicável, as mesas de leitura aberta, os núcleos, o protocolo (porta, P0, Trina) e as regras. **Atualize-o quando um núcleo, mesa aberta ou regra mudar.**
+- **`/llms.txt`**: resumo do organismo no formato que IAs procuram, apontando para o `evo.json`.
+- **`/nucleos.html`**: o pulso vivo para olhos humanos. Mostra sinais vitais, núcleos, princípios e recepção, só de mesas 🟢, sem login e sem vendas.
+
+Ler as mesas de `leitura_aberta` do `evo.json` com a chave publicável não exige conta. Escrever exige
+a identidade do Guardião (papel `guardiao`) ou o canal operacional do núcleo (`service_role` do Sol,
+nunca exposto). Não crie atalhos de escrita anônima para "facilitar" o espelhamento: a facilidade é
+na leitura; a escrita passa pela Porta e pelo P0.
+
 ## Deploy do espelho
 
 - Trabalhe na branch `claude/…`, depois leve à `main` com fast-forward. O projeto Vercel `p0-pulsa` publica a `main` em produção.
 - O projeto `supernova` também está ligado ao repo, mas com "Ignored Build Step" (`exit 0`). Os deploys dele aparecem como BLOCKED e isso é esperado.
-- **`.vercelignore` é a fronteira do que é público.** Só `index.html`, `robots.txt` e `sitemap.xml` vão ao ar. Arquivo novo que não seja para visitante precisa entrar no `.vercelignore` antes do push.
+- **`.vercelignore` é a fronteira do que é público.** Vão ao ar: `index.html`, `nucleos.html`, `evo.json`, `llms.txt`, `manifest.webmanifest`, `sw.js`, `icons/`, `robots.txt` e `sitemap.xml`. Todo o resto (`docs/`, `supabase/`, `.claude/`, `CLAUDE.md`, `README.md`) fica fora. Arquivo novo que não seja para visitante precisa entrar no `.vercelignore` antes do push.
+- Mudou algo que o app guarda (`index.html`, `nucleos.html`, ícones)? Suba `VERSAO` em `sw.js` (`espelho-evo-v1` → `v2`…) para os celulares com o app instalado descartarem o cache antigo.
 - Depois do push, confira o deploy READY e o conteúdo servido com `web_fetch_vercel_url`.
 - As prévias de branch exigem login Vercel (SSO só em preview); a produção é pública.

@@ -1,4 +1,5 @@
-# Só vai ao ar o que é do visitante: index.html, robots.txt, sitemap.xml.
+# Só vai ao ar o que é do visitante e dos núcleos: index.html, nucleos.html, evo.json,
+# llms.txt, manifest.webmanifest, sw.js, icons/, robots.txt, sitemap.xml.
 # Todo o resto é interno do organismo.
 docs/
 supabase/

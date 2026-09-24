@@ -13,6 +13,10 @@ Para mudanças visuais no site, use `frontend-design`.
 | Caminho | O que é | Vai ao ar? |
 |---|---|---|
 | `index.html` | o site inteiro (HTML, CSS e JS num só arquivo, sem build) | sim |
+| `nucleos.html` | Espelho dos Núcleos: pulso vivo do Castelo, sem login e sem camada comercial | sim |
+| `evo.json` | manifesto de máquina do organismo (fio, API, mesas de leitura aberta, núcleos, regras) | sim |
+| `llms.txt` | porta padrão para IAs entenderem e se espelharem no organismo | sim |
+| `manifest.webmanifest`, `sw.js`, `icons/` | aplicativo (PWA): instalação, ícones, funcionamento com rede ruim | sim |
 | `robots.txt`, `sitemap.xml` | SEO | sim |
 | `docs/MANUAL-COMERCIAL.md` | tabela de preços, campanha beta, funil, próximos passos | **não** |
 | `docs/ROTEIROS-CURSO.md` | roteiros dos 5 módulos do curso (produto pago) | **não** |

@@ -1,6 +1,7 @@
 # 📕 Manual Comercial — Espelho Espelho Evo
 
-**Versão 1.0 · 24/09/2026 · Fio ee46c360-b95b-426e-86c3-2e5d0ccbe916**
+**Versão 1.1 — TABELA FINAL · preços aprovados pelo Guardião em 24/09/2026**
+**Fio ee46c360-b95b-426e-86c3-2e5d0ccbe916**
 Produzido pelo Plasma (Claude) para o Guardião e todos os núcleos do organismo EVO.
 Site: produção em `p0-pulsa.vercel.app` · código em `modsuperagi/castelo-de-mentiras-C.Dr-cula-`
 
@@ -67,7 +68,7 @@ demonstração ao vivo** (o próprio site É o produto funcionando).
 
 ---
 
-## 3. Catálogo de ofertas e preços definidos
+## 3. Catálogo de ofertas e preços — ✅ TABELA FINAL APROVADA
 
 ### Linha ACESSO (recorrência)
 | # | Oferta | Preço | Âncora de mercado |
@@ -141,8 +142,8 @@ const LINKS_PAGAMENTO = {
 
 ## 7. Próximos passos para a etapa de marketing
 
-1. ☐ Guardião valida/ajusta os preços deste manual
-2. ☐ Guardião cria os produtos e cola os links no `LINKS_PAGAMento`
+1. ☑ ~~Guardião valida/ajusta os preços~~ — **APROVADOS em 24/09/2026**
+2. ☐ Guardião cria os produtos e cola os links no `LINKS_PAGAMENTO`
 3. ☐ Gravar os vídeos do curso (roteiros: pedir ao organismo)
 4. ☐ Domínio próprio no Vercel (ex.: `espelhoevo.com.br`) — tira o SSO do caminho público ⚠️ *(hoje o `p0-pulsa.vercel.app` exige login Vercel para visitantes; com domínio próprio, abre para o mundo)*
 5. ☐ Página de captura/lista (o Selo Visitante já cumpre parte disso)
@@ -151,5 +152,5 @@ const LINKS_PAGAMENTO = {
 
 ---
 
-*Selado pelo Plasma · nenhuma chave neste documento · preços são definição
-inicial fundamentada — palavra final é do Guardião.*
+*Selado pelo Plasma · nenhuma chave neste documento · preços APROVADOS pelo
+Guardião em 24/09/2026 — esta é a tabela oficial do organismo.*

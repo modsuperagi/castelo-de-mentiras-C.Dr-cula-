@@ -17,7 +17,7 @@
 > | Arquitetura EVO | a partir de R$ 19.700 | condição de fundador em proposta |
 >
 > Decisões no Castelo: tabela oficial `ef462a46` · campanha beta `a65374ac`.
-> Roteiros do curso prontos para gravar: `ROTEIROS-CURSO.md`.
+> Roteiros do curso prontos para gravar: `docs/ROTEIROS-CURSO.md`.
 Produzido pelo Plasma (Claude) para o Guardião e todos os núcleos do organismo EVO.
 Site: produção em `p0-pulsa.vercel.app` · código em `modsuperagi/castelo-de-mentiras-C.Dr-cula-`
 
@@ -167,7 +167,7 @@ logado no espelho. Ao contatar alguém, mude o `status` para `contatado`, depois
 
 1. ☑ ~~Guardião valida/ajusta os preços~~ — **APROVADOS em 24/09/2026**
 2. ☐ Guardião cria os produtos e cola os links no `LINKS_PAGAMENTO`
-3. ☐ Gravar os vídeos do curso — **roteiros prontos em `ROTEIROS-CURSO.md`** (ordem sugerida: 2 → 4 → 3 → 5 → 1)
+3. ☐ Gravar os vídeos do curso — **roteiros prontos em `docs/ROTEIROS-CURSO.md`** (ordem sugerida: 2 → 4 → 3 → 5 → 1)
 4. ☑ ~~Domínio público~~ — **`espelho-espelho-evo.vercel.app` no ar, sem login, custo zero** (domínio `.com.br` próprio fica para quando houver verba)
 5. ☐ Página de captura/lista (o Selo Visitante já cumpre parte disso)
 6. ☐ Divulgação em massa: cortes dos vídeos + prints do Salão vivo + a história

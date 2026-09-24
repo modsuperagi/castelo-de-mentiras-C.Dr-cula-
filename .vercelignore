@@ -1,6 +1,10 @@
-captura-grok/
-MANUAL-COMERCIAL.md
-ROTEIROS-CURSO.md
+# Só vai ao ar o que é do visitante: index.html, robots.txt, sitemap.xml.
+# Todo o resto é interno do organismo.
+docs/
+supabase/
+.claude/
+CLAUDE.md
 README.md
+LICENSE
 .gitignore
 .vercelignore

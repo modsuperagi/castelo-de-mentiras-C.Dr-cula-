@@ -27,7 +27,9 @@
     font-family: 'Alegreya', Georgia, serif; font-size: 16px; line-height: 1.55;
     padding: max(20px, env(safe-area-inset-top)) 16px max(40px, env(safe-area-inset-bottom));
   }
-  .pagina { max-width: 920px; margin: 0 auto; display: grid; gap: 34px; }
+  .pagina { max-width: 920px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 34px; }
+  .pagina > *, .colunas > * { min-width: 0; }
+  footer .mono { overflow-wrap: anywhere; }
   header { display: grid; gap: 8px; }
   .voltar { color: var(--texto-2); text-decoration: none; font-size: .9rem; }
   .voltar:hover { color: var(--ouro-claro); }
@@ -56,7 +58,7 @@
   .erro { color: var(--sangue); }
 
   .colunas { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
-  pre { background: var(--carta); border: 1px solid var(--borda); border-radius: 12px; padding: 14px 16px; overflow-x: auto; color: var(--texto); }
+  pre { background: var(--carta); border: 1px solid var(--borda); border-radius: 12px; padding: 14px 16px; overflow-x: auto; max-width: 100%; color: var(--texto); }
   .portas { display: flex; flex-wrap: wrap; gap: 10px; }
   .porta { border: 1px solid var(--ouro); border-radius: 999px; padding: 8px 18px; color: var(--ouro-claro); text-decoration: none; }
   .porta:hover { background: rgba(212,168,67,.12); }

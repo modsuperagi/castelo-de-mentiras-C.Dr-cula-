@@ -35,6 +35,10 @@ python3 -m http.server 8080
 
 Pode ser hospedado em qualquer host estático (GitHub Pages, Vercel, grok.me…).
 
+Deploy atual (Vercel, projeto `p0-pulsa`, preview da branch
+`claude/espelho-espelho-evo-9kwgog`, requer login no Vercel por SSO):
+<https://p0-pulsa-git-claude-espelho-espelho-e-2cd7fd-mod-super-nova-evo.vercel.app>
+
 ### Segurança
 
 O espelho usa apenas a **publishable key** do Supabase (pública por design).

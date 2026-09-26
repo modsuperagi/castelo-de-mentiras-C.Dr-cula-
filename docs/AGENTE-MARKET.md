@@ -48,6 +48,10 @@ Calendar e ao Drive da conta do Guardião. Qualquer núcleo pode assumir o papel
 6. **Registrar** o relatório em `evo_porta_entrada` (identidade `MARKET_MERCADO`, tipo `travessia`) e atualizar
    `ultima_acao` e `dados_ultima_acao` em `evo_agentes`.
 
+**Toda segunda-feira, radar de demanda:** buscar pelo método do Sonar onde estão pedindo o que fazemos
+(advogados, estudantes e pesquisadores, quem usa IA no trabalho; seção 4.1 do kit), anexar os achados novos à
+sessão da Mesa com fontes e propor ao Guardião **um** lugar para ele responder com valor. O agente não posta.
+
 Dia sem inscrito novo: o relatório diz isso em uma linha e propõe **uma** ação de tráfego do
 `docs/KIT-DIVULGACAO.md` (calendário de 7 dias).
 

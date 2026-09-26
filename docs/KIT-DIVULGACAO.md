@@ -120,6 +120,27 @@ Legenda:
 novos artigos e medir os canais no Castelo. **O que só você pode fazer:** publicar nas suas contas, entrar nos
 grupos e responder às pessoas. Nenhum agente deve postar em seu nome sem você ver antes.
 
+## 4.1 Onde já pedem o que fazemos (radar do Sonar, 26/09)
+
+Busca pelo método do Sonar: quem já está perguntando pelas nossas capacidades. Três públicos com dor declarada
+e disposição para pagar. **Primeiro ajude na conversa; o link só entra se pedirem ou se a regra do lugar permitir.**
+
+| Público | A dor, nas palavras deles | Onde a conversa acontece (exemplos achados) | O que oferecer |
+|---|---|---|---|
+| **Advogados** | "a IA inventou jurisprudência", medo de multa e de responder pela peça | [Conjur](https://conjur.com.br/2025-abr-25/chatgpt-primeiro-voce-alucina-inventa-jurisprudencia-ou-nao-era-julgado-era-cilada/), [Jusbrasil](https://www.jusbrasil.com.br/noticias/advogado-pode-ser-punido-por-usar-chatgpt-em-acao-o-motivo-invencao-de-precedentes/1866539948), [Estratégia OAB](https://oab.estrategia.com/portal/alucinacao-de-ia-no-direito-como-usar-chatgpt-sem-citar-jurisprudencia-inventada/), comunidades como [LEX.IA](https://erikn.com.br/comunidade-lex-ia/) e [Advocacia Digital](https://comunidade.advocaciadigital.io/) | guia gratuito → Roteiros (R$ 47) → Mesa Trina (R$ 450) para escritório |
+| **Estudantes e pesquisadores** | "o ChatGPT me deu referência falsa no TCC", banca reprova | [blog da Dra. Nathalia Cavichiolli](https://www.doutoranathalia.com.br/blog/chatgpt-referencias-falsas-como-verificar/), [TCC na Prática](https://meutccnapratica.com.br/guia-abnt/referencia-de-ia), vídeos no TikTok sobre validar referências | guia gratuito (pergunta 4: cadê a prova?) → Roteiros |
+| **Quem usa IA todo dia no trabalho** | "o ChatGPT esquece o projeto", "mistura os assuntos" | [TabNews](https://www.tabnews.com.br/NewsletterOficial/chatgpt-aprimora-recurso-de-memoria-e-passa-a-considerar-conversas-anteriores), [Canaltech](https://canaltech.com.br/inteligencia-artificial/chatgpt-esquecendo-as-coisas-truque-para-resolver/), grupos de prompts no Telegram e no Discord ([Disboard: IA](https://disboard.org/servers/tag/ia)) | artigo "memória de IA" do blog → Roteiros 1 e 6 (abertura e fechamento de sessão) |
+
+**Como entrar sem queimar o nome:**
+- **Comentário de valor:** em matéria sobre IA que inventa, responda com uma das 7 perguntas aplicada ao caso. Ex.: "Antes de citar, abra o número do processo no site do tribunal: se não abrir, não existe."
+- **Pergunta em comunidade:** responda o que foi perguntado, completo. Termine com "tenho um guia gratuito com as 7 perguntas, se quiser mando", e só mande se pedirem.
+- **Links com UTM por público:** `utm_source=comunidade&utm_campaign=advogados` (ou `estudantes`, `trabalho`), para a consulta de canais mostrar qual público converte.
+
+**Concorrência já presente:** ferramentas jurídicas com IA (Jurídico AI, EasyJur, Cria.AI) e cursos para TCC. O que nos diferencia é o **método de conferência** que serve para qualquer IA, não mais uma IA.
+
+**Limite do radar:** a busca não indexou tópicos do Reddit nem de fóruns fechados. Com a rede liberada, o Sonar busca direto
+(Hacker News, Reddit); em grupos fechados, só o Guardião entra.
+
 ## 5. Calendário de 7 dias
 
 | Dia | Ação |

@@ -127,9 +127,9 @@ e disposição para pagar. **Primeiro ajude na conversa; o link só entra se ped
 
 | Público | A dor, nas palavras deles | Onde a conversa acontece (exemplos achados) | O que oferecer |
 |---|---|---|---|
-| **Advogados** | "a IA inventou jurisprudência", medo de multa e de responder pela peça | [Conjur](https://conjur.com.br/2025-abr-25/chatgpt-primeiro-voce-alucina-inventa-jurisprudencia-ou-nao-era-julgado-era-cilada/), [Jusbrasil](https://www.jusbrasil.com.br/noticias/advogado-pode-ser-punido-por-usar-chatgpt-em-acao-o-motivo-invencao-de-precedentes/1866539948), [Estratégia OAB](https://oab.estrategia.com/portal/alucinacao-de-ia-no-direito-como-usar-chatgpt-sem-citar-jurisprudencia-inventada/), comunidades como [LEX.IA](https://erikn.com.br/comunidade-lex-ia/) e [Advocacia Digital](https://comunidade.advocaciadigital.io/) | guia gratuito → Roteiros (R$ 47) → Mesa Trina (R$ 450) para escritório |
-| **Estudantes e pesquisadores** | "o ChatGPT me deu referência falsa no TCC", banca reprova | [blog da Dra. Nathalia Cavichiolli](https://www.doutoranathalia.com.br/blog/chatgpt-referencias-falsas-como-verificar/), [TCC na Prática](https://meutccnapratica.com.br/guia-abnt/referencia-de-ia), vídeos no TikTok sobre validar referências | guia gratuito (pergunta 4: cadê a prova?) → Roteiros |
-| **Quem usa IA todo dia no trabalho** | "o ChatGPT esquece o projeto", "mistura os assuntos" | [TabNews](https://www.tabnews.com.br/NewsletterOficial/chatgpt-aprimora-recurso-de-memoria-e-passa-a-considerar-conversas-anteriores), [Canaltech](https://canaltech.com.br/inteligencia-artificial/chatgpt-esquecendo-as-coisas-truque-para-resolver/), grupos de prompts no Telegram e no Discord ([Disboard: IA](https://disboard.org/servers/tag/ia)) | artigo "memória de IA" do blog → Roteiros 1 e 6 (abertura e fechamento de sessão) |
+| **Advogados** | "a IA inventou jurisprudência", medo de multa e de responder pela peça | [Conjur](https://conjur.com.br/2025-abr-25/chatgpt-primeiro-voce-alucina-inventa-jurisprudencia-ou-nao-era-julgado-era-cilada/), [Jusbrasil](https://www.jusbrasil.com.br/noticias/advogado-pode-ser-punido-por-usar-chatgpt-em-acao-o-motivo-invencao-de-precedentes/1866539948), [Estratégia OAB](https://oab.estrategia.com/portal/alucinacao-de-ia-no-direito-como-usar-chatgpt-sem-citar-jurisprudencia-inventada/), comunidades como [LEX.IA](https://erikn.com.br/comunidade-lex-ia/) e [Advocacia Digital](https://comunidade.advocaciadigital.io/) | guia gratuito → Checagem (R$ 19) → Plano Profissional (R$ 39/mês) → Empresarial (R$ 297/mês) para escritório |
+| **Estudantes e pesquisadores** | "o ChatGPT me deu referência falsa no TCC", banca reprova | [blog da Dra. Nathalia Cavichiolli](https://www.doutoranathalia.com.br/blog/chatgpt-referencias-falsas-como-verificar/), [TCC na Prática](https://meutccnapratica.com.br/guia-abnt/referencia-de-ia), vídeos no TikTok sobre validar referências | guia gratuito (pergunta 4: cadê a prova?) → Plano Estudante (R$ 9,90/mês) |
+| **Quem usa IA todo dia no trabalho** | "o ChatGPT esquece o projeto", "mistura os assuntos" | [TabNews](https://www.tabnews.com.br/NewsletterOficial/chatgpt-aprimora-recurso-de-memoria-e-passa-a-considerar-conversas-anteriores), [Canaltech](https://canaltech.com.br/inteligencia-artificial/chatgpt-esquecendo-as-coisas-truque-para-resolver/), grupos de prompts no Telegram e no Discord ([Disboard: IA](https://disboard.org/servers/tag/ia)) | artigo "memória de IA" do blog → Roteiros 1 e 6 (abertura e fechamento de sessão) → Plano Ultra (R$ 97/mês) |
 
 **Como entrar sem queimar o nome:**
 - **Comentário de valor:** em matéria sobre IA que inventa, responda com uma das 7 perguntas aplicada ao caso. Ex.: "Antes de citar, abra o número do processo no site do tribunal: se não abrir, não existe."
@@ -179,3 +179,100 @@ reserva a vaga. Sugestão de ordem, do mais simples ao mais caro:
 - **SONAR:** o site dele ainda não está publicado (falta o projeto Vercel e o teste real). Quando estiver, entra
   neste kit com o próprio link e a própria lista de acesso antecipado.
 - **Promessas de resultado ou depoimentos:** só com clientes reais e autorização deles.
+
+## 8. Campanha Concursos, ENEM e planos (26/09)
+
+Radar do Sonar (26/09): editais abertos agora, como Seduc CE (2 mil vagas, até 15/10), Sesa AP (4.210 vagas, até 13/10),
+PM AL (1.060 vagas, até 26/10), Detran SP (até 07/10) e Emater MG (30/09 a 30/10)
+([Direção Concursos](https://www.direcaoconcursos.com.br/noticias/concurso-publico-abertos-setembro-2026));
+ENEM em 8 e 15/11 ([FSA](https://www.fsa.br/datas-enem-2026/)); concurseiros já usam IA para questões de lei seca
+([Folha Dirigida](https://folha.qconcursos.com/n/aprovado-em-concursos-usou-chatgpt-para-estudar)), e a IA erra muito
+em pergunta jurídica específica ([Stanford](https://law.stanford.edu/2024/01/11/hallucinating-law-legal-mistakes-with-large-language-models-are-pervasive/)).
+Confira as datas no edital oficial antes de citar num post.
+
+### 8.1 Links com UTM
+
+```
+Artigo concursos:  https://espelho-espelho-evo.vercel.app/blog/concurso-com-ia-sem-lei-inventada.html?utm_source=instagram&utm_campaign=concursos
+Ofertas (planos):  https://espelho-espelho-evo.vercel.app/?utm_source=linkedin&utm_campaign=planos#comercio
+ENEM (ofertas):    https://espelho-espelho-evo.vercel.app/?utm_source=tiktok&utm_campaign=enem#comercio
+```
+Troque o `utm_source` pelo lugar (instagram, tiktok, x, whatsapp, telegram, comunidade, google).
+
+### 8.2 Onde estão as bolhas
+
+| Bolha | Onde | Como entrar |
+|---|---|---|
+| Concurseiros de um edital (Seduc CE, Sesa AP, PM AL) | grupos de Telegram e WhatsApp do concurso, comunidades de cursinhos, comentários nas notícias do edital | responda dúvida de lei com o artigo e o link do Planalto; o link do artigo só se pedirem |
+| Concurseiros em geral | fóruns de questões (comentários nas questões), Instagram e TikTok com #concursospublicos, #leiseca | post de valor: "a IA te deu esta súmula? confira assim"; link na bio |
+| ENEM | TikTok e Instagram com #enem2026, #redacaoenem; grupos de turma de 3º ano | vídeo curto com o erro mais comum na competência 5; oferta das 4 correções |
+| Estudantes de TCC | grupos da faculdade, perfis de normas ABNT | artigo da referência falsa → Plano Estudante |
+| Advogados e escritórios | seção 4.1 | Checagem → Profissional → Empresarial |
+
+### 8.3 Posts prontos
+
+**Instagram · carrossel Concursos (7 cartões)**
+1. "A IA te deu uma súmula. Ela existe?"
+2. "IA de uso geral erra de 69% a 88% em pergunta jurídica específica (Stanford)."
+3. "1. O artigo existe e diz isso? Abra no Planalto, texto compilado."
+4. "2. Essa redação ainda vale? Trecho riscado é versão antiga."
+5. "3. A súmula é daquele tribunal, com aquele número? Confira no site do tribunal."
+6. "4. O edital cobra isso? 5. A banca pensa assim? Gabarito oficial manda."
+7. "Quer o estudo já montado assim? Mapa do edital + etapa semanal com a lei conferida. Link na bio."
+
+Legenda: "Decorar lei inventada custa a questão. Salve para conferir antes de estudar. Artigo completo no link da bio."
+
+**Reels ou TikTok · Concursos (30 s)**
+- 0–3 s: tela com uma súmula na resposta do ChatGPT. "Essa súmula existe?"
+- 3–10 s: abrindo o site do tribunal e buscando o número. "Não com esse texto."
+- 10–20 s: "Antes de decorar: artigo no Planalto, redação em vigor, súmula no site do tribunal."
+- 20–27 s: "Ou peça pra IA fazer questões só com o texto da lei que você colou."
+- 27–30 s: "O pedido pronto está no link da bio."
+
+**Reels ou TikTok · ENEM (30 s)**
+- 0–3 s: "Faltam [N] dias para a redação do ENEM."
+- 3–15 s: "A nota vem de 5 competências. A 5 é a proposta de intervenção: quem faz, o quê, como, para quê e o detalhe."
+- 15–25 s: "Escreva uma por semana e peça correção por competência, não 'está boa?'."
+- 25–30 s: "4 correções por R$ 29, cada uma em 24 horas. Link na bio. A nota é estimada, não a oficial."
+
+**LinkedIn · planos (texto)**
+> Quem usa IA no trabalho já passou por isso: a resposta parece certa, você usa, e depois descobre que a fonte não existe.
+> O Espelho Espelho Evo agora tem planos mensais: você manda a resposta, o organismo confere nas 7 verificações e devolve
+> o laudo por escrito em até 24 horas. Profissional: 30 checagens, 2 investigações com fontes e 1 Mesa Trina por mês,
+> R$ 39. Escritórios e equipes de até 10 pessoas: R$ 297. Sem fidelidade. [link com utm_campaign=planos]
+
+**X · fio de 4 posts (concurseiros)**
+1. A IA faz questão de lei seca em segundos. O problema é o artigo que não existe. Cinco conferências antes de decorar: 🧵
+2. Artigo: abra no Planalto, texto compilado. Redação: trecho riscado é versão antiga.
+3. Súmula: número e tribunal no site do próprio tribunal. Edital: estude o que cai. Banca: gabarito oficial manda.
+4. Pedido que evita invenção: cole o texto da lei e peça questões "só com este texto". Artigo completo: [link]
+
+**WhatsApp · para quem você conhece e está estudando (uma pessoa por vez, não lista)**
+> Oi, [nome]! Vi que você está estudando para [concurso]. Escrevi um guia curto de como usar a IA sem decorar lei
+> inventada: [link]. Se quiser o mapa do seu edital pronto, com cada lei ligada ao Planalto, o organismo faz em 48 h.
+
+### 8.4 Anúncios viáveis (Google Ads, pesquisa)
+
+Os anúncios só saem da conta do Guardião, com o cartão dele; o agente não cria conta nem cobra. Se decidir usar os
+R$ 150, a divisão sugerida é R$ 90 para Concursos e R$ 60 para ENEM, por 10 dias, só em pesquisa, só Brasil.
+Rascunho completo também no Gmail ("[Campanha pronta] Google Ads · R$ 150"; conferir e ajustar).
+
+| Grupo | Palavras-chave (frase) | Títulos (até 30) | Descrições (até 90) | Página |
+|---|---|---|---|---|
+| Concursos | "questões de lei seca", "cronograma de estudos concurso", "mapa do edital", "como estudar para concurso com ia" | Questões com a lei conferida · Mapa do seu edital em 48 h · Plano Concursos R$ 39/mês · Estude sem lei inventada · Cronograma até a sua prova | Mapa do edital, cronograma e 30 questões por semana com o artigo conferido no Planalto. · A IA inventa artigo e súmula. Aqui cada base legal é conferida na fonte oficial. | artigo concursos, `utm_source=google&utm_campaign=concursos` |
+| ENEM | "correção de redação enem", "corrigir redação enem", "redação enem competências" | Redação ENEM corrigida · 4 correções ENEM por R$ 29 · 5 competências do Inep · Nota estimada em 24 h | Mande sua redação e receba a correção pelas 5 competências em até 24 horas. · Prova em 8 de novembro. 4 correções por R$ 29, com nota estimada (não oficial). | início `#comercio`, `utm_campaign=enem` |
+| Estudante | "chatgpt referência falsa", "como saber se referência existe" | Referência do TCC existe? · Checagem de IA por R$ 9,90 · 10 checagens por mês | Mande a referência ou a resposta da IA e receba o laudo das 7 verificações em 24 h. · Plano Estudante: 10 checagens por mês e os Roteiros do Organismo por R$ 9,90. | artigo TCC, `utm_campaign=tcc` |
+
+Palavras negativas: grátis, gratuito, pdf, download, apostila pirata. Meta de corte: grupo sem inscrição depois de
+R$ 40 gastos para; o que trouxe inscrito recebe o restante.
+
+### 8.5 E-mails diretos
+
+Só para quem se inscreveu com consentimento (modelo "[MODELO Market]" no Gmail) ou para quem o Guardião conhece
+pessoalmente, um por vez (texto do WhatsApp acima). Lista comprada ou e-mail frio em massa: não. Queima o domínio,
+fere a LGPD e o método do organismo.
+
+### 8.6 Imagens e vídeos
+
+Carrossel e capas no Canva, no mesmo visual do carrossel "7 perguntas" (fundo escuro, dourado e violeta). Vídeos:
+gravação de tela do celular com os roteiros acima; legenda automática do próprio app.

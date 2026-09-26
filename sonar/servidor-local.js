@@ -22,6 +22,7 @@ const TIPOS = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; ch
 const rotas = {
   '/api/investigar': () => import('./api/investigar.js'),
   '/api/saude': () => import('./api/saude.js'),
+  '/api/buscar': () => import('./api/buscar.js'),
 };
 
 const servidor = createServer(async (req, res) => {

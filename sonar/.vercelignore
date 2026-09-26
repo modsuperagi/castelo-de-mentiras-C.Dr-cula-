@@ -1,4 +1,5 @@
 # Só vai ao ar: public/ (site), api/ (funções) e lib/ (usado pelas funções).
 testes/
 servidor-local.js
+buscar.js
 .env*

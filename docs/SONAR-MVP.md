@@ -137,6 +137,9 @@ navegador ── POST /api/investigar ──► api/investigar.js
 | `SONAR_ARMAZENAMENTO` | não | `nenhum` | `nenhum`, `memoria` ou `webhook` |
 | `SONAR_ARMAZENAMENTO_URL` | com `webhook` | – | destino do registro |
 | `SONAR_ARMAZENAMENTO_TOKEN` | não | – | vai como `Authorization: Bearer` |
+| `SONAR_BUSCA_TOKEN` | para `/api/buscar` | – | token do operador; sem ele a busca do operador fica desligada |
+| `SONAR_BUSCA_LIMITE` | não | `60` | buscas do operador por 10 minutos |
+| `SONAR_SEARXNG_URL` | não | – | endereço do SearXNG próprio (fonte `web`) |
 
 ### Logs
 
@@ -217,13 +220,74 @@ Local: `cd sonar && XAI_API_KEY=... npm run dev` → <http://localhost:3000>. Ou
 
 ## Testes
 
-`cd sonar && npm test` roda 12 testes com uma **xAI simulada** (`testes/xai-simulada.mjs`):
+`cd sonar && npm test` roda 20 testes: 12 do fluxo de investigação, com uma **xAI simulada** (`testes/xai-simulada.mjs`):
 plano de profundidade, extração de citações e de JSON, conferência de fontes (inclusive fonte inventada),
 estados INCOMPLETO e ERRO, retentativa sem parâmetro opcional, tempo limite, cota, limite de uso,
 e o endpoint de ponta a ponta com os estados na ordem.
 
 **Esses testes provam o encanamento, não a xAI.** O formato simulado segue a documentação
 pública da xAI, lida por busca porque `docs.x.ai` e `api.x.ai` são bloqueados na rede do ambiente de desenvolvimento.
+
+## Decisão de operação (Guardião, 26/09/2026)
+
+A pesquisa **não** passa pelas ferramentas da xAI. O caminho decidido é:
+
+```
+visitante → site (Grok Bot na barra: conversa, organiza, vende)
+          → Grok Bot (computador próprio) → Cursor → Dola AI / Golden
+              (chat com a estrutura Sonar)
+          + busca própria do SONAR (código nosso, fontes abertas)
+```
+
+- O **Grok Bot** é o operador e assistente. Ele não é o motor de busca.
+- A **Golden, na Dola**, guarda a estrutura Sonar e interpreta.
+- A **busca própria** (abaixo) traz o material bruto com origem, sem modelo de IA no meio.
+- O caminho `api/investigar.js` com `web_search`/`x_search` fica como está, mas **deixa de ser o principal**.
+  O site vai ser redesenhado para: assistente na barra, pedido em fila, entrega depois e blog.
+- Riscos já apresentados ao Guardião: operar chats pela tela é lento (minutos por pedido), forma fila
+  e pode violar os termos de uso das plataformas. A decisão foi tomada ciente disso.
+- As **sete entregas do Sonar** não estão no Castelo (check-in `4b68fa1a`, 26/09). O redesenho do motor espera por elas.
+
+## Busca própria do SONAR
+
+Código em `lib/busca/`. Nenhum modelo de IA e nenhuma chave paga: só APIs abertas e oficiais.
+
+| Fonte | API | Entra quando |
+|---|---|---|
+| `wikipedia-pt`, `wikipedia-en` | MediaWiki search | sempre |
+| `noticias` | GDELT DOC 2.0 | consulta atual (hoje, semana, lançamento…) ou quando há poucas fontes |
+| `arxiv`, `crossref` | arXiv API, Crossref REST | consulta acadêmica (artigo, estudo, científico, DOI…) |
+| `github` | GitHub search (sem login: 10 buscas/min) | consulta de código (repositório, biblioteca, API…) |
+| `hackernews` | Algolia HN | tecnologia + atual ou código |
+| `web` | **SearXNG próprio** em `SONAR_SEARXNG_URL` | sempre que configurado |
+
+O que o motor faz (`lib/busca/motor.js`):
+1. escolhe as fontes pela natureza da consulta (ou usa as que o operador pedir);
+2. consulta todas em paralelo, com tempo limite por fonte;
+3. registra cada fonte como `ok` ou com o erro, sem esconder falhas;
+4. tira URLs repetidas (guarda em `tambem_em` quem mais trouxe a mesma URL);
+5. ordena por aderência ao título e ao trecho, com bônus de recência em consultas atuais;
+6. com `ler`, baixa as melhores páginas e extrai o texto (`lib/busca/leitura.js`), bloqueando
+   endereços internos, portas fora do padrão e redirecionamentos para a rede interna.
+
+**Comando para o operador (Grok Bot no Cursor):**
+
+```
+cd sonar
+node buscar.js "consulta" [--fontes noticias,arxiv] [--ler 3] [--limite 5] [--json]
+```
+
+Sem `--json`, a saída é uma lista legível para colar no chat da Golden. Sem resultados, o comando
+diz que a evidência foi nula.
+
+**Endpoint para o operador:** `POST /api/buscar` com `Authorization: Bearer $SONAR_BUSCA_TOKEN`
+e `{ "consulta": "...", "fontes"?: [...], "ler"?: 0-5, "limite"?: 1-10 }`. Sem `SONAR_BUSCA_TOKEN`,
+responde 503 (desligado); token errado, 401. Limite padrão: 60 buscas por 10 minutos por endereço
+(`SONAR_BUSCA_LIMITE`). Não é para o visitante.
+
+**Status:** 8 testes com fontes simuladas passam. Nenhuma fonte real foi consultada: este ambiente
+bloqueia todas (Wikipedia, GDELT, arXiv, Crossref, HN, GitHub responderam 403 pelo proxy). O primeiro
+teste real precisa rodar no computador do Grok Bot ou na Vercel.
 
 ## Checkpoint de desenvolvimento
 
@@ -240,7 +304,7 @@ Branch `claude/sonar-website-mvp-dawde4`, pasta `sonar/`.
 
 ### 3. Evidência
 
-- `npm test`: 12/12 passam (xAI simulada).
+- `npm test`: 20/20 passam (12 com xAI simulada, 8 da busca própria com fontes simuladas).
 - Tela conferida no Chromium (Playwright), em 1280 px e 390 px, com a xAI simulada respondendo em 4 s:
   entrada, etapas acendendo na ordem, resultado com fontes numeradas, avisos de fonte descartada e de
   fato rebaixado; sem rolagem lateral no celular.

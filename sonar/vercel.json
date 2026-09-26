@@ -6,7 +6,8 @@
   "cleanUrls": true,
   "functions": {
     "api/investigar.js": { "maxDuration": 120 },
-    "api/saude.js": { "maxDuration": 5 }
+    "api/saude.js": { "maxDuration": 5 },
+    "api/buscar.js": { "maxDuration": 30 }
   },
   "headers": [
     {

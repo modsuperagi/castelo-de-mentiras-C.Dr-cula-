@@ -6,10 +6,21 @@
 >
 > | Oferta | Preço |
 > |---|---|
-> | Checagem P0 de uma resposta (novo, laudo em até 24 h) | **R$ 19** |
+> | Plano Estudante (10 checagens/mês + Roteiros) | **R$ 9,90/mês** |
+> | Plano Profissional (30 checagens, 2 investigações, 1 Mesa/mês) | **R$ 39/mês** |
+> | Plano Ultra · Seu Fio no Castelo (100 checagens, 5 investigações, 2 Mesas, documento contínuo) | **R$ 97/mês** |
+> | Plano Empresarial (até 10 pessoas, 150 checagens, 10 investigações, 4 Mesas, 1 Auditoria/trimestre) | **R$ 297/mês** |
+> | Plano Concursos por etapas (mapa do edital + etapa semanal) | **R$ 39/mês** |
+> | Mapa do Edital (só a 1ª etapa) | **R$ 29** |
+> | Redação ENEM · 4 correções | **R$ 29** |
+> | Checagem P0 de uma resposta (laudo em até 24 h) | **R$ 19** |
+> | Investigação Sonar (relatório com fontes em até 48 h) | **R$ 29** |
 > | Roteiros do Organismo | **R$ 27** |
 > | Mesa Trina por escrito (até 48 h) | **R$ 147** |
-> | Auditoria P0 Sonar (até 5 dias úteis) | **R$ 990** |
+> | Auditoria P0 Sonar (até 5 dias úteis) | **R$ 990** ou 3× R$ 330 no Pix |
+>
+> A fonte única de preço, prazo, material pedido e limites é `espelho_catalogo` no Castelo; esta tabela é cópia.
+> Parcelamento no cartão exige conta do Guardião em InfinitePay ou Mercado Pago (pendente).
 > | Selo de Travessia | R$ 29/mês (6 meses) · R$ 39/mês (3 meses) · R$ 149/ano |
 > | Curso (pré-venda) | R$ 97 |
 > | Arquitetura EVO | a partir de R$ 19.700 |

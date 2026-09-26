@@ -23,8 +23,8 @@
     return utm ? `${utm}:${pagina}` : pagina;
   }
 
-  // Instruções de Pix depois da inscrição: o Castelo só devolve algo quando o Drácula ou o Guardião ligam
-  // espelho_pagamento_config, e só para Roteiros e Mesa Trina. A chave nunca fica no site.
+  // Instruções de Pix depois da inscrição: o Castelo só devolve algo quando espelho_pagamento_config está ligado,
+  // e só para o que o organismo entrega sozinho (espelho_catalogo.pix_automatico). A chave nunca fica no site.
   async function instrucoesPagamento(cliente, email) {
     try {
       const { data, error } = await cliente.rpc('espelho_instrucoes_pagamento', { p_email: email });
@@ -32,14 +32,7 @@
     } catch (_) { return null; }
   }
 
-  // O que cada serviço precisa receber junto com o comprovante, e em quanto tempo o organismo entrega.
-  const PASSOS = {
-    checagem: { material: 'No mesmo e-mail, mande a pergunta que você fez à IA e a resposta que quer checar.', prazo: 'O laudo chega em até 24 horas.' },
-    roteiros: { material: '', prazo: 'Os Roteiros chegam em até 24 horas.' },
-    trina: { material: 'No mesmo e-mail, conte a decisão ou o projeto que a Mesa vai examinar.', prazo: 'O relatório chega em até 48 horas depois do material.' },
-    sonar: { material: 'No mesmo e-mail, descreva o fluxo de trabalho com IA da sua equipe: ferramentas, tarefas e quem revisa.', prazo: 'A auditoria chega em até 5 dias úteis depois do material.' }
-  };
-
+  // O que cada pedido precisa receber e o prazo vêm do catálogo do Castelo (espelho_catalogo), junto com o valor.
   function mostrarPagamento(ancora, p, email) {
     const antigo = ancora.parentNode.querySelector('.pagamento');
     if (antigo) antigo.remove();
@@ -47,11 +40,11 @@
     const caixa = document.createElement('div');
     caixa.className = 'pagamento';
     const linhas = [
-      ['strong', `Para garantir agora: ${valor} por Pix`],
+      ['strong', p.recorrente ? `Para começar agora: ${valor} por Pix (1º mês)` : `Para garantir agora: ${valor} por Pix`],
       ['p', `Chave Pix: ${p.chave_pix}${p.favorecido ? ` (${p.favorecido})` : ''}`],
       ['p', `Na descrição do Pix, escreva o seu e-mail (${email}).`],
       ['p', p.email_comprovante ? `Depois de pagar, mande o comprovante para ${p.email_comprovante}.` : 'Guarde o comprovante do Pix.'],
-      ['p', `${(PASSOS[p.pacote] || {}).material || ''} ${(PASSOS[p.pacote] || {}).prazo || 'A entrega chega em até 24 horas.'} Tudo chega em ${email}.`.trim()],
+      ['p', `${p.material || ''} ${p.prazo || 'A entrega chega em até 24 horas.'} Tudo chega em ${email}.`.trim()],
       ['p', 'Você tem 7 dias para desistir e receber o dinheiro de volta, sem precisar explicar (CDC, art. 49).']
     ];
     for (const [tag, texto] of linhas) {

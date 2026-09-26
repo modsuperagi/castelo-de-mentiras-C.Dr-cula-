@@ -220,7 +220,7 @@ Local: `cd sonar && XAI_API_KEY=... npm run dev` → <http://localhost:3000>. Ou
 
 ## Testes
 
-`cd sonar && npm test` roda 20 testes: 12 do fluxo de investigação, com uma **xAI simulada** (`testes/xai-simulada.mjs`):
+`cd sonar && npm test` roda 21 testes: 12 do fluxo de investigação, com uma **xAI simulada** (`testes/xai-simulada.mjs`):
 plano de profundidade, extração de citações e de JSON, conferência de fontes (inclusive fonte inventada),
 estados INCOMPLETO e ERRO, retentativa sem parâmetro opcional, tempo limite, cota, limite de uso,
 e o endpoint de ponta a ponta com os estados na ordem.
@@ -280,12 +280,17 @@ node buscar.js "consulta" [--fontes noticias,arxiv] [--ler 3] [--limite 5] [--js
 Sem `--json`, a saída é uma lista legível para colar no chat da Golden. Sem resultados, o comando
 diz que a evidência foi nula.
 
+Com `--sonar`, a saída é o **material pré-curado** para o bot (`lib/busca/curadoria.js`): camada 1
+(descarta com motivo o que não tem origem rastreável, parece isca de clique ou vem de domínio bloqueado em
+`SONAR_DOMINIOS_BLOQUEADOS`) e camada 3 (agrupa por tema e conta domínios independentes). Impacto,
+disputa e desmentido ficam para o bot julgar. As instruções do bot estão em `docs/SONAR-BOT-INSTRUCOES.md`.
+
 **Endpoint para o operador:** `POST /api/buscar` com `Authorization: Bearer $SONAR_BUSCA_TOKEN`
 e `{ "consulta": "...", "fontes"?: [...], "ler"?: 0-5, "limite"?: 1-10 }`. Sem `SONAR_BUSCA_TOKEN`,
 responde 503 (desligado); token errado, 401. Limite padrão: 60 buscas por 10 minutos por endereço
 (`SONAR_BUSCA_LIMITE`). Não é para o visitante.
 
-**Status:** 8 testes com fontes simuladas passam. Nenhuma fonte real foi consultada: este ambiente
+**Status:** 9 testes com fontes simuladas passam. Nenhuma fonte real foi consultada: este ambiente
 bloqueia todas (Wikipedia, GDELT, arXiv, Crossref, HN, GitHub responderam 403 pelo proxy). O primeiro
 teste real precisa rodar no computador do Grok Bot ou na Vercel.
 
@@ -304,7 +309,7 @@ Branch `claude/sonar-website-mvp-dawde4`, pasta `sonar/`.
 
 ### 3. Evidência
 
-- `npm test`: 20/20 passam (12 com xAI simulada, 8 da busca própria com fontes simuladas).
+- `npm test`: 21/21 passam (12 com xAI simulada, 9 da busca própria com fontes simuladas).
 - Tela conferida no Chromium (Playwright), em 1280 px e 390 px, com a xAI simulada respondendo em 4 s:
   entrada, etapas acendendo na ordem, resultado com fontes numeradas, avisos de fonte descartada e de
   fato rebaixado; sem rolagem lateral no celular.

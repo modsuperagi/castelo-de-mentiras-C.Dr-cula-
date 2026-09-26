@@ -139,3 +139,38 @@ test('endpoint do operador exige token e fica desligado sem configuração', asy
     servidor.close();
   }
 });
+
+test('pré-curadoria: filtro com motivo, domínio raiz e agrupamento por tema', async () => {
+  const { dominioRaiz, filtrar, agrupar, preCurar, formatarParaBot } = await import('../lib/busca/curadoria.js');
+  assert.equal(dominioRaiz('https://noticias.exemplo.com.br/a'), 'exemplo.com.br');
+  assert.equal(dominioRaiz('https://www.bbc.co.uk/x'), 'bbc.co.uk');
+  assert.equal(dominioRaiz('https://en.wikipedia.org/wiki/X'), 'wikipedia.org');
+
+  const resultados = [
+    { titulo: 'Empresa X lança chip quântico de 100 qubits', url: 'https://a.example.com/1', fonte: 'noticias', tipo: 'noticia', data: '2026-09-25' },
+    { titulo: 'Chip quântico de 100 qubits da Empresa X é lançado', url: 'https://b.example.org/2', fonte: 'noticias', tipo: 'noticia', data: '2026-09-25' },
+    { titulo: 'Você não vai acreditar no chip quântico', url: 'https://c.example.net/3', fonte: 'web', tipo: 'web' },
+    { titulo: 'ESCÂNDALO TOTAL NO MERCADO DE CHIPS', url: 'https://d.example.net/4', fonte: 'web', tipo: 'web' },
+    { titulo: 'Receita de bolo de cenoura', url: 'https://bloqueado.example.com/5', fonte: 'web', tipo: 'web' },
+    { titulo: 'Clima em Lisboa amanhã', url: 'https://e.example.pt/6', fonte: 'web', tipo: 'web' },
+  ];
+  const { aprovados, rejeitados } = filtrar(resultados, { dominiosBloqueados: ['bloqueado.example.com'] });
+  assert.deepEqual(rejeitados.map((r) => r.motivo), [
+    'título com padrão de isca de clique',
+    'título com padrão de isca de clique',
+    'domínio marcado como não confiável (bloqueado.example.com)',
+  ]);
+  assert.equal(aprovados.length, 3);
+
+  const grupos = agrupar(aprovados);
+  assert.equal(grupos[0].itens.length, 2, 'as duas notícias do chip formam um tema');
+  assert.equal(grupos[0].dominios_independentes, 2);
+  assert.equal(grupos[0].etiqueta_previa, 'multiplas_fontes_independentes');
+  assert.equal(grupos[1].etiqueta_previa, 'fonte_unica');
+
+  const texto = formatarParaBot(preCurar({ consulta: 'chip', gerado_em: 'agora', fontes_consultadas: [{ fonte: 'noticias', ok: true, n: 2 }], resultados }));
+  assert.match(texto, /TEMA 1: Empresa X lança chip quântico/);
+  assert.match(texto, /REJEITADOS NO FILTRO/);
+  const vazio = formatarParaBot(preCurar({ consulta: 'x', gerado_em: 'agora', fontes_consultadas: [], resultados: [] }));
+  assert.match(vazio, /Evidência nula/);
+});

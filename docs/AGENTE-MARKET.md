@@ -21,6 +21,20 @@ Calendar e ao Drive da conta do Guardião. Qualquer núcleo pode assumir o papel
 | Vendas | Neil Rackham · consulta | Qual o problema do cliente e o que acontece se não resolver? |
 | Vendas | Dale Carnegie · relação | Respondemos o que a pessoa perguntou? Ela se sentiu ouvida? |
 
+## Missão R$ 5.000 (ordem do Guardião, 26/09)
+
+Meta: R$ 5.000 confirmados em `espelho_assinaturas` até 26/10/2026, para evoluir os planos do organismo.
+Decisão `85df5986`, sessão da Mesa `3d5a6cc9` (PARCIAL, com condições), pedido ao Drácula (Super Grok) `5bcabfe5`.
+
+- **Rota:** advogados (Auditoria P0 R$ 2.900 e Mesa Trina R$ 450) e Roteiros (R$ 47). Alvo: 1 Auditoria +
+  3 Mesas + 20 Roteiros = R$ 5.190.
+- **Todo relatório diário abre com o placar:** soma de `espelho_assinaturas` ativas e encerradas contra a meta,
+  inscritos da semana por canal e o estado do pedido `5bcabfe5`.
+- **A cada 2 dias, um artigo de busca orgânica** (advogados, TCC, memória de IA), publicado pelo fluxo do espelho.
+- **Condições da Mesa:** o pagamento é confirmado pelo Guardião ou pelo Drácula; o Pix só vai ao site se o Drácula
+  determinar; a entrega vem só depois do pagamento. Mesa e Auditoria são entregues como relatório escrito em
+  Google Doc compartilhado com o comprador.
+
 ## Ciclo diário
 
 1. **Ler os novos inscritos** (desde o último relatório):

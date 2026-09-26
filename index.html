@@ -218,6 +218,10 @@
   }
   .consentimento { display: flex; gap: 10px; align-items: flex-start; color: var(--texto-2); font-size: .88rem; margin-top: 4px; }
   .consentimento input { width: auto; margin-top: 5px; accent-color: var(--ouro); }
+  .pagamento { margin-top: 14px; padding: 14px 16px; border: 1px solid var(--ouro); border-radius: 12px; background: var(--carta); }
+  .pagamento strong { display: block; color: var(--ouro); margin-bottom: 6px; }
+  .pagamento p { margin: 6px 0; font-size: .92rem; overflow-wrap: anywhere; }
+  .pagamento .btn { margin-top: 8px; }
   .garantias { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; color: var(--texto-2); font-size: .82rem; }
 
   /* ── Perguntas frequentes ──────────────────── */
@@ -866,6 +870,44 @@
   }
   canalDaVisita();
   const EMAIL_VALIDO = /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/;
+
+  // Instruções de Pix depois da inscrição: o Castelo só devolve algo quando o Drácula ou o Guardião ligam
+  // espelho_pagamento_config, e só para Roteiros e Mesa Trina. A chave nunca fica no site.
+  async function instrucoesPagamento(cliente, email) {
+    try {
+      const { data, error } = await cliente.rpc('espelho_instrucoes_pagamento', { p_email: email });
+      return error ? null : data;
+    } catch (_) { return null; }
+  }
+  function mostrarPagamento(ancora, p, email) {
+    const antigo = ancora.parentNode.querySelector('.pagamento');
+    if (antigo) antigo.remove();
+    const valor = (p.valor_centavos / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const caixa = document.createElement('div');
+    caixa.className = 'pagamento';
+    const linhas = [
+      ['strong', `Para garantir agora: ${valor} por Pix`],
+      ['p', `Chave Pix: ${p.chave_pix}${p.favorecido ? ` (${p.favorecido})` : ''}`],
+      ['p', `Na descrição do Pix, escreva o seu e-mail (${email}). Depois da confirmação, a entrega chega nesse e-mail em até 24 horas.`],
+      ['p', 'Você tem 7 dias para desistir e receber o dinheiro de volta, sem precisar explicar (CDC, art. 49).']
+    ];
+    for (const [tag, texto] of linhas) {
+      const el = document.createElement(tag);
+      el.textContent = texto;
+      caixa.appendChild(el);
+    }
+    const copiar = document.createElement('button');
+    copiar.type = 'button';
+    copiar.className = 'btn';
+    copiar.textContent = 'Copiar chave Pix';
+    copiar.addEventListener('click', () => {
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(p.chave_pix).then(() => { copiar.textContent = 'Chave copiada'; }).catch(() => {});
+    });
+    caixa.appendChild(copiar);
+    ancora.insertAdjacentElement('afterend', caixa);
+  }
+
   $('form-fundador').addEventListener('submit', async (e) => {
     e.preventDefault();
     const msg = $('lf-msg');
@@ -891,6 +933,8 @@
     if (error) { msg.textContent = 'Não conseguimos registrar agora. Tente de novo em instantes.'; msg.className = 'erro'; return; }
     msg.textContent = `Vaga reservada, ${inscricao.nome.split(' ')[0]}. O Guardião vai te procurar em ${inscricao.email}. 🔥🧬🌌🔑`;
     msg.className = 'ok';
+    const pagamento = await instrucoesPagamento(espelho, inscricao.email);
+    if (pagamento) mostrarPagamento(msg, pagamento, inscricao.email);
     $('form-fundador').reset();
   });
 

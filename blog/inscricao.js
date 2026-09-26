@@ -23,6 +23,44 @@
     return utm ? `${utm}:${pagina}` : pagina;
   }
 
+  // Instruções de Pix depois da inscrição: o Castelo só devolve algo quando o Drácula ou o Guardião ligam
+  // espelho_pagamento_config, e só para Roteiros e Mesa Trina. A chave nunca fica no site.
+  async function instrucoesPagamento(cliente, email) {
+    try {
+      const { data, error } = await cliente.rpc('espelho_instrucoes_pagamento', { p_email: email });
+      return error ? null : data;
+    } catch (_) { return null; }
+  }
+
+  function mostrarPagamento(ancora, p, email) {
+    const antigo = ancora.parentNode.querySelector('.pagamento');
+    if (antigo) antigo.remove();
+    const valor = (p.valor_centavos / 100).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    const caixa = document.createElement('div');
+    caixa.className = 'pagamento';
+    const linhas = [
+      ['strong', `Para garantir agora: ${valor} por Pix`],
+      ['p', `Chave Pix: ${p.chave_pix}${p.favorecido ? ` (${p.favorecido})` : ''}`],
+      ['p', `Na descrição do Pix, escreva o seu e-mail (${email}). Depois da confirmação, a entrega chega nesse e-mail em até 24 horas.`],
+      ['p', 'Você tem 7 dias para desistir e receber o dinheiro de volta, sem precisar explicar (CDC, art. 49).']
+    ];
+    for (const [tag, texto] of linhas) {
+      const el = document.createElement(tag);
+      el.textContent = texto;
+      caixa.appendChild(el);
+    }
+    const copiar = document.createElement('button');
+    copiar.type = 'button';
+    copiar.className = 'btn';
+    copiar.textContent = 'Copiar chave Pix';
+    copiar.addEventListener('click', () => {
+      if (!navigator.clipboard) return;
+      navigator.clipboard.writeText(p.chave_pix).then(() => { copiar.textContent = 'Chave copiada'; }).catch(() => {});
+    });
+    caixa.appendChild(copiar);
+    ancora.insertAdjacentElement('afterend', caixa);
+  }
+
   document.querySelectorAll('form.inscricao').forEach((form) => {
     const retorno = form.querySelector('.retorno');
     const botao = form.querySelector('button[type=submit]');
@@ -59,6 +97,8 @@
       if (error) return erro('Não conseguimos registrar agora. Tente de novo em instantes.');
       retorno.textContent = `Pronto, ${inscricao.nome.split(' ')[0]}. Você está na Turma Fundadora: o contato chega em ${inscricao.email} quando a sua vaga abrir.`;
       retorno.className = 'retorno ok';
+      const pagamento = await instrucoesPagamento(cliente, inscricao.email);
+      if (pagamento) mostrarPagamento(retorno, pagamento, inscricao.email);
       form.reset();
     });
   });

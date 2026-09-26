@@ -35,6 +35,20 @@ Decisão `85df5986`, sessão da Mesa `3d5a6cc9` (PARCIAL, com condições), pedi
   determinar; a entrega vem só depois do pagamento. Mesa e Auditoria são entregues como relatório escrito em
   Google Doc compartilhado com o comprador.
 
+### Ligar o pagamento depois da inscrição (só por determinação do Drácula ou do Guardião)
+
+O site já pergunta ao Castelo, depois de cada inscrição, se há instruções de Pix (`espelho_instrucoes_pagamento`).
+Enquanto `espelho_pagamento_config` estiver desligada, nada aparece. Para ligar, quem determinou roda no Castelo:
+
+```sql
+UPDATE espelho_pagamento_config
+SET ativo = true, chave_pix = '<chave>', favorecido = '<nome que aparece no Pix>',
+    determinado_por = '<Drácula ou Guardião>', determinado_em = now(), atualizado_em = now();
+```
+
+Para desligar: `UPDATE espelho_pagamento_config SET ativo = false, atualizado_em = now();`.
+Só Roteiros (R$ 47) e Mesa Trina (R$ 450) recebem instruções; o resto continua pelo contato do Guardião.
+
 ## Ciclo diário
 
 1. **Ler os novos inscritos** (desde o último relatório):

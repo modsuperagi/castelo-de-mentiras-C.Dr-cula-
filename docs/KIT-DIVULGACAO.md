@@ -158,8 +158,8 @@ e disposição para pagar. **Primeiro ajude na conversa; o link só entra se ped
 **Os links de pagamento ainda não existem** (mapa `LINKS_PAGAMENTO` no `index.html`). Sem eles, o site só
 reserva a vaga. Sugestão de ordem, do mais simples ao mais caro:
 
-1. **Crie os links no Mercado Pago** (sem mensalidade, aceita Pix e cartão; em *Seu negócio → Link de pagamento*)
-   ou no Stripe/Hotmart, se preferir. Comece por **Roteiros (R$ 47)** e **Curso em pré-venda (R$ 97)**.
+1. **O Pix já aparece no site** depois da inscrição em Checagem (R$ 19), Roteiros (R$ 27), Mesa Trina (R$ 147) e
+   Auditoria (R$ 990). Links de cartão (Mercado Pago, InfinitePay) podem vir depois, se valer a taxa.
 2. Cole cada link no mapa `LINKS_PAGAMENTO` do `index.html` (por exemplo, `curso: 'https://mpago.la/...'`).
    O botão da oferta passa a levar direto ao pagamento.
 3. **Só venda o que consegue entregar.** Na pré-venda do curso, escreva a data prevista de entrega. Pela lei

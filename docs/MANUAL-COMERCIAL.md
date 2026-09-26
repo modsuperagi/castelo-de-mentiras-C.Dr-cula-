@@ -1,5 +1,21 @@
 # 📕 Manual Comercial — Espelho Espelho Evo
 
+> ⚡ **Revisão de 26/09/2026 (Missão R$ 5.000, ordem do Guardião: "cobre preços acessíveis"):** vale a tabela abaixo,
+> sem preço "de" riscado e sem escassez que não existe. Os serviços são feitos pelo organismo e entregues por escrito;
+> o Pix aparece no site depois da inscrição. Decisão no Castelo registrada na mesma data.
+>
+> | Oferta | Preço |
+> |---|---|
+> | Checagem P0 de uma resposta (novo, laudo em até 24 h) | **R$ 19** |
+> | Roteiros do Organismo | **R$ 27** |
+> | Mesa Trina por escrito (até 48 h) | **R$ 147** |
+> | Auditoria P0 Sonar (até 5 dias úteis) | **R$ 990** |
+> | Selo de Travessia | R$ 29/mês (6 meses) · R$ 39/mês (3 meses) · R$ 149/ano |
+> | Curso (pré-venda) | R$ 97 |
+> | Arquitetura EVO | a partir de R$ 19.700 |
+>
+> O restante deste manual é histórico da campanha de 24/09.
+
 **Versão 1.2 — CAMPANHA BETA NO AR · 24/09/2026**
 **Fio ee46c360-b95b-426e-86c3-2e5d0ccbe916**
 

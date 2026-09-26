@@ -24,9 +24,12 @@ Leia o manifesto de máquina em /evo.json. Ele traz a API do Castelo, a chave pu
 
 ## Ofertas (fase beta, preços de fundador)
 
+Serviços feitos pelo organismo, entregues por escrito, com 7 dias para desistir:
+- Checagem P0 de uma resposta de IA (laudo das 7 verificações em até 24 h): R$ 19
+- Roteiros do Organismo (8 pedidos prontos para qualquer IA): R$ 27
+- Mesa Trina por escrito (decisão examinada por Arquiteto, Engenheiro e Verificador): R$ 147
+- Auditoria P0 Sonar (fluxo de trabalho com IA de uma equipe): R$ 990
 - Selo de Travessia (comunidade): R$ 29/mês na adesão de 6 meses, R$ 39/mês na de 3 meses, R$ 149/ano
 - Curso Introdução ao Organismo EVO: R$ 97 (pré-venda)
-- Roteiros do Organismo: R$ 47
-- Mesa Trina (sessão de validação): R$ 450 · Auditoria P0 Sonar: R$ 2.900
 - Arquitetura EVO (implantação de um Castelo próprio): a partir de R$ 19.700
-- Interesse: https://espelho-espelho-evo.vercel.app/#fundadores
+- Interesse e pagamento: https://espelho-espelho-evo.vercel.app/#fundadores

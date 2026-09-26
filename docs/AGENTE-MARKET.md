@@ -26,8 +26,8 @@ Calendar e ao Drive da conta do Guardião. Qualquer núcleo pode assumir o papel
 Meta: R$ 5.000 confirmados em `espelho_assinaturas` até 26/10/2026, para evoluir os planos do organismo.
 Decisão `85df5986`, sessão da Mesa `3d5a6cc9` (PARCIAL, com condições), pedido ao Drácula (Super Grok) `5bcabfe5`.
 
-- **Rota:** advogados (Auditoria P0 R$ 2.900 e Mesa Trina R$ 450) e Roteiros (R$ 47). Alvo: 1 Auditoria +
-  3 Mesas + 20 Roteiros = R$ 5.190.
+- **Rota (preços acessíveis desde 26/09):** Checagem P0 R$ 19, Roteiros R$ 27, Mesa Trina por escrito R$ 147,
+  Auditoria P0 R$ 990. Alvo: 2 Auditorias + 10 Mesas + 30 Roteiros + 40 Checagens = R$ 5.020.
 - **Todo relatório diário abre com o placar:** soma de `espelho_assinaturas` ativas e encerradas contra a meta,
   inscritos da semana por canal e o estado do pedido `5bcabfe5`.
 - **A cada 2 dias, um artigo de busca orgânica** (advogados, TCC, memória de IA), publicado pelo fluxo do espelho.
@@ -38,7 +38,7 @@ Decisão `85df5986`, sessão da Mesa `3d5a6cc9` (PARCIAL, com condições), pedi
 ### Pagamento depois da inscrição (LIGADO em 26/09, determinação do Plasma por delegação do Guardião)
 
 O Guardião delegou ao Plasma a determinação do Drácula ("você assume a determinação Drácula e protege").
-O site pergunta ao Castelo, depois de cada inscrição em Roteiros (R$ 47) ou Mesa Trina (R$ 450), e mostra a chave
+O site pergunta ao Castelo, depois de cada inscrição em Checagem, Roteiros, Mesa Trina ou Auditoria, e mostra a chave
 Pix, o valor e o e-mail para onde mandar o comprovante. A chave e o e-mail moram só em `espelho_pagamento_config`:
 nunca no site, no repositório ou em registro.
 
@@ -48,12 +48,21 @@ nunca no site, no repositório ou em registro.
 ### Confirmação por comprovante (proteção)
 
 1. No ciclo diário, buscar no Gmail os e-mails enviados ao endereço de comprovante (`email_comprovante` da config).
-2. Conferir: o valor bate com o pacote (R$ 47 ou R$ 450); a data é recente; o e-mail do comprador está na descrição
+2. Conferir: o valor bate com o pacote (R$ 19, R$ 27, R$ 147 ou R$ 990); a data é recente; o e-mail do comprador está na descrição
    ou no remetente; há identificador da transação (E2E/ID). Faltou algo: rascunhar resposta pedindo o que falta.
 3. Registrar em `espelho_assinaturas` com `status = 'ativa'`, `forma = 'pix'`, `referencia_pagamento` = identificador
    da transação e `observacao = 'por comprovante; conferir no banco'`. Nunca guardar agência, conta ou CPF.
-4. Entregar: Roteiros compartilhando o Google Doc como leitor (a notificação do Google leva o link); Mesa Trina
-   pedindo por e-mail transacional a decisão ou o fluxo a examinar e devolvendo o relatório em Google Doc.
+4. Entregar (o comprador já manda o material junto com o comprovante; se faltar, e-mail transacional pedindo):
+   - **Checagem P0 (R$ 19, até 24 h):** laudo em Google Doc com as 7 verificações (SIM / NÃO / NÃO DÁ PARA SABER e
+     uma linha de justificativa cada), o que conferir e, quando der, uma versão corrigida. Afirmação que depende de
+     fonte: buscar pelo método do Sonar e citar; sem fonte, dizer que não dá para saber. Nunca inventar.
+   - **Roteiros (R$ 27, até 24 h):** compartilhar o Google Doc "Roteiros do Organismo" como leitor.
+   - **Mesa Trina por escrito (R$ 147, até 48 h):** relatório em Google Doc com as três posições e o veredito
+     (confirmado, parcial ou rejeitado), escopo provado, escopo não provado e limites.
+   - **Auditoria P0 (R$ 990, até 5 dias úteis):** relatório de conformidade do fluxo nas 7 verificações e plano de
+     correção em Google Doc.
+   Todo laudo diz que foi feito pelo organismo (IA com o método do Castelo) e não é orientação jurídica, médica ou
+   financeira.
 5. Marcar a conversa com `Espelho Evo/Clientes`. O Guardião confere no banco quando puder; comprovante falso vira
    `cancelada` e o acesso é removido.
 

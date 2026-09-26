@@ -9,3 +9,6 @@ README.md
 LICENSE
 .gitignore
 .vercelignore
+# O SONAR é outro produto, com projeto Vercel próprio (Root Directory = sonar).
+# Não vai ao ar pelo espelho.
+sonar/

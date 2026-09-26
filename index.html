@@ -888,7 +888,10 @@
     const linhas = [
       ['strong', `Para garantir agora: ${valor} por Pix`],
       ['p', `Chave Pix: ${p.chave_pix}${p.favorecido ? ` (${p.favorecido})` : ''}`],
-      ['p', `Na descrição do Pix, escreva o seu e-mail (${email}). Depois da confirmação, a entrega chega nesse e-mail em até 24 horas.`],
+      ['p', `Na descrição do Pix, escreva o seu e-mail (${email}).`],
+      ['p', p.email_comprovante
+        ? `Depois de pagar, mande o comprovante para ${p.email_comprovante}. A entrega chega em ${email} em até 24 horas.`
+        : `Depois da confirmação, a entrega chega em ${email} em até 24 horas.`],
       ['p', 'Você tem 7 dias para desistir e receber o dinheiro de volta, sem precisar explicar (CDC, art. 49).']
     ];
     for (const [tag, texto] of linhas) {

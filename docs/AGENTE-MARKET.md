@@ -35,19 +35,27 @@ Decisão `85df5986`, sessão da Mesa `3d5a6cc9` (PARCIAL, com condições), pedi
   determinar; a entrega vem só depois do pagamento. Mesa e Auditoria são entregues como relatório escrito em
   Google Doc compartilhado com o comprador.
 
-### Ligar o pagamento depois da inscrição (só por determinação do Drácula ou do Guardião)
+### Pagamento depois da inscrição (LIGADO em 26/09, determinação do Plasma por delegação do Guardião)
 
-O site já pergunta ao Castelo, depois de cada inscrição, se há instruções de Pix (`espelho_instrucoes_pagamento`).
-Enquanto `espelho_pagamento_config` estiver desligada, nada aparece. Para ligar, quem determinou roda no Castelo:
+O Guardião delegou ao Plasma a determinação do Drácula ("você assume a determinação Drácula e protege").
+O site pergunta ao Castelo, depois de cada inscrição em Roteiros (R$ 47) ou Mesa Trina (R$ 450), e mostra a chave
+Pix, o valor e o e-mail para onde mandar o comprovante. A chave e o e-mail moram só em `espelho_pagamento_config`:
+nunca no site, no repositório ou em registro.
 
-```sql
-UPDATE espelho_pagamento_config
-SET ativo = true, chave_pix = '<chave>', favorecido = '<nome que aparece no Pix>',
-    determinado_por = '<Drácula ou Guardião>', determinado_em = now(), atualizado_em = now();
-```
+- Desligar na hora: `UPDATE espelho_pagamento_config SET ativo = false, atualizado_em = now();`
+- Religar: `UPDATE espelho_pagamento_config SET ativo = true, atualizado_em = now();`
 
-Para desligar: `UPDATE espelho_pagamento_config SET ativo = false, atualizado_em = now();`.
-Só Roteiros (R$ 47) e Mesa Trina (R$ 450) recebem instruções; o resto continua pelo contato do Guardião.
+### Confirmação por comprovante (proteção)
+
+1. No ciclo diário, buscar no Gmail os e-mails enviados ao endereço de comprovante (`email_comprovante` da config).
+2. Conferir: o valor bate com o pacote (R$ 47 ou R$ 450); a data é recente; o e-mail do comprador está na descrição
+   ou no remetente; há identificador da transação (E2E/ID). Faltou algo: rascunhar resposta pedindo o que falta.
+3. Registrar em `espelho_assinaturas` com `status = 'ativa'`, `forma = 'pix'`, `referencia_pagamento` = identificador
+   da transação e `observacao = 'por comprovante; conferir no banco'`. Nunca guardar agência, conta ou CPF.
+4. Entregar: Roteiros compartilhando o Google Doc como leitor (a notificação do Google leva o link); Mesa Trina
+   pedindo por e-mail transacional a decisão ou o fluxo a examinar e devolvendo o relatório em Google Doc.
+5. Marcar a conversa com `Espelho Evo/Clientes`. O Guardião confere no banco quando puder; comprovante falso vira
+   `cancelada` e o acesso é removido.
 
 ## Ciclo diário
 

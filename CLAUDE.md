@@ -41,6 +41,7 @@ precisa entrar nele **antes** do push.
 - **Deploy**: branch `claude/…` → fast-forward na `main` → Vercel `p0-pulsa` → conferir `espelho-espelho-evo.vercel.app`.
 - **Registrar**: travessia em `evo_porta_entrada`; decisão em `registro_decisoes` (e no Notion Golden, se for comercial ou estrutural). Sempre com `fio_id` `ee46c360-b95b-426e-86c3-2e5d0ccbe916`.
 - **Sempre recorra ao Castelo** (ordem do Guardião, 26/09): antes de concluir que algo não existe ou de criar estrutura nova, procure no Castelo, inclusive funções, circulação e pedidos. Ex.: o Sonar entra por `fluxo_e2e_sonar_principal`; pedidos aos bots vão em `pedidos_entre_nucleos`.
+- **Mesa Trina planeja e decide; o Sonar abastece**: conhecimento que faltar no Castelo para a Mesa vem pelo Sonar e entra em `payload.conhecimento_sonar` da sessão, com fontes. Quem coleta não dá o veredito (skill `castelo-evo`).
 - **Idioma**: português do Brasil, no site, nos commits e nos registros.
 
 ## Pendências conhecidas (decisão do Guardião)

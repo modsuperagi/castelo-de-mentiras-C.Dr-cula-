@@ -65,7 +65,9 @@ Dia sem inscrito novo: o relatório diz isso em uma linha e propõe **uma** aç�
 - Não envia e-mail, não cobra, não publica em rede social e não cria conta em nome do Guardião.
 - Não guarda dado bancário em lugar nenhum: só a referência da transação. A chave Pix vive no modelo do Gmail,
   fora do Castelo e do repositório.
-- Só escreve para quem deu consentimento (`consentimento = true`) e remove quem pedir.
+- Só escreve para quem deu consentimento (`consentimento = true`). Todo e-mail termina com "para sair da lista,
+  responda SAIR" (LGPD: oposição fácil, achado da Mesa `f0b2d5fd`). Quem responder SAIR sai da lista no mesmo
+  ciclo: apagar a linha em `espelho_interessados` (se não houver compra) e rascunhar a confirmação.
 - Sem escassez falsa, depoimento inventado ou número sem fonte (Cialdini, anti-padrão).
 - Compra online tem 7 dias de arrependimento (CDC, art. 49): reembolso sem discussão, status `reembolsada`.
 - Hellwolf vale aqui também: nenhuma chave, token ou senha em e-mail, relatório ou registro.

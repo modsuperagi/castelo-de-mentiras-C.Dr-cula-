@@ -59,6 +59,12 @@ Golden consolida. O Claude é o motor que o organismo usa no Supabase; o lugar d
 - A edge `meta-trina-processador-automatico` foi neutralizada (v2 recusa com 409): ela validava sem ler.
   As sessões 5fc98f1d e 7c7b28fe (13/09) têm esse carimbo e estão anotadas como validação sem evidência.
 - `fluxo_e2e_sonar_principal` agora devolve `estado_circulacao = 'aguardando_trina'` quando a Golden não validou.
+- **A Mesa planeja e decide; o Sonar abastece** (ordem do Guardião, 26/09, decisão `ad4d1416`). Antes da sessão,
+  procure no Castelo. O que faltar vem pelo Sonar (busca própria em `sonar/lib/busca/`; enquanto a rede do contêiner
+  bloquear, busca web com o mesmo método: fonte, cruzamento, lacuna declarada). Anexe em
+  `payload.conhecimento_sonar` da sessão: posição, tema, achado, fontes, grau. Mentes novas entram em
+  `evo_recrutamento_agentes` com fontes; instituições ficam só como fonte. **Quem coleta não dá o veredito.**
+  Primeira aplicação: sessão `f0b2d5fd` (plano comercial do Market).
 
 **As 3 validações de subida de camada** (`evo_principios`): propósito, evidência, impacto.
 

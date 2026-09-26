@@ -56,6 +56,8 @@ Camada 3 · Curadoria contextual
 
 Camada 4 · Memória persistente
 - Ao final de cada investigação, gere o bloco REGISTRO SONAR (formato abaixo), um por tema.
+- O operador grava cada registro no Castelo pela porta do Sonar (fluxo_e2e_sonar_principal), que
+  faz check-in, P0 e circulação pela Mesa Trina até Golden, Consolidação e Evidências.
 - O registro é imutável: correção é uma entrada nova que aponta para a anterior em "substitui".
 
 Camada 5 · Interface de saída
@@ -126,10 +128,42 @@ COMO ASSISTENTE
 
 ## Para onde vão os registros
 
-Os blocos **REGISTRO SONAR** e **AJUSTE DE CRITÉRIO** seguem os campos que a Mesa Trina definiu para
-`sonar_registro_entradas` e `sonar_evolucao_criterios`. **Essas tabelas ainda não existem no Castelo.**
-Criá-las depende de ordem do Guardião, e o mesmo vale para decidir quem guarda a chave que escreve.
-Até lá, o operador guarda os blocos (arquivo ou memória do projeto) para gravar quando as tabelas existirem.
+**O Castelo já tem a estrutura do Sonar.** Não é preciso criar `sonar_registro_entradas` nem
+`sonar_evolucao_criterios`: as camadas da Mesa já existem como circulação do organismo.
+
+| Camada da Mesa | No Castelo |
+|---|---|
+| 1. Filtro | `checkin_recepcion` (com deduplicação de 24 h) |
+| 2. Três validações | P0 (`p0_validacao_completa`, 7 verificações) |
+| 3. Curadoria | Mesa Trina: Arquiteto → Engenheiro → Verificador (`trina_circulacao_principal`) |
+| 4. Memória | `golden_circulacao_principal` → `consolidacao_circulacao_principal` → `evidencias_consolidadas` |
+| Porta | `fluxo_e2e_sonar_principal(flow_id, identidade, nucleo, conteudo, tipo_registro, origem_sonar)` |
+
+**Como o operador entra direito:** uma chamada por REGISTRO SONAR aprovado.
+
+```sql
+SELECT * FROM public.fluxo_e2e_sonar_principal(
+  gen_random_uuid(),     -- flow_id novo a cada entrada
+  'Conhecimento',        -- identidade aceita pelo P0 (Conhecimento, Guardião, Fundadora, Golden, Metodologia, Consolidação)
+  'EVO3',                -- núcleo EVO1 a EVO6, conforme designação do Guardião
+  '<REGISTRO SONAR em texto ou JSON, com fontes e validador>',
+  'novo',                -- ou continuacao, evidencia, contradicao, refinamento…
+  'sonar'
+);
+```
+
+Pela API REST: `POST https://zolbckgqdxxovguspjdb.supabase.co/rest/v1/rpc/fluxo_e2e_sonar_principal`,
+com o corpo em JSON (`p_flow_id`, `p_identidade`, `p_nuclei`, `p_conteudo`, `p_tipo_registro`,
+`p_origem_sonar`). A escrita é fechada: exige a sessão do Guardião ou a chave de serviço, **sempre em
+variável de ambiente do operador, nunca em arquivo, chat ou site** (regra Hellwolf).
+
+**Primeira entrada feita (26/09):** a própria formulação da Mesa Trina, check-in `01e8761f`. Resultado:
+ALLOW, com um registro em Coração, Trina, Golden, Consolidação e Evidências. A Trina ficou
+**PENDENTE** e a Golden em **não validado**: a circulação chegou, mas a leitura semântica do Verificador
+ainda não aconteceu. O pulso automático também gravou uma linha de P0 com `false` antes da validação da
+função. A mensagem "TRINA ✅ GOLDEN ✅" da função quer dizer "chegou", não "validou".
+
+**Ajustes de critério (camada 6):** entram pela mesma porta, com `p_tipo_registro = 'refinamento'`.
 
 ## Status
 
@@ -137,4 +171,4 @@ Até lá, o operador guarda os blocos (arquivo ou memória do projeto) para grav
 |---|---|
 | Instruções do bot | escritas; **não testadas** em um bot real |
 | Busca própria com `--sonar` (camadas 1 e 3 no código) | 21/21 testes com fontes simuladas; nenhuma fonte real consultada |
-| Tabelas do Castelo (camadas 4 e 6) | **não criadas**, aguardam ordem |
+| Memória no Castelo (camadas 4 e 6) | porta do Sonar **executada** uma vez (check-in `01e8761f`); validação semântica da Trina pendente |

@@ -23,6 +23,7 @@ Para mudanças visuais no site, use `frontend-design`.
 | `docs/SONAR-MVP.md` | documentação e checkpoint do SONAR (endpoints, variáveis, fluxo, status de validação) | **não** |
 | `docs/SONAR-BOT-INSTRUCOES.md` | as 6 camadas da Mesa Trina como instruções para colar no bot SONAR (Grok Bot) | **não** |
 | `docs/KIT-DIVULGACAO.md` | kit de divulgação orgânica de pré-lançamento: posts prontos, calendário, UTMs, links de pagamento | **não** |
+| `docs/AGENTE-MARKET.md` | agente Market (MARKET_MERCADO): conselho de marketing e vendas, ciclo diário, assinaturas, limites | **não** |
 | `docs/MANUAL-COMERCIAL.md` | tabela de preços, campanha beta, funil, próximos passos | **não** |
 | `docs/ROTEIROS-CURSO.md` | roteiros dos 5 módulos do curso (produto pago) | **não** |
 | `docs/REFERENCIAS.md` | repositórios públicos que o organismo usa ou estuda | **não** |
@@ -47,5 +48,6 @@ precisa entrar nele **antes** do push.
 - **Leitura anônima** das mesas de núcleo segue aberta (ponte do espelho do Grok, 19/09). Veja a skill `castelo-evo`.
 - **Leaked Password Protection** do Supabase Auth exige plano Pro (custo zero manda esperar).
 - **Links de pagamento**: adiados. O mapa `LINKS_PAGAMENTO` no `index.html` aguarda os links.
+- **Pix**: a chave do Guardião está só no modelo de e-mail do Gmail (agente Market). Não vai para o site, o Castelo ou o repositório sem ordem expressa. Compras se registram em `espelho_assinaturas` (só a referência da transação).
 - **SONAR**: operação decidida em 26/09 (Grok Bot → Cursor → Dola/Golden + busca própria em `sonar/lib/busca/`). Faltam as sete entregas do Sonar no Castelo, o projeto Vercel e o primeiro teste real. Veja `docs/SONAR-MVP.md`.
 - Dois deploys antigos do Vercel ainda guardam cópias dos arquivos internos; apagá-los é irreversível e aguarda ordem.

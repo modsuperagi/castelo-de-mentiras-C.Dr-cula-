@@ -118,6 +118,12 @@ nunca no site, no repositório ou em registro.
 6. **Registrar** o relatório em `evo_porta_entrada` (identidade `MARKET_MERCADO`, tipo `travessia`) e atualizar
    `ultima_acao` e `dados_ultima_acao` em `evo_agentes`.
 
+**Depois de cada página nova no ar, avisar os buscadores (IndexNow):** a rede do container bloqueia, então o aviso sai
+de um sandbox do Vercel (projeto `p0-pulsa`, rede liberada só para `api.indexnow.org` e o site, 1 vCPU, parar ao
+terminar). POST em `https://api.indexnow.org/indexnow` com `host`, `key` (o nome do arquivo `.txt` da raiz, que é
+público por padrão do protocolo), `keyLocation` e `urlList`. Resposta 200 ou 202 = aceito. Primeiro envio: 26/09,
+11 URLs, 202.
+
 **Toda segunda-feira, radar de demanda:** buscar pelo método do Sonar onde estão pedindo o que fazemos
 (advogados, estudantes e pesquisadores, quem usa IA no trabalho; seção 4.1 do kit), anexar os achados novos à
 sessão da Mesa com fontes e propor ao Guardião **um** lugar para ele responder com valor. O agente não posta.

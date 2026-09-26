@@ -34,6 +34,9 @@ Calendar e ao Drive da conta do Guardião. Qualquer núcleo pode assumir o papel
 3. **Pagamentos**: quando o Guardião confirmar um pagamento (comprovante no Gmail ou aviso do Mercado Pago),
    registrar em `espelho_assinaturas` (`aguardando_pagamento` → `ativa`, com `inicio` e a
    `referencia_pagamento`) e mudar o inscrito para `convertido`. Mover a conversa para `Espelho Evo/Clientes`.
+   **Entrega dos Roteiros (R$ 47):** o produto é o Google Doc "Roteiros do Organismo · Espelho Espelho Evo"
+   no Drive do Guardião (privado). Depois do pagamento confirmado, compartilhar o documento como **leitor** com o
+   e-mail do comprador e rascunhar o e-mail de entrega com o link. Nunca tornar o documento público.
 4. **Sessões da Mesa Trina vendidas**: propor horário no Calendar do Guardião; o convite só sai com o ok dele.
 5. **Medir canais** e escrever o relatório do dia:
    ```sql

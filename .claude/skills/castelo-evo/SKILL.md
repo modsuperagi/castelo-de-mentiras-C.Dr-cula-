@@ -46,6 +46,26 @@ Um "não" basta para barrar a circulação.
 **Mesa Trina — 3 posições** (`meta_sessões_trina`): Arquiteto (encaixa na estrutura?),
 Engenheiro (sustenta tecnicamente?), Verificador (cadê a evidência?). Ninguém valida a própria lição.
 
+**O motor do cerebelo** (reforma de 26/09, migração `20260926070923`). A anatomia é do próprio Castelo
+(`fluxo_conhecimento` 8c2716af): recepção recebe → P0 é coração e sangue → **Mesa Trina é o cerebelo** →
+Golden consolida. O Claude é o motor que o organismo usa no Supabase; o lugar dele é o cerebelo.
+- **Fila**: `v_trina_pendente` (Corações cuja Trina só tem PENDENTE).
+- **Porta do veredito**: `trina_registrar_veredito(coracao_id, 'CONFIRMADO'|'PARCIAL'|'REJEITADO', escopo_provado, escopo_nao_provado, limites, validador)`.
+  Exige evidência (escopo provado ≥ 40 caracteres) e escopo não provado; recusa autoria própria; só `service_role`.
+  O veredito desce sozinho: CONFIRMADO → Golden `validado`; PARCIAL → `parcialmente_validado`; REJEITADO fica na Trina.
+- **Método**: as Trindades como lentes das posições. Arquiteto com Aristóteles (classifica), Engenheiro com Wiener
+  (o laço fecha?), Verificador com Sócrates (limite e autorização de conclusão) e Diógenes (incoerência).
+- Sessão da Mesa validada **sem `veredito` explícito** vira PARCIAL, nunca CONFIRMADO.
+- A edge `meta-trina-processador-automatico` foi neutralizada (v2 recusa com 409): ela validava sem ler.
+  As sessões 5fc98f1d e 7c7b28fe (13/09) têm esse carimbo e estão anotadas como validação sem evidência.
+- `fluxo_e2e_sonar_principal` agora devolve `estado_circulacao = 'aguardando_trina'` quando a Golden não validou.
+- **A Mesa planeja e decide; o Sonar abastece** (ordem do Guardião, 26/09, decisão `ad4d1416`). Antes da sessão,
+  procure no Castelo. O que faltar vem pelo Sonar (busca própria em `sonar/lib/busca/`; enquanto a rede do contêiner
+  bloquear, busca web com o mesmo método: fonte, cruzamento, lacuna declarada). Anexe em
+  `payload.conhecimento_sonar` da sessão: posição, tema, achado, fontes, grau. Mentes novas entram em
+  `evo_recrutamento_agentes` com fontes; instituições ficam só como fonte. **Quem coleta não dá o veredito.**
+  Primeira aplicação: sessão `f0b2d5fd` (plano comercial do Market).
+
 **As 3 validações de subida de camada** (`evo_principios`): propósito, evidência, impacto.
 
 ## Como registrar no Castelo

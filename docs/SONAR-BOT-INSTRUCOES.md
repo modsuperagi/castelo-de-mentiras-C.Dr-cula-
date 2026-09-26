@@ -164,11 +164,14 @@ com o corpo em JSON (`p_flow_id`, `p_identidade`, `p_nuclei`, `p_conteudo`, `p_t
 `p_origem_sonar`). A escrita é fechada: exige a sessão do Guardião ou a chave de serviço, **sempre em
 variável de ambiente do operador, nunca em arquivo, chat ou site** (regra Hellwolf).
 
-**Primeira entrada feita (26/09):** a própria formulação da Mesa Trina, check-in `01e8761f`. Resultado:
-ALLOW, com um registro em Coração, Trina, Golden, Consolidação e Evidências. A Trina ficou
-**PENDENTE** e a Golden em **não validado**: a circulação chegou, mas a leitura semântica do Verificador
-ainda não aconteceu. O pulso automático também gravou uma linha de P0 com `false` antes da validação da
-função. A mensagem "TRINA ✅ GOLDEN ✅" da função quer dizer "chegou", não "validou".
+**Primeira entrada feita (26/09):** a própria formulação da Mesa Trina, check-in `01e8761f`. Ela circulou
+até Evidências, mas a Trina ficou PENDENTE: o cerebelo não tinha motor. A **reforma do cerebelo** (26/09,
+migrações `20260926070923` e `20260926071611`) resolveu isso:
+- a fila é `v_trina_pendente`, e o veredito entra por `trina_registrar_veredito` (com evidência e nunca
+  sobre lição própria);
+- a porta do Sonar agora devolve `estado_circulacao = 'aguardando_trina'` quando a Golden ainda não
+  validou, em vez de anunciar "TRINA ✅ GOLDEN ✅".
+Como o Plasma é autor da `01e8761f`, o veredito dela foi pedido ao Super Grok.
 
 **Ajustes de critério (camada 6):** entram pela mesma porta, com `p_tipo_registro = 'refinamento'`.
 

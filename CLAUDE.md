@@ -17,10 +17,12 @@ Para mudanças visuais no site, use `frontend-design`.
 | `evo.json` | manifesto de máquina do organismo (fio, API, mesas de leitura aberta, núcleos, regras) | sim |
 | `llms.txt` | porta padrão para IAs entenderem e se espelharem no organismo | sim |
 | `manifest.webmanifest`, `sw.js`, `icons/` | aplicativo (PWA): instalação, ícones, funcionamento com rede ruim | sim |
+| `guia-p0.html`, `blog/` | guia gratuito (isca de inscrição) e artigos do blog; a inscrição grava `canal` (UTM ou página) em `espelho_interessados` | sim |
 | `robots.txt`, `sitemap.xml` | SEO | sim |
 | `sonar/` | **SONAR**: outro produto, site de investigação com fontes: Grok Bot como operador e busca própria em `lib/busca/` (o caminho xAI ficou secundário). Projeto Vercel próprio, Root Directory `sonar`. Sem nenhuma ponte ou nome do organismo | pelo projeto dele, não pelo espelho |
 | `docs/SONAR-MVP.md` | documentação e checkpoint do SONAR (endpoints, variáveis, fluxo, status de validação) | **não** |
 | `docs/SONAR-BOT-INSTRUCOES.md` | as 6 camadas da Mesa Trina como instruções para colar no bot SONAR (Grok Bot) | **não** |
+| `docs/KIT-DIVULGACAO.md` | kit de divulgação orgânica de pré-lançamento: posts prontos, calendário, UTMs, links de pagamento | **não** |
 | `docs/MANUAL-COMERCIAL.md` | tabela de preços, campanha beta, funil, próximos passos | **não** |
 | `docs/ROTEIROS-CURSO.md` | roteiros dos 5 módulos do curso (produto pago) | **não** |
 | `docs/REFERENCIAS.md` | repositórios públicos que o organismo usa ou estuda | **não** |

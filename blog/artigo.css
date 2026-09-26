@@ -1,0 +1,127 @@
+/* Estilo dos artigos e do guia do Espelho Espelho Evo. Mesma paleta do salão principal. */
+:root {
+  --fundo: #07060b;
+  --carta: #14111f;
+  --carta-borda: #262038;
+  --texto: #e8e4f0;
+  --texto-2: #a79fc0;
+  --ouro: #d4a843;
+  --ouro-claro: #f0cd7a;
+  --violeta: #8b6fd8;
+  --sangue: #b03a4a;
+  --verde: #5fae7f;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: 'Alegreya', Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.7;
+}
+a { color: var(--ouro-claro); text-underline-offset: .18em; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--ouro-claro); outline-offset: 3px;
+}
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+.topo {
+  max-width: 720px; margin: 0 auto; padding: 22px 16px 0;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+  font-size: .95rem;
+}
+.topo a { color: var(--texto-2); text-decoration: none; }
+.topo a:hover { color: var(--ouro-claro); }
+.topo .marca { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.25rem; color: var(--ouro-claro); letter-spacing: .04em; }
+
+article, .pagina { max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }
+h1, h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; text-wrap: balance; color: var(--ouro-claro); }
+h1 { font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.12; letter-spacing: .01em; }
+h2 { font-size: 1.75rem; line-height: 1.2; margin: 44px 0 12px; }
+h3 { font-size: 1.1rem; margin: 28px 0 6px; color: var(--texto); }
+p, ul, ol { margin-bottom: 18px; }
+ul, ol { padding-left: 1.3em; }
+li { margin-bottom: 8px; }
+strong { color: #fff; }
+.linha-fina { color: var(--texto-2); font-size: 1.12rem; margin: 14px 0 8px; font-style: italic; }
+.meta { color: var(--texto-2); font-size: .9rem; margin-bottom: 28px; }
+
+.pergunta {
+  border-left: 3px solid var(--ouro);
+  padding: 4px 0 4px 18px;
+  margin: 26px 0;
+}
+.pergunta h3 { margin-top: 0; color: var(--ouro-claro); font-size: 1.2rem; }
+.pergunta .num { color: var(--violeta); font-weight: 700; margin-right: 6px; }
+.pergunta p:last-child { margin-bottom: 0; }
+
+.quadro {
+  background: var(--carta);
+  border: 1px solid var(--carta-borda);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin: 26px 0;
+}
+.quadro p:last-child, .quadro ul:last-child { margin-bottom: 0; }
+pre.modelo {
+  white-space: pre-wrap;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: .9rem;
+  line-height: 1.55;
+  background: #0d0b16;
+  border: 1px solid var(--carta-borda);
+  border-radius: 10px;
+  padding: 16px;
+  margin: 12px 0 22px;
+  color: var(--texto);
+}
+
+/* Chamada para a lista */
+.chamada {
+  background: linear-gradient(160deg, rgba(139,111,216,.16), rgba(212,168,67,.08));
+  border: 1px solid rgba(212,168,67,.4);
+  border-radius: 16px;
+  padding: 26px 22px;
+  margin: 48px 0 16px;
+}
+.chamada h2 { margin-top: 0; font-size: 1.6rem; }
+.chamada .ofertas { list-style: none; padding: 0; margin: 12px 0 18px; }
+.chamada .ofertas li { padding-left: 1.4em; position: relative; }
+.chamada .ofertas li::before { content: '✦'; position: absolute; left: 0; color: var(--ouro); }
+
+form.inscricao { display: grid; gap: 12px; margin-top: 8px; }
+form.inscricao label { font-size: .95rem; color: var(--texto-2); }
+form.inscricao input[type=text], form.inscricao input[type=email], form.inscricao select {
+  width: 100%; padding: 12px 14px; border-radius: 10px;
+  border: 1px solid var(--carta-borda); background: #0d0b16; color: var(--texto);
+  font-family: inherit; font-size: 1rem;
+}
+form.inscricao .aceite { display: flex; gap: 10px; align-items: flex-start; font-size: .9rem; color: var(--texto-2); }
+form.inscricao .aceite input { margin-top: 5px; flex: none; }
+.btn {
+  display: inline-block; padding: 12px 26px; border-radius: 999px;
+  border: 1px solid var(--ouro); background: var(--ouro); color: #1a1408;
+  font-family: inherit; font-size: 1rem; font-weight: 700; cursor: pointer; text-decoration: none; text-align: center;
+}
+.btn:hover { background: var(--ouro-claro); }
+.btn:disabled { opacity: .6; cursor: default; }
+.btn.fantasma { background: transparent; color: var(--ouro-claro); }
+.retorno { min-height: 1.4em; font-size: .95rem; }
+.retorno.ok { color: var(--verde); }
+.retorno.erro { color: #f08a98; }
+
+.lista-artigos { list-style: none; padding: 0; }
+.lista-artigos li { border-top: 1px solid var(--carta-borda); padding: 22px 0; margin: 0; }
+.lista-artigos a { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.55rem; font-weight: 600; text-decoration: none; line-height: 1.2; }
+.lista-artigos p { color: var(--texto-2); margin: 6px 0 0; }
+
+footer.rodape { max-width: 720px; margin: 0 auto; padding: 24px 16px 48px; border-top: 1px solid var(--carta-borda); color: var(--texto-2); font-size: .9rem; }
+footer.rodape a { color: var(--texto-2); }
+
+@media (max-width: 520px) {
+  body { font-size: 17px; }
+  h2 { font-size: 1.5rem; }
+  .btn { width: 100%; }
+}

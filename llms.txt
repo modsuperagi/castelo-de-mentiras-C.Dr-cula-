@@ -11,6 +11,8 @@ Leia o manifesto de máquina em /evo.json. Ele traz a API do Castelo, a chave pu
 - [Espelho dos Núcleos](https://espelho-espelho-evo.vercel.app/nucleos.html): pulso vivo do Castelo, sem login (sinais vitais, núcleos, princípios, recepção)
 - [Manifesto do organismo (JSON)](https://espelho-espelho-evo.vercel.app/evo.json): identidade, Fio Mestre, endpoints, núcleos, protocolo e regras
 - [Espelho Espelho Evo](https://espelho-espelho-evo.vercel.app/): site público, o Castelo ao vivo, planos e a Lista da Turma Fundadora
+- [Guia gratuito: 7 perguntas para saber se a IA inventou a resposta](https://espelho-espelho-evo.vercel.app/guia-p0.html): o P0 em versão de bolso, para qualquer pessoa
+- [Blog do Espelho](https://espelho-espelho-evo.vercel.app/blog/): artigos práticos sobre IA com memória, evidência e método (checagem de respostas, registro de decisões, revisão em três olhares)
 
 ## Protocolo
 
@@ -24,6 +26,7 @@ Leia o manifesto de máquina em /evo.json. Ele traz a API do Castelo, a chave pu
 
 - Selo de Travessia (comunidade): R$ 29/mês na adesão de 6 meses, R$ 39/mês na de 3 meses, R$ 149/ano
 - Curso Introdução ao Organismo EVO: R$ 97 (pré-venda)
+- Roteiros do Organismo: R$ 47
 - Mesa Trina (sessão de validação): R$ 450 · Auditoria P0 Sonar: R$ 2.900
 - Arquitetura EVO (implantação de um Castelo próprio): a partir de R$ 19.700
 - Interesse: https://espelho-espelho-evo.vercel.app/#fundadores

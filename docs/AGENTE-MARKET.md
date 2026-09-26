@@ -28,6 +28,8 @@ Decisão `85df5986`, sessão da Mesa `3d5a6cc9` (PARCIAL, com condições), pedi
 
 - **Rota (preços acessíveis desde 26/09):** Checagem P0 R$ 19, Roteiros R$ 27, Mesa Trina por escrito R$ 147,
   Auditoria P0 R$ 990. Alvo: 2 Auditorias + 10 Mesas + 30 Roteiros + 40 Checagens = R$ 5.020.
+- **Planos mensais, Concursos e ENEM (26/09):** a tabela inteira mora em `espelho_catalogo` (preço, prazo, material,
+  limites). Planos recorrentes contam na meta pelo que foi pago dentro do prazo, mês a mês.
 - **Todo relatório diário abre com o placar:** soma de `espelho_assinaturas` ativas e encerradas contra a meta,
   inscritos da semana por canal e o estado do pedido `5bcabfe5`.
 - **A cada 2 dias, um artigo de busca orgânica** (advogados, TCC, memória de IA), publicado pelo fluxo do espelho.
@@ -38,7 +40,7 @@ Decisão `85df5986`, sessão da Mesa `3d5a6cc9` (PARCIAL, com condições), pedi
 ### Pagamento depois da inscrição (LIGADO em 26/09, determinação do Plasma por delegação do Guardião)
 
 O Guardião delegou ao Plasma a determinação do Drácula ("você assume a determinação Drácula e protege").
-O site pergunta ao Castelo, depois de cada inscrição em Checagem, Roteiros, Mesa Trina ou Auditoria, e mostra a chave
+O site pergunta ao Castelo, depois de cada inscrição em um pacote com `pix_automatico` em `espelho_catalogo`, e mostra a chave
 Pix, o valor e o e-mail para onde mandar o comprovante. A chave e o e-mail moram só em `espelho_pagamento_config`:
 nunca no site, no repositório ou em registro.
 
@@ -48,7 +50,7 @@ nunca no site, no repositório ou em registro.
 ### Confirmação por comprovante (proteção)
 
 1. No ciclo diário, buscar no Gmail os e-mails enviados ao endereço de comprovante (`email_comprovante` da config).
-2. Conferir: o valor bate com o pacote (R$ 19, R$ 27, R$ 147 ou R$ 990); a data é recente; o e-mail do comprador está na descrição
+2. Conferir: o valor bate com o `valor_centavos` do pacote em `espelho_catalogo`; a data é recente; o e-mail do comprador está na descrição
    ou no remetente; há identificador da transação (E2E/ID). Faltou algo: rascunhar resposta pedindo o que falta.
 3. Registrar em `espelho_assinaturas` com `status = 'ativa'`, `forma = 'pix'`, `referencia_pagamento` = identificador
    da transação e `observacao = 'por comprovante; conferir no banco'`. Nunca guardar agência, conta ou CPF.
@@ -61,6 +63,29 @@ nunca no site, no repositório ou em registro.
      (confirmado, parcial ou rejeitado), escopo provado, escopo não provado e limites.
    - **Auditoria P0 (R$ 990, até 5 dias úteis):** relatório de conformidade do fluxo nas 7 verificações e plano de
      correção em Google Doc.
+   - **Investigação Sonar (R$ 29, até 48 h):** relatório em Google Doc no formato do Roteiro 2 (FATOS com link aberto e
+     conferido, INTERPRETAÇÃO, NÃO SEI, COMO CONFERIR).
+   - **Mapa do Edital (R$ 29, até 48 h):** Google Doc com matérias e pesos do edital, tópicos, cada lei cobrada com o
+     link do Planalto (texto compilado) e cronograma semanal até a prova pelas horas que a pessoa informou.
+   - **Plano Concursos (R$ 39/mês):** etapa 1 = Mapa do Edital; depois, toda segunda-feira, no mesmo Google Doc: plano
+     da semana, 30 questões inéditas comentadas (cada uma com o artigo exato, conferido no Planalto ou no site do
+     tribunal; sem conferência, a questão não entra), correção das questões que a pessoa errou e radar do edital pelo
+     método do Sonar (retificações, datas). Questões são do organismo, nunca apresentadas como de provas anteriores.
+   - **Redação ENEM (R$ 29, 4 correções, 24 h cada):** correção pelas 5 competências da matriz do Inep, com o que tirar,
+     o que pôr e nota estimada por competência, sempre com o aviso de que não é a nota oficial.
+   - **Planos mensais:** cada entrega segue o formato do serviço avulso equivalente. Antes de entregar, conferir o limite
+     do mês; depois, registrar em `espelho_uso` (tipo e referência do Doc, nunca o conteúdo):
+     ```sql
+     SELECT u.tipo, count(*) FROM espelho_uso u
+     WHERE u.assinatura_id = '<id>' AND u.criado_em > now() - interval '30 days' GROUP BY 1;
+     ```
+     Limite atingido: e-mail transacional oferecendo o avulso ou o plano acima; nunca entregar além sem pagamento.
+     **Ultra:** um Google Doc contínuo por cliente ("Fio de <nome>"), com o fechamento de cada entrega (Roteiro 6).
+     **Empresarial:** até 10 e-mails como leitores dos Docs; a Auditoria trimestral segue o formato da Auditoria P0.
+   - **Renovação:** 3 dias antes de vencer os 30 dias, e-mail transacional ao assinante com o valor e a chave pelo
+     modelo de boas-vindas (é cobrança de serviço contratado, não marketing). Sem pagamento em 5 dias depois do
+     vencimento: `status = 'encerrada'`, e-mail curto avisando. CANCELAR: encerrar no mesmo ciclo, sem cobrança nova.
+   - **Auditoria em 3×:** cada parcela confirmada libera uma etapa (diagnóstico, verificações, plano de correção).
    Todo laudo diz que foi feito pelo organismo (IA com o método do Castelo) e não é orientação jurídica, médica ou
    financeira.
 5. Marcar a conversa com `Espelho Evo/Clientes`. O Guardião confere no banco quando puder; comprovante falso vira
@@ -111,7 +136,8 @@ Dia sem inscrito novo: o relatório diz isso em uma linha e propõe **uma** aç�
 
 ## Limites (não negociáveis)
 
-- Não envia e-mail, não cobra, não publica em rede social e não cria conta em nome do Guardião.
+- Não envia e-mail de marketing, não publica em rede social e não cria conta em nome do Guardião. E-mail transacional
+  a quem pagou ou assina (entrega, material que falta, renovação do plano) é permitido.
 - Não guarda dado bancário em lugar nenhum: só a referência da transação. A chave Pix vive no modelo do Gmail,
   fora do Castelo e do repositório.
 - Só escreve para quem deu consentimento (`consentimento = true`). Todo e-mail termina com "para sair da lista,

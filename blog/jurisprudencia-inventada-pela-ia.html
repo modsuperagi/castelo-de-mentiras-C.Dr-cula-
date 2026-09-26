@@ -77,11 +77,11 @@
     <h2 id="chamada-1">Mande a peça, o organismo confere</h2>
     <p>Na Checagem P0 (R$ 19), você manda o trecho que a IA escreveu e recebe em até 24 horas o laudo das 7 verificações: o que confere, o que falta prova e o que mudar. Para o escritório inteiro, a Auditoria P0 examina o fluxo de trabalho com IA da equipe (R$ 990).</p>
     <ul class="ofertas">
-      <li><strong>Checagem P0 de uma resposta</strong>: você manda a resposta da IA e recebe o laudo das 7 verificações em até 24 horas, R$ 19.</li>
-      <li><strong>Roteiros do Organismo</strong>: oito pedidos prontos para aplicar o método em qualquer IA, R$ 27.</li>
-      <li><strong>Mesa Trina por escrito</strong>: sua decisão examinada pelos três olhares, R$ 147.</li>
+      <li><strong>Checagem P0 de uma resposta</strong>: o laudo das 7 verificações em até 24 horas, R$ 19.</li>
+      <li><strong>Plano Profissional</strong>: 30 checagens, 2 investigações Sonar e 1 Mesa Trina por mês, R$ 39/mês.</li>
+      <li><strong>Plano Empresarial</strong>: até 10 pessoas do escritório, 150 checagens por mês e 1 Auditoria P0 por trimestre, R$ 297/mês.</li>
     </ul>
-    <p>Entrar na lista não custa nada. Se escolher um desses três, o Pix aparece logo depois, e você tem 7 dias para desistir.</p>
+    <p>Entrar na lista não custa nada. Se escolher um plano ou serviço, o Pix aparece logo depois, e você tem 7 dias para desistir.</p>
     <form class="inscricao" data-pagina="blog/jurisprudencia-inventada-pela-ia" novalidate>
       <label for="nome-1">Nome</label>
       <input type="text" id="nome-1" name="nome" autocomplete="name" maxlength="120" placeholder="Como devemos te chamar?" required>
@@ -90,12 +90,24 @@
       <label for="pacote-1">O que mais te interessa</label>
       <select id="pacote-1" name="pacote">
         <option value="indefinido">Quero conhecer primeiro</option>
-        <option value="checagem" selected>Checagem P0 de uma resposta · R$ 19</option>
-        <option value="roteiros">Roteiros do Organismo · R$ 27</option>
-        <option value="trina">Mesa Trina por escrito · R$ 147</option>
-        <option value="sonar">Auditoria P0 Sonar · R$ 990</option>
-        <option value="curso">Curso Introdução ao Organismo EVO · R$ 97 (pré-venda)</option>
-        <option value="travessia">Selo de Travessia · R$ 29/mês (fundador)</option>
+        <optgroup label="Planos mensais">
+          <option value="plano_estudante">Plano Estudante · R$ 9,90/mês</option>
+          <option value="plano_pro">Plano Profissional · R$ 39/mês</option>
+          <option value="plano_ultra">Plano Ultra · Seu Fio no Castelo · R$ 97/mês</option>
+          <option value="plano_empresa">Plano Empresarial · R$ 297/mês</option>
+        </optgroup>
+        <optgroup label="Concursos e ENEM">
+          <option value="plano_concurso">Plano Concursos por etapas · R$ 39/mês</option>
+          <option value="concurso_mapa">Mapa do Edital · R$ 29</option>
+          <option value="enem_redacao">Redação ENEM · 4 correções · R$ 29</option>
+        </optgroup>
+        <optgroup label="Avulsos">
+          <option value="checagem" selected>Checagem P0 de uma resposta · R$ 19</option>
+          <option value="investigacao">Investigação Sonar · R$ 29</option>
+          <option value="roteiros">Roteiros do Organismo · R$ 27</option>
+          <option value="trina">Mesa Trina por escrito · R$ 147</option>
+          <option value="sonar">Auditoria P0 Sonar · R$ 990 ou 3× R$ 330</option>
+        </optgroup>
       </select>
       <label class="aceite"><input type="checkbox" name="consentimento" required> <span>Aceito receber contato do Espelho Evo sobre a fase beta. Meus dados não são compartilhados e posso pedir a remoção quando quiser.</span></label>
       <button type="submit" class="btn">Quero a Checagem</button>

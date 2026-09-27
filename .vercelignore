@@ -12,3 +12,5 @@ LICENSE
 # O SONAR é outro produto, com projeto Vercel próprio (Root Directory = sonar).
 # Não vai ao ar pelo espelho.
 sonar/
+# Ferramentas internas (gerador do blog): não vão ao ar.
+ferramentas/

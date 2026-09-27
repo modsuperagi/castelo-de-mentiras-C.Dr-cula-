@@ -138,12 +138,17 @@ telemetria de comportamento sem dado pessoal (`espelho_eventos`). **Ressonância
 prioridade na fila, nunca credibilidade.
 
 A cada ciclo diário:
-1. **SONAR (observar):** ler os sinais novos.
+1. **SONAR (observar):** uma leitura só, com as quatro famílias da Fase 6 (conteúdo, comunidade, investigação,
+   mercado). Interna: só `service_role` executa, e ela não devolve e-mail.
    ```sql
-   SELECT id, tipo, pagina, texto, autor_nome, contato_ok, canal, criado_em FROM espelho_sinais
-   WHERE estado = 'RECEBIDO' ORDER BY criado_em;
-   SELECT pagina, evento, count(*) FROM espelho_eventos WHERE criado_em > now() - interval '7 days' GROUP BY 1, 2 ORDER BY 3 DESC;
+   SELECT public.espelho_sonar_leitura(1);   -- janela em dias (1 a 90); 7 no relatório semanal
    ```
+   - `conteudo.lacunas_leitura`: artigo com 5 ou mais aberturas e menos de 30% chegando ao fim. Revisar o começo
+     do texto antes de escrever outro.
+   - `mercado.visitas_por_origem` e `paginas_de_entrada`: `google/ads-*` mostra o que o anúncio entrega. Clique no
+     Ads sem visita aqui = link de destino ou medição quebrados.
+   - `comunidade.fila_recebidos`: os sinais que esperam o passo 2 (o texto vem como a pessoa escreveu).
+   - `investigacao.pedidos_por_pagina`: fila de prioridade, não de verdade.
 2. **Trina (delimitar):** separar pergunta, opinião, hipótese, fonte e correção. Guardar em `tratamento` o
    `{"resumo": "...", "classe": "...", "verificar": [...]}`. O `texto` original **nunca** é alterado (Ghost).
 3. **Hellwolf (conter):** spam, ofensa, dado pessoal de terceiros ou pedido fora do escopo → `ARQUIVADO`.

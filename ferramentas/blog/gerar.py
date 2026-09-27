@@ -126,6 +126,17 @@ SINAL = """<section class="sinal" aria-labelledby="sinal-t">
 
   """
 
+# Atalho logo abaixo da linha fina: quem chega pelo anúncio vê o caminho para a oferta sem rolar o artigo inteiro.
+ATALHO = """<p class="atalho">{texto} <a href="#chamada-1">{link} ↓</a></p>"""
+
+# Fase 3 da reforma: o artigo não termina em saída; aponta para leituras do mesmo tema.
+RELACIONADOS = """<section class="relacionados" aria-labelledby="relacionados-t">
+    <h2 id="relacionados-t">Continue lendo</h2>
+    <ul>
+{itens}
+    </ul>
+  </section>"""
+
 RODAPE = """<footer class="rodape">
   <p><a href="/">Espelho Espelho Evo</a> · memória viva e validação de IA em português · <a href="/blog/">todos os artigos</a> · <a href="/guia-p0.html">guia gratuito</a></p>
 </footer>
@@ -152,7 +163,7 @@ def ld_artigo(titulo, descricao, url):
     }, ensure_ascii=False)
 
 
-def pagina(caminho, titulo, descricao, corpo, chamada, titulo_pagina=None, ld=None):
+def pagina(caminho, titulo, descricao, corpo, chamada, titulo_pagina=None, ld=None, tema=(), resumo=None, relacionados=''):
     url = f'{SITE}/{caminho}'.replace('/index.html', '/')
     esc = lambda s: html.escape(s, quote=True)
     cab = CABECA.format(
@@ -168,16 +179,34 @@ def pagina(caminho, titulo, descricao, corpo, chamada, titulo_pagina=None, ld=No
             form = form.replace(f'<option value="{chamada["pacote"]}">', f'<option value="{chamada["pacote"]}" selected>', 1)
         ofertas = '\n'.join(f'      <li>{o}</li>' for o in chamada.get('ofertas', OFERTAS_PADRAO))
         ch = CHAMADA.format(i=1, titulo=chamada['titulo'], texto=chamada['texto'], ofertas=ofertas, form=form)
+        if '<article>' in corpo and chamada.get('atalho'):
+            texto, link = chamada['atalho']
+            corpo = re.sub(r'(<p class="linha-fina">.*?</p>)', lambda m: m.group(1) + '\n  ' + ATALHO.format(texto=texto, link=link), corpo, count=1, flags=re.S)
     if caminho.startswith('blog/') and 'class="sinal-form"' not in corpo and caminho not in ('blog/index.html', 'blog/ressonancias.html'):
         ch = SINAL.format(pagina=slug) + ch
-    doc = cab + corpo.replace('{{CHAMADA}}', ch) + RODAPE
+    doc = cab + corpo.replace('{{CHAMADA}}', ch + relacionados) + RODAPE
     destino = RAIZ / caminho
     destino.parent.mkdir(parents=True, exist_ok=True)
     destino.write_text(doc, encoding='utf-8')
     return url
 
 
+def relacionados(atual, paginas, limite=3):
+    """Até 3 artigos com tema em comum (os mais parecidos primeiro); completa com o guia gratuito."""
+    temas = set(atual.get('tema', ()))
+    if not temas:
+        return ''
+    candidatos = [p for p in paginas if p['caminho'] != atual['caminho'] and p.get('tema')]
+    candidatos.sort(key=lambda p: -len(temas & set(p['tema'])))
+    escolhidos = [p for p in candidatos if temas & set(p['tema'])][:limite]
+    if len(escolhidos) < limite:
+        escolhidos += [p for p in candidatos if 'guia' in p['tema'] and p not in escolhidos][:limite - len(escolhidos)]
+    itens = '\n'.join(
+        f'      <li><a href="/{p["caminho"]}">{p["titulo"]}</a><p>{p.get("resumo") or ""}</p></li>' for p in escolhidos)
+    return '\n  ' + RELACIONADOS.format(itens=itens) if itens else ''
+
+
 if __name__ == '__main__':
     import conteudo
     for p in conteudo.PAGINAS:
-        print(pagina(**p))
+        print(pagina(**p, relacionados=relacionados(p, conteudo.PAGINAS)))

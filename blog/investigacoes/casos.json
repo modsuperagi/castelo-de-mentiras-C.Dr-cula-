@@ -1,0 +1,52 @@
+{
+  "aviso": "Investigações do organismo. Não são orientação jurídica. Cada fonte traz a data em que foi consultada.",
+  "casos": [
+    {
+      "id": "lei-8666-revogacao",
+      "url": "/blog/investigacoes/lei-8666-revogacao.html",
+      "titulo": "A Lei 14.133 revogou toda a Lei 8.666 em 1º de abril de 2023?",
+      "data": "2026-09-27",
+      "demonstracao": "A pergunta é um exemplo montado a partir de um erro comum em respostas de IA. A investigação é real, com as fontes consultadas em 27/09/2026.",
+      "palavras": ["8666", "8.666", "14133", "14.133", "licitação", "licitacao", "licitações", "licitacoes", "contrato administrativo", "nova lei de licitações", "pregão", "pregao", "10.520", "rdc", "12.462"],
+      "afirmacao": "A Lei 14.133/2021 revogou totalmente a Lei 8.666/1993 em 1º de abril de 2023, e desde então ela não vale para mais nada.",
+      "pergunta": "Uma IA me disse que a Lei 14.133/2021 revogou totalmente a Lei 8.666/1993 em 1º de abril de 2023, e que desde então ela não vale para mais nada. Isso está certo?",
+      "sinais": [
+        "A afirmação junta três coisas que precisam de prova separada: o alcance (\"totalmente\"), a data (\"1º de abril de 2023\") e o efeito (\"não vale para mais nada\").",
+        "1º de abril de 2023 é a data da redação original: dois anos depois da publicação da Lei 14.133, em 1º/04/2021.",
+        "Prazo previsto em lei costuma ser alterado depois. Esse tipo de mudança escapa de respostas feitas só com dados de treino."
+      ],
+      "fontes": [
+        {"titulo": "Lei nº 14.133/2021, arts. 190, 191 e 193 (Planalto)", "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2021/lei/l14133.htm", "tipo": "Primária", "consulta": "27/09/2026"},
+        {"titulo": "Comunicado nº 12/2023: transição entre a Lei 14.133 e as Leis 8.666, 10.520 e 12.462 (Portal de Compras do Governo Federal)", "url": "https://www.gov.br/compras/pt-br/acesso-a-informacao/comunicados/2023/n-o-12-2023-transicao-entre-a-lei-no-14-133-de-2021-e-as-leis-no-8-666-de-1993-no-10-520-de-2002-e-os-arts-1o-a-47-a-da-lei-no-12-462-de-2011", "tipo": "Oficial", "consulta": "27/09/2026"},
+        {"titulo": "TCU, Acórdão 507/2023, Plenário (TC 000.586/2023-4)", "url": "https://portal.tcu.gov.br/data/files/1F/06/B4/5C/43B07810ED256058E18818A8/000.586-2023-4-AN%20-%20entendimento_nova_lei_licitacoes%20_2_.pdf", "tipo": "Oficial", "consulta": "27/09/2026"},
+        {"titulo": "TCE-SP, legislação comentada: art. 193 da Lei 14.133", "url": "https://www.tce.sp.gov.br/legislacao-comentada/lei-14133-1o-abril-2021/193", "tipo": "Institucional", "consulta": "27/09/2026"},
+        {"titulo": "Ronny Charles: publicada a Lei Complementar 198, com novo prazo para a revogação da Lei 8.666 e da Lei do Pregão", "url": "https://ronnycharles.com.br/publicada-lei-complementar-no-198-definindo-novo-prazo-para-a-revogacao-da-lei-no-8-666-93-e-a-lei-do-pregao-lei-no-10-520-2002/", "tipo": "Especializada", "consulta": "27/09/2026"},
+        {"titulo": "Zênite: depois de 12/2023, como ficam os contratos formalizados pela Lei 8.666", "url": "https://zenite.blog.br/apos-12-2023-como-ficam-os-contratos-vigentes-e-formalizados-com-base-na-lei-8-666-1993/", "tipo": "Especializada", "consulta": "27/09/2026"}
+      ],
+      "a_favor": [
+        "A Lei 8.666 foi, sim, revogada por inteiro pela Lei 14.133: a revogação está no art. 193 (fontes 1 e 4).",
+        "1º de abril de 2023 era mesmo a data prevista na redação original do art. 193, II (fonte 4)."
+      ],
+      "em_conflito": [
+        "A data mudou. A Medida Provisória 1.167/2023 e depois a Lei Complementar 198, de 28/06/2023, adiaram a revogação para 30 de dezembro de 2023 (fontes 2 e 5).",
+        "Não foi tudo de uma vez. Os arts. 89 a 108 da Lei 8.666, que tratavam dos crimes, caíram já em 1º/04/2021, na publicação da Lei 14.133 (art. 193, I), e os crimes passaram para o Código Penal, arts. 337-E a 337-P (fonte 4).",
+        "Ela ainda vale para alguns casos. Os contratos assinados sob a Lei 8.666 continuam regidos por ela (art. 190), e também os processos em que a Administração escolheu o regime antigo dentro do prazo (art. 191; fontes 3 e 6)."
+      ],
+      "nao_confirmado": [
+        "O texto consolidado da lei não pôde ser aberto neste ambiente, porque a rede bloqueia sites do governo. As datas foram cruzadas em fontes independentes que concordam; antes de citar, confira a redação atual do art. 193 no Planalto (fonte 1).",
+        "Quantos contratos regidos pela Lei 8.666 ainda estão vigentes: nenhuma fonte encontrada traz esse número.",
+        "O Acórdão 507/2023 do TCU interpretou o prazo original. A mesma lógica se aplica ao prazo prorrogado, mas casos-limite podem variar entre tribunais de contas."
+      ],
+      "contexto": "Desde 1º de janeiro de 2024, licitações e contratações diretas novas seguem só a Lei 14.133. Junto com a Lei 8.666 saíram a Lei do Pregão (10.520/2002) e os arts. 1º a 47-A do RDC (Lei 12.462/2011).",
+      "conclusao": "A resposta da IA erra a data, simplifica o alcance e erra o efeito. A Lei 8.666 foi revogada em etapas: os crimes em 1º/04/2021 e o restante em 30/12/2023. E ela ainda rege os contratos assinados sob ela e os processos em que a Administração optou pelo regime antigo dentro do prazo.",
+      "seguranca": "Alta para as datas: fontes independentes concordam, duas delas oficiais. Média para o alcance em um caso concreto, que depende do contrato e do órgão.",
+      "linhagem": [
+        {"etapa": "SONAR", "estado": "feito", "quem": "Plasma", "feito": "Desmontou a afirmação em três partes (alcance, data e efeito). Fez 5 buscas na web e usou 6 fontes: 1 primária, 2 oficiais, 1 institucional e 2 especializadas. As 4 tentativas de abrir o texto direto na fonte foram bloqueadas pela rede deste ambiente, e isso está declarado."},
+        {"etapa": "P0", "estado": "feito", "quem": "Plasma", "feito": "Aplicou as 7 verificações à resposta da IA. Autoridade: faltava a norma que alterou o prazo. Evidência: a resposta não citava fonte nenhuma. Escopo: \"totalmente\" e \"não vale para mais nada\" vão além do que a lei diz. Rastreabilidade: cada fonte tem link e data."},
+        {"etapa": "Mesa Trina", "estado": "aguardando", "quem": "três posições que não coletaram", "feito": "Arquiteto, Engenheiro e Verificador leem o que o SONAR trouxe. Quem coletou não dá o veredito; por isso a conclusão segue provisória até a Mesa ler."},
+        {"etapa": "Consolidação", "estado": "feito", "quem": "Plasma", "feito": "Separou o que tem alta segurança (as datas) do que tem média (o alcance em cada caso) e registrou o limite: o texto primário não foi aberto daqui."},
+        {"etapa": "Castelo", "estado": "feito", "quem": "Castelo de Memórias", "feito": "Guardou a investigação com origem, fontes e conflitos. A próxima pergunta sobre licitações parte daqui, em vez de começar do zero."}
+      ]
+    }
+  ]
+}

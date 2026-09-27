@@ -111,6 +111,20 @@
   }
   .moldura textarea:focus { outline: none; border-color: var(--violeta); box-shadow: 0 0 0 2px rgba(139,111,216,.3); }
   .sonar-entrada .btn { padding: 13px 44px; font-size: 1.05rem; }
+  /* Radar P0 na pergunta (blog/radar.js): o que ele já vê, e o caso que o Castelo já investigou. */
+  .moldura button.exemplo { margin-top: 8px; padding: 0; border: 0; background: none; color: var(--ouro-claro); font: inherit; font-size: .92rem; text-decoration: underline; text-underline-offset: .18em; cursor: pointer; }
+  .moldura .radar { margin-top: 12px; }
+  .radar-linha { font-size: .95rem; color: var(--texto-2); line-height: 1.7; }
+  .radar-chip { display: inline-block; padding: 0 9px; border: 1px solid var(--carta-borda); border-radius: 999px; font-size: .88rem; color: var(--texto); line-height: 1.6; }
+  .radar-chip.r-norma { border-color: #d4a843; }
+  .radar-chip.r-tempo { border-color: #a58df0; }
+  .radar-chip.r-numero, .radar-chip.r-vaga { border-color: #6fb6d6; }
+  .radar-chip.r-absoluto { border-color: #e0697a; }
+  .radar-chip.r-link, .radar-chip.r-referencia { border-color: #6fc08f; }
+  .radar-caso { margin-top: 10px; padding: 10px 14px; border-left: 3px solid var(--violeta); border-radius: 0 10px 10px 0; background: rgba(7,6,11,.82); }
+  .radar-caso-t { font-size: .86rem; color: var(--violeta); }
+  .radar-caso a { color: var(--ouro-claro); font-weight: 600; text-underline-offset: .18em; }
+  .radar-caso p:last-child { margin-top: 4px; font-size: .92rem; color: var(--texto-2); }
   .atalhos { margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; font-size: .95rem; }
   .atalhos a, .link-suave { color: var(--ouro-claro); text-underline-offset: .2em; }
   #btn-instalar { margin-top: 18px; }
@@ -296,7 +310,9 @@
     <form class="sonar-entrada" action="/investigar.html" method="get" aria-label="Investigar com o SONAR">
       <div class="moldura">
         <label for="q">O que você quer investigar?</label>
-        <textarea id="q" name="q" rows="3" maxlength="900" placeholder="Ex.: uma IA me disse que a Lei 14.133 revogou toda a Lei 8.666. Isso está certo?"></textarea>
+        <textarea id="q" name="q" rows="3" maxlength="900" placeholder="Ex.: uma IA me disse que a Lei 14.133 revogou toda a Lei 8.666. Isso está certo?" data-radar="curto" data-radar-alvo="radar-q"></textarea>
+        <button type="button" class="exemplo" data-radar-exemplo="q" data-radar-exemplo-texto="Uma IA me disse que a Lei 14.133 revogou totalmente a Lei 8.666 em 1º de abril de 2023. Isso está certo?" hidden>Testar com um exemplo</button>
+        <div class="radar radar-curto" id="radar-q" hidden></div>
       </div>
       <button class="btn primario" type="submit">Investigar</button>
     </form>
@@ -824,5 +840,6 @@
   if (ehIOS && !jaInstalado) $('dica-ios').hidden = false;
 </script>
 <script src="/blog/espelho.js" defer></script>
+<script src="/blog/radar.js" defer></script>
 </body>
 </html>

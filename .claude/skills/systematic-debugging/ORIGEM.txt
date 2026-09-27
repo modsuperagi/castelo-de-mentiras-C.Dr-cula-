@@ -1,0 +1,5 @@
+Origem: https://github.com/obra/superpowers (skills/systematic-debugging)
+Versão: 6.4.1 (pacote Superpowers-6.4.1-v1.zip enviado pelo Guardião)
+Licença: MIT (ver LICENSE)
+Incorporada em: 2026-09-27
+Sem o gancho SessionStart do pacote: a skill carrega só quando a tarefa pede.

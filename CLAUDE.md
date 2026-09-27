@@ -20,6 +20,7 @@ Para mudanças visuais no site, use `frontend-design`.
 | `guia-p0.html`, `blog/` | guia gratuito (isca de inscrição) e artigos do blog; a inscrição grava `canal` (UTM ou página) em `espelho_interessados` | sim |
 | `blog/espelho.js`, `blog/escrever.html`, `blog/ressonancias.html` | Espelho editorial (reforma de 27/09): sinais do público em `espelho_sinais` (só insere; entram como RECEBIDO), telemetria sem dado pessoal em `espelho_eventos`, painel "O que está ressoando?" pela função `espelho_ressonancias` (só agregados e o que o organismo marcou como publicável); leitura interna do SONAR editorial (conteúdo, comunidade, investigação, mercado) pela função `espelho_sonar_leitura` (só `service_role`). O artigo leva atalho para a oferta abaixo da linha fina e "Continue lendo" no fim (tema em `conteudo.py`, `META`). Tudo opcional: se o Castelo cair, a página segue igual | sim |
 | `robots.txt`, `sitemap.xml` | SEO | sim |
+| `vercel.json` | cabeçalhos de segurança na borda (Hellwolf) e cache de ícones e imagens; nada de URL muda | configuração |
 | `sonar/` | **SONAR**: outro produto, site de investigação com fontes: Grok Bot como operador e busca própria em `lib/busca/` (o caminho xAI ficou secundário). Projeto Vercel próprio, Root Directory `sonar`. Sem nenhuma ponte ou nome do organismo | pelo projeto dele, não pelo espelho |
 | `ferramentas/blog/` | gerador do guia e do blog (`python3 gerar.py`; textos em `conteudo.py`). Regenera as páginas com o mesmo cabeçalho, rodapé e formulário | **não** |
 | `docs/SONAR-MVP.md` | documentação e checkpoint do SONAR (endpoints, variáveis, fluxo, status de validação) | **não** |
@@ -31,7 +32,7 @@ Para mudanças visuais no site, use `frontend-design`.
 | `docs/REFERENCIAS.md` | repositórios públicos que o organismo usa ou estuda | **não** |
 | `docs/historico/` | registros antigos (tentativas de captura do espelho do Grok) | **não** |
 | `supabase/migrations/` | backup do schema do Castelo: um `.sql` por migração, em ordem | **não** |
-| `.claude/skills/` | `castelo-evo` (nossa) + duas skills públicas com licença e `ORIGEM.txt` | **não** |
+| `.claude/skills/` | `castelo-evo` (nossa) + skills públicas com licença e `ORIGEM.txt`: `frontend-design`, `supabase-postgres-best-practices` e, do Superpowers 6.4.1 (sem o gancho de início de sessão), `verification-before-completion` e `systematic-debugging` | **não** |
 
 `.vercelignore` é a fronteira do que fica público. Arquivo novo que não seja para o visitante
 precisa entrar nele **antes** do push.

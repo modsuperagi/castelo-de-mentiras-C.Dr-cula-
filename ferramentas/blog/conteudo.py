@@ -455,6 +455,9 @@ RESSONANCIAS = """<main class="pagina">
     <p><strong>Ressonância não é verdade.</strong> Um tema muito pedido ganha prioridade na fila, não credibilidade. Pouco pedido não quer dizer pouco importante. O que vale é a fonte conferida.</p>
   </div>
   <section id="ressonancias">
+    <h2 id="em-alta">Em alta nesta semana</h2>
+    <p class="nota">Os artigos que mais gente abriu nos últimos 7 dias. <strong>Mais lido não quer dizer mais certo</strong>: é só o que está chamando atenção agora.</p>
+    <div id="ressoa-alta"><p class="vazio">Carregando…</p></div>
     <h2>Temas com mais sinais (30 dias)</h2>
     <div id="ressoa-temas"><p class="vazio">Carregando…</p></div>
     <h2 id="investigar">Investigações</h2>
@@ -471,6 +474,7 @@ RESSONANCIAS = """<main class="pagina">
     <li data-titulo-de="blog/ia-inventou-a-resposta">Como saber se o ChatGPT (ou qualquer IA) inventou a resposta</li>
     <li data-titulo-de="blog/memoria-de-ia">Por que a IA esquece o que você já explicou, e como criar uma memória que não se perde</li>
     <li data-titulo-de="blog/tres-olhares-mesa-trina">Três olhares antes de decidir com IA: o método da Mesa Trina</li>
+    <li data-titulo-de="guia-p0">Guia gratuito: 7 perguntas para saber se a IA inventou a resposta</li>
   </ul>
   <p class="nota">Quer entrar na conversa? <a href="/blog/escrever.html">Escreva no Espelho</a> ou mande um sinal no fim de qualquer artigo.</p>
 </main>

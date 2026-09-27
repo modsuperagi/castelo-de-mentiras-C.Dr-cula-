@@ -1,7 +1,7 @@
 // Service worker do Espelho Espelho Evo.
 // Páginas: rede primeiro, cache como reserva, para o app abrir mesmo com internet ruim sem servir versão velha quando há rede.
 // Dados do Castelo (Supabase) nunca passam por cache: o espelho mostra sempre o estado vivo.
-const VERSAO = 'espelho-evo-v10';
+const VERSAO = 'espelho-evo-v11';
 const CASCA = [
   '/',
   '/nucleos.html',

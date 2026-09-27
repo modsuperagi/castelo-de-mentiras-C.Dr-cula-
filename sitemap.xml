@@ -14,9 +14,15 @@
   </url>
   <url>
     <loc>https://espelho-espelho-evo.vercel.app/investigar.html</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://espelho-espelho-evo.vercel.app/blog/investigacoes/lei-8666-revogacao.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://espelho-espelho-evo.vercel.app/guia-p0.html</loc>

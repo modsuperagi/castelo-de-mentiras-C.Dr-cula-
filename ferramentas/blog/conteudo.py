@@ -522,6 +522,8 @@ BLOG_INDEX = """<main class="pagina">
   <section class="grupo" aria-labelledby="g-investigar">
     <h2 id="g-investigar">Investigações <span class="grupo-tipo">o que os leitores pedem para conferir</span></h2>
     <ul class="lista-artigos">
+      <li><a href="/blog/investigacoes/lei-8666-revogacao.html">A Lei 14.133 revogou toda a Lei 8.666 em 1º de abril de 2023?</a>
+        <p>Investigação aberta: fontes com data, o que confere, o que está em conflito e o que não deu para confirmar.</p></li>
       <li><a href="/blog/ressonancias.html">O que está ressoando?</a>
         <p>Perguntas, correções e pedidos de investigação dos leitores, e o que o organismo já conferiu. Ressonância não é verdade.</p></li>
       <li><a href="/blog/escrever.html">Escreva no Espelho</a>
@@ -541,7 +543,9 @@ INVESTIGAR = """<main class="pagina">
     <h2 id="investigar-t">O que você quer investigar?</h2>
     <form class="inscricao" data-pagina="investigar" data-sucesso="Pedido registrado, {nome}. A investigação começa assim que o Pix chegar, e o relatório vai para {email}." novalidate>
       <label for="pergunta">Sua pergunta</label>
-      <textarea id="pergunta" name="mensagem" rows="4" maxlength="900" required placeholder="Ex.: uma IA me disse que a Lei 14.133 revogou toda a Lei 8.666. Isso está certo? O que ainda vale?"></textarea>
+      <textarea id="pergunta" name="mensagem" rows="4" maxlength="900" required placeholder="Ex.: uma IA me disse que a Lei 14.133 revogou toda a Lei 8.666. Isso está certo? O que ainda vale?" data-radar="curto" data-radar-alvo="radar-pergunta"></textarea>
+      <button type="button" class="exemplo" data-radar-exemplo="pergunta" data-radar-exemplo-texto="Uma IA me disse que a Lei 14.133 revogou totalmente a Lei 8.666 em 1º de abril de 2023. Isso está certo? O que ainda vale?" hidden>Testar com um exemplo</button>
+      <div class="radar radar-curto" id="radar-pergunta" hidden></div>
       <fieldset class="escolha">
         <legend>Como você quer receber</legend>
         <label><input type="radio" name="pacote" value="investigacao" checked> <span><strong>Uma investigação · R$ 29</strong> Relatório com fontes em até 48 horas.</span></label>
@@ -560,11 +564,13 @@ INVESTIGAR = """<main class="pagina">
 
   <section class="sonar-bloco" id="conferir" aria-labelledby="conferir-t">
     <h2 id="conferir-t">Conferir uma resposta de IA</h2>
-    <p>Cole a pergunta que você fez e a resposta que a IA deu. O organismo aplica as 7 verificações e devolve o laudo: o que confere, o que falta prova e o que mudar.</p>
+    <p>Cole a pergunta que você fez e a resposta que a IA deu. O radar marca na hora, aqui no seu aparelho, onde olhar em cada uma das 7 verificações. Se quiser o laudo, o organismo leva cada ponto até a fonte e diz o que confere, o que falta prova e o que mudar.</p>
     <form class="inscricao" data-pagina="conferir" data-sucesso="Pedido registrado, {nome}. A checagem começa assim que o Pix chegar, e o laudo vai para {email}." novalidate>
       <label for="resposta">Pergunta e resposta da IA</label>
-      <textarea id="resposta" name="mensagem" rows="6" maxlength="1000" required placeholder="Pergunta: ...&#10;Resposta da IA: ..."></textarea>
-      <fieldset class="escolha">
+      <textarea id="resposta" name="mensagem" rows="6" maxlength="1000" required placeholder="Pergunta: ...&#10;Resposta da IA: ..." data-radar="completo" data-radar-alvo="radar-resposta"></textarea>
+      <button type="button" class="exemplo" data-radar-exemplo="resposta" hidden>Testar o radar com um exemplo</button>
+      <div class="radar" id="radar-resposta" hidden></div>
+      <fieldset class="escolha" id="conf-escolha">
         <legend>Como você quer receber</legend>
         <label><input type="radio" name="pacote" value="checagem" checked> <span><strong>Uma checagem · R$ 19</strong> Laudo em até 24 horas.</span></label>
         <label><input type="radio" name="pacote" value="plano_estudante"> <span><strong>Plano Estudante · R$ 9,90/mês</strong> 10 checagens por mês e os Roteiros do Organismo.</span></label>
@@ -579,31 +585,7 @@ INVESTIGAR = """<main class="pagina">
     </form>
   </section>
 
-  <section class="sonar-bloco" aria-labelledby="entrega-t">
-    <h2 id="entrega-t">O que chega para você</h2>
-    <p>Uma investigação, não uma resposta a mais. Cada relatório traz, nesta ordem:</p>
-    <dl class="entrega">
-      <dt>Pergunta</dt><dd>Como você fez, sem reescrever.</dd>
-      <dt>Sinais encontrados</dt><dd>O que já se diz sobre o tema, e onde.</dd>
-      <dt>Fontes</dt><dd>Cada uma com link e data, primárias primeiro.</dd>
-      <dt>Evidências a favor</dt><dd>O que sustenta a afirmação.</dd>
-      <dt>Evidências em conflito</dt><dd>O que a contradiz ou a limita.</dd>
-      <dt>O que não foi confirmado</dt><dd>Dito com todas as letras, em vez de preenchido com palpite.</dd>
-      <dt>Contexto</dt><dd>Condições, exceções e o que mudou com o tempo.</dd>
-      <dt>Conclusão provisória</dt><dd>O que dá para afirmar hoje, e com que segurança.</dd>
-    </dl>
-    <details class="linhagem">
-      <summary>Como a investigação é feita por dentro</summary>
-      <ol>
-        <li><strong>SONAR</strong> busca e abre as fontes.</li>
-        <li><strong>Mesa Trina</strong> confronta a leitura em três posições independentes.</li>
-        <li><strong>Evidências</strong> passam pelas 7 verificações do P0; um "não" basta para voltar à fonte.</li>
-        <li><strong>Consolidação</strong> separa o que foi provado do que não foi.</li>
-        <li><strong>Castelo</strong> guarda a investigação com origem e fontes, para a próxima partir dela.</li>
-      </ol>
-      <p>Quem coleta não dá o veredito, e nada vira verdade por ser muito pedido. <a href="/nucleos.html">Conhecer o EVO por dentro</a>.</p>
-    </details>
-  </section>
+  {{RELATORIO}}
 
   <section class="sonar-bloco" id="fila" aria-labelledby="fila-t">
     <h2 id="fila-t">Fila pública</h2>

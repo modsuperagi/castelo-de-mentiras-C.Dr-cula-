@@ -13,7 +13,9 @@ Para mudanças visuais no site, use `frontend-design`.
 | Caminho | O que é | Vai ao ar? |
 |---|---|---|
 | `index.html` | página inicial (HTML, CSS e JS num só arquivo, sem build). Desde 27/09 segue o documento de mercado do Guardião (`evo_memorias` 0ced7b2c): a pergunta primeiro ("O que você quer investigar?"), quatro caminhos, o método em linguagem de usuário e os planos na escada comercial. Nada de nome de mesa, conta ou login na vitrine | sim |
-| `investigar.html` | tela central do SONAR (gerada por `ferramentas/blog`): pedir investigação ou conferir resposta (a pergunta vai em `espelho_interessados.mensagem`, com Pix), o que o relatório traz, linhagem e fila pública (`espelho_sinais`) | sim |
+| `investigar.html` | tela central do SONAR (gerada por `ferramentas/blog`): pedir investigação ou conferir resposta (a pergunta vai em `espelho_interessados.mensagem`, com Pix), radar P0 ao vivo, o relatório em 8 partes aberto com um caso real, trilha e fila pública (`espelho_sinais`) | sim |
+| `blog/radar.js` | radar P0: marca no navegador (nada é enviado) normas, datas, números, palavras absolutas, fontes vagas, links e referências, e liga cada marca a uma das 7 verificações; aponta onde olhar, sem veredito. Modo `completo` (Conferir), `curto` (pergunta da home e do Investigar, com o caso parecido) e estático. Evento `radar` em `espelho_eventos` | sim |
+| `blog/investigacoes/` | investigações abertas: `casos.json` (fonte única: gera as páginas e alimenta o "caso parecido" do radar) e uma página por caso, gerada por `ferramentas/blog`. Cada caso também fica em `evo_memorias` (coleção `SONAR_INVESTIGACOES`) | sim |
 | `porta.html` | Porta dos Núcleos: login e "Selar travessia" em `evo_porta_entrada`, fora da vitrine, `noindex`, sem criação de conta; o link fica no rodapé do `nucleos.html` | sim |
 | `nucleos.html` | Espelho dos Núcleos: pulso vivo do Castelo, sem login e sem camada comercial | sim |
 | `evo.json` | manifesto de máquina do organismo (fio, API, mesas de leitura aberta, núcleos, regras) | sim |

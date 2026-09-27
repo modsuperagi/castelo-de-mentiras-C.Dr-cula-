@@ -21,7 +21,8 @@ Depois de ler, registre um check-in próprio de confirmação citando o selo.
 - [Porta dos Núcleos](https://espelho-espelho-evo.vercel.app/porta.html): entrada de trabalho do Guardião e dos núcleos com identidade; escrever exige selo
 - [Manifesto do organismo (JSON)](https://espelho-espelho-evo.vercel.app/evo.json): identidade, Fio Mestre, endpoints, núcleos, protocolo e regras
 - [Espelho Espelho Evo](https://espelho-espelho-evo.vercel.app/): site público: a pergunta primeiro ("O que você quer investigar?"), planos e a Lista da Turma Fundadora
-- [Investigar com o SONAR](https://espelho-espelho-evo.vercel.app/investigar.html): pedir uma investigação ou conferir uma resposta de IA; o que o relatório traz e a fila pública
+- [Investigar com o SONAR](https://espelho-espelho-evo.vercel.app/investigar.html): pedir uma investigação ou conferir uma resposta de IA; radar P0 ao vivo (marca normas, datas, números, palavras absolutas e falta de fonte, no navegador, sem enviar nada e sem dar veredito), o relatório em 8 partes com um caso real e a fila pública
+- [Investigação aberta: a Lei 14.133 revogou toda a Lei 8.666?](https://espelho-espelho-evo.vercel.app/blog/investigacoes/lei-8666-revogacao.html): exemplo completo do método, com fontes datadas, conflitos, o que não foi confirmado e a trilha de quem fez cada etapa; índice de máquina em /blog/investigacoes/casos.json
 - [Guia gratuito: 7 perguntas para saber se a IA inventou a resposta](https://espelho-espelho-evo.vercel.app/guia-p0.html): o P0 em versão de bolso, para qualquer pessoa
 - [Blog do Espelho](https://espelho-espelho-evo.vercel.app/blog/): artigos práticos sobre IA com memória, evidência e método (checagem de respostas, registro de decisões, revisão em três olhares)
 

@@ -202,3 +202,88 @@ dl.entrega dd { color: var(--texto-2); margin: 0; }
 @media (max-width: 560px) { dl.entrega { grid-template-columns: 1fr; gap: 2px; } dl.entrega dd { margin-bottom: 8px; } }
 details.linhagem summary { cursor: pointer; color: var(--ouro-claro); }
 details.linhagem ol { margin: 12px 0 8px 1.2em; color: var(--texto-2); }
+
+/* Radar P0 e investigação aberta (27/09): o site responde antes de explicar.
+   Uma cor por verificação, a mesma na marca do texto e no número da verificação. */
+mark[class^="r-"] { color: inherit; border-radius: 3px; padding: 0 2px; transition: opacity .15s; }
+mark.r-norma { background: rgba(212,168,67,.2); box-shadow: inset 0 -2px #d4a843; }
+mark.r-tempo { background: rgba(139,111,216,.24); box-shadow: inset 0 -2px #a58df0; }
+mark.r-numero, mark.r-vaga { background: rgba(95,168,200,.2); box-shadow: inset 0 -2px #6fb6d6; }
+mark.r-absoluto { background: rgba(224,105,122,.2); box-shadow: inset 0 -2px #e0697a; }
+mark.r-link, mark.r-referencia { background: rgba(95,174,127,.2); box-shadow: inset 0 -2px #6fc08f; }
+.radar { padding: 16px; border: 1px dashed rgba(212,168,67,.45); border-radius: 12px; background: #0d0b16; }
+.radar-resumo { margin: 0 0 10px; font-size: .98rem; }
+.radar-espelho {
+  white-space: pre-wrap; overflow-wrap: anywhere; font-size: .95rem; line-height: 1.8;
+  padding: 12px 14px; margin-bottom: 12px; max-height: 320px; overflow: auto;
+  border: 1px solid var(--carta-borda); border-radius: 10px; background: var(--fundo);
+}
+.radar[data-foco] .radar-espelho mark { opacity: .25; }
+.radar[data-foco=identidade] mark[data-check=identidade], .radar[data-foco=autoridade] mark[data-check=autoridade],
+.radar[data-foco=evidencia] mark[data-check=evidencia], .radar[data-foco=escopo] mark[data-check=escopo],
+.radar[data-foco=rastreabilidade] mark[data-check=rastreabilidade] { opacity: 1; font-weight: 600; }
+.radar-checks { list-style: none; padding: 0; margin: 0 0 8px; }
+.radar-check { display: grid; grid-template-columns: 172px 1fr; gap: 4px 12px; align-items: start; margin: 0; padding: 8px 0; border-top: 1px solid var(--carta-borda); }
+.radar-check button {
+  display: inline-flex; align-items: center; gap: 8px; justify-self: start; padding: 3px 12px 3px 3px;
+  border: 1px solid var(--carta-borda); border-radius: 999px; background: none; color: var(--texto);
+  font: inherit; font-size: .92rem; cursor: pointer;
+}
+.radar-check button:disabled { cursor: default; color: var(--texto-2); }
+.radar-check button:not(:disabled):hover, .radar-check button[aria-pressed=true] { border-color: var(--ouro); background: rgba(212,168,67,.1); }
+.radar-n { display: inline-grid; place-items: center; min-width: 26px; height: 26px; padding: 0 6px; border-radius: 999px; font-size: .85rem; font-weight: 700; }
+.radar-check.marcado .radar-n { color: #14111f; background: var(--ouro); }
+.radar-check.marcado[data-check=identidade] .radar-n { background: #a58df0; }
+.radar-check.marcado[data-check=evidencia] .radar-n { background: #6fb6d6; }
+.radar-check.marcado[data-check=escopo] .radar-n { background: #e0697a; }
+.radar-check.marcado[data-check=rastreabilidade] .radar-n, .radar-check.marcado[data-check=duplicidade] .radar-n { background: #6fc08f; }
+.radar-check.alerta .radar-n { color: #f08a98; border: 1px solid #f08a98; }
+.radar-check.voce .radar-n { color: var(--texto-2); border: 1px dashed var(--texto-2); }
+.radar-check p { margin: 0; font-size: .93rem; line-height: 1.5; color: var(--texto-2); }
+.radar-check.alerta p { color: #f3b6bf; }
+.radar-nota { margin: 8px 0 6px; font-size: .86rem; font-style: italic; color: var(--texto-2); }
+.radar-cta { margin: 0; font-size: .95rem; }
+.radar.radar-curto { padding: 0; border: 0; background: none; }
+.radar-linha { margin: 0; font-size: .95rem; color: var(--texto-2); }
+.radar-chip { display: inline-block; margin: 2px 0; padding: 0 9px; border: 1px solid var(--carta-borda); border-radius: 999px; font-size: .88rem; color: var(--texto); }
+.radar-chip.r-norma { border-color: #d4a843; }
+.radar-chip.r-tempo { border-color: #a58df0; }
+.radar-chip.r-numero, .radar-chip.r-vaga { border-color: #6fb6d6; }
+.radar-chip.r-absoluto { border-color: #e0697a; }
+.radar-chip.r-link, .radar-chip.r-referencia { border-color: #6fc08f; }
+.radar-caso { margin-top: 10px; padding: 10px 14px; border-left: 3px solid var(--violeta); border-radius: 0 10px 10px 0; background: #0d0b16; }
+.radar-caso-t { margin: 0 0 2px; font-size: .86rem; color: var(--violeta); }
+.radar-caso a { font-weight: 600; }
+.radar-caso p:last-child { margin: 4px 0 0; font-size: .92rem; color: var(--texto-2); }
+button.exemplo { justify-self: start; padding: 0; border: 0; background: none; color: var(--ouro-claro); font: inherit; font-size: .95rem; text-decoration: underline; text-underline-offset: .18em; cursor: pointer; }
+@media (max-width: 560px) { .radar-check { grid-template-columns: 1fr; } .radar { padding: 12px; } }
+@media (prefers-reduced-motion: reduce) { mark[class^="r-"] { transition: none; } }
+
+.relatorio { margin: 14px 0 26px; border-top: 1px solid var(--carta-borda); }
+.relatorio details { border-bottom: 1px solid var(--carta-borda); }
+.relatorio summary { display: grid; grid-template-columns: minmax(170px, max-content) 1fr; gap: 2px 18px; padding: 12px 0; list-style: none; cursor: pointer; }
+.relatorio summary::-webkit-details-marker { display: none; }
+.relatorio .parte { color: var(--ouro-claro); }
+.relatorio .parte::before { content: '+'; display: inline-block; width: 1.1em; color: var(--texto-2); }
+.relatorio details[open] .parte::before { content: '−'; }
+.relatorio .parte-o-que { color: var(--texto-2); }
+.relatorio details > div { padding: 0 0 14px 1.1em; font-size: .97rem; }
+.relatorio details > div :last-child { margin-bottom: 0; }
+@media (max-width: 560px) { .relatorio summary { grid-template-columns: 1fr; } }
+blockquote.afirmacao { margin: 8px 0 18px; padding: 6px 0 6px 16px; border-left: 3px solid var(--ouro); font-style: italic; }
+ol.fontes li { overflow-wrap: anywhere; }
+.fonte-tipo { display: block; font-size: .88rem; color: var(--texto-2); }
+.seguranca { color: var(--texto-2); }
+.estado-trina { margin-bottom: 0; color: var(--violeta); font-size: .95rem; }
+.conclusao-topo h2 { margin-top: 0; font-size: 1.45rem; }
+.trilha { list-style: none; padding: 0; margin: 10px 0 22px; }
+.trilha li { position: relative; margin: 0; padding: 0 0 4px 24px; border-left: 2px solid var(--carta-borda); }
+.trilha li:last-child { border-left-color: transparent; }
+.trilha li::before { content: ''; position: absolute; left: -7px; top: 13px; width: 12px; height: 12px; border-radius: 50%; background: var(--ouro); }
+.trilha li.aguardando::before { background: var(--fundo); border: 2px dashed var(--violeta); width: 8px; height: 8px; }
+.trilha summary { padding: 6px 0; cursor: pointer; }
+.trilha .etapa { font-weight: 600; color: var(--ouro-claro); }
+.trilha .estado { margin-left: 10px; font-size: .86rem; color: var(--texto-2); }
+.trilha li.aguardando .estado { color: var(--violeta); }
+.trilha details p { margin: 0 0 12px; font-size: .95rem; color: var(--texto-2); }
+.botoes { display: flex; flex-wrap: wrap; gap: 10px; }

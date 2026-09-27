@@ -143,6 +143,7 @@ RODAPE = """<footer class="rodape">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
 <script src="/blog/inscricao.js" defer></script>
 <script src="/blog/espelho.js" defer></script>
+<script src="/blog/radar.js" defer></script>
 </body>
 </html>
 """
@@ -183,12 +184,120 @@ def pagina(caminho, titulo, descricao, corpo, chamada, titulo_pagina=None, ld=No
             texto, link = chamada['atalho']
             corpo = re.sub(r'(<p class="linha-fina">.*?</p>)', lambda m: m.group(1) + '\n  ' + ATALHO.format(texto=texto, link=link), corpo, count=1, flags=re.S)
     if caminho.startswith('blog/') and 'class="sinal-form"' not in corpo and caminho not in ('blog/index.html', 'blog/ressonancias.html'):
-        ch = SINAL.format(pagina=slug) + ch
-    doc = cab + corpo.replace('{{CHAMADA}}', ch + relacionados) + RODAPE
+        sinal = SINAL.format(pagina=slug)
+        if caminho.startswith('blog/investigacoes/'):
+            sinal = sinal.replace('Este artigo continua com você', 'Esta investigação continua com você')
+        ch = sinal + ch
+    miolo = corpo.replace('{{CHAMADA}}', ch + relacionados)
+    # O radar P0 só vai para as páginas que o usam (tela Investigar e investigações abertas).
+    rodape = RODAPE if 'data-radar' in miolo else RODAPE.replace('<script src="/blog/radar.js" defer></script>\n', '')
+    doc = cab + miolo + rodape
     destino = RAIZ / caminho
     destino.parent.mkdir(parents=True, exist_ok=True)
     destino.write_text(doc, encoding='utf-8')
     return url
+
+
+# Investigações abertas (27/09): o mesmo casos.json alimenta as páginas e o radar (caso parecido).
+CASOS = json.loads((RAIZ / 'blog/investigacoes/casos.json').read_text(encoding='utf-8'))['casos']
+
+# As 8 partes do relatório, na ordem em que chegam para quem pede.
+PARTES = [
+    ('pergunta', 'Pergunta', 'Como você fez, sem reescrever.'),
+    ('sinais', 'Sinais encontrados', 'O que já se diz sobre o tema, e onde.'),
+    ('fontes', 'Fontes', 'Cada uma com link e data, primárias primeiro.'),
+    ('a_favor', 'Evidências a favor', 'O que sustenta a afirmação.'),
+    ('em_conflito', 'Evidências em conflito', 'O que a contradiz ou a limita.'),
+    ('nao_confirmado', 'O que não foi confirmado', 'Dito com todas as letras, em vez de preenchido com palpite.'),
+    ('contexto', 'Contexto', 'Condições, exceções e o que mudou com o tempo.'),
+    ('conclusao', 'Conclusão provisória', 'O que dá para afirmar hoje, e com que segurança.'),
+]
+
+
+def _e(s):
+    return html.escape(str(s), quote=True)
+
+
+def parte_html(caso, chave):
+    v = caso[chave]
+    if chave == 'pergunta':
+        return f'<blockquote class="afirmacao" data-radar-estatico>{_e(v)}</blockquote>'
+    if chave == 'fontes':
+        itens = ''.join(f'<li><a href="{_e(f["url"])}" rel="noopener">{_e(f["titulo"])}</a>'
+                        f'<span class="fonte-tipo">{_e(f["tipo"])}, consultada em {_e(f["consulta"])}</span></li>' for f in v)
+        return f'<ol class="fontes">{itens}</ol>'
+    if chave == 'conclusao':
+        return f'<p>{_e(v)}</p><p class="seguranca"><strong>Segurança.</strong> {_e(caso["seguranca"])}</p>'
+    if isinstance(v, list):
+        return '<ul>' + ''.join(f'<li>{_e(x)}</li>' for x in v) + '</ul>'
+    return f'<p>{_e(v)}</p>'
+
+
+def trilha_html(caso):
+    itens = []
+    for p in caso['linhagem']:
+        feito = p['estado'] == 'feito'
+        itens.append(f'<li class="{"feito" if feito else "aguardando"}"><details><summary><span class="etapa">{_e(p["etapa"])}</span>'
+                     f'<span class="estado">{"feito" if feito else "aguardando"}</span></summary><p>{_e(p["feito"])}</p></details></li>')
+    return '<ol class="trilha">\n      ' + '\n      '.join(itens) + '\n    </ol>'
+
+
+def relatorio_html(caso):
+    """Seção "O que chega para você" da tela Investigar: as 8 partes abertas com um caso real."""
+    partes = '\n      '.join(
+        f'<details{" open" if chave == "pergunta" else ""}><summary><span class="parte">{nome}</span><span class="parte-o-que">{o_que}</span></summary>'
+        f'<div>{parte_html(caso, chave)}</div></details>' for chave, nome, o_que in PARTES)
+    return f"""<section class="sonar-bloco" id="por-dentro" aria-labelledby="entrega-t">
+    <h2 id="entrega-t">O que chega para você</h2>
+    <p>Uma investigação, não uma resposta a mais. Abra cada parte desta, feita pelo organismo em {_e(caso["data"][8:10] + "/" + caso["data"][5:7] + "/" + caso["data"][:4])}: <a href="{_e(caso["url"])}">{_e(caso["titulo"])}</a></p>
+    <div class="relatorio">
+      {partes}
+    </div>
+    <h3>Como foi feita</h3>
+    {trilha_html(caso)}
+    <p class="nota">Quem coleta não dá o veredito, e nada vira verdade por ser muito pedido. <a href="{_e(caso["url"])}">Abrir a investigação completa</a> · <a href="/nucleos.html">Conhecer o EVO por dentro</a></p>
+  </section>"""
+
+
+def pagina_caso(caso):
+    """Página própria da investigação: conclusão primeiro, depois as partes, a trilha e o convite."""
+    data = caso['data'][8:10] + '/' + caso['data'][5:7] + '/' + caso['data'][:4]
+    aguardando = [p['etapa'] for p in caso['linhagem'] if p['estado'] != 'feito']
+    estado = (f'<p class="estado-trina">Ainda aguardando: {_e(", ".join(aguardando))}. Até lá, esta conclusão é provisória.</p>'
+              if aguardando else '')
+    secoes = '\n  '.join(f'<h2>{nome}</h2>\n  {parte_html(caso, chave)}' for chave, nome, _ in PARTES if chave != 'conclusao')
+    corpo = f"""<main class="pagina caso">
+  <p class="meta">Investigação do organismo, {data}</p>
+  <h1>{_e(caso["titulo"])}</h1>
+  <p class="linha-fina">{_e(caso["demonstracao"])}</p>
+  <section class="quadro conclusao-topo" aria-labelledby="conclusao-t">
+    <h2 id="conclusao-t">Conclusão provisória</h2>
+    {parte_html(caso, "conclusao")}
+    {estado}
+  </section>
+  {secoes}
+  <p class="nota">As marcas na pergunta são do radar P0: onde olhar antes de confiar. <a href="/investigar.html#conferir">Use o radar no seu texto</a>.</p>
+  <h2>Como foi feita</h2>
+  {trilha_html(caso)}
+  <section class="sonar-bloco" aria-labelledby="parecida-t">
+    <h2 id="parecida-t">Tem uma pergunta parecida?</h2>
+    <p>O organismo parte do que já investigou, em vez de começar do zero. Mande a sua pergunta ou a resposta de IA que você quer conferir.</p>
+    <p class="botoes"><a class="btn" href="/investigar.html">Investigar a minha pergunta</a> <a class="btn fantasma" href="/investigar.html#conferir">Conferir uma resposta de IA</a></p>
+  </section>
+  {{{{CHAMADA}}}}
+</main>
+"""
+    url = f'{SITE}{caso["url"]}'
+    ld = json.dumps({'@context': 'https://schema.org', '@type': 'Article', 'headline': caso['titulo'],
+                     'description': caso['conclusao'], 'inLanguage': 'pt-BR', 'datePublished': caso['data'],
+                     'dateModified': caso['data'], 'author': {'@type': 'Organization', 'name': AUTOR, 'url': SITE + '/'},
+                     'publisher': {'@type': 'Organization', 'name': AUTOR, 'url': SITE + '/'}, 'mainEntityOfPage': url},
+                    ensure_ascii=False)
+    return dict(caminho=caso['url'].lstrip('/'), titulo=caso['titulo'],
+                titulo_pagina=f'{caso["titulo"]} · Investigação · Espelho Espelho Evo',
+                descricao=caso['conclusao'][:155].rsplit(' ', 1)[0] + '…', corpo=corpo, chamada=None, ld=ld,
+                tema=('checagem', 'concurso', 'investigacao'),
+                resumo='Investigação aberta: fontes com data, conflitos e o que não deu para confirmar.')
 
 
 def relacionados(atual, paginas, limite=3):
@@ -208,5 +317,8 @@ def relacionados(atual, paginas, limite=3):
 
 if __name__ == '__main__':
     import conteudo
-    for p in conteudo.PAGINAS:
-        print(pagina(**p, relacionados=relacionados(p, conteudo.PAGINAS)))
+    paginas = conteudo.PAGINAS + [pagina_caso(c) for c in CASOS]
+    for p in paginas:
+        if '{{RELATORIO}}' in p['corpo']:
+            p = {**p, 'corpo': p['corpo'].replace('{{RELATORIO}}', relatorio_html(CASOS[0]))}
+        print(pagina(**p, relacionados=relacionados(p, paginas)))

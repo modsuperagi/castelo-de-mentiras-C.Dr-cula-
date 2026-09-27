@@ -161,6 +161,7 @@
         li.hidden = !ok;
         if (ok) achou++;
       });
+      document.querySelectorAll('section.grupo').forEach((g) => { g.hidden = !g.querySelector('li:not([hidden])'); });
       if (vazio) vazio.hidden = achou > 0;
       if (q.length >= 3 && !contou) { contou = true; evento('search'); }
     });

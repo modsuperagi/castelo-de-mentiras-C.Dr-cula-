@@ -482,26 +482,48 @@ BLOG_INDEX = """<main class="pagina">
   <label class="busca-rotulo" for="busca">Procurar nos artigos</label>
   <input type="search" id="busca" class="busca" placeholder="ENEM, concurso, TCC, jurisprudência…" autocomplete="off">
   <p class="busca-vazia" hidden>Nada encontrado com essa palavra. <a href="/blog/escrever.html">Pergunte ao organismo</a> e o tema entra na fila de investigação.</p>
-  <ul class="lista-artigos">
-    <li><a href="/blog/redacao-enem-2026-correcao-com-ia.html">Redação do ENEM 2026 com IA: como pedir correção por competência</a>
-      <p>Seis semanas até a prova: as 5 competências em uma linha cada e um pedido que corrige de verdade.</p></li>
-    <li><a href="/blog/concurso-seduc-ce-2026-plano-de-estudo.html">Concurso Seduc CE 2026 para professor: o estudo até a prova em 8 semanas</a>
-      <p>2.000 vagas, prova prevista para 22/11: plano pelo peso de cada prova e a lei sem invenção.</p></li>
-    <li><a href="/blog/concurso-com-ia-sem-lei-inventada.html">Estudar para concurso com IA sem decorar lei inventada</a>
-      <p>Para concurseiros: cinco conferências na fonte oficial e um pedido que faz a IA trabalhar só sobre o texto da lei.</p></li>
-    <li><a href="/blog/referencia-do-chatgpt-existe.html">O ChatGPT me deu uma referência: como saber se ela existe antes de pôr no TCC</a>
-      <p>Para estudantes e pesquisadores: quatro buscas de dois minutos e um pedido que usa a IA sem arriscar o trabalho.</p></li>
-    <li><a href="/blog/jurisprudencia-inventada-pela-ia.html">Jurisprudência inventada pela IA: como conferir antes de protocolar</a>
-      <p>Para advogados: cinco conferências que tiram a dúvida em minutos, e um pedido que usa a IA sem arriscar a peça.</p></li>
-    <li><a href="/blog/ia-inventou-a-resposta.html">Como saber se o ChatGPT (ou qualquer IA) inventou a resposta</a>
-      <p>Por que a IA erra com tanta confiança e uma checagem em sete perguntas para não cair nisso.</p></li>
-    <li><a href="/blog/memoria-de-ia.html">Por que a IA esquece o que você já explicou, e como criar uma memória que não se perde</a>
-      <p>Quatro regras simples para um registro que vale para qualquer ferramenta.</p></li>
-    <li><a href="/blog/tres-olhares-mesa-trina.html">Três olhares antes de decidir com IA: o método da Mesa Trina</a>
-      <p>Arquiteto, Engenheiro e Verificador: três pedidos que transformam elogio em crítica útil.</p></li>
-    <li><a href="/guia-p0.html">Guia gratuito: 7 perguntas para saber se a IA inventou a resposta</a>
-      <p>A versão de bolso do filtro P0, para imprimir ou salvar.</p></li>
-  </ul>
+  <section class="grupo" aria-labelledby="g-provas">
+    <h2 id="g-provas">Concursos e ENEM <span class="grupo-tipo">guias práticos com data de prova</span></h2>
+    <ul class="lista-artigos">
+      <li><a href="/blog/redacao-enem-2026-correcao-com-ia.html">Redação do ENEM 2026 com IA: como pedir correção por competência</a>
+        <p>Seis semanas até a prova: as 5 competências em uma linha cada e um pedido que corrige de verdade.</p></li>
+      <li><a href="/blog/concurso-seduc-ce-2026-plano-de-estudo.html">Concurso Seduc CE 2026 para professor: o estudo até a prova em 8 semanas</a>
+        <p>2.000 vagas, prova prevista para 22/11: plano pelo peso de cada prova e a lei sem invenção.</p></li>
+      <li><a href="/blog/concurso-com-ia-sem-lei-inventada.html">Estudar para concurso com IA sem decorar lei inventada</a>
+        <p>Para concurseiros: cinco conferências na fonte oficial e um pedido que faz a IA trabalhar só sobre o texto da lei.</p></li>
+    </ul>
+  </section>
+  <section class="grupo" aria-labelledby="g-trabalho">
+    <h2 id="g-trabalho">TCC, pesquisa e trabalho <span class="grupo-tipo">conferir antes de entregar</span></h2>
+    <ul class="lista-artigos">
+      <li><a href="/blog/referencia-do-chatgpt-existe.html">O ChatGPT me deu uma referência: como saber se ela existe antes de pôr no TCC</a>
+        <p>Para estudantes e pesquisadores: quatro buscas de dois minutos e um pedido que usa a IA sem arriscar o trabalho.</p></li>
+      <li><a href="/blog/jurisprudencia-inventada-pela-ia.html">Jurisprudência inventada pela IA: como conferir antes de protocolar</a>
+        <p>Para advogados: cinco conferências que tiram a dúvida em minutos, e um pedido que usa a IA sem arriscar a peça.</p></li>
+    </ul>
+  </section>
+  <section class="grupo" aria-labelledby="g-metodo">
+    <h2 id="g-metodo">Método <span class="grupo-tipo">ensaios e guias para qualquer IA</span></h2>
+    <ul class="lista-artigos">
+      <li><a href="/blog/ia-inventou-a-resposta.html">Como saber se o ChatGPT (ou qualquer IA) inventou a resposta</a>
+        <p>Por que a IA erra com tanta confiança e uma checagem em sete perguntas para não cair nisso.</p></li>
+      <li><a href="/blog/memoria-de-ia.html">Por que a IA esquece o que você já explicou, e como criar uma memória que não se perde</a>
+        <p>Quatro regras simples para um registro que vale para qualquer ferramenta.</p></li>
+      <li><a href="/blog/tres-olhares-mesa-trina.html">Três olhares antes de decidir com IA: o método da Mesa Trina</a>
+        <p>Arquiteto, Engenheiro e Verificador: três pedidos que transformam elogio em crítica útil.</p></li>
+      <li><a href="/guia-p0.html">Guia gratuito: 7 perguntas para saber se a IA inventou a resposta</a>
+        <p>A versão de bolso do filtro P0, para imprimir ou salvar.</p></li>
+    </ul>
+  </section>
+  <section class="grupo" aria-labelledby="g-investigar">
+    <h2 id="g-investigar">Investigações <span class="grupo-tipo">o que os leitores pedem para conferir</span></h2>
+    <ul class="lista-artigos">
+      <li><a href="/blog/ressonancias.html">O que está ressoando?</a>
+        <p>Perguntas, correções e pedidos de investigação dos leitores, e o que o organismo já conferiu. Ressonância não é verdade.</p></li>
+      <li><a href="/blog/escrever.html">Escreva no Espelho</a>
+        <p>Mande uma pergunta, opinião, experiência ou fonte. Seu texto fica como você escreveu.</p></li>
+    </ul>
+  </section>
   {{CHAMADA}}
 </main>
 """
@@ -592,3 +614,28 @@ PAGINAS = [
          corpo=BLOG_INDEX, chamada=CHAMADA_PADRAO,
          ld='{"@context":"https://schema.org","@type":"Blog","name":"Blog do Espelho Espelho Evo","inLanguage":"pt-BR","url":"https://espelho-espelho-evo.vercel.app/blog/"}'),
 ]
+
+
+# Fase 2 e 3 da reforma: tema (para "Continue lendo"), resumo e atalho para a oferta logo abaixo da linha fina.
+ATALHO_PADRAO = ('Quer que o organismo confira as respostas da IA por você?', 'Planos a partir de R$ 9,90/mês')
+META = {
+    'guia-p0.html': (('guia', 'metodo'), 'A versão de bolso do filtro P0, para imprimir ou salvar.', None),
+    'blog/ia-inventou-a-resposta.html': (('metodo', 'checagem'), 'Por que a IA erra com tanta confiança e uma checagem em sete perguntas.', ATALHO_PADRAO),
+    'blog/memoria-de-ia.html': (('metodo', 'memoria'), 'Quatro regras simples para um registro que vale para qualquer ferramenta.', ATALHO_PADRAO),
+    'blog/tres-olhares-mesa-trina.html': (('metodo', 'decisao'), 'Três pedidos que transformam elogio em crítica útil antes de decidir.', ATALHO_PADRAO),
+    'blog/jurisprudencia-inventada-pela-ia.html': (('checagem', 'profissional'), 'Cinco conferências para saber se o precedente existe antes de protocolar.',
+                                                   ('Quer o laudo de um trecho antes de protocolar?', 'Checagem P0 por R$ 19')),
+    'blog/referencia-do-chatgpt-existe.html': (('checagem', 'estudo'), 'Quatro buscas de dois minutos para saber se a referência existe.',
+                                               ('Quer que o organismo confira suas referências por você?', 'Plano Estudante, R$ 9,90/mês')),
+    'blog/concurso-com-ia-sem-lei-inventada.html': (('concurso', 'estudo', 'checagem'), 'Cinco conferências na fonte oficial para não decorar lei inventada.',
+                                                    ('Quer o seu edital mapeado e as questões com a lei conferida?', 'Plano Concursos, R$ 39/mês')),
+    'blog/redacao-enem-2026-correcao-com-ia.html': (('enem', 'estudo'), 'As 5 competências em uma linha cada e um pedido que corrige de verdade.',
+                                                    ('Quer suas redações corrigidas por competência até a prova?', '4 correções por R$ 29')),
+    'blog/concurso-seduc-ce-2026-plano-de-estudo.html': (('concurso', 'estudo'), 'Plano de 8 semanas pelo peso de cada prova, com a lei sem invenção.',
+                                                         ('Quer o mapa da sua disciplina pronto em 48 horas?', 'Mapa do Edital por R$ 29')),
+}
+for _p in PAGINAS:
+    if _p['caminho'] in META:
+        _p['tema'], _p['resumo'], _atalho = META[_p['caminho']]
+        if _atalho and _p.get('chamada'):
+            _p['chamada'] = {**_p['chamada'], 'atalho': _atalho}

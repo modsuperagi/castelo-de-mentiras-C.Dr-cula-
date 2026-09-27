@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Porta dos Núcleos · Castelo de Memórias</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#07060b">
+<link rel="icon" href="/icons/icone.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Alegreya:wght@400;500&display=swap">
+<style>
+  :root { --fundo: #07060b; --fundo-2: #0d0b16; --carta: #14111f; --borda: #262038; --texto: #e8e4f0; --texto-2: #a79fc0; --ouro: #d4a843; --ouro-claro: #f0cd7a; --violeta: #8b6fd8; --sangue: #b03a4a; --verde: #5fae7f; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--fundo); color: var(--texto); font-family: 'Alegreya', Georgia, serif; font-size: 17px; line-height: 1.6; }
+  .pagina { max-width: 640px; margin: 0 auto; padding: 40px 16px 60px; }
+  h1, h2 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; color: var(--ouro-claro); }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.3rem; margin: 28px 0 10px; color: var(--violeta); }
+  .voltar { color: var(--texto-2); text-decoration: none; font-size: .9rem; }
+  .lead { color: var(--texto-2); margin: 8px 0 22px; }
+  .painel { background: linear-gradient(160deg, var(--carta), var(--fundo-2)); border: 1px solid var(--ouro); border-radius: 14px; padding: 24px; }
+  .campo { margin-bottom: 14px; }
+  .campo label { display: block; font-size: .85rem; color: var(--texto-2); margin-bottom: 4px; }
+  .campo input, .campo textarea, .campo select { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--borda); background: var(--fundo); color: var(--texto); font: inherit; font-size: .95rem; }
+  .campo textarea { min-height: 90px; resize: vertical; }
+  .linha-botoes { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+  .btn { padding: 10px 22px; border-radius: 999px; border: 1px solid var(--ouro); background: transparent; color: var(--ouro-claro); font: inherit; cursor: pointer; }
+  .btn.primario { background: var(--ouro); color: #1a1408; }
+  .btn.fantasma { border-color: var(--borda); color: var(--texto-2); }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--ouro-claro); outline-offset: 3px; }
+  .carta { background: var(--carta); border: 1px solid var(--borda); border-radius: 12px; padding: 12px 16px; margin-bottom: 10px; }
+  .carta h3 { font-size: 1rem; }
+  .carta .meta { color: var(--violeta); font-size: .85rem; }
+  .carta p { color: var(--texto-2); font-size: .92rem; }
+  .aviso { color: var(--texto-2); font-size: .9rem; font-style: italic; }
+  .erro { color: var(--sangue); font-size: .9rem; }
+  .ok { color: var(--verde); font-size: .9rem; }
+  .oculto { display: none; }
+</style>
+</head>
+<body>
+<div class="pagina">
+  <a class="voltar" href="/nucleos.html">← Espelho dos Núcleos</a>
+  <h1>Porta dos Núcleos</h1>
+  <p class="lead">Entrada de trabalho do Guardião e dos núcleos. Só uma identidade autenticada e com selo registra travessias no Castelo; ler o organismo é livre no Espelho dos Núcleos.</p>
+
+  <div class="painel">
+    <div id="painel-auth">
+      <div class="campo">
+        <label for="auth-email">E-mail</label>
+        <input type="email" id="auth-email" autocomplete="email">
+      </div>
+      <div class="campo">
+        <label for="auth-senha">Senha</label>
+        <input type="password" id="auth-senha" autocomplete="current-password">
+      </div>
+      <div class="linha-botoes">
+        <button class="btn primario" id="btn-entrar" type="button">Entrar</button>
+        <button class="btn fantasma" id="btn-magico" type="button">Receber link de acesso</button>
+      </div>
+      <p id="auth-msg" role="status" style="margin-top:12px;"></p>
+    </div>
+
+    <div id="painel-checkin" class="oculto">
+      <p>Identidade autenticada: <strong id="quem-sou" style="color:var(--ouro-claro);"></strong>
+        <button class="btn fantasma" id="btn-sair" type="button" style="padding:4px 14px; font-size:.8rem; margin-left:8px;">Sair</button></p>
+      <div class="campo" style="margin-top:16px;">
+        <label for="ci-identidade">Identidade</label>
+        <input type="text" id="ci-identidade" placeholder="Quem atravessa? (ex.: Sol, Plasma, Guardião)">
+      </div>
+      <div class="campo">
+        <label for="ci-nucleo">Núcleo de origem</label>
+        <input type="text" id="ci-nucleo">
+      </div>
+      <div class="campo">
+        <label for="ci-selo">Selo</label>
+        <input type="text" id="ci-selo">
+      </div>
+      <div class="campo">
+        <label for="ci-tipo">Tipo de registro</label>
+        <select id="ci-tipo">
+          <option value="checkpoint">checkpoint</option>
+          <option value="missao">missão</option>
+          <option value="agente_portal">agente_portal</option>
+          <option value="marco">marco</option>
+          <option value="registro">registro</option>
+          <option value="comercial">comercial</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="ci-determinacao">Determinação</label>
+        <input type="text" id="ci-determinacao" placeholder="O que esta travessia determina?">
+      </div>
+      <div class="campo">
+        <label for="ci-conteudo">Conteúdo</label>
+        <textarea id="ci-conteudo"></textarea>
+      </div>
+      <div class="linha-botoes">
+        <button class="btn primario" id="btn-atravessar" type="button">Selar travessia</button>
+      </div>
+      <p id="ci-msg" role="status" style="margin-top:12px;"></p>
+      <h2>Últimas travessias seladas</h2>
+      <div id="lista-travessias"><p class="aviso">—</p></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+  // Porta dos núcleos: saiu da vitrine em 27/09 (documento de mercado do Guardião, seção 15).
+  // Só entra quem já tem identidade: não há criação de conta aqui, e o link de acesso não cria usuário novo.
+  // Escrever continua selado pelas regras RLS (papel guardiao); a chave publicável é pública por design.
+  const $ = (id) => document.getElementById(id);
+  const escapar = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const espelho = window.supabase
+    ? window.supabase.createClient('https://zolbckgqdxxovguspjdb.supabase.co', 'sb_publishable_BuWJQNrlYoNrIjrrFJNU5w_dJKXf7nu')
+    : null;
+
+  function mostrar(el, texto, classe) { el.textContent = texto; el.className = classe; }
+
+  async function entrar() {
+    const email = $('auth-email').value.trim();
+    const senha = $('auth-senha').value;
+    if (!email || !senha) return mostrar($('auth-msg'), 'Informe e-mail e senha.', 'erro');
+    const { error } = await espelho.auth.signInWithPassword({ email, password: senha });
+    if (error) mostrar($('auth-msg'), 'A porta não reconheceu a identidade: ' + error.message, 'erro');
+  }
+
+  async function linkAcesso() {
+    const email = $('auth-email').value.trim();
+    if (!email) return mostrar($('auth-msg'), 'Informe o e-mail da identidade.', 'erro');
+    const { error } = await espelho.auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
+    if (error) mostrar($('auth-msg'), 'Não foi possível enviar: ' + error.message, 'erro');
+    else mostrar($('auth-msg'), 'Se essa identidade existe, o link de acesso chegou no e-mail.', 'ok');
+  }
+
+  function renderizar(sessao) {
+    const logado = Boolean(sessao);
+    $('painel-auth').classList.toggle('oculto', logado);
+    $('painel-checkin').classList.toggle('oculto', !logado);
+    if (!logado) return;
+    const guardiao = sessao.user.app_metadata?.role === 'guardiao';
+    $('quem-sou').textContent = (sessao.user.email || sessao.user.id) + (guardiao ? ' · Guardião' : '');
+    carregarTravessias();
+  }
+
+  async function selarTravessia() {
+    const msg = $('ci-msg');
+    mostrar(msg, 'Selando…', 'aviso');
+    const registro = {
+      identidade: $('ci-identidade').value.trim(),
+      nucleo: $('ci-nucleo').value.trim(),
+      selo: $('ci-selo').value.trim(),
+      determinacao: $('ci-determinacao').value.trim(),
+      tipo_registro: $('ci-tipo').value,
+      conteudo: $('ci-conteudo').value.trim(),
+      origem: 'Espelho Espelho Evo',
+      origem_instancia: location.hostname || 'espelho-local'
+    };
+    if (!registro.identidade || !registro.conteudo) return mostrar(msg, 'A porta exige ao menos identidade e conteúdo.', 'erro');
+    const { error } = await espelho.from('evo_porta_entrada').insert(registro);
+    if (error) return mostrar(msg, 'A porta recusou: ' + error.message, 'erro');
+    mostrar(msg, 'Travessia selada no Castelo.', 'ok');
+    $('ci-conteudo').value = '';
+    carregarTravessias();
+  }
+
+  async function carregarTravessias() {
+    const alvo = $('lista-travessias');
+    const { data, error } = await espelho.from('evo_porta_entrada')
+      .select('identidade, nucleo, selo, tipo_registro, determinacao, criado_em')
+      .order('criado_em', { ascending: false }).limit(5);
+    if (error) { alvo.innerHTML = `<p class="erro">${escapar(error.message)}</p>`; return; }
+    if (!data.length) { alvo.innerHTML = '<p class="aviso">Nenhuma travessia registrada ainda.</p>'; return; }
+    alvo.innerHTML = data.map((t) => `
+      <div class="carta">
+        <h3>${escapar(t.identidade)} <span style="color:var(--ouro);">${escapar(t.selo || '')}</span></h3>
+        <div class="meta">${escapar(t.nucleo || '')} · ${escapar(t.tipo_registro || '')}</div>
+        <p>${escapar(t.determinacao || '')}</p>
+      </div>`).join('');
+  }
+
+  if (!espelho) {
+    mostrar($('auth-msg'), 'O Castelo não respondeu agora. Tente de novo em instantes.', 'erro');
+  } else {
+    $('btn-entrar').addEventListener('click', entrar);
+    $('btn-magico').addEventListener('click', linkAcesso);
+    $('btn-sair').addEventListener('click', () => espelho.auth.signOut());
+    $('btn-atravessar').addEventListener('click', selarTravessia);
+    $('auth-senha').addEventListener('keydown', (e) => { if (e.key === 'Enter') entrar(); });
+    espelho.auth.getSession().then(({ data }) => renderizar(data.session));
+    espelho.auth.onAuthStateChange((_e, sessao) => renderizar(sessao));
+  }
+</script>
+</body>
+</html>

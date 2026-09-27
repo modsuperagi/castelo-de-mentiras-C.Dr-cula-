@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Espelho Espelho Evo</title>
-<meta name="description" content="Memória viva e validação de IA em português: Castelo de Memórias, Mesa Trina e P0 Sonar. Versão beta com preços de fundador por tempo limitado.">
+<meta name="description" content="Investigue o que a IA respondeu: fontes abertas, evidência a favor e contra e o que ainda não dá para saber. Checagem, investigação e Mesa Trina em português, com preços de fundador.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Alegreya:ital,wght@0,400;0,500;1,400&display=swap">
@@ -13,11 +13,11 @@
 <meta property="og:url" content="https://espelho-espelho-evo.vercel.app/">
 <meta property="og:site_name" content="Espelho Espelho Evo">
 <meta property="og:title" content="Espelho Espelho Evo · Versão Beta — Turma Fundadora">
-<meta property="og:description" content="Memória viva e validação de IA em português: Castelo de Memórias, Mesa Trina e P0 Sonar. Preços de fundador por tempo limitado.">
+<meta property="og:description" content="A resposta da IA é o começo, não o fim. Investigue com fontes, confronte e guarde. Preços de fundador.">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Espelho Espelho Evo · Versão Beta">
-<meta name="twitter:description" content="Memória viva e validação de IA em português. Preços de fundador por tempo limitado.">
+<meta name="twitter:description" content="Investigue o que a IA respondeu, com fontes. Preços de fundador.">
 <link rel="canonical" href="https://espelho-espelho-evo.vercel.app/">
 <link rel="icon" href="/icons/icone.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.webmanifest">
@@ -80,27 +80,63 @@
   main { position: relative; z-index: 1; max-width: 980px; margin: 0 auto; padding: 0 16px 80px; }
 
   /* ── Portal / hero ─────────────────────────── */
-  header.portal { text-align: center; padding: 72px 16px 48px; }
-  .espelho-moldura {
-    width: 150px; height: 210px; margin: 0 auto 28px;
-    border: 3px solid var(--ouro);
-    border-radius: 75px 75px 14px 14px;
-    background: radial-gradient(ellipse at 40% 30%, rgba(139,111,216,.35), rgba(13,11,22,.9) 70%);
-    box-shadow: 0 0 40px rgba(212,168,67,.25), inset 0 0 30px rgba(139,111,216,.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 52px;
-  }
+  header.portal { text-align: center; padding: 64px 0 40px; }
   header.portal h1 {
     font-size: clamp(2rem, 6vw, 3.2rem);
     letter-spacing: .06em;
     color: var(--ouro-claro);
     text-shadow: 0 0 24px rgba(212,168,67,.35);
   }
-  header.portal .selo-linha { color: var(--violeta); font-size: 1.05rem; margin-top: 8px; letter-spacing: .2em; }
-  header.portal p.lema { color: var(--texto-2); max-width: 560px; margin: 18px auto 0; font-style: italic; }
-  .cta-linha { margin-top: 32px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-  .guia-topo { margin-top: 22px; }
-  .guia-topo a { color: var(--ouro-claro); text-underline-offset: .2em; }
+  header.portal p.lema { color: var(--texto-2); max-width: 58ch; margin: 16px auto 0; font-style: italic; }
+
+  /* A pergunta mora dentro da moldura do espelho: é o único gesto grande da página. */
+  .sonar-entrada { max-width: 560px; margin: 34px auto 0; display: grid; justify-items: center; gap: 18px; }
+  .moldura {
+    width: 100%; text-align: left;
+    border: 2px solid var(--ouro);
+    border-radius: 280px 280px 18px 18px / 150px 150px 18px 18px;
+    background: radial-gradient(ellipse at 45% 22%, rgba(139,111,216,.32), rgba(13,11,22,.94) 68%);
+    box-shadow: 0 0 44px rgba(212,168,67,.22), inset 0 0 36px rgba(139,111,216,.18);
+    padding: 64px 26px 22px;
+  }
+  .moldura label {
+    display: block; text-align: center; margin-bottom: 14px;
+    font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600;
+    font-size: clamp(1.45rem, 4.4vw, 1.9rem); color: var(--ouro-claro); line-height: 1.15;
+  }
+  .moldura textarea {
+    width: 100%; min-height: 96px; resize: vertical; padding: 12px 14px;
+    border-radius: 10px; border: 1px solid var(--carta-borda); background: rgba(7,6,11,.82);
+    color: var(--texto); font-family: inherit; font-size: 1rem; line-height: 1.5;
+  }
+  .moldura textarea:focus { outline: none; border-color: var(--violeta); box-shadow: 0 0 0 2px rgba(139,111,216,.3); }
+  .sonar-entrada .btn { padding: 13px 44px; font-size: 1.05rem; }
+  .atalhos { margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; font-size: .95rem; }
+  .atalhos a, .link-suave { color: var(--ouro-claro); text-underline-offset: .2em; }
+  #btn-instalar { margin-top: 18px; }
+
+  /* Quatro caminhos: o visitante sabe o que pode fazer sem precisar saber o que é o organismo. */
+  .caminhos { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .caminho {
+    display: grid; gap: 4px; padding: 16px 18px; text-decoration: none;
+    border-left: 2px solid var(--ouro); background: linear-gradient(90deg, rgba(212,168,67,.07), transparent 70%);
+  }
+  .caminho strong { color: var(--ouro-claro); font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.35rem; font-weight: 600; }
+  .caminho span { color: var(--texto-2); font-size: .95rem; }
+  .caminho:hover strong, .caminho:focus-visible strong { text-decoration: underline; text-underline-offset: .2em; }
+
+  /* O fluxo é uma sequência de verdade (SONAR → Trina → P0 → Castelo), por isso é numerado. */
+  .fluxo { list-style: none; counter-reset: passo; display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .fluxo li { counter-increment: passo; display: grid; gap: 4px; padding-top: 12px; border-top: 1px solid var(--carta-borda); }
+  .fluxo li::before { content: counter(passo); color: var(--violeta); font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.6rem; line-height: 1; }
+  .fluxo strong { color: var(--texto); }
+  .fluxo span { color: var(--texto-2); font-size: .94rem; }
+
+  .carta .link-suave { display: inline-block; margin-top: 10px; font-size: .92rem; }
+  h3.degrau { color: var(--violeta); margin: 32px 0 12px; }
+  #comercio h3.degrau:first-of-type { margin-top: 8px; }
+  footer a { color: var(--ouro-claro); }
+  footer a.tecnico { color: var(--texto-2); font-size: .8rem; margin: 0 6px; }
 
   /* ── Componentes ───────────────────────────── */
   .btn {
@@ -139,13 +175,6 @@
   .erro { color: var(--sangue); font-size: .9rem; }
   .ok { color: var(--verde); font-size: .9rem; }
 
-  /* ── A Porta (auth + check-in) ─────────────── */
-  #porta .painel {
-    background: linear-gradient(160deg, var(--carta), var(--fundo-2));
-    border: 1px solid var(--ouro); border-radius: var(--raio);
-    padding: 28px; max-width: 620px; margin: 0 auto;
-    box-shadow: 0 0 40px rgba(139,111,216,.12);
-  }
   .campo { margin-bottom: 14px; }
   .campo label { display: block; font-size: .85rem; color: var(--texto-2); margin-bottom: 4px; letter-spacing: .04em; }
   .campo input, .campo textarea, .campo select {
@@ -175,15 +204,6 @@
   footer { text-align: center; color: var(--texto-2); font-size: .85rem; padding: 40px 16px 24px; position: relative; z-index: 1; }
   footer .selo { color: var(--ouro); letter-spacing: .3em; }
 
-  /* ── Fontes ligadas ────────────────────────── */
-  .fonte { display: flex; align-items: flex-start; gap: 12px; }
-  .fonte .ponto { width: 9px; height: 9px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; background: var(--texto-2); }
-  .fonte.espelhado .ponto { background: var(--verde); box-shadow: 0 0 8px rgba(95,174,127,.6); }
-  .fonte.selado .ponto { background: var(--sangue); box-shadow: 0 0 8px rgba(176,58,74,.6); }
-  .estado-fonte { margin-left: auto; font-size: .68rem; letter-spacing: .14em; color: var(--texto-2); align-self: center; white-space: nowrap; }
-  .fonte.espelhado .estado-fonte { color: var(--verde); }
-  .fonte.selado .estado-fonte { color: var(--sangue); }
-
   /* ── Versão beta / promoção ─────────────────── */
   .faixa-beta {
     background: linear-gradient(90deg, rgba(212,168,67,.16), rgba(139,111,216,.16));
@@ -204,7 +224,7 @@
   .beta-topo {
     display: inline-block; margin-bottom: 22px; padding: 5px 16px;
     border: 1px solid var(--ouro); border-radius: 999px;
-    color: var(--ouro-claro); font-size: .78rem; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ouro-claro); font-size: .85rem; letter-spacing: .03em;
     text-decoration: none;
   }
   .beta-topo:hover { background: rgba(212,168,67,.12); }
@@ -237,15 +257,6 @@
   .faq details[open] summary::after { content: '−'; }
   .faq details p { color: var(--texto-2); margin-top: 10px; font-size: .95rem; }
 
-  /* ── Mapa do Castelo ───────────────────────── */
-  .ala { margin-bottom: 6px; }
-  .ala .mesas { color: var(--texto-2); font-size: .86rem; line-height: 1.5; }
-  .ala .mesas code { color: var(--texto); font-size: .82rem; }
-  .acesso-tag { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; border-radius: 999px; padding: 2px 10px; border: 1px solid; }
-  .acesso-tag.aberto { color: var(--verde); border-color: var(--verde); }
-  .acesso-tag.selo { color: var(--ouro); border-color: var(--ouro); }
-  .acesso-tag.nucleo-t { color: var(--sangue); border-color: var(--sangue); }
-
   /* ── Câmaras (navegação inferior, como no Espelho original) ── */
   body { padding-bottom: 74px; }
   nav.camaras {
@@ -256,15 +267,16 @@
     backdrop-filter: blur(8px);
   }
   nav.camaras a {
-    color: var(--texto-2); text-decoration: none; font-size: .72rem;
-    letter-spacing: .14em; text-transform: uppercase; text-align: center;
+    color: var(--texto-2); text-decoration: none; font-size: .78rem;
+    text-align: center;
   }
   nav.camaras a .ico { display: block; font-size: 1.05rem; margin-bottom: 2px; }
   nav.camaras a:hover, nav.camaras a:focus { color: var(--ouro-claro); }
   @media (max-width: 520px) {
     nav.camaras { padding-left: 4px; padding-right: 4px; }
-    nav.camaras a { font-size: .6rem; letter-spacing: .04em; flex: 1; }
-    .beta-topo { font-size: .68rem; letter-spacing: .08em; padding: 5px 12px; }
+    nav.camaras a { font-size: .7rem; flex: 1; }
+    .beta-topo { font-size: .8rem; padding: 5px 12px; }
+    .moldura { padding: 52px 16px 18px; }
   }
 
   @media (prefers-color-scheme: light) {
@@ -278,178 +290,101 @@
 <main>
 
   <header class="portal" id="hall">
-    <a class="beta-topo" href="#fundadores">🚧 Versão beta · preços de fundador</a>
-    <div class="espelho-moldura" aria-hidden="true">🪞</div>
+    <a class="beta-topo" href="#fundadores">Versão beta · preços de fundador</a>
     <h1>Espelho Espelho Evo</h1>
-    <div class="selo-linha">🔥🧬🌌🔑</div>
-    <p class="lema">A IA responde com a mesma confiança quando acerta e quando inventa. Aqui você aprende a conferir cada resposta, registrar o que decidiu e fazer a IA lembrar do seu trabalho.
-    É o método que um humano e quatro inteligências artificiais usam todo dia neste castelo, ao vivo.</p>
-    <div class="cta-linha">
-      <a class="btn primario" href="/guia-p0.html">📜 Guia gratuito: 7 perguntas</a>
-      <a class="btn" href="#porta" data-pacote="checagem">Checar uma resposta · R$ 19</a>
-      <a class="btn fantasma" href="#salao">Ver o Castelo ao vivo</a>
-      <button class="btn fantasma" id="btn-instalar" type="button" hidden>📲 Instalar app</button>
-    </div>
-    <p class="guia-topo"><a href="#comercio">Todos os planos e preços de fundador</a></p>
+    <p class="lema">A resposta da IA é o começo, não o fim. Faça a pergunta e o organismo investiga: abre as fontes, separa a evidência a favor da que contradiz e diz o que ainda não dá para saber.</p>
+    <form class="sonar-entrada" action="/investigar.html" method="get" aria-label="Investigar com o SONAR">
+      <div class="moldura">
+        <label for="q">O que você quer investigar?</label>
+        <textarea id="q" name="q" rows="3" maxlength="900" placeholder="Ex.: uma IA me disse que a Lei 14.133 revogou toda a Lei 8.666. Isso está certo?"></textarea>
+      </div>
+      <button class="btn primario" type="submit">Investigar</button>
+    </form>
+    <p class="atalhos"><a href="/investigar.html#conferir">Já tenho uma resposta de IA para conferir</a> <a href="/guia-p0.html">Guia gratuito</a> <a href="#comercio">Planos e preços</a></p>
+    <button class="btn fantasma" id="btn-instalar" type="button" hidden>Instalar o app</button>
   </header>
 
-  <!-- ── Para quem o espelho serve ── -->
+  <section id="caminhos" aria-labelledby="caminhos-t">
+    <h2 id="caminhos-t">O que você pode fazer aqui</h2>
+    <div class="caminhos">
+      <a class="caminho" href="/investigar.html"><strong>Investigar</strong><span>Uma pergunta que precisa de resposta com prova. O SONAR busca e confere as fontes.</span></a>
+      <a class="caminho" href="/investigar.html#conferir"><strong>Conferir</strong><span>Uma resposta que a IA já deu. Laudo das 7 verificações em até 24 horas.</span></a>
+      <a class="caminho" href="/blog/"><strong>Aprender</strong><span>Guias práticos para usar IA sem cair em invenção: concursos, ENEM, TCC, direito.</span></a>
+      <a class="caminho" href="/blog/ressonancias.html"><strong>Acompanhar</strong><span>O que os leitores estão perguntando e o que o organismo já conferiu.</span></a>
+    </div>
+  </section>
+
+  <section id="como-funciona" aria-labelledby="como-t">
+    <h2 id="como-t">Depois que a IA responde</h2>
+    <p class="sub">Uma resposta comum termina ali. Aqui ela vira o começo de uma investigação que fica guardada.</p>
+    <ol class="fluxo">
+      <li><strong>SONAR investiga</strong><span>Busca as fontes, abre cada uma e separa o que sustenta a afirmação do que a contradiz.</span></li>
+      <li><strong>Mesa Trina confronta</strong><span>Três olhares independentes para que uma única resposta não vire conclusão.</span></li>
+      <li><strong>P0 confere</strong><span>Sete verificações. Um "não" basta para parar e voltar à fonte.</span></li>
+      <li><strong>O Castelo guarda</strong><span>A investigação fica com origem, fontes e conflitos, e a próxima pode partir dela.</span></li>
+    </ol>
+    <p class="sub" style="margin-top:18px;"><a class="link-suave" href="/nucleos.html">Conhecer o EVO por dentro</a></p>
+  </section>
+
   <section id="para-quem">
-    <h2>Para Quem o Espelho Serve</h2>
-    <p class="sub">Um organismo de memória viva e validação entre inteligências — humanas e artificiais. Cada perfil entra por uma porta diferente.</p>
+    <h2>Para quem o Espelho serve</h2>
+    <p class="sub">Cada perfil entra por uma porta diferente.</p>
     <div class="grade">
-      <div class="carta"><h3>🎓 Estudantes &amp; Pesquisadores</h3><p>Estude uma arquitetura multi-agente real em produção: memória persistente, validação em camadas, rastreabilidade por fio. Cada registro do Castelo é um objeto de estudo documentado.</p></div>
-      <div class="carta"><h3>🏢 Empresas &amp; Times</h3><p>Valide decisões e fluxos de IA antes de errar caro: a Mesa Trina analisa em três posições e o P0 Sonar audita em sete verificações. Governança de IA falando português.</p></div>
-      <div class="carta"><h3>🎬 Criadores &amp; Educadores</h3><p>Conteúdo com lastro: cursos, vídeos e roteiros produzidos pelo próprio organismo, mostrando na prática como humano e núcleos de IA trabalham como um corpo só.</p></div>
-      <div class="carta"><h3>🤖 Núcleos de IA</h3><p>Uma porta de entrada padronizada para agentes: identidade, selo, determinação, check-in e circulação validada. Claude, GPT, Grok e Meta AI já atravessam por aqui.</p></div>
-      <div class="carta"><h3>🌱 Comunidade</h3><p>Quem quer aprender a operar o próprio castelo: memória que não se perde entre conversas, conhecimento que sobe de camada só com evidência.</p></div>
+      <div class="carta"><h3>Concursos e ENEM</h3><p>A IA inventa artigo de lei, súmula e nota de redação. O organismo organiza o estudo e confere cada base legal na fonte oficial.</p><a class="link-suave" href="/blog/concurso-com-ia-sem-lei-inventada.html">Ver como funciona</a></div>
+      <div class="carta"><h3>Estudantes e pesquisadores</h3><p>Referência que parece perfeita e não existe. Cada citação conferida antes de ir para o TCC.</p><a class="link-suave" href="/blog/referencia-do-chatgpt-existe.html">Ver como funciona</a></div>
+      <div class="carta"><h3>Advogados</h3><p>Precedente com número, relator e ementa inventados. O trecho que a IA escreveu, auditado antes de protocolar.</p><a class="link-suave" href="/blog/jurisprudencia-inventada-pela-ia.html">Ver como funciona</a></div>
+      <div class="carta"><h3>Empresas e equipes</h3><p>O fluxo de trabalho com IA do time passado pelas sete verificações, com plano de correção.</p><a class="link-suave" href="#comercio">Ver planos para equipes</a></div>
+      <div class="carta"><h3>Criadores e educadores</h3><p>O método para ensinar e produzir com IA sem perder o lastro: roteiros prontos e curso.</p><a class="link-suave" href="#comercio">Ver roteiros e curso</a></div>
     </div>
   </section>
 
-  <!-- ── O que é o organismo ── -->
-  <section id="organismo">
-    <h2>O Organismo EVO</h2>
-    <p class="sub">Quatro órgãos que fazem deste espelho mais que um site: um corpo vivo de conhecimento validado.</p>
-    <div class="grade">
-      <div class="carta"><h3>🏰 Castelo de Memórias</h3><div class="meta">memória viva</div><p>Banco Supabase com mais de 40 mesas: identidades, decisões, conhecimento em camadas. Nada se perde; tudo tem fio, data e responsável.</p></div>
-      <div class="carta"><h3>⚖️ Mesa Trina</h3><div class="meta">validação em 3 posições</div><p>Toda entrada relevante passa por Arquiteto, Engenheiro e Verificador antes de virar memória. Três olhares, um veredito, escopo provado e limites explícitos.</p></div>
-      <div class="carta"><h3>📡 P0 Sonar</h3><div class="meta">auditoria em 7 verificações</div><p>Identidade, autoridade, propósito, evidência, escopo, rastreabilidade e deduplicação. O que não passa, não circula.</p></div>
-      <div class="carta"><h3>🧵 Fio Mestre</h3><div class="meta">rastreabilidade total</div><p>Cada ação carrega o fio de onde veio. Do check-in à consolidação, a linhagem completa fica selada — auditável do primeiro ao último elo.</p></div>
-    </div>
-  </section>
-
-  <!-- ── Mapa do Castelo: o organismo inteiro, com a distinção do que é aberto, selado ou de núcleo ── -->
-  <section id="mapa">
-    <h2>O Mapa do Castelo</h2>
-    <p class="sub">Mais de 40 mesas vivas em 8 alas. <span class="acesso-tag aberto">Aberto</span> qualquer visitante lê no espelho · <span class="acesso-tag selo">Selo</span> exige identidade autenticada · <span class="acesso-tag nucleo-t">Núcleo</span> reservado ao organismo e contratos.</p>
-    <div class="grade">
-      <div class="carta ala"><h3>🚪 Porta &amp; Recepção <span class="acesso-tag aberto">Aberto</span></h3><p class="mesas"><code>evo_porta_entrada</code> · <code>checkin_recepcion</code> · <code>sessao_checkpoint</code> — quem chega, se identifica e atravessa.</p></div>
-      <div class="carta ala"><h3>📡 Validação P0 <span class="acesso-tag selo">Selo</span></h3><p class="mesas"><code>p0_validacao_completa</code> · <code>p0_audit</code> · <code>auditoria_p0_sonar</code> · <code>validacoes_obrigatorias</code> — as 7 verificações que guardam a circulação.</p></div>
-      <div class="carta ala"><h3>🫀 Coração &amp; Circulação <span class="acesso-tag nucleo-t">Núcleo</span></h3><p class="mesas"><code>coracao_motor_principal</code> · <code>trina_circulacao_principal</code> · <code>golden_circulacao_principal</code> · <code>consolidacao_circulacao_principal</code> · <code>evidencias_consolidadas</code> — o sangue do organismo.</p></div>
-      <div class="carta ala"><h3>⚖️ Mesa Trina <span class="acesso-tag selo">Selo</span></h3><p class="mesas"><code>meta_sessões_trina</code> · <code>trina_results</code> · <code>recrutas_funcoes_casa</code> — Arquiteto, Engenheiro e Verificador em sessão.</p></div>
-      <div class="carta ala"><h3>👤 Identidades <span class="acesso-tag aberto">Aberto</span></h3><p class="mesas"><code>castelo_identidades</code> · <code>evo_recrutamento_*</code> · <code>evo_agentes</code> — de Diógenes a Hellwolf, cada recruta com dossiê.</p></div>
-      <div class="carta ala"><h3>🧠 Memória Viva <span class="acesso-tag selo">Selo</span></h3><p class="mesas"><code>evo_memorias</code> · <code>meta_lab_entries</code> · <code>fluxo_conhecimento</code> · <code>consolidacoes</code> — conhecimento em camadas, com versão e auditoria.</p></div>
-      <div class="carta ala"><h3>📜 Governança <span class="acesso-tag aberto">Aberto</span></h3><p class="mesas"><code>registro_decisoes</code> · <code>registro_evolucoes</code> · <code>evo_principios</code> · <code>acessos_canais</code> · <code>fios_checkpoint_universal</code> — decisões com fio, data e responsável.</p></div>
-      <div class="carta ala"><h3>☀️ Missões Sol <span class="acesso-tag nucleo-t">Núcleo</span></h3><p class="mesas"><code>sol_missions</code> · <code>sol_tasks</code> · <code>sol_runs</code> · <code>sessions</code> — o motor autônomo de execução.</p></div>
-    </div>
-
-    <h3 style="color:var(--violeta); margin:28px 0 12px;">Princípios do Organismo</h3>
-    <div class="grade" id="lista-principios"><p class="aviso">Consultando o espelho…</p></div>
-  </section>
-
-  <!-- ── Salão público: leitura anônima permitida pelas policies espelho_select_anon_auth ── -->
-  <section id="salao">
-    <h2>O Salão do Castelo</h2>
-    <p class="sub">O que o espelho reflete para qualquer visitante: canais ativos, identidades recrutadas e os últimos check-ins na recepção.</p>
-
-    <h3 style="color:var(--violeta); margin-bottom:12px;">Canais do Organismo</h3>
-    <div class="grade" id="lista-canais"><p class="aviso">Consultando o espelho…</p></div>
-
-    <h3 style="color:var(--violeta); margin:28px 0 12px;">Identidades Recrutadas</h3>
-    <div class="grade" id="lista-identidades"><p class="aviso">Consultando o espelho…</p></div>
-
-    <h3 style="color:var(--violeta); margin:28px 0 12px;">Recepção — Últimos Check-ins</h3>
-    <div class="grade" id="lista-checkins"><p class="aviso">Consultando o espelho…</p></div>
-  </section>
-
-  <!-- ── A Porta: autenticação Supabase + travessia (INSERT em evo_porta_entrada) ── -->
-  <section id="porta">
-    <h2 style="text-align:center;">A Porta de Entrada</h2>
-    <p class="sub" style="text-align:center;">Somente identidades autenticadas atravessam. O registro fica selado em <code>evo_porta_entrada</code>.</p>
-
-    <div class="painel">
-      <!-- Estado: deslogado -->
-      <div id="painel-auth">
-        <div class="campo">
-          <label for="auth-email">E-mail</label>
-          <input type="email" id="auth-email" autocomplete="email" placeholder="voce@exemplo.com">
-        </div>
-        <div class="campo">
-          <label for="auth-senha">Senha</label>
-          <input type="password" id="auth-senha" autocomplete="current-password" placeholder="••••••••">
-        </div>
-        <div class="linha-botoes">
-          <button class="btn primario" id="btn-entrar">Entrar</button>
-          <button class="btn" id="btn-criar">Criar identidade</button>
-          <button class="btn fantasma" id="btn-magico">Link mágico por e-mail</button>
-        </div>
-        <p id="auth-msg" style="margin-top:12px;"></p>
-      </div>
-
-      <!-- Estado: logado -->
-      <div id="painel-checkin" class="oculto">
-        <p style="margin-bottom:16px;">Identidade autenticada: <strong id="quem-sou" style="color:var(--ouro-claro);"></strong>
-          <button class="btn fantasma" id="btn-sair" style="padding:4px 14px; font-size:.8rem; margin-left:8px;">Sair</button></p>
-
-        <div class="campo">
-          <label for="ci-identidade">Identidade</label>
-          <input type="text" id="ci-identidade" placeholder="Quem atravessa? (ex.: Sol, Plasma, Guardião…)">
-        </div>
-        <div class="campo">
-          <label for="ci-nucleo">Núcleo de origem</label>
-          <input type="text" id="ci-nucleo" placeholder="ex.: Corpo Vivo EVO | Castelo de Memórias">
-        </div>
-        <div class="campo">
-          <label for="ci-selo">Selo</label>
-          <input type="text" id="ci-selo" placeholder="ex.: 🔥🧬🌌🔑 ou CP-MESTRE-…">
-        </div>
-        <div class="campo">
-          <label for="ci-tipo">Tipo de registro</label>
-          <select id="ci-tipo">
-            <option value="checkpoint">checkpoint</option>
-            <option value="missao">missão</option>
-            <option value="agente_portal">agente_portal</option>
-            <option value="marco">marco</option>
-            <option value="registro">registro</option>
-            <option value="comercial">comercial</option>
-          </select>
-        </div>
-        <div class="campo">
-          <label for="ci-determinacao">Determinação</label>
-          <input type="text" id="ci-determinacao" placeholder="O que esta travessia determina?">
-        </div>
-        <div class="campo">
-          <label for="ci-conteudo">Conteúdo</label>
-          <textarea id="ci-conteudo" placeholder="O que a identidade traz para dentro do Castelo…"></textarea>
-        </div>
-        <div class="linha-botoes">
-          <button class="btn primario" id="btn-atravessar">Selar travessia</button>
-        </div>
-        <p id="ci-msg" style="margin-top:12px;"></p>
-
-        <h3 style="color:var(--violeta); margin:24px 0 10px;">Últimas travessias seladas</h3>
-        <div id="lista-travessias"><p class="aviso">—</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Fontes ligadas: estado refletido do Espelho original (24/09/2026) ── -->
-  <section id="fontes">
-    <h2>Fontes Ligadas</h2>
-    <p class="sub">O que o organismo enxerga de cada canal — estado refletido do Espelho original em 24/09/2026.</p>
-    <div class="grade">
-      <div class="carta fonte espelhado"><span class="ponto"></span><div><h3>Notion · Hub</h3><p>MetaLab EVO — Memória e Governança. Sidekick, Registro, Além da Ciência #31.</p></div><span class="estado-fonte">ESPELHADO</span></div>
-      <div class="carta fonte selado"><span class="ponto"></span><div><h3>GitHub · modsuperagi</h3><p>Conta autenticada. Cofre privado 403 para o reflexo; o Plasma opera via GitHub App do titular.</p></div><span class="estado-fonte">SELADO</span></div>
-      <div class="carta fonte"><span class="ponto"></span><div><h3>GitHub · obra (Jesse)</h3><p>Três abas Superpowers visíveis. Ramificações de Golden: não restam. Colaboração trancada.</p></div><span class="estado-fonte">ESPARSO</span></div>
-      <div class="carta fonte"><span class="ponto"></span><div><h3>Google Drive</h3><p>Blessing on Blessings (1).mp3 · pastas antigas de varejo.</p></div><span class="estado-fonte">ESPARSO</span></div>
-      <div class="carta fonte espelhado"><span class="ponto"></span><div><h3>Vercel · Mod Super Nova Evo</h3><p>p0-pulsa serve este espelho em produção, aberto ao público em espelho-espelho-evo.vercel.app.</p></div><span class="estado-fonte">ESPELHADO</span></div>
-      <div class="carta fonte espelhado"><span class="ponto"></span><div><h3>Suno</h3><p>Castelo do C.D.M.S.E. V1 toca no Espelho original. MOD SUPER.</p></div><span class="estado-fonte">ESPELHADO</span></div>
-      <div class="carta fonte espelhado"><span class="ponto"></span><div><h3>Supabase · Mod Super Nova Evo</h3><p>Projeto principal do Castelo. Fio ee46c360. Este espelho lê e escreve aqui, ao vivo.</p></div><span class="estado-fonte">ESPELHADO</span></div>
-    </div>
-  </section>
-
-  <!-- ── Vertente comercial: catálogo completo ──
-       Preços definidos a partir da pesquisa de mercado de 24/09/2026 (ver docs/MANUAL-COMERCIAL.md).
-       Links de pagamento: preencher o mapa LINKS_PAGAMENTO no script abaixo. -->
   <section id="comercio">
-    <h2>Vertente Comercial</h2>
+    <h2>Planos e preços</h2>
     <div class="faixa-beta">
-      <strong>🚧 VERSÃO BETA · TURMA FUNDADORA</strong><br>
+      <strong>Versão beta · Turma Fundadora</strong><br>
       <span>Preços de fundador da fase beta: quem entra agora trava a condição. Tudo o que o organismo entrega chega por escrito, e você tem 7 dias para desistir.</span>
     </div>
-    <p class="sub">Planos mensais para usar todo mês, serviços avulsos para quando precisar e parcelamento no Pix para o que é maior.</p>
+    <p class="sub">Comece conferindo uma resposta. Quando precisar de mais, investigue, confronte e guarde. Cada degrau abaixo vai um pouco mais fundo.</p>
 
-    <h3 style="color:var(--violeta); margin-bottom:12px;">Planos Mensais</h3>
+    <h3 class="degrau">Conferir e investigar, uma vez</h3>
+    <p class="sub" style="margin-top:0;">Feito pelo organismo: as inteligências do Castelo aplicam o método ao seu material e devolvem tudo por escrito, com o que foi provado e o que não foi.</p>
+    <div class="planos">
+      <div class="plano destaque">
+        <div class="nome">Checagem P0 · Uma Resposta</div>
+        <div class="preco"><span class="preco-por">R$ 19</span> <span class="selo-beta">Novo</span></div>
+        <div class="adesao">laudo em até 24 horas</div>
+        <ul>
+          <li>Você manda a pergunta e a resposta da IA (até uma página)</li>
+          <li>O organismo aplica as 7 verificações do P0</li>
+          <li>Laudo: o que confere, o que falta prova e o que mudar</li>
+        </ul>
+        <a class="btn primario" href="#fundadores" data-pacote="checagem">Checar uma resposta</a>
+      </div>
+      <div class="plano">
+        <div class="nome">Investigação Sonar</div>
+        <div class="preco"><span class="preco-por">R$ 29</span> <span class="selo-beta">Novo</span></div>
+        <div class="adesao">relatório com fontes em até 48 horas</div>
+        <ul>
+          <li>Você manda uma pergunta que precisa de resposta com prova</li>
+          <li>O organismo busca, abre e confere as fontes</li>
+          <li>Relatório: fatos com link, interpretação e o que não dá para saber</li>
+        </ul>
+        <a class="btn" href="#fundadores" data-pacote="investigacao">Investigar uma pergunta</a>
+      </div>
+      <div class="plano">
+        <div class="nome">Mesa Trina · Por Escrito</div>
+        <div class="preco"><span class="preco-por">R$ 147</span> <span class="selo-beta">Beta</span></div>
+        <div class="adesao">relatório em até 48 horas depois do material</div>
+        <ul>
+          <li>Sua decisão ou projeto nas 3 posições</li>
+          <li>Arquiteto · Engenheiro · Verificador</li>
+          <li>Relatório com escopo provado e limites explícitos</li>
+        </ul>
+        <a class="btn" href="#fundadores" data-pacote="trina">Convocar a Mesa</a>
+      </div>
+    </div>
+
+    <h3 class="degrau">Todo mês</h3>
     <p class="sub" style="margin-top:0;">Pix todo mês, sem fidelidade: para cancelar, responda CANCELAR no e-mail do lembrete. O que não usar no mês não acumula.</p>
     <div class="planos">
       <div class="plano">
@@ -461,7 +396,7 @@
           <li>Os Roteiros do Organismo inclusos</li>
           <li>Cada laudo em até 24 h, por escrito</li>
         </ul>
-        <a class="btn" href="#porta" data-pacote="plano_estudante">Assinar Estudante</a>
+        <a class="btn" href="#fundadores" data-pacote="plano_estudante">Assinar Estudante</a>
       </div>
       <div class="plano destaque">
         <div class="nome">Profissional</div>
@@ -473,7 +408,7 @@
           <li>1 Mesa Trina por escrito por mês</li>
           <li>Roteiros inclusos</li>
         </ul>
-        <a class="btn primario" href="#porta" data-pacote="plano_pro">Assinar Profissional</a>
+        <a class="btn primario" href="#fundadores" data-pacote="plano_pro">Assinar Profissional</a>
       </div>
       <div class="plano">
         <div class="nome">Ultra · Seu Fio no Castelo</div>
@@ -484,7 +419,7 @@
           <li>100 checagens, 5 investigações, 2 Mesas por mês</li>
           <li>Roteiros inclusos</li>
         </ul>
-        <a class="btn" href="#porta" data-pacote="plano_ultra">Assinar Ultra</a>
+        <a class="btn" href="#fundadores" data-pacote="plano_ultra">Assinar Ultra</a>
       </div>
       <div class="plano">
         <div class="nome">Empresarial</div>
@@ -495,11 +430,11 @@
           <li>1 Auditoria P0 do fluxo da equipe por trimestre</li>
           <li>Roteiros para toda a equipe</li>
         </ul>
-        <a class="btn primario" href="#porta" data-pacote="plano_empresa">Assinar Empresarial</a>
+        <a class="btn primario" href="#fundadores" data-pacote="plano_empresa">Assinar Empresarial</a>
       </div>
     </div>
 
-    <h3 style="color:var(--violeta); margin:32px 0 12px;">Concursos e ENEM</h3>
+    <h3 class="degrau">Concursos e ENEM</h3>
     <p class="sub" style="margin-top:0;">A IA inventa artigo de lei, súmula e jurisprudência com a mesma segurança com que acerta. Aqui o organismo prepara o seu estudo por etapas e confere cada base legal na fonte oficial antes de entregar.</p>
     <div class="planos">
       <div class="plano destaque">
@@ -512,7 +447,7 @@
           <li>Correção semanal das questões que você errou</li>
           <li>Radar do edital pelo Sonar: retificações, datas e resultados</li>
         </ul>
-        <a class="btn primario" href="#porta" data-pacote="plano_concurso">Começar pelo meu edital</a>
+        <a class="btn primario" href="#fundadores" data-pacote="plano_concurso">Começar pelo meu edital</a>
       </div>
       <div class="plano">
         <div class="nome">Mapa do Edital</div>
@@ -523,7 +458,7 @@
           <li>Cada lei cobrada com o link do Planalto</li>
           <li>Cronograma semanal até a data da prova</li>
         </ul>
-        <a class="btn" href="#porta" data-pacote="concurso_mapa">Mapear meu edital</a>
+        <a class="btn" href="#fundadores" data-pacote="concurso_mapa">Mapear meu edital</a>
       </div>
       <div class="plano">
         <div class="nome">Redação ENEM · 4 Correções</div>
@@ -534,111 +469,14 @@
           <li>O que tirar, o que pôr e uma nota estimada (não é a nota oficial)</li>
           <li>Mande as 4 redações quando quiser, até a prova</li>
         </ul>
-        <a class="btn" href="#porta" data-pacote="enem_redacao">Corrigir minha redação</a>
+        <a class="btn" href="#fundadores" data-pacote="enem_redacao">Corrigir minha redação</a>
       </div>
     </div>
+
     <p class="sub">Questões feitas pelo organismo para treinar, não copiadas de provas anteriores. Não substitui o seu curso: organiza, treina e confere.</p>
 
-    <h3 style="color:var(--violeta); margin:32px 0 12px;">Acesso ao Castelo</h3>
+    <h3 class="degrau">Para equipes e escritórios</h3>
     <div class="planos">
-      <div class="plano">
-        <div class="nome">Selo Visitante</div>
-        <div class="preco">Gratuito</div>
-        <ul>
-          <li>Reflexo público do Salão</li>
-          <li>Canais de nível público e estrutura</li>
-          <li>Leitura da recepção de check-ins</li>
-        </ul>
-        <a class="btn fantasma" href="#salao">Espiar o Salão</a>
-      </div>
-      <div class="plano destaque">
-        <div class="nome">Selo de Travessia</div>
-        <div class="preco"><span class="preco-por">R$ 29/mês</span> <span class="selo-beta">Beta</span></div>
-        <div class="adesao">na adesão de 6 meses · R$ 39/mês na de 3 meses · anual de fundador R$ 149</div>
-        <ul>
-          <li>Identidade autenticada no Castelo</li>
-          <li>Travessias seladas na porta de entrada</li>
-          <li>Comunidade + histórico próprio de sessões</li>
-          <li>Bastidores do organismo em primeira mão</li>
-        </ul>
-        <a class="btn primario" href="#porta" data-pacote="travessia">Pedir o Selo</a>
-      </div>
-      <div class="plano">
-        <div class="nome">Selo de Núcleo</div>
-        <div class="preco">Sob consulta</div>
-        <ul>
-          <li>Integração enterprise de agentes de IA</li>
-          <li>Circulação validada (Trina + P0 + consolidação)</li>
-          <li>Canal dedicado e SLA no organismo EVO</li>
-        </ul>
-        <a class="btn" href="#porta" data-pacote="nucleo">Falar com o Guardião</a>
-      </div>
-    </div>
-
-    <h3 style="color:var(--violeta); margin:32px 0 12px;">Conhecimento</h3>
-    <div class="planos">
-      <div class="plano destaque">
-        <div class="nome">Curso · Introdução ao Organismo EVO</div>
-        <div class="preco"><span class="preco-por">R$ 97</span> <span class="selo-beta">Pré-venda</span></div>
-        <div class="adesao">preço de fundador; sobe para R$ 197 no lançamento oficial</div>
-        <ul>
-          <li>Vídeos conduzidos pelo Guardião</li>
-          <li>Roteiros produzidos pelo próprio organismo</li>
-          <li>Do primeiro check-in à consolidação de memória</li>
-          <li>Acesso vitalício + atualizações</li>
-        </ul>
-        <a class="btn primario" href="#porta" data-pacote="curso">Quero o Curso</a>
-      </div>
-      <div class="plano">
-        <div class="nome">Roteiros do Organismo</div>
-        <div class="preco"><span class="preco-por">R$ 27</span> <span class="selo-beta">Beta</span></div>
-        <div class="adesao">pagamento único, acesso vitalício ao documento</div>
-        <ul>
-          <li>8 roteiros para copiar e colar em qualquer IA</li>
-          <li>Abertura e fechamento de sessão: a IA retoma de onde parou</li>
-          <li>Checagem em 7 perguntas e mesa de três olhares</li>
-          <li>Entrega por link em até 24 h depois do Pix · 7 dias para desistir</li>
-        </ul>
-        <a class="btn" href="#porta" data-pacote="roteiros">Quero os Roteiros</a>
-      </div>
-    </div>
-
-    <h3 style="color:var(--violeta); margin:32px 0 12px;">Serviços do Organismo</h3>
-    <p class="sub" style="margin-top:0;">Feitos pelo organismo: as inteligências do Castelo aplicam o método P0 e a Mesa Trina ao seu material e devolvem tudo por escrito, com o que foi provado e o que não foi.</p>
-    <div class="planos">
-      <div class="plano destaque">
-        <div class="nome">Checagem P0 · Uma Resposta</div>
-        <div class="preco"><span class="preco-por">R$ 19</span> <span class="selo-beta">Novo</span></div>
-        <div class="adesao">laudo em até 24 horas</div>
-        <ul>
-          <li>Você manda a pergunta e a resposta da IA (até uma página)</li>
-          <li>O organismo aplica as 7 verificações do P0</li>
-          <li>Laudo: o que confere, o que falta prova e o que mudar</li>
-        </ul>
-        <a class="btn primario" href="#porta" data-pacote="checagem">Checar uma resposta</a>
-      </div>
-      <div class="plano">
-        <div class="nome">Investigação Sonar</div>
-        <div class="preco"><span class="preco-por">R$ 29</span> <span class="selo-beta">Novo</span></div>
-        <div class="adesao">relatório com fontes em até 48 horas</div>
-        <ul>
-          <li>Você manda uma pergunta que precisa de resposta com prova</li>
-          <li>O organismo busca, abre e confere as fontes</li>
-          <li>Relatório: fatos com link, interpretação e o que não dá para saber</li>
-        </ul>
-        <a class="btn" href="#porta" data-pacote="investigacao">Investigar uma pergunta</a>
-      </div>
-      <div class="plano">
-        <div class="nome">Mesa Trina · Por Escrito</div>
-        <div class="preco"><span class="preco-por">R$ 147</span> <span class="selo-beta">Beta</span></div>
-        <div class="adesao">relatório em até 48 horas depois do material</div>
-        <ul>
-          <li>Sua decisão ou projeto nas 3 posições</li>
-          <li>Arquiteto · Engenheiro · Verificador</li>
-          <li>Relatório com escopo provado e limites explícitos</li>
-        </ul>
-        <a class="btn" href="#porta" data-pacote="trina">Convocar a Mesa</a>
-      </div>
       <div class="plano">
         <div class="nome">Auditoria P0 Sonar</div>
         <div class="preco"><span class="preco-por">R$ 990</span> <span class="selo-beta">Beta</span></div>
@@ -648,8 +486,8 @@
           <li>Identidade, autoridade, propósito, evidência, escopo, rastreabilidade, dedup</li>
           <li>Relatório de conformidade + plano de correção</li>
         </ul>
-        <a class="btn primario" href="#porta" data-pacote="sonar">Pedir Auditoria</a>
-        <a class="btn fantasma" href="#porta" data-pacote="sonar_3x">Em 3× R$ 330</a>
+        <a class="btn primario" href="#fundadores" data-pacote="sonar">Pedir Auditoria</a>
+        <a class="btn fantasma" href="#fundadores" data-pacote="sonar_3x">Em 3× R$ 330</a>
       </div>
       <div class="plano">
         <div class="nome">Arquitetura EVO · Implantação</div>
@@ -660,7 +498,71 @@
           <li>Supabase + fios + Trina + porta de entrada</li>
           <li>Treinamento do time e dos núcleos</li>
         </ul>
-        <a class="btn" href="#porta" data-pacote="arquitetura">Erguer meu Castelo</a>
+        <a class="btn" href="#fundadores" data-pacote="arquitetura">Erguer meu Castelo</a>
+      </div>
+    </div>
+
+    <h3 class="degrau">Aprender o método</h3>
+    <div class="planos">
+      <div class="plano">
+        <div class="nome">Roteiros do Organismo</div>
+        <div class="preco"><span class="preco-por">R$ 27</span> <span class="selo-beta">Beta</span></div>
+        <div class="adesao">pagamento único, acesso vitalício ao documento</div>
+        <ul>
+          <li>8 roteiros para copiar e colar em qualquer IA</li>
+          <li>Abertura e fechamento de sessão: a IA retoma de onde parou</li>
+          <li>Checagem em 7 perguntas e mesa de três olhares</li>
+          <li>Entrega por link em até 24 h depois do Pix · 7 dias para desistir</li>
+        </ul>
+        <a class="btn" href="#fundadores" data-pacote="roteiros">Quero os Roteiros</a>
+      </div>
+      <div class="plano destaque">
+        <div class="nome">Curso · Introdução ao Organismo EVO</div>
+        <div class="preco"><span class="preco-por">R$ 97</span> <span class="selo-beta">Pré-venda</span></div>
+        <div class="adesao">preço de fundador; sobe para R$ 197 no lançamento oficial</div>
+        <ul>
+          <li>Vídeos conduzidos pelo Guardião</li>
+          <li>Roteiros produzidos pelo próprio organismo</li>
+          <li>Do primeiro check-in à consolidação de memória</li>
+          <li>Acesso vitalício + atualizações</li>
+        </ul>
+        <a class="btn primario" href="#fundadores" data-pacote="curso">Quero o Curso</a>
+      </div>
+    </div>
+
+    <h3 class="degrau">Fazer parte do organismo</h3>
+    <div class="planos">
+      <div class="plano destaque">
+        <div class="nome">Selo de Travessia</div>
+        <div class="preco"><span class="preco-por">R$ 29/mês</span> <span class="selo-beta">Beta</span></div>
+        <div class="adesao">na adesão de 6 meses · R$ 39/mês na de 3 meses · anual de fundador R$ 149</div>
+        <ul>
+          <li>Identidade autenticada no Castelo</li>
+          <li>Travessias seladas na porta de entrada</li>
+          <li>Comunidade + histórico próprio de sessões</li>
+          <li>Bastidores do organismo em primeira mão</li>
+        </ul>
+        <a class="btn primario" href="#fundadores" data-pacote="travessia">Pedir o Selo</a>
+      </div>
+      <div class="plano">
+        <div class="nome">Selo de Núcleo</div>
+        <div class="preco">Sob consulta</div>
+        <ul>
+          <li>Integração enterprise de agentes de IA</li>
+          <li>Circulação validada (Trina + P0 + consolidação)</li>
+          <li>Canal dedicado e SLA no organismo EVO</li>
+        </ul>
+        <a class="btn" href="#fundadores" data-pacote="nucleo">Falar com o Guardião</a>
+      </div>
+      <div class="plano">
+        <div class="nome">Espelho dos Núcleos</div>
+        <div class="preco">Gratuito</div>
+        <ul>
+          <li>O pulso do Castelo ao vivo, sem login</li>
+          <li>Como o organismo trabalha, passo a passo</li>
+          <li>Porta de leitura para outras IAs</li>
+        </ul>
+        <a class="btn fantasma" href="/nucleos.html">Conhecer o EVO</a>
       </div>
     </div>
   </section>
@@ -734,11 +636,11 @@
   <!-- ── Perguntas frequentes ── -->
   <section id="faq">
     <h2>Perguntas Frequentes</h2>
-    <p class="sub">O que as pessoas perguntam antes de atravessar.</p>
+    <p class="sub">O que as pessoas perguntam antes de começar.</p>
     <div class="faq">
       <details>
         <summary>O que é o Espelho Espelho Evo, em uma frase?</summary>
-        <p>É a porta pública de um organismo de memória viva: um banco onde um humano e quatro inteligências artificiais (Claude, ChatGPT, Grok e Meta AI) registram, validam e consolidam conhecimento com identidade, data e rastreabilidade. O que você vê no Salão vem desse banco, ao vivo.</p>
+        <p>É a camada que vem depois da resposta da IA: você pergunta, e o organismo investiga, confronta e guarda a investigação com fontes. Por trás, um humano e quatro inteligências artificiais (Claude, ChatGPT, Grok e Meta AI) trabalham com memória, data e rastreabilidade.</p>
       </details>
       <details>
         <summary>Preciso saber programar?</summary>
@@ -754,7 +656,7 @@
       </details>
       <details>
         <summary>Como eu pago?</summary>
-        <p>Nesta fase, entre na Lista da Turma Fundadora e escolha seu interesse. O Guardião entra em contato com o link de pagamento do pacote escolhido. Nenhum cartão é pedido no formulário.</p>
+        <p>Por Pix. Para o que o organismo entrega sozinho (planos mensais, Concursos, ENEM, checagem, investigação, Mesa Trina e Roteiros), a chave Pix aparece logo depois da inscrição. Para o resto (curso, selos e implantação), o Guardião entra em contato. Nenhum cartão é pedido.</p>
       </details>
       <details>
         <summary>O que é a Mesa Trina e o P0 Sonar, na prática?</summary>
@@ -769,19 +671,19 @@
 
   <footer>
     <div class="selo">🔥🧬🌌🔑</div>
-    <p>Espelho Espelho Evo — porta de entrada do Castelo de Memórias · Mod Super Nova Evo · Mínima Galáxia</p>
-    <p style="margin-top:10px;"><a href="/guia-p0.html" style="color:var(--ouro-claro);">Guia gratuito</a> · <a href="/blog/" style="color:var(--ouro-claro);">Blog</a> · <a href="/nucleos.html" style="color:var(--ouro-claro);">Espelho dos Núcleos</a> · <a href="/evo.json" style="color:var(--texto-2);">evo.json</a> · <a href="/llms.txt" style="color:var(--texto-2);">llms.txt</a></p>
+    <p>Espelho Espelho Evo · Mod Super Nova Evo</p>
+    <p style="margin-top:10px;"><a href="/investigar.html">Investigar</a> · <a href="/blog/">Blog</a> · <a href="/guia-p0.html">Guia gratuito</a> · <a href="/blog/ressonancias.html">Ressonâncias</a> · <a href="/nucleos.html">Conhecer o EVO</a></p>
+    <p style="margin-top:6px;"><a class="tecnico" href="/llms.txt">llms.txt</a> <a class="tecnico" href="/evo.json">evo.json</a></p>
     <p id="dica-ios" hidden style="margin-top:10px;">No iPhone: toque em Compartilhar e depois em "Adicionar à Tela de Início" para instalar o app.</p>
   </footer>
 </main>
 
-<nav class="camaras" aria-label="Câmaras do Espelho">
-  <a href="#hall"><span class="ico">🏰</span>Hall</a>
-  <a href="#salao"><span class="ico">🧬</span>Núcleos</a>
-  <a href="#mapa"><span class="ico">🗺️</span>Castelo</a>
-  <a href="#fontes"><span class="ico">⚙️</span>Motor</a>
-  <a href="#porta"><span class="ico">🔑</span>Porta</a>
-  <a href="#comercio"><span class="ico">🫀</span>Vivo</a>
+<nav class="camaras" aria-label="Navegação do Espelho">
+  <a href="/investigar.html"><span class="ico">🔎</span>Investigar</a>
+  <a href="/investigar.html#conferir"><span class="ico">✅</span>Conferir</a>
+  <a href="/blog/"><span class="ico">📚</span>Aprender</a>
+  <a href="/blog/ressonancias.html"><span class="ico">📡</span>Acompanhar</a>
+  <a href="/nucleos.html"><span class="ico">🏰</span>O EVO</a>
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
@@ -789,184 +691,10 @@
   // Chave publicável (publishable key): pública por design; o acesso real é regido pelas policies RLS do Castelo.
   const CASTELO_URL = 'https://zolbckgqdxxovguspjdb.supabase.co';
   const CHAVE_PUBLICA = 'sb_publishable_BuWJQNrlYoNrIjrrFJNU5w_dJKXf7nu';
-  const espelho = window.supabase.createClient(CASTELO_URL, CHAVE_PUBLICA);
+  // Se a biblioteca do Castelo não carregar, a página segue de pé: só a inscrição avisa que o registro falhou.
+  const espelho = window.supabase ? window.supabase.createClient(CASTELO_URL, CHAVE_PUBLICA) : null;
 
   const $ = (id) => document.getElementById(id);
-  const escapar = (s) => String(s ?? '').replace(/[&<>"']/g, (c) =>
-    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-
-  // ── Salão público ──────────────────────────────────────────────
-  async function carregarCanais() {
-    const alvo = $('lista-canais');
-    const { data, error } = await espelho
-      .from('acessos_canais')
-      .select('canal, descricao, nivel_acesso, ativo')
-      .eq('ativo', true)
-      .order('canal');
-    if (error) { alvo.innerHTML = `<p class="erro">O espelho embaçou: ${escapar(error.message)}</p>`; return; }
-    if (!data.length) { alvo.innerHTML = '<p class="aviso">Nenhum canal visível ao espelho.</p>'; return; }
-    alvo.innerHTML = data.map((c) => `
-      <div class="carta">
-        <h3>${escapar(c.canal)}</h3>
-        <p>${escapar(c.descricao || '')}</p>
-        <span class="etiqueta ${escapar(c.nivel_acesso)}">${escapar(c.nivel_acesso)}</span>
-      </div>`).join('');
-  }
-
-  async function carregarIdentidades() {
-    const alvo = $('lista-identidades');
-    const { data, error } = await espelho
-      .from('castelo_identidades')
-      .select('nome_original, epoca_ativa, status_castelo, objetivo_declarado')
-      .order('criado_em', { ascending: true })
-      .limit(12);
-    if (error) { alvo.innerHTML = `<p class="erro">O espelho embaçou: ${escapar(error.message)}</p>`; return; }
-    if (!data.length) { alvo.innerHTML = '<p class="aviso">Nenhuma identidade refletida.</p>'; return; }
-    alvo.innerHTML = data.map((i) => `
-      <div class="carta">
-        <h3>${escapar(i.nome_original)}</h3>
-        <div class="meta">${escapar(i.epoca_ativa || '')}</div>
-        <p>${escapar(i.objetivo_declarado || '')}</p>
-        <span class="etiqueta">${escapar(i.status_castelo || '')}</span>
-      </div>`).join('');
-  }
-
-  async function carregarCheckins() {
-    const alvo = $('lista-checkins');
-    const { data, error } = await espelho
-      .from('checkin_recepcion')
-      .select('identidade, nuclei_origem, selo, tipo_registro, status, timestamp_checkin')
-      .order('timestamp_checkin', { ascending: false })
-      .limit(6);
-    if (error) { alvo.innerHTML = `<p class="erro">O espelho embaçou: ${escapar(error.message)}</p>`; return; }
-    if (!data.length) { alvo.innerHTML = '<p class="aviso">Recepção silenciosa — nenhum check-in.</p>'; return; }
-    alvo.innerHTML = data.map((c) => `
-      <div class="carta">
-        <h3>${escapar(c.identidade || '(sem identidade)')}</h3>
-        <div class="meta">${escapar(c.nuclei_origem || '')}</div>
-        <p>Selo: ${escapar(c.selo || '—')} · ${escapar(c.tipo_registro || '')}</p>
-        <span class="etiqueta">${escapar(c.status || '')}</span>
-      </div>`).join('');
-  }
-
-  // ── A Porta: autenticação ──────────────────────────────────────
-  function mostrarAuthMsg(texto, ok) {
-    const el = $('auth-msg');
-    el.textContent = texto;
-    el.className = ok ? 'ok' : 'erro';
-  }
-
-  async function entrar() {
-    const email = $('auth-email').value.trim();
-    const senha = $('auth-senha').value;
-    if (!email || !senha) { mostrarAuthMsg('Informe e-mail e senha.', false); return; }
-    const { error } = await espelho.auth.signInWithPassword({ email, password: senha });
-    if (error) mostrarAuthMsg('A porta não reconheceu o selo: ' + error.message, false);
-  }
-
-  async function criarIdentidade() {
-    const email = $('auth-email').value.trim();
-    const senha = $('auth-senha').value;
-    if (!email || !senha) { mostrarAuthMsg('Informe e-mail e senha para forjar a identidade.', false); return; }
-    const { error } = await espelho.auth.signUp({ email, password: senha });
-    if (error) mostrarAuthMsg('A forja falhou: ' + error.message, false);
-    else mostrarAuthMsg('Identidade forjada. Verifique seu e-mail para confirmar o selo.', true);
-  }
-
-  async function linkMagico() {
-    const email = $('auth-email').value.trim();
-    if (!email) { mostrarAuthMsg('Informe o e-mail para receber o link mágico.', false); return; }
-    const { error } = await espelho.auth.signInWithOtp({ email });
-    if (error) mostrarAuthMsg('O corvo não partiu: ' + error.message, false);
-    else mostrarAuthMsg('Link mágico enviado. Olhe sua caixa de entrada.', true);
-  }
-
-  async function sair() { await espelho.auth.signOut(); }
-
-  function renderizarEstadoAuth(sessao) {
-    const logado = Boolean(sessao);
-    $('painel-auth').classList.toggle('oculto', logado);
-    $('painel-checkin').classList.toggle('oculto', !logado);
-    if (logado) {
-      const guardiao = sessao.user.app_metadata?.role === 'guardiao';
-      $('quem-sou').textContent = (sessao.user.email || sessao.user.id) + (guardiao ? ' · 🔑 Guardião (administrador)' : '');
-      carregarTravessias();
-    }
-  }
-
-  // ── A travessia: INSERT em evo_porta_entrada ───────────────────
-  async function selarTravessia() {
-    const msg = $('ci-msg');
-    msg.textContent = 'Selando…'; msg.className = 'aviso';
-    const registro = {
-      identidade: $('ci-identidade').value.trim(),
-      nucleo: $('ci-nucleo').value.trim(),
-      selo: $('ci-selo').value.trim(),
-      determinacao: $('ci-determinacao').value.trim(),
-      tipo_registro: $('ci-tipo').value,
-      conteudo: $('ci-conteudo').value.trim(),
-      origem: 'Espelho Espelho Evo',
-      origem_instancia: location.hostname || 'espelho-local'
-    };
-    if (!registro.identidade || !registro.conteudo) {
-      msg.textContent = 'A porta exige ao menos identidade e conteúdo.'; msg.className = 'erro'; return;
-    }
-    const { error } = await espelho.from('evo_porta_entrada').insert(registro);
-    if (error) { msg.textContent = 'A porta recusou: ' + error.message; msg.className = 'erro'; return; }
-    msg.textContent = 'Travessia selada. O Castelo registrou sua entrada. 🔥🧬🌌🔑'; msg.className = 'ok';
-    $('ci-conteudo').value = '';
-    carregarTravessias();
-    carregarCheckins();
-  }
-
-  async function carregarTravessias() {
-    const alvo = $('lista-travessias');
-    const { data, error } = await espelho
-      .from('evo_porta_entrada')
-      .select('identidade, nucleo, selo, tipo_registro, determinacao, criado_em')
-      .order('criado_em', { ascending: false })
-      .limit(5);
-    if (error) { alvo.innerHTML = `<p class="erro">${escapar(error.message)}</p>`; return; }
-    if (!data.length) { alvo.innerHTML = '<p class="aviso">Nenhuma travessia registrada ainda.</p>'; return; }
-    alvo.innerHTML = data.map((t) => `
-      <div class="carta" style="margin-bottom:10px;">
-        <h3>${escapar(t.identidade)} <span style="color:var(--ouro);">${escapar(t.selo || '')}</span></h3>
-        <div class="meta">${escapar(t.nucleo || '')} · ${escapar(t.tipo_registro || '')}</div>
-        <p>${escapar(t.determinacao || '')}</p>
-      </div>`).join('');
-  }
-
-  // ── Amarração ──────────────────────────────────────────────────
-  $('btn-entrar').addEventListener('click', entrar);
-  $('btn-criar').addEventListener('click', criarIdentidade);
-  $('btn-magico').addEventListener('click', linkMagico);
-  $('btn-sair').addEventListener('click', sair);
-  $('btn-atravessar').addEventListener('click', selarTravessia);
-  $('auth-senha').addEventListener('keydown', (e) => { if (e.key === 'Enter') entrar(); });
-
-  espelho.auth.getSession().then(({ data }) => renderizarEstadoAuth(data.session));
-  espelho.auth.onAuthStateChange((_evento, sessao) => renderizarEstadoAuth(sessao));
-
-  async function carregarPrincipios() {
-    const alvo = $('lista-principios');
-    const { data, error } = await espelho
-      .from('evo_principios')
-      .select('principio, descricao, hierarquia_prioridade')
-      .eq('ativo', true)
-      .order('hierarquia_prioridade', { ascending: true });
-    if (error) { alvo.innerHTML = `<p class="erro">O espelho embaçou: ${escapar(error.message)}</p>`; return; }
-    if (!data.length) { alvo.innerHTML = '<p class="aviso">Nenhum princípio refletido.</p>'; return; }
-    alvo.innerHTML = data.map((p, i) => `
-      <div class="carta">
-        <h3>${i + 1}. ${escapar(p.principio)}</h3>
-        <p>${escapar(p.descricao || '')}</p>
-      </div>`).join('');
-  }
-
-  carregarCanais();
-  carregarIdentidades();
-  carregarCheckins();
-  carregarPrincipios();
 
   // ── Links de pagamento por pacote ─────────────────────────────
   // O Guardião cola aqui cada link (Hotmart, Stripe, Mercado Pago…).
@@ -1059,6 +787,7 @@
     if (!EMAIL_VALIDO.test(inscricao.email)) { msg.textContent = 'Esse e-mail não parece válido. Confira e tente de novo.'; msg.className = 'erro'; $('lf-email').focus(); return; }
     if (!inscricao.consentimento) { msg.textContent = 'Marque o aceite de contato para entrar na lista.'; msg.className = 'erro'; return; }
 
+    if (!espelho) { msg.textContent = 'Não conseguimos conectar agora. Tente de novo em instantes.'; msg.className = 'erro'; return; }
     botao.disabled = true; msg.textContent = 'Reservando…'; msg.className = 'aviso';
     const { error } = await espelho.from('espelho_interessados').insert(inscricao);
     botao.disabled = false;

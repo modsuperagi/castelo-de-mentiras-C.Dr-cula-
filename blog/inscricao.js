@@ -64,6 +64,13 @@
     ancora.insertAdjacentElement('afterend', caixa);
   }
 
+  // A pergunta feita na página inicial chega pronta na tela do SONAR (/investigar.html?q=...).
+  try {
+    const q = new URLSearchParams(location.search).get('q');
+    const alvo = document.getElementById('pergunta');
+    if (q && alvo && !alvo.value) alvo.value = q.slice(0, 900);
+  } catch (_) { /* segue sem preencher */ }
+
   document.querySelectorAll('form.inscricao').forEach((form) => {
     const retorno = form.querySelector('.retorno');
     const botao = form.querySelector('button[type=submit]');
@@ -76,11 +83,13 @@
         nome: String(dados.get('nome') || '').trim(),
         email: String(dados.get('email') || '').trim(),
         pacote: String(dados.get('pacote') || 'indefinido'),
-        mensagem: form.dataset.mensagem || null,
+        mensagem: (String(dados.get('mensagem') || '').trim() || form.dataset.mensagem || '').slice(0, 1000) || null,
         consentimento: dados.get('consentimento') === 'on',
         canal: canal(pagina).slice(0, 120)
       };
       const erro = (t) => { retorno.textContent = t; retorno.className = 'retorno erro'; };
+      const pedeTexto = form.querySelector('[name=mensagem][required]');
+      if (pedeTexto && !inscricao.mensagem) { pedeTexto.focus(); return erro('Escreva o que você quer que o organismo examine.'); }
       if (inscricao.nome.length < 2) return erro('Escreva seu nome.');
       if (!EMAIL_VALIDO.test(inscricao.email)) return erro('Esse e-mail não parece válido.');
       if (!inscricao.consentimento) return erro('Marque o aceite de contato para entrar na lista.');
@@ -93,12 +102,24 @@
       const { error } = await cliente.from('espelho_interessados').insert(inscricao);
       botao.disabled = false;
       if (error && error.code === '23505') {
-        retorno.textContent = 'Você já está na lista. Sua vaga de fundador está guardada.';
+        // Mesmo e-mail e mesmo pacote já registrados. Se o pedido traz uma pergunta nova, ela vai como sinal para não se perder.
+        if (pedeTexto && inscricao.mensagem) {
+          await cliente.from('espelho_sinais').insert({
+            tipo: 'investigar', pagina: pagina.slice(0, 120), texto: inscricao.mensagem,
+            autor_nome: inscricao.nome.slice(0, 80), autor_email: inscricao.email, contato_ok: true, canal: inscricao.canal
+          });
+          retorno.textContent = 'Recebemos a nova pergunta. Como você já tem um pedido com esse e-mail, a resposta e o Pix chegam no mesmo contato.';
+        } else {
+          retorno.textContent = 'Você já está na lista. Sua vaga de fundador está guardada.';
+        }
         retorno.className = 'retorno ok';
         return;
       }
       if (error) return erro('Não conseguimos registrar agora. Tente de novo em instantes.');
-      retorno.textContent = `Pronto, ${inscricao.nome.split(' ')[0]}. Você está na Turma Fundadora: o contato chega em ${inscricao.email} quando a sua vaga abrir.`;
+      const primeiro = inscricao.nome.split(' ')[0];
+      retorno.textContent = form.dataset.sucesso
+        ? form.dataset.sucesso.replace('{nome}', primeiro).replace('{email}', inscricao.email)
+        : `Pronto, ${primeiro}. Você está na Turma Fundadora: o contato chega em ${inscricao.email} quando a sua vaga abrir.`;
       retorno.className = 'retorno ok';
       document.dispatchEvent(new CustomEvent('espelho:conversao'));
       const pagamento = await instrucoesPagamento(cliente, inscricao.email);

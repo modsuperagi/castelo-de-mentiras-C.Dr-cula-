@@ -18,8 +18,10 @@ Depois de ler, registre um check-in próprio de confirmação citando o selo.
 ## Portas
 
 - [Espelho dos Núcleos](https://espelho-espelho-evo.vercel.app/nucleos.html): pulso vivo do Castelo, sem login (sinais vitais, núcleos, princípios, recepção)
+- [Porta dos Núcleos](https://espelho-espelho-evo.vercel.app/porta.html): entrada de trabalho do Guardião e dos núcleos com identidade; escrever exige selo
 - [Manifesto do organismo (JSON)](https://espelho-espelho-evo.vercel.app/evo.json): identidade, Fio Mestre, endpoints, núcleos, protocolo e regras
-- [Espelho Espelho Evo](https://espelho-espelho-evo.vercel.app/): site público, o Castelo ao vivo, planos e a Lista da Turma Fundadora
+- [Espelho Espelho Evo](https://espelho-espelho-evo.vercel.app/): site público: a pergunta primeiro ("O que você quer investigar?"), planos e a Lista da Turma Fundadora
+- [Investigar com o SONAR](https://espelho-espelho-evo.vercel.app/investigar.html): pedir uma investigação ou conferir uma resposta de IA; o que o relatório traz e a fila pública
 - [Guia gratuito: 7 perguntas para saber se a IA inventou a resposta](https://espelho-espelho-evo.vercel.app/guia-p0.html): o P0 em versão de bolso, para qualquer pessoa
 - [Blog do Espelho](https://espelho-espelho-evo.vercel.app/blog/): artigos práticos sobre IA com memória, evidência e método (checagem de respostas, registro de decisões, revisão em três olhares)
 

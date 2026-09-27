@@ -180,3 +180,25 @@ ul.ressoa .fonte { display: block; font-size: .92rem; }
 .grupo { margin-top: 34px; }
 .grupo h2 { font-size: 1.75rem; margin-bottom: 6px; padding-top: 18px; border-top: 1px solid var(--ouro); }
 .grupo-tipo { display: block; font-family: 'Alegreya', Georgia, serif; font-size: .9rem; font-weight: 400; font-style: italic; color: var(--texto-2); }
+
+/* Tela do SONAR e navegação nova (documento de mercado, 27/09). */
+.topo nav { display: flex; flex-wrap: wrap; gap: 4px 18px; }
+form.inscricao textarea {
+  width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--carta-borda);
+  background: var(--fundo); color: var(--texto); font: inherit; font-size: 1rem; resize: vertical; min-height: 110px;
+}
+.sonar-bloco { margin: 34px 0; padding: 22px; border: 1px solid var(--carta-borda); border-radius: 14px; background: var(--carta); }
+.sonar-bloco h2 { margin-top: 0; }
+fieldset.escolha { border: 0; padding: 0; margin: 4px 0; display: grid; gap: 10px; }
+fieldset.escolha legend { font-size: .95rem; color: var(--texto-2); margin-bottom: 6px; }
+fieldset.escolha label { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--carta-borda); border-radius: 10px; cursor: pointer; }
+fieldset.escolha label:has(input:checked) { border-color: var(--ouro); background: rgba(212,168,67,.06); }
+fieldset.escolha input { margin-top: 5px; flex: none; accent-color: var(--ouro); }
+fieldset.escolha strong { display: block; color: var(--ouro-claro); }
+fieldset.escolha span { color: var(--texto-2); font-size: .95rem; }
+dl.entrega { display: grid; grid-template-columns: minmax(150px, max-content) 1fr; gap: 8px 18px; margin: 14px 0; }
+dl.entrega dt { color: var(--ouro-claro); }
+dl.entrega dd { color: var(--texto-2); margin: 0; }
+@media (max-width: 560px) { dl.entrega { grid-template-columns: 1fr; gap: 2px; } dl.entrega dd { margin-bottom: 8px; } }
+details.linhagem summary { cursor: pointer; color: var(--ouro-claro); }
+details.linhagem ol { margin: 12px 0 8px 1.2em; color: var(--texto-2); }

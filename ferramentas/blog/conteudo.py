@@ -532,6 +532,101 @@ BLOG_INDEX = """<main class="pagina">
 </main>
 """
 
+# Tela central do SONAR (documento de mercado do Guardião, 27/09, seções 20 a 22): a pergunta primeiro, a arquitetura depois.
+INVESTIGAR = """<main class="pagina">
+  <h1>Investigar com o SONAR</h1>
+  <p class="linha-fina">Faça a pergunta. O organismo busca as fontes, abre cada uma, separa o que sustenta a afirmação do que a contradiz e diz o que ainda não dá para saber.</p>
+
+  <section class="sonar-bloco" aria-labelledby="investigar-t">
+    <h2 id="investigar-t">O que você quer investigar?</h2>
+    <form class="inscricao" data-pagina="investigar" data-sucesso="Pedido registrado, {nome}. A investigação começa assim que o Pix chegar, e o relatório vai para {email}." novalidate>
+      <label for="pergunta">Sua pergunta</label>
+      <textarea id="pergunta" name="mensagem" rows="4" maxlength="900" required placeholder="Ex.: uma IA me disse que a Lei 14.133 revogou toda a Lei 8.666. Isso está certo? O que ainda vale?"></textarea>
+      <fieldset class="escolha">
+        <legend>Como você quer receber</legend>
+        <label><input type="radio" name="pacote" value="investigacao" checked> <span><strong>Uma investigação · R$ 29</strong> Relatório com fontes em até 48 horas.</span></label>
+        <label><input type="radio" name="pacote" value="plano_pro"> <span><strong>Plano Profissional · R$ 39/mês</strong> 2 investigações, 30 checagens e 1 Mesa Trina por mês.</span></label>
+      </fieldset>
+      <label for="inv-nome">Nome</label>
+      <input type="text" id="inv-nome" name="nome" autocomplete="name" maxlength="120" required>
+      <label for="inv-email">E-mail</label>
+      <input type="email" id="inv-email" name="email" autocomplete="email" maxlength="254" required>
+      <label class="aceite"><input type="checkbox" name="consentimento" required> <span>Aceito receber o relatório e o contato sobre este pedido. Meus dados não são compartilhados.</span></label>
+      <button type="submit" class="btn">Pedir a investigação</button>
+      <p class="retorno" role="status" aria-live="polite"></p>
+    </form>
+    <p class="nota">Só quer sugerir um tema, sem pagar e sem prazo? <a href="#fila">Mande para a fila pública</a>.</p>
+  </section>
+
+  <section class="sonar-bloco" id="conferir" aria-labelledby="conferir-t">
+    <h2 id="conferir-t">Conferir uma resposta de IA</h2>
+    <p>Cole a pergunta que você fez e a resposta que a IA deu. O organismo aplica as 7 verificações e devolve o laudo: o que confere, o que falta prova e o que mudar.</p>
+    <form class="inscricao" data-pagina="conferir" data-sucesso="Pedido registrado, {nome}. A checagem começa assim que o Pix chegar, e o laudo vai para {email}." novalidate>
+      <label for="resposta">Pergunta e resposta da IA</label>
+      <textarea id="resposta" name="mensagem" rows="6" maxlength="1000" required placeholder="Pergunta: ...&#10;Resposta da IA: ..."></textarea>
+      <fieldset class="escolha">
+        <legend>Como você quer receber</legend>
+        <label><input type="radio" name="pacote" value="checagem" checked> <span><strong>Uma checagem · R$ 19</strong> Laudo em até 24 horas.</span></label>
+        <label><input type="radio" name="pacote" value="plano_estudante"> <span><strong>Plano Estudante · R$ 9,90/mês</strong> 10 checagens por mês e os Roteiros do Organismo.</span></label>
+      </fieldset>
+      <label for="conf-nome">Nome</label>
+      <input type="text" id="conf-nome" name="nome" autocomplete="name" maxlength="120" required>
+      <label for="conf-email">E-mail</label>
+      <input type="email" id="conf-email" name="email" autocomplete="email" maxlength="254" required>
+      <label class="aceite"><input type="checkbox" name="consentimento" required> <span>Aceito receber o laudo e o contato sobre este pedido. Meus dados não são compartilhados.</span></label>
+      <button type="submit" class="btn">Pedir a checagem</button>
+      <p class="retorno" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="sonar-bloco" aria-labelledby="entrega-t">
+    <h2 id="entrega-t">O que chega para você</h2>
+    <p>Uma investigação, não uma resposta a mais. Cada relatório traz, nesta ordem:</p>
+    <dl class="entrega">
+      <dt>Pergunta</dt><dd>Como você fez, sem reescrever.</dd>
+      <dt>Sinais encontrados</dt><dd>O que já se diz sobre o tema, e onde.</dd>
+      <dt>Fontes</dt><dd>Cada uma com link e data, primárias primeiro.</dd>
+      <dt>Evidências a favor</dt><dd>O que sustenta a afirmação.</dd>
+      <dt>Evidências em conflito</dt><dd>O que a contradiz ou a limita.</dd>
+      <dt>O que não foi confirmado</dt><dd>Dito com todas as letras, em vez de preenchido com palpite.</dd>
+      <dt>Contexto</dt><dd>Condições, exceções e o que mudou com o tempo.</dd>
+      <dt>Conclusão provisória</dt><dd>O que dá para afirmar hoje, e com que segurança.</dd>
+    </dl>
+    <details class="linhagem">
+      <summary>Como a investigação é feita por dentro</summary>
+      <ol>
+        <li><strong>SONAR</strong> busca e abre as fontes.</li>
+        <li><strong>Mesa Trina</strong> confronta a leitura em três posições independentes.</li>
+        <li><strong>Evidências</strong> passam pelas 7 verificações do P0; um "não" basta para voltar à fonte.</li>
+        <li><strong>Consolidação</strong> separa o que foi provado do que não foi.</li>
+        <li><strong>Castelo</strong> guarda a investigação com origem e fontes, para a próxima partir dela.</li>
+      </ol>
+      <p>Quem coleta não dá o veredito, e nada vira verdade por ser muito pedido. <a href="/nucleos.html">Conhecer o EVO por dentro</a>.</p>
+    </details>
+  </section>
+
+  <section class="sonar-bloco" id="fila" aria-labelledby="fila-t">
+    <h2 id="fila-t">Fila pública</h2>
+    <p>Grátis e sem prazo. Os temas mais pedidos viram investigação publicada em <a href="/blog/ressonancias.html">O que está ressoando?</a>. Muito pedido dá prioridade, não verdade.</p>
+    <form class="sinal-form" data-pagina="investigar" novalidate>
+      <input type="hidden" name="tipo" value="investigar">
+      <label for="fila-texto">O tema que merece investigação</label>
+      <textarea id="fila-texto" name="texto" maxlength="4000" rows="3" required></textarea>
+      <label for="fila-nome">Nome (opcional)</label>
+      <input type="text" id="fila-nome" name="nome" maxlength="80" autocomplete="name">
+      <details>
+        <summary>Quero saber quando for investigado</summary>
+        <label for="fila-email">E-mail</label>
+        <input type="email" id="fila-email" name="email" maxlength="254" autocomplete="email">
+        <label class="aceite"><input type="checkbox" name="contato"> <span>Autorizo o contato só para avisar sobre este tema.</span></label>
+      </details>
+      <button type="submit" class="btn fantasma">Mandar para a fila</button>
+      <p class="retorno" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+"""
+
 CHAMADA_PADRAO = {
     'titulo': 'Entre na Turma Fundadora',
     'texto': 'O Espelho Espelho Evo está em fase beta. O organismo confere respostas de IA por você, investiga com fontes, entrega roteiros prontos e examina decisões na Mesa Trina, tudo por escrito, em planos a partir de R$ 9,90 por mês.',
@@ -599,6 +694,12 @@ PAGINAS = [
                   'ofertas': ['<strong>Mapa do Edital</strong>: matérias, pesos, lei com link oficial e cronograma até a prova, R$ 29.',
                               '<strong>Plano Concursos por etapas</strong>: o mapa e mais uma etapa por semana, com questões conferidas, R$ 39/mês.',
                               '<strong>Checagem P0</strong>: uma resposta de IA conferida nas 7 verificações, R$ 19.']}),
+    dict(caminho='investigar.html',
+         titulo='Investigar com o SONAR',
+         titulo_pagina='Investigar com o SONAR · Espelho Espelho Evo',
+         descricao='Faça a pergunta e o organismo investiga: fontes abertas, evidência a favor e em conflito, o que não foi confirmado e uma conclusão provisória. Ou confira uma resposta de IA.',
+         corpo=INVESTIGAR, chamada=None,
+         ld='{"@context":"https://schema.org","@type":"WebPage","name":"Investigar com o SONAR","inLanguage":"pt-BR","url":"https://espelho-espelho-evo.vercel.app/investigar.html"}'),
     dict(caminho='blog/escrever.html',
          titulo='Escreva no Espelho',
          titulo_pagina='Escreva no Espelho · Espelho Espelho Evo',

@@ -276,3 +276,27 @@ fere a LGPD e o método do organismo.
 
 Carrossel e capas no Canva, no mesmo visual do carrossel "7 perguntas" (fundo escuro, dourado e violeta). Vídeos:
 gravação de tela do celular com os roteiros acima; legenda automática do próprio app.
+
+## 9. Kit de links para slides e imagens (27/09)
+
+Regra única: `?utm_source=CANAL&utm_campaign=OFERTA`. O canal é onde a peça vai
+(instagram, tiktok, whatsapp, facebook, youtube, x, linkedin, telegram, email, comunidade);
+a oferta é a da tabela. Só letras minúsculas, números e hífen. O Castelo conta visita,
+leitura e inscrição por `canal` em `espelho_eventos` e `espelho_interessados`
+(leitura: `espelho_sonar_leitura`). Em link com âncora, a âncora vem por último (`/?utm…#comercio`).
+
+| Oferta (`utm_campaign`) | O que vende | Página |
+|---|---|---|
+| `concursos` | Plano Concursos R$ 39/mês | /blog/concurso-com-ia-sem-lei-inventada.html |
+| `seduc-ce` | Mapa do Edital R$ 29 (prova 22/11) | /blog/concurso-seduc-ce-2026-plano-de-estudo.html |
+| `redacao` | Redação: 4 correções R$ 29 | /blog/redacao-enem-2026-correcao-com-ia.html |
+| `tcc` | Plano Estudante R$ 9,90/mês | /blog/referencia-do-chatgpt-existe.html |
+| `advogados` | Checagem R$ 19 · Auditoria R$ 990 | /blog/jurisprudencia-inventada-pela-ia.html |
+| `checagem` | Checagem P0 R$ 19 | /blog/ia-inventou-a-resposta.html |
+| `guia` | Guia gratuito (isca) | /guia-p0.html |
+| `planos` | Todos os planos | /#comercio |
+| `blog` | Blog inteiro | /blog/ |
+| `comunidade` | Escreva no Espelho | /blog/escrever.html |
+
+Imagens já publicadas (1080×1350): `/divulgacao/concursos/cartao-1.png` a `cartao-7.png`.
+Imagem nova que for ao site entra em `divulgacao/<oferta>/`.

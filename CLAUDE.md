@@ -31,7 +31,7 @@ Para mudanças visuais no site, use `frontend-design`.
 | `docs/REFERENCIAS.md` | repositórios públicos que o organismo usa ou estuda | **não** |
 | `docs/historico/` | registros antigos (tentativas de captura do espelho do Grok) | **não** |
 | `supabase/migrations/` | backup do schema do Castelo: um `.sql` por migração, em ordem | **não** |
-| `.claude/skills/` | `castelo-evo` (nossa) + duas skills públicas com licença e `ORIGEM.txt` | **não** |
+| `.claude/skills/` | `castelo-evo` (nossa) + skills públicas com licença e `ORIGEM.txt`: `frontend-design`, `supabase-postgres-best-practices` e, do Superpowers 6.4.1 (sem o gancho de início de sessão), `verification-before-completion` e `systematic-debugging` | **não** |
 
 `.vercelignore` é a fronteira do que fica público. Arquivo novo que não seja para o visitante
 precisa entrar nele **antes** do push.

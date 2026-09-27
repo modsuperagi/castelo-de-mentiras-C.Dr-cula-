@@ -40,7 +40,7 @@ CABECA = """<!DOCTYPE html>
 <body>
 <header class="topo">
   <a class="marca" href="/">🪞 Espelho Espelho Evo</a>
-  <nav><a href="/guia-p0.html">Guia gratuito</a> · <a href="/blog/">Blog</a> · <a href="/#comercio">Ofertas</a></nav>
+  <nav aria-label="Seções"><a href="/blog/">Explorar</a> · <a href="/blog/ressonancias.html">Investigar</a> · <a href="/blog/ressonancias.html#comunidade">Comunidade</a> · <a href="/blog/escrever.html">Escrever</a> · <a href="/#comercio">Ofertas</a></nav>
 </header>
 """
 
@@ -92,11 +92,46 @@ CHAMADA = """<section class="chamada" aria-labelledby="chamada-{i}">
     {form}
   </section>"""
 
+SINAL = """<section class="sinal" aria-labelledby="sinal-t">
+    <h2 id="sinal-t">Este artigo continua com você</h2>
+    <p>Tem uma pergunta, uma correção, uma fonte ou uma experiência sobre o assunto? Mande. O organismo lê tudo, mas <strong>nada vira verdade por ser muito pedido</strong>: cada sinal passa pela checagem antes de virar conteúdo.</p>
+    <div class="sinal-acoes">
+      <button type="button" class="btn fantasma investigar" data-pagina="{pagina}">🔎 Quero investigar isso</button>
+      <button type="button" class="btn fantasma compartilhar">Compartilhar</button>
+      <p class="retorno retorno-investigar" role="status" aria-live="polite"></p>
+    </div>
+    <form class="sinal-form" data-pagina="{pagina}" novalidate>
+      <label for="sinal-tipo">O que você quer mandar?</label>
+      <select id="sinal-tipo" name="tipo">
+        <option value="pergunta">Uma pergunta</option>
+        <option value="correcao">Uma correção</option>
+        <option value="evidencia">Uma fonte ou evidência</option>
+        <option value="experiencia">Uma experiência</option>
+        <option value="opiniao">Uma opinião</option>
+      </select>
+      <label for="sinal-texto">Seu texto</label>
+      <textarea id="sinal-texto" name="texto" maxlength="4000" rows="4" placeholder="Escreva do seu jeito. Se tiver link da fonte, cole aqui." required></textarea>
+      <label for="sinal-nome">Nome (opcional)</label>
+      <input type="text" id="sinal-nome" name="nome" maxlength="80" autocomplete="name" placeholder="Como quer ser identificado">
+      <details>
+        <summary>Quero receber a resposta por e-mail</summary>
+        <label for="sinal-email">E-mail</label>
+        <input type="email" id="sinal-email" name="email" maxlength="254" autocomplete="email" placeholder="voce@exemplo.com">
+        <label class="aceite"><input type="checkbox" name="contato"> <span>Autorizo o contato só para responder este envio.</span></label>
+      </details>
+      <button type="submit" class="btn">Enviar ao organismo</button>
+      <p class="retorno" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  """
+
 RODAPE = """<footer class="rodape">
   <p><a href="/">Espelho Espelho Evo</a> · memória viva e validação de IA em português · <a href="/blog/">todos os artigos</a> · <a href="/guia-p0.html">guia gratuito</a></p>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
 <script src="/blog/inscricao.js" defer></script>
+<script src="/blog/espelho.js" defer></script>
 </body>
 </html>
 """
@@ -133,6 +168,8 @@ def pagina(caminho, titulo, descricao, corpo, chamada, titulo_pagina=None, ld=No
             form = form.replace(f'<option value="{chamada["pacote"]}">', f'<option value="{chamada["pacote"]}" selected>', 1)
         ofertas = '\n'.join(f'      <li>{o}</li>' for o in chamada.get('ofertas', OFERTAS_PADRAO))
         ch = CHAMADA.format(i=1, titulo=chamada['titulo'], texto=chamada['texto'], ofertas=ofertas, form=form)
+    if caminho.startswith('blog/') and 'class="sinal-form"' not in corpo and caminho not in ('blog/index.html', 'blog/ressonancias.html'):
+        ch = SINAL.format(pagina=slug) + ch
     doc = cab + corpo.replace('{{CHAMADA}}', ch) + RODAPE
     destino = RAIZ / caminho
     destino.parent.mkdir(parents=True, exist_ok=True)

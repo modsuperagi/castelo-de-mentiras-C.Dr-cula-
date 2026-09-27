@@ -100,6 +100,7 @@
       if (error) return erro('Não conseguimos registrar agora. Tente de novo em instantes.');
       retorno.textContent = `Pronto, ${inscricao.nome.split(' ')[0]}. Você está na Turma Fundadora: o contato chega em ${inscricao.email} quando a sua vaga abrir.`;
       retorno.className = 'retorno ok';
+      document.dispatchEvent(new CustomEvent('espelho:conversao'));
       const pagamento = await instrucoesPagamento(cliente, inscricao.email);
       if (pagamento) mostrarPagamento(retorno, pagamento, inscricao.email);
       form.reset();

@@ -40,7 +40,7 @@ CABECA = """<!DOCTYPE html>
 <body>
 <header class="topo">
   <a class="marca" href="/">🪞 Espelho Espelho Evo</a>
-  <nav aria-label="Seções"><a href="/blog/">Explorar</a> · <a href="/blog/ressonancias.html">Investigar</a> · <a href="/blog/ressonancias.html#comunidade">Comunidade</a> · <a href="/blog/escrever.html">Escrever</a> · <a href="/#comercio">Ofertas</a></nav>
+  <nav aria-label="Seções"><a href="/investigar.html">Investigar</a> <a href="/investigar.html#conferir">Conferir</a> <a href="/blog/">Aprender</a> <a href="/blog/ressonancias.html">Acompanhar</a> <a href="/nucleos.html">Conhecer o EVO</a></nav>
 </header>
 """
 
@@ -138,7 +138,7 @@ RELACIONADOS = """<section class="relacionados" aria-labelledby="relacionados-t"
   </section>"""
 
 RODAPE = """<footer class="rodape">
-  <p><a href="/">Espelho Espelho Evo</a> · memória viva e validação de IA em português · <a href="/blog/">todos os artigos</a> · <a href="/guia-p0.html">guia gratuito</a></p>
+  <p><a href="/">Espelho Espelho Evo</a> · investigar o que a IA respondeu, em português · <a href="/blog/">todos os artigos</a> · <a href="/guia-p0.html">guia gratuito</a> · <a href="/#comercio">planos e preços</a></p>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
 <script src="/blog/inscricao.js" defer></script>

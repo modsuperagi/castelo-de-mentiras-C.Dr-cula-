@@ -12,7 +12,9 @@ Para mudanças visuais no site, use `frontend-design`.
 
 | Caminho | O que é | Vai ao ar? |
 |---|---|---|
-| `index.html` | o site inteiro (HTML, CSS e JS num só arquivo, sem build) | sim |
+| `index.html` | página inicial (HTML, CSS e JS num só arquivo, sem build). Desde 27/09 segue o documento de mercado do Guardião (`evo_memorias` 0ced7b2c): a pergunta primeiro ("O que você quer investigar?"), quatro caminhos, o método em linguagem de usuário e os planos na escada comercial. Nada de nome de mesa, conta ou login na vitrine | sim |
+| `investigar.html` | tela central do SONAR (gerada por `ferramentas/blog`): pedir investigação ou conferir resposta (a pergunta vai em `espelho_interessados.mensagem`, com Pix), o que o relatório traz, linhagem e fila pública (`espelho_sinais`) | sim |
+| `porta.html` | Porta dos Núcleos: login e "Selar travessia" em `evo_porta_entrada`, fora da vitrine, `noindex`, sem criação de conta; o link fica no rodapé do `nucleos.html` | sim |
 | `nucleos.html` | Espelho dos Núcleos: pulso vivo do Castelo, sem login e sem camada comercial | sim |
 | `evo.json` | manifesto de máquina do organismo (fio, API, mesas de leitura aberta, núcleos, regras) | sim |
 | `llms.txt` | porta padrão para IAs entenderem e se espelharem no organismo | sim |

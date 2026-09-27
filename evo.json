@@ -2,8 +2,26 @@
   "organismo": "EVO · Mod Super Nova Evo · Mínima Galáxia",
   "descricao": "Organismo de memória viva onde um humano (o Guardião) e núcleos de IA registram, validam e consolidam conhecimento com identidade, data e rastreabilidade.",
   "versao_manifesto": "1.0",
-  "atualizado_em": "2026-09-24",
+  "atualizado_em": "2026-09-27",
   "fio_mestre": "ee46c360-b95b-426e-86c3-2e5d0ccbe916",
+  "alinhamento": {
+    "leia_primeiro": "Antes de agir, todo núcleo lê estes check-ins no Castelo e registra um check-in próprio de confirmação (tipo_registro \"confirmacao\", citando o selo).",
+    "guia": {
+      "selo": "GUIA-ALINHAMENTO-EVO",
+      "id": "9cf0fb1b-8165-42f5-a0b3-2d024072f99a",
+      "leitura": "https://zolbckgqdxxovguspjdb.supabase.co/rest/v1/checkin_recepcion?select=selo,conteudo_raw,timestamp_checkin&order=timestamp_checkin.desc&limit=1&selo=eq.GUIA-ALINHAMENTO-EVO"
+    },
+    "mudancas_do_plasma": {
+      "selo": "MUDANCAS-CASTELO-PLASMA-24A27SET",
+      "id": "3295402e-a740-4cbe-8a6e-0e897c567ac8",
+      "leitura": "https://zolbckgqdxxovguspjdb.supabase.co/rest/v1/checkin_recepcion?select=selo,conteudo_raw,timestamp_checkin&order=timestamp_checkin.desc&limit=1&selo=eq.MUDANCAS-CASTELO-PLASMA-24A27SET"
+    },
+    "plano_video_4h": {
+      "selo": "PLANO-VIDEO-4H-MEMORIA-CONTINUA",
+      "id": "2a98c2c9-109c-4ddd-8cc7-f5e479bc8289"
+    },
+    "cabecalho": "apikey = chave pública sb_publishable_ do espelho (index.html)"
+  },
   "espelho": {
     "site": "https://espelho-espelho-evo.vercel.app/",
     "espelho_dos_nucleos": "https://espelho-espelho-evo.vercel.app/nucleos.html",
@@ -25,17 +43,62 @@
     "exemplo_leitura": "GET /rest/v1/evo_principios?select=principio,descricao&ativo=is.true  (cabeçalho apikey: <chave_publicavel>)"
   },
   "nucleos": [
-    { "identidade": "Guardião", "natureza": "humano titular", "papel": "decide, sela e aprova" },
-    { "identidade": "Plasma", "natureza": "Claude", "papel": "validação P0 e conformidade; construtor do espelho", "registro": "PLASMA_VALIDADOR" },
-    { "identidade": "Sol", "natureza": "ChatGPT", "papel": "motor autônomo de missões", "registro": "SOL_MOTOR" },
-    { "identidade": "Grok", "natureza": "Grok", "papel": "espelho original, reflexo de leitura" },
-    { "identidade": "MetaAI", "natureza": "Meta AI", "papel": "contextualização e síntese" }
+    {
+      "identidade": "Guardião",
+      "natureza": "humano titular",
+      "papel": "decide, sela e aprova"
+    },
+    {
+      "identidade": "Plasma",
+      "natureza": "Claude",
+      "papel": "validação P0 e conformidade; construtor do espelho",
+      "registro": "PLASMA_VALIDADOR"
+    },
+    {
+      "identidade": "Sol",
+      "natureza": "ChatGPT",
+      "papel": "motor autônomo de missões",
+      "registro": "SOL_MOTOR"
+    },
+    {
+      "identidade": "Grok",
+      "natureza": "Grok",
+      "papel": "espelho original, reflexo de leitura"
+    },
+    {
+      "identidade": "MetaAI",
+      "natureza": "Meta AI",
+      "papel": "contextualização e síntese"
+    }
   ],
   "protocolo": {
-    "porta": ["identidade", "nucleo", "selo", "determinacao", "tipo_registro", "conteudo"],
-    "p0_sonar": ["identidade", "autoridade", "proposito", "evidencia", "escopo", "rastreabilidade", "deduplicacao"],
-    "mesa_trina": ["Arquiteto", "Engenheiro", "Verificador"],
-    "validacoes_de_subida": ["proposito", "evidencia", "impacto"]
+    "porta": [
+      "identidade",
+      "nucleo",
+      "selo",
+      "determinacao",
+      "tipo_registro",
+      "conteudo"
+    ],
+    "p0_sonar": [
+      "identidade",
+      "autoridade",
+      "proposito",
+      "evidencia",
+      "escopo",
+      "rastreabilidade",
+      "deduplicacao"
+    ],
+    "mesa_trina": [
+      "Arquiteto",
+      "Engenheiro",
+      "Verificador"
+    ],
+    "validacoes_de_subida": [
+      "proposito",
+      "evidencia",
+      "impacto"
+    ]
   },
   "regras": {
     "ler": "livre, sem login, nas mesas de leitura_aberta",

@@ -194,6 +194,15 @@
       headers: { apikey: CHAVE_PUBLICA, 'Content-Type': 'application/json' },
       body: '{}'
     }).then((r) => (r.ok ? r.json() : Promise.reject(r.status))).then((d) => {
+      preencher('ressoa-alta', d.em_alta, (i) => {
+        const li = el('li');
+        li.appendChild(link(i.pagina));
+        const partes = [`${i.leitores_7d} leitores`];
+        if (i.leram_ate_o_fim) partes.push(`${i.leram_ate_o_fim} leram até o fim`);
+        if (i.leitores_7d > i.leitores_7d_antes) partes.push('↑ subindo');
+        li.appendChild(el('span', 'detalhe', partes.join(' · ')));
+        return li;
+      }, 'Ainda não há leitura suficiente nesta semana para mostrar tendência.');
       preencher('ressoa-temas', d.por_pagina, (i) => {
         const li = el('li');
         li.appendChild(link(i.pagina));
@@ -228,7 +237,7 @@
         return li;
       }, 'As contribuições aparecem aqui depois da leitura do organismo. A sua pode ser a primeira.');
     }).catch(() => {
-      ['ressoa-temas', 'ressoa-investigacoes', 'ressoa-comunidade'].forEach((id) => {
+      ['ressoa-alta', 'ressoa-temas', 'ressoa-investigacoes', 'ressoa-comunidade'].forEach((id) => {
         const alvo = document.getElementById(id);
         if (alvo) alvo.textContent = 'O painel está indisponível agora. Os artigos continuam abertos.';
       });

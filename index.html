@@ -1068,6 +1068,7 @@
     if (error) { msg.textContent = 'Não conseguimos registrar agora. Tente de novo em instantes.'; msg.className = 'erro'; return; }
     msg.textContent = `Vaga reservada, ${inscricao.nome.split(' ')[0]}. O Guardião vai te procurar em ${inscricao.email}. 🔥🧬🌌🔑`;
     msg.className = 'ok';
+    document.dispatchEvent(new CustomEvent('espelho:conversao'));
     const pagamento = await instrucoesPagamento(espelho, inscricao.email);
     if (pagamento) mostrarPagamento(msg, pagamento, inscricao.email);
     $('form-fundador').reset();
@@ -1093,5 +1094,6 @@
   const jaInstalado = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
   if (ehIOS && !jaInstalado) $('dica-ios').hidden = false;
 </script>
+<script src="/blog/espelho.js" defer></script>
 </body>
 </html>

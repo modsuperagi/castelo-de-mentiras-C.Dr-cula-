@@ -413,9 +413,75 @@ ARTIGO_SEDUC = """<article>
 </article>
 """
 
+ESCREVER = """<main class="pagina">
+  <h1>Escreva no Espelho</h1>
+  <p class="linha-fina">Uma pergunta, uma ideia, uma experiência, uma correção ou uma fonte. O que você escrever entra na fila de leitura do organismo.</p>
+  <div class="quadro">
+    <p><strong>Seu texto fica como você escreveu.</strong> A IA do organismo pode resumir, sugerir fontes e ligar seu texto a outros temas, mas isso fica à parte, com o seu original preservado.</p>
+    <p><strong>Nada vira verdade por ser muito pedido.</strong> Cada envio começa como <em>recebido</em>. Só passa a <em>com evidência</em> ou <em>consolidado</em> quando há fonte conferida.</p>
+  </div>
+  <form class="sinal-form escrever" data-pagina="blog/escrever" novalidate>
+    <label for="esc-tipo">O que você quer escrever?</label>
+    <select id="esc-tipo" name="tipo">
+      <option value="pergunta">Pergunta: algo que você quer saber</option>
+      <option value="opiniao">Opinião: o que você pensa sobre um tema</option>
+      <option value="experiencia">Experiência: algo que aconteceu com você usando IA</option>
+      <option value="ideia">Ideia: um tema ou ferramenta que deveria existir</option>
+      <option value="evidencia">Evidência: uma fonte que ajuda a conferir algo</option>
+      <option value="correcao">Correção: algo errado em um artigo</option>
+      <option value="proposta">Proposta: algo para o organismo fazer</option>
+    </select>
+    <label for="esc-texto">Seu texto</label>
+    <textarea id="esc-texto" name="texto" maxlength="4000" rows="8" placeholder="Escreva do seu jeito. Se for sobre um artigo, diga qual. Se tiver fonte, cole o link." required></textarea>
+    <label for="esc-nome">Nome (opcional)</label>
+    <input type="text" id="esc-nome" name="nome" maxlength="80" autocomplete="name" placeholder="Como quer ser identificado. Em branco = anônimo">
+    <details>
+      <summary>Quero receber a resposta por e-mail</summary>
+      <label for="esc-email">E-mail</label>
+      <input type="email" id="esc-email" name="email" maxlength="254" autocomplete="email" placeholder="voce@exemplo.com">
+      <label class="aceite"><input type="checkbox" name="contato"> <span>Autorizo o contato só para responder este envio.</span></label>
+    </details>
+    <button type="submit" class="btn">Enviar ao organismo</button>
+    <p class="retorno" role="status" aria-live="polite"></p>
+  </form>
+  <p class="nota">Contribuições podem aparecer na página <a href="/blog/ressonancias.html#comunidade">Comunidade</a> depois da leitura do organismo, só com o nome que você escolheu. O e-mail nunca aparece.</p>
+</main>
+"""
+
+RESSONANCIAS = """<main class="pagina">
+  <h1>O que está ressoando?</h1>
+  <p class="linha-fina">O que os leitores estão perguntando, corrigindo e pedindo para investigar, e o que o organismo já conferiu.</p>
+  <div class="quadro regra">
+    <p><strong>Ressonância não é verdade.</strong> Um tema muito pedido ganha prioridade na fila, não credibilidade. Pouco pedido não quer dizer pouco importante. O que vale é a fonte conferida.</p>
+  </div>
+  <section id="ressonancias">
+    <h2>Temas com mais sinais (30 dias)</h2>
+    <div id="ressoa-temas"><p class="vazio">Carregando…</p></div>
+    <h2 id="investigar">Investigações</h2>
+    <div id="ressoa-investigacoes"><p class="vazio">Carregando…</p></div>
+    <h2 id="comunidade">Da comunidade</h2>
+    <div id="ressoa-comunidade"><p class="vazio">Carregando…</p></div>
+  </section>
+  <ul hidden>
+    <li data-titulo-de="blog/redacao-enem-2026-correcao-com-ia">Redação do ENEM 2026 com IA: como pedir correção por competência</li>
+    <li data-titulo-de="blog/concurso-seduc-ce-2026-plano-de-estudo">Concurso Seduc CE 2026 para professor: o estudo até a prova em 8 semanas</li>
+    <li data-titulo-de="blog/concurso-com-ia-sem-lei-inventada">Estudar para concurso com IA sem decorar lei inventada</li>
+    <li data-titulo-de="blog/referencia-do-chatgpt-existe">O ChatGPT me deu uma referência: como saber se ela existe antes de pôr no TCC</li>
+    <li data-titulo-de="blog/jurisprudencia-inventada-pela-ia">Jurisprudência inventada pela IA: como conferir antes de protocolar</li>
+    <li data-titulo-de="blog/ia-inventou-a-resposta">Como saber se o ChatGPT (ou qualquer IA) inventou a resposta</li>
+    <li data-titulo-de="blog/memoria-de-ia">Por que a IA esquece o que você já explicou, e como criar uma memória que não se perde</li>
+    <li data-titulo-de="blog/tres-olhares-mesa-trina">Três olhares antes de decidir com IA: o método da Mesa Trina</li>
+  </ul>
+  <p class="nota">Quer entrar na conversa? <a href="/blog/escrever.html">Escreva no Espelho</a> ou mande um sinal no fim de qualquer artigo.</p>
+</main>
+"""
+
 BLOG_INDEX = """<main class="pagina">
   <h1>Blog do Espelho</h1>
   <p class="linha-fina">Como usar IA com memória, evidência e método, em português e sem mistério.</p>
+  <label class="busca-rotulo" for="busca">Procurar nos artigos</label>
+  <input type="search" id="busca" class="busca" placeholder="ENEM, concurso, TCC, jurisprudência…" autocomplete="off">
+  <p class="busca-vazia" hidden>Nada encontrado com essa palavra. <a href="/blog/escrever.html">Pergunte ao organismo</a> e o tema entra na fila de investigação.</p>
   <ul class="lista-artigos">
     <li><a href="/blog/redacao-enem-2026-correcao-com-ia.html">Redação do ENEM 2026 com IA: como pedir correção por competência</a>
       <p>Seis semanas até a prova: as 5 competências em uma linha cada e um pedido que corrige de verdade.</p></li>
@@ -507,6 +573,18 @@ PAGINAS = [
                   'ofertas': ['<strong>Mapa do Edital</strong>: matérias, pesos, lei com link oficial e cronograma até a prova, R$ 29.',
                               '<strong>Plano Concursos por etapas</strong>: o mapa e mais uma etapa por semana, com questões conferidas, R$ 39/mês.',
                               '<strong>Checagem P0</strong>: uma resposta de IA conferida nas 7 verificações, R$ 19.']}),
+    dict(caminho='blog/escrever.html',
+         titulo='Escreva no Espelho',
+         titulo_pagina='Escreva no Espelho · Espelho Espelho Evo',
+         descricao='Mande uma pergunta, opinião, experiência, ideia, fonte ou correção. Seu texto fica como você escreveu e entra na fila de leitura do organismo.',
+         corpo=ESCREVER, chamada=None,
+         ld='{"@context":"https://schema.org","@type":"WebPage","name":"Escreva no Espelho","inLanguage":"pt-BR","url":"https://espelho-espelho-evo.vercel.app/blog/escrever.html"}'),
+    dict(caminho='blog/ressonancias.html',
+         titulo='O que está ressoando?',
+         titulo_pagina='O que está ressoando? · Espelho Espelho Evo',
+         descricao='Perguntas, correções e pedidos de investigação dos leitores do Espelho, e o que o organismo já conferiu. Ressonância não é verdade.',
+         corpo=RESSONANCIAS, chamada=None,
+         ld='{"@context":"https://schema.org","@type":"WebPage","name":"O que está ressoando?","inLanguage":"pt-BR","url":"https://espelho-espelho-evo.vercel.app/blog/ressonancias.html"}'),
     dict(caminho='blog/index.html',
          titulo='Blog do Espelho',
          titulo_pagina='Blog do Espelho Espelho Evo · IA com memória, evidência e método',

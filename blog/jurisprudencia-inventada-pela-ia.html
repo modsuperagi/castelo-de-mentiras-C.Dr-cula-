@@ -28,7 +28,7 @@
 <body>
 <header class="topo">
   <a class="marca" href="/">🪞 Espelho Espelho Evo</a>
-  <nav><a href="/guia-p0.html">Guia gratuito</a> · <a href="/blog/">Blog</a> · <a href="/#comercio">Ofertas</a></nav>
+  <nav aria-label="Seções"><a href="/blog/">Explorar</a> · <a href="/blog/ressonancias.html">Investigar</a> · <a href="/blog/ressonancias.html#comunidade">Comunidade</a> · <a href="/blog/escrever.html">Escrever</a> · <a href="/#comercio">Ofertas</a></nav>
 </header>
 <article>
   <p class="meta">Blog · 26 de setembro de 2026 · leitura de 5 minutos · para advogados</p>
@@ -72,6 +72,38 @@
   <h2>Para o escritório inteiro</h2>
   <p>As cinco conferências são a aplicação jurídica das <a href="/guia-p0.html">7 perguntas do guia gratuito</a>. Para padronizar isso na equipe, os <strong>Roteiros do Organismo</strong> trazem os pedidos prontos de checagem, registro de decisão e revisão em três olhares, e a <strong>Mesa Trina</strong> examina um fluxo de trabalho com IA do seu escritório em sessão.</p>
   <p class="meta">Este artigo trata de método de conferência. Não é orientação jurídica sobre um caso concreto.</p>
+
+  <section class="sinal" aria-labelledby="sinal-t">
+    <h2 id="sinal-t">Este artigo continua com você</h2>
+    <p>Tem uma pergunta, uma correção, uma fonte ou uma experiência sobre o assunto? Mande. O organismo lê tudo, mas <strong>nada vira verdade por ser muito pedido</strong>: cada sinal passa pela checagem antes de virar conteúdo.</p>
+    <div class="sinal-acoes">
+      <button type="button" class="btn fantasma investigar" data-pagina="blog/jurisprudencia-inventada-pela-ia">🔎 Quero investigar isso</button>
+      <button type="button" class="btn fantasma compartilhar">Compartilhar</button>
+      <p class="retorno retorno-investigar" role="status" aria-live="polite"></p>
+    </div>
+    <form class="sinal-form" data-pagina="blog/jurisprudencia-inventada-pela-ia" novalidate>
+      <label for="sinal-tipo">O que você quer mandar?</label>
+      <select id="sinal-tipo" name="tipo">
+        <option value="pergunta">Uma pergunta</option>
+        <option value="correcao">Uma correção</option>
+        <option value="evidencia">Uma fonte ou evidência</option>
+        <option value="experiencia">Uma experiência</option>
+        <option value="opiniao">Uma opinião</option>
+      </select>
+      <label for="sinal-texto">Seu texto</label>
+      <textarea id="sinal-texto" name="texto" maxlength="4000" rows="4" placeholder="Escreva do seu jeito. Se tiver link da fonte, cole aqui." required></textarea>
+      <label for="sinal-nome">Nome (opcional)</label>
+      <input type="text" id="sinal-nome" name="nome" maxlength="80" autocomplete="name" placeholder="Como quer ser identificado">
+      <details>
+        <summary>Quero receber a resposta por e-mail</summary>
+        <label for="sinal-email">E-mail</label>
+        <input type="email" id="sinal-email" name="email" maxlength="254" autocomplete="email" placeholder="voce@exemplo.com">
+        <label class="aceite"><input type="checkbox" name="contato"> <span>Autorizo o contato só para responder este envio.</span></label>
+      </details>
+      <button type="submit" class="btn">Enviar ao organismo</button>
+      <p class="retorno" role="status" aria-live="polite"></p>
+    </form>
+  </section>
 
   <section class="chamada" aria-labelledby="chamada-1">
     <h2 id="chamada-1">Mande a peça, o organismo confere</h2>
@@ -120,5 +152,6 @@
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
 <script src="/blog/inscricao.js" defer></script>
+<script src="/blog/espelho.js" defer></script>
 </body>
 </html>

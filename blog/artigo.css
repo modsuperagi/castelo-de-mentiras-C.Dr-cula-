@@ -130,3 +130,42 @@ footer.rodape a { color: var(--texto-2); }
 .pagamento strong { display: block; color: var(--ouro-claro); margin-bottom: 6px; }
 .pagamento p { margin: 6px 0; font-size: .95rem; overflow-wrap: anywhere; }
 .pagamento .btn { margin-top: 8px; }
+
+/* Espelho editorial: sinais, escrita, busca e ressonâncias */
+.topo nav { line-height: 1.9; }
+.sinal {
+  border: 1px solid var(--carta-borda);
+  border-radius: 16px;
+  padding: 24px 22px;
+  margin: 48px 0 0;
+  background: var(--carta);
+}
+.sinal h2 { margin-top: 0; font-size: 1.5rem; }
+.sinal-acoes { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 14px 0 6px; }
+.sinal-acoes .retorno { flex-basis: 100%; }
+form.sinal-form { display: grid; gap: 10px; margin-top: 14px; }
+form.sinal-form label { font-size: .95rem; color: var(--texto-2); }
+form.sinal-form input[type=text], form.sinal-form input[type=email], form.sinal-form select, form.sinal-form textarea,
+input.busca {
+  width: 100%; padding: 12px 14px; border-radius: 10px;
+  border: 1px solid var(--carta-borda); background: #0d0b16; color: var(--texto);
+  font-family: inherit; font-size: 1rem;
+}
+form.sinal-form textarea { resize: vertical; min-height: 110px; }
+form.sinal-form details { color: var(--texto-2); font-size: .95rem; }
+form.sinal-form details summary { cursor: pointer; color: var(--ouro-claro); }
+form.sinal-form details[open] { display: grid; gap: 10px; }
+form.sinal-form .aceite { display: flex; gap: 10px; align-items: flex-start; font-size: .9rem; }
+form.sinal-form .aceite input { margin-top: 5px; flex: none; }
+.busca-rotulo { display: block; color: var(--texto-2); font-size: .95rem; margin: 22px 0 6px; }
+.busca-vazia { color: var(--texto-2); margin-top: 12px; }
+.nota { color: var(--texto-2); font-size: .95rem; margin-top: 28px; }
+.quadro.regra { border-color: rgba(212,168,67,.5); }
+#ressonancias h2 { font-size: 1.45rem; margin-top: 34px; }
+ul.ressoa { list-style: none; padding: 0; }
+ul.ressoa li { border-top: 1px solid var(--carta-borda); padding: 14px 0; margin: 0; overflow-wrap: anywhere; }
+ul.ressoa li p { margin: 6px 0; }
+ul.ressoa .detalhe { display: block; color: var(--texto-2); font-size: .92rem; }
+ul.ressoa .estado { display: inline-block; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--violeta); }
+ul.ressoa .fonte { display: block; font-size: .92rem; }
+.vazio { color: var(--texto-2); }

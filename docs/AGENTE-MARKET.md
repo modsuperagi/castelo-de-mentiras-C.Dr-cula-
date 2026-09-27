@@ -131,6 +131,35 @@ sessão da Mesa com fontes e propor ao Guardião **um** lugar para ele responder
 Dia sem inscrito novo: o relatório diz isso em uma linha e propõe **uma** ação de tráfego do
 `docs/KIT-DIVULGACAO.md` (calendário de 7 dias).
 
+## Sinais do Espelho (SONAR editorial, desde 27/09)
+
+O público manda sinais no fim de cada artigo e na página Escrever (`espelho_sinais`), e o site registra
+telemetria de comportamento sem dado pessoal (`espelho_eventos`). **Ressonância não é verdade**: muito sinal dá
+prioridade na fila, nunca credibilidade.
+
+A cada ciclo diário:
+1. **SONAR (observar):** ler os sinais novos.
+   ```sql
+   SELECT id, tipo, pagina, texto, autor_nome, contato_ok, canal, criado_em FROM espelho_sinais
+   WHERE estado = 'RECEBIDO' ORDER BY criado_em;
+   SELECT pagina, evento, count(*) FROM espelho_eventos WHERE criado_em > now() - interval '7 days' GROUP BY 1, 2 ORDER BY 3 DESC;
+   ```
+2. **Trina (delimitar):** separar pergunta, opinião, hipótese, fonte e correção. Guardar em `tratamento` o
+   `{"resumo": "...", "classe": "...", "verificar": [...]}`. O `texto` original **nunca** é alterado (Ghost).
+3. **Hellwolf (conter):** spam, ofensa, dado pessoal de terceiros ou pedido fora do escopo → `ARQUIVADO`.
+   Nada é publicado com e-mail, telefone ou nome de terceiro.
+4. **Estados** (só avançam com prova): `RECEBIDO` → `OBSERVADO` (lido e delimitado) → `EM_INVESTIGACAO` (busca pelo
+   método do Sonar) → `COM_EVIDENCIA` (fonte aberta e conferida em `fontes`: `[{"titulo","url"}]`) → `CONSOLIDADO`
+   (virou correção num artigo ou artigo novo). Sem fonte, fica em `EM_INVESTIGACAO` ou volta para `OBSERVADO`
+   com "não dá para saber".
+5. **Golden (consolidar):** correção comprovada → corrigir o artigo pelo gerador (`ferramentas/blog/`) e citar a
+   fonte. Tema com muitos sinais → candidato ao artigo do dia par.
+6. **Publicar na página Ressonâncias:** `publicavel = true` só depois do passo 3, só com o nome que a pessoa
+   escolheu (ou Anônimo). O e-mail nunca aparece (a função `espelho_ressonancias` não o devolve).
+7. **Responder:** se `contato_ok` e houver resposta conferida, e-mail transacional curto com a resposta e a fonte
+   (é resposta ao que a pessoa perguntou, não marketing).
+8. Registrar no relatório do dia: sinais novos, estados mudados, o que virou conteúdo.
+
 ## Plano (em validação na Mesa Trina)
 
 | Fase | Dias | O quê | Meta |

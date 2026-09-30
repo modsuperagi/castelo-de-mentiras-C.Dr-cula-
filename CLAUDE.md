@@ -28,6 +28,8 @@ Para mudanças visuais no site, use `frontend-design`.
 | `sonar/` | **SONAR**: outro produto, site de investigação com fontes: Grok Bot como operador e busca própria em `lib/busca/` (o caminho xAI ficou secundário). Projeto Vercel próprio, Root Directory `sonar`. Sem nenhuma ponte ou nome do organismo | pelo projeto dele, não pelo espelho |
 | `ferramentas/blog/` | gerador do guia e do blog (`python3 gerar.py`; textos em `conteudo.py`). Regenera as páginas com o mesmo cabeçalho, rodapé e formulário | **não** |
 | `docs/SONAR-MVP.md` | documentação e checkpoint do SONAR (endpoints, variáveis, fluxo, status de validação) | **não** |
+| `docs/relatorios/` | relatórios pedidos pelo Guardião sobre o funcionamento do organismo (estado, pontos cegos, novidades do mundo das IAs, com fontes) | **não** |
+| `docs/projetos-sonar/` | os três projetos do SONAR (Golden, Sol e Mariana) planejados do início ao fim para a votação dos 7 núcleos: comparação, base comum, cédula e os documentos originais | **não** |
 | `docs/SONAR-BOT-INSTRUCOES.md` | as 6 camadas da Mesa Trina como instruções para colar no bot SONAR (Grok Bot) | **não** |
 | `docs/KIT-DIVULGACAO.md` | kit de divulgação orgânica de pré-lançamento: posts prontos, calendário, UTMs, links de pagamento | **não** |
 | `docs/AGENTE-MARKET.md` | agente Market (MARKET_MERCADO): conselho de marketing e vendas, ciclo diário, assinaturas, limites | **não** |
@@ -49,13 +51,15 @@ precisa entrar nele **antes** do push.
 - **Registrar**: travessia em `evo_porta_entrada`; decisão em `registro_decisoes` (e no Notion Golden, se for comercial ou estrutural). Sempre com `fio_id` `ee46c360-b95b-426e-86c3-2e5d0ccbe916`.
 - **Sempre recorra ao Castelo** (ordem do Guardião, 26/09): antes de concluir que algo não existe ou de criar estrutura nova, procure no Castelo, inclusive funções, circulação e pedidos. Ex.: o Sonar entra por `fluxo_e2e_sonar_principal`; pedidos aos bots vão em `pedidos_entre_nucleos`.
 - **Mesa Trina planeja e decide; o Sonar abastece**: conhecimento que faltar no Castelo para a Mesa vem pelo Sonar e entra em `payload.conhecimento_sonar` da sessão, com fontes. Quem coleta não dá o veredito (skill `castelo-evo`).
+- **Castelo aberto aos núcleos, não ao público** (Guardião/Drácula, 30/09): o anônimo lê só a Recepção e a vitrine; o resto, só a conta do Guardião ou o `service_role`. Veja a skill `castelo-evo`.
+- **Autocorreção de segurança** (Guardião, 30/09): quem acha falha de segurança corrige (só fechando acesso), testa, exporta, registra e pede conferência a outro núcleo. Não espera o Guardião verificar.
+- **Grok Bot M é o Drácula**: a personificação do Guardião no Super Grok. Determinação dele vale como do Guardião.
 - **Idioma**: português do Brasil, no site, nos commits e nos registros.
 
 ## Pendências conhecidas (decisão do Guardião)
 
-- **Leitura anônima** das mesas de núcleo segue aberta (ponte do espelho do Grok, 19/09). Veja a skill `castelo-evo`.
 - **Leaked Password Protection** do Supabase Auth exige plano Pro (custo zero manda esperar).
 - **Links de pagamento**: adiados. O mapa `LINKS_PAGAMENTO` no `index.html` aguarda os links.
 - **Pix**: ligado em 26/09 por determinação do Plasma, com delegação do Guardião ("você assume a determinação Drácula e protege"). A chave e o e-mail de comprovante moram só em `espelho_pagamento_config` (nunca no site, no repositório ou em registro) e só aparecem para quem acabou de se inscrever em algo que o organismo entrega sozinho (`espelho_catalogo.pix_automatico`: planos mensais, Concursos, ENEM e serviços avulsos). Preço, prazo e material pedido moram em `espelho_catalogo` e mudam sem deploy; o uso dos planos se registra em `espelho_uso`. Desliga com um UPDATE (veja `docs/AGENTE-MARKET.md`). Compras se registram em `espelho_assinaturas` (só a referência da transação).
-- **SONAR**: operação decidida em 26/09 (Grok Bot → Cursor → Dola/Golden + busca própria em `sonar/lib/busca/`). Faltam as sete entregas do Sonar no Castelo, o projeto Vercel e o primeiro teste real. Veja `docs/SONAR-MVP.md`.
+- **SONAR**: operação decidida em 26/09 (Grok Bot → Cursor → Dola/Golden + busca própria em `sonar/lib/busca/`). Faltam as sete entregas do Sonar no Castelo, o projeto Vercel e o primeiro teste real. Veja `docs/SONAR-MVP.md`. Em 27/09 o Guardião pediu o planejamento de três projetos para votação dos núcleos (`docs/projetos-sonar/`): nada do SONAR é construído antes do vencedor, do marketing e da ordem do Guardião.
 - Dois deploys antigos do Vercel ainda guardam cópias dos arquivos internos; apagá-los é irreversível e aguarda ordem.

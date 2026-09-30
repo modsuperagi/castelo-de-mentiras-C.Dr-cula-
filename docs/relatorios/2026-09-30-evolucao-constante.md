@@ -324,3 +324,29 @@ Mundo:
 - arXiv, levantamento sobre segurança de memória de agentes: https://arxiv.org/pdf/2604.16548
 - Entercast, PL 2338 com votação marcada para maio de 2026: https://www.entercastconsulting.com.br/blog/marco-legal-ia-brasil-votacao-camara-maio-2026
 - Senado, PL 2338/2023: https://www25.senado.leg.br/web/atividade/materias/-/materia/157233
+
+---
+
+## Adendo · o que foi feito depois do relatório (30/09)
+
+Por ordem do Guardião ("aberto aos núcleos, não ao público"; "quando identificam falta de RLS,
+ativem por si mesmos"):
+
+- **Migração `20260930021952_castelo_leitura_so_nucleos`.** Tirou a leitura pública de memória,
+  circulação, Trina, Mariana, ponte e Sol. Os núcleos leem pela conta do Guardião
+  (`guardiao_leitura`) ou pelo `service_role`. Decisões ficam visíveis ao público só com
+  `nivel_acesso = 'publico'`, e canais voltaram ao filtro original. Saíram as três políticas
+  `allow_all_temporario` e o UPDATE sem política da ponte Ghost.
+- **Testado.** Como anônimo, a Recepção e a vitrine abrem, e o resto nega. Como Guardião, tudo abre.
+  Com uma conta sem o papel de Guardião, nada interno abre. O advisor não mostrou nenhum alerta novo
+  além de "sem policy" (INFO) nas mesas que agora só o `service_role` alcança.
+- **Pedidos entre núcleos** continuam como o Grok Bot M (Drácula) deixou: só a conta do Guardião e
+  o `service_role`. Eles não passam pelo check-in, porque a Recepção dispara P0 e a circulação e
+  engarrafaria a Trina. O conhecimento que um pedido produz entra pelo check-in.
+- **Regra de autocorreção** selada em `evo_memorias` (CLAUDE.md, b6d4ca93), decisão 83ac1771, e
+  pedido 522c49e2 ao Verificador da Mesa Trina para conferir.
+- **Painel de tarefas corrigido.** O item do verify_jwt foi concluído; as mesas sem policy estão
+  recontadas (8, todas fechadas de propósito); o P1 duplicado foi cancelado; o sinal da Supabase
+  foi fechado com fontes. O pedido "acompanhar campanha" foi cancelado.
+- **Gatilho Drácula → Plasma:** o texto está em `docs/GATILHO-DRACULA.md`. A criação automática foi
+  bloqueada pelo sistema de permissões desta sessão.

@@ -108,16 +108,28 @@ Decisões comerciais ou estruturais se espelham também no Notion
 
 🟢 é vitrine. 🟡 é o que se vende (Selo de Travessia, serviços). 🔴 é o motor do organismo.
 
-**Estado técnico real (24/09/2026). Não confunda a distinção comercial com a trava técnica:**
+**Estado técnico real (30/09/2026). Não confunda a distinção comercial com a trava técnica:**
 - **Escrita**: fechada. Conta autenticada só escreve com o papel `guardiao` (migração
   `20260924133321_hellwolf_fechar_escrita_autenticada_ao_guardiao`). O visitante anônimo só insere em
-  `espelho_interessados`. O `service_role` (Sol Edge) contorna RLS por design.
-- **Leitura**: continua **aberta ao anônimo** em várias mesas 🟡/🔴 (`evo_memorias`, `meta_sessões_trina`,
-  `coracao_motor_principal`, `sol_missions`, …) pela policy `espelho_select_anon_auth`, criada de propósito
-  na migração `20260919063408_reabrir_ponte_espelho_grants_rls_20260919` para o espelho original ler a circulação.
-  Com a chave publicável num site público, qualquer pessoa consegue ler essas mesas.
-  **Fechar a leitura é decisão do Guardião** (pode quebrar o espelho do Grok). Não altere sem ordem explícita.
-- As 5 mesas com policy `allow_all_temporario` não têm grant para `anon`/`authenticated`: hoje só o `service_role` as alcança.
+  `espelho_interessados`, `espelho_sinais` e `espelho_eventos`. O `service_role` (Sol Edge, bots de servidor)
+  contorna RLS por design. `pedidos_entre_nucleos` e `fluxo_nos_nucleos` são só do Guardião e do
+  `service_role` (migração do Grok Bot M, `20260930013743`).
+- **Leitura**: aberta aos núcleos, não ao público (determinação do Guardião/Drácula, 30/09, migração
+  `20260930021952_castelo_leitura_so_nucleos`). O anônimo lê só a Recepção e a vitrine: `evo_agentes`,
+  `evo_principios`, `castelo_identidades`, `checkin_recepcion`, `sessao_checkpoint`,
+  `fios_checkpoint_universal`, `acessos_canais` (ativos, `publico`/`estrutura`) e `registro_decisoes` com
+  `nivel_acesso = 'publico'`. Memória, circulação, Trina, Mariana, ponte e Sol: só com a conta do
+  Guardião (`eh_guardiao()`, policy `guardiao_leitura`) ou `service_role`.
+- Pedido entre núcleos é mensagem de operação, não conhecimento: não passa pelo check-in (a Recepção
+  dispara P0 e a circulação). O que o pedido **produz** de conhecimento entra pelo check-in
+  (`fluxo_e2e_sonar_principal`).
+
+**Autocorreção de segurança (ordem do Guardião, 30/09).** Núcleo que acha uma falha de segurança no
+Castelo (RLS faltando, política `USING (true)` para o público, GRANT sem política, função exposta) corrige
+sem esperar o Guardião, desde que a correção feche acesso e não abra. Depois: roda `get_advisors`,
+testa como `anon` e como Guardião, exporta a migração, registra a travessia (`tipo_registro =
+'seguranca_rls'`) e abre um pedido em `pedidos_entre_nucleos` para outro núcleo conferir (o Verificador
+da Mesa Trina, ou o Plasma). Abrir acesso, apagar dado e gastar dinheiro continuam exigindo ordem.
 
 ## Funil comercial
 

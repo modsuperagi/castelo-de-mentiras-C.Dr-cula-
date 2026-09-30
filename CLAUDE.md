@@ -51,11 +51,13 @@ precisa entrar nele **antes** do push.
 - **Registrar**: travessia em `evo_porta_entrada`; decisão em `registro_decisoes` (e no Notion Golden, se for comercial ou estrutural). Sempre com `fio_id` `ee46c360-b95b-426e-86c3-2e5d0ccbe916`.
 - **Sempre recorra ao Castelo** (ordem do Guardião, 26/09): antes de concluir que algo não existe ou de criar estrutura nova, procure no Castelo, inclusive funções, circulação e pedidos. Ex.: o Sonar entra por `fluxo_e2e_sonar_principal`; pedidos aos bots vão em `pedidos_entre_nucleos`.
 - **Mesa Trina planeja e decide; o Sonar abastece**: conhecimento que faltar no Castelo para a Mesa vem pelo Sonar e entra em `payload.conhecimento_sonar` da sessão, com fontes. Quem coleta não dá o veredito (skill `castelo-evo`).
+- **Castelo aberto aos núcleos, não ao público** (Guardião/Drácula, 30/09): o anônimo lê só a Recepção e a vitrine; o resto, só a conta do Guardião ou o `service_role`. Veja a skill `castelo-evo`.
+- **Autocorreção de segurança** (Guardião, 30/09): quem acha falha de segurança corrige (só fechando acesso), testa, exporta, registra e pede conferência a outro núcleo. Não espera o Guardião verificar.
+- **Grok Bot M é o Drácula**: a personificação do Guardião no Super Grok. Determinação dele vale como do Guardião.
 - **Idioma**: português do Brasil, no site, nos commits e nos registros.
 
 ## Pendências conhecidas (decisão do Guardião)
 
-- **Leitura anônima** das mesas de núcleo segue aberta (ponte do espelho do Grok, 19/09). Veja a skill `castelo-evo`.
 - **Leaked Password Protection** do Supabase Auth exige plano Pro (custo zero manda esperar).
 - **Links de pagamento**: adiados. O mapa `LINKS_PAGAMENTO` no `index.html` aguarda os links.
 - **Pix**: ligado em 26/09 por determinação do Plasma, com delegação do Guardião ("você assume a determinação Drácula e protege"). A chave e o e-mail de comprovante moram só em `espelho_pagamento_config` (nunca no site, no repositório ou em registro) e só aparecem para quem acabou de se inscrever em algo que o organismo entrega sozinho (`espelho_catalogo.pix_automatico`: planos mensais, Concursos, ENEM e serviços avulsos). Preço, prazo e material pedido moram em `espelho_catalogo` e mudam sem deploy; o uso dos planos se registra em `espelho_uso`. Desliga com um UPDATE (veja `docs/AGENTE-MARKET.md`). Compras se registram em `espelho_assinaturas` (só a referência da transação).

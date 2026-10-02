@@ -108,21 +108,25 @@ Decisões comerciais ou estruturais se espelham também no Notion
 
 🟢 é vitrine. 🟡 é o que se vende (Selo de Travessia, serviços). 🔴 é o motor do organismo.
 
-**Estado técnico real (30/09/2026). Não confunda a distinção comercial com a trava técnica:**
-- **Escrita**: fechada. Conta autenticada só escreve com o papel `guardiao` (migração
-  `20260924133321_hellwolf_fechar_escrita_autenticada_ao_guardiao`). O visitante anônimo só insere em
-  `espelho_interessados`, `espelho_sinais` e `espelho_eventos`. O `service_role` (Sol Edge, bots de servidor)
-  contorna RLS por design. `pedidos_entre_nucleos` e `fluxo_nos_nucleos` são só do Guardião e do
-  `service_role` (migração do Grok Bot M, `20260930013743`).
-- **Leitura**: aberta aos núcleos, não ao público (determinação do Guardião/Drácula, 30/09, migração
-  `20260930021952_castelo_leitura_so_nucleos`). O anônimo lê só a Recepção e a vitrine: `evo_agentes`,
-  `evo_principios`, `castelo_identidades`, `checkin_recepcion`, `sessao_checkpoint`,
-  `fios_checkpoint_universal`, `acessos_canais` (ativos, `publico`/`estrutura`) e `registro_decisoes` com
-  `nivel_acesso = 'publico'`. Memória, circulação, Trina, Mariana, ponte e Sol: só com a conta do
-  Guardião (`eh_guardiao()`, policy `guardiao_leitura`) ou `service_role`.
+**Estado técnico real (02/10/2026). Não confunda a distinção comercial com a trava técnica:**
+- **Castelo independente, sem leitura pública** (ordem do Guardião, 30/09; migrações `20260930021952`,
+  `20261002025215`, `20261002025239`). O anônimo não lê nem escreve em nada. Os núcleos entram pela conta do
+  Guardião (`eh_guardiao()`) ou pelo `service_role`. A escrita autenticada é só do papel `guardiao`.
+  `pedidos_entre_nucleos` e `fluxo_nos_nucleos`: Guardião e `service_role` (migração `20260930013743`, Grok Bot M).
+- **Espelho dos núcleos = link por núcleo, com manual**, não site público. Função Edge `espelho-nucleos`
+  (`?k=<chave>`, `verify_jwt=false` de propósito: a chave é a autenticação). Chaves em `espelho_chaves_nucleo`
+  (só hash, expiram, revogáveis): `espelho_nucleo_gerar(núcleo, dias, quem)`, `espelho_nucleo_revogar(núcleo)`.
+  Manual em `evo_memorias` `ESPELHO/MANUAL-NUCLEOS`. O site `p0-pulsa` está pausado e o comercial, fora (Pix desligado).
+- **Mesa Trina com profundidade proporcional** (`20261002024555`): reflexo (check-in comum registra e segue),
+  pensamento (sessão sem missão segue adiante em 7 dias) e missão (aberta pelo Lab com `trina_abrir_missao`,
+  fica até `trina_concluir_missao`; quem abriu não valida). `trina_respirar()` roda todo dia (pg_cron
+  `trina-respirar`, 06:17 UTC). Resultado `ARQUIVADO` = não deliberado, não sobe ao Golden.
+- **Aprender antes de operar**: `castelo_aprendizados(tema)` devolve aprendizados (`meta_lab_entries`
+  `APRENDIZADOS`) e decisões ativas. Toda missão concluída grava um aprendizado.
 - Pedido entre núcleos é mensagem de operação, não conhecimento: não passa pelo check-in (a Recepção
-  dispara P0 e a circulação). O que o pedido **produz** de conhecimento entra pelo check-in
-  (`fluxo_e2e_sonar_principal`).
+  dispara P0 e a circulação). O que o pedido **produz** de conhecimento entra pelo check-in.
+- **Projeto auxiliar** `xrgapxeauoccaruvcfhs` (org pessoal do Guardião): réplica da Recepção, P0, circulação,
+  Mesa, Lab e pedidos. O Plasma testa lá em cima e aplica cá embaixo.
 
 **Autocorreção de segurança (ordem do Guardião, 30/09).** Núcleo que acha uma falha de segurança no
 Castelo (RLS faltando, política `USING (true)` para o público, GRANT sem política, função exposta) corrige

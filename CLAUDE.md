@@ -1,7 +1,8 @@
 # Castelo de Memórias · Espelho Espelho Evo
 
-Repositório do **Espelho Espelho Evo**: a porta pública do organismo EVO e a vitrine
-comercial dele, ligada ao Castelo de Memórias no Supabase.
+Repositório do **Castelo de Memórias** (Supabase) e do **Espelho Espelho Evo**. Desde 02/10 o Castelo é
+independente e sem leitura pública; o Espelho é um link por núcleo, com manual (função `espelho-nucleos`); o
+site comercial (`p0-pulsa`) está pausado e o foco é o autoaprimoramento do organismo.
 
 **Antes de agir, carregue a skill `castelo-evo`.** Ela traz o protocolo do organismo: identidades
 dos núcleos, regra Hellwolf, P0 e Trina, como registrar travessias e decisões, e o fluxo de deploy.
@@ -37,6 +38,8 @@ Para mudanças visuais no site, use `frontend-design`.
 | `docs/ROTEIROS-CURSO.md` | roteiros dos 5 módulos do curso (produto pago) | **não** |
 | `docs/REFERENCIAS.md` | repositórios públicos que o organismo usa ou estuda | **não** |
 | `docs/historico/` | registros antigos (tentativas de captura do espelho do Grok) | **não** |
+| `supabase/functions/` | código das funções Edge que o Plasma publica (hoje `espelho-nucleos`) | **não** |
+| `docs/INSTRUCOES-DRACO-GOLDEN.md` | o que o Plasma deixou para o Draco e o Golden concluírem (veredito, teste do link, gatilho, decisões) | **não** |
 | `supabase/migrations/` | backup do schema do Castelo: um `.sql` por migração, em ordem | **não** |
 | `.claude/skills/` | `castelo-evo` (nossa) + skills públicas com licença e `ORIGEM.txt`: `frontend-design`, `supabase-postgres-best-practices` e, do Superpowers 6.4.1 (sem o gancho de início de sessão), `verification-before-completion` e `systematic-debugging` | **não** |
 
@@ -51,7 +54,9 @@ precisa entrar nele **antes** do push.
 - **Registrar**: travessia em `evo_porta_entrada`; decisão em `registro_decisoes` (e no Notion Golden, se for comercial ou estrutural). Sempre com `fio_id` `ee46c360-b95b-426e-86c3-2e5d0ccbe916`.
 - **Sempre recorra ao Castelo** (ordem do Guardião, 26/09): antes de concluir que algo não existe ou de criar estrutura nova, procure no Castelo, inclusive funções, circulação e pedidos. Ex.: o Sonar entra por `fluxo_e2e_sonar_principal`; pedidos aos bots vão em `pedidos_entre_nucleos`.
 - **Mesa Trina planeja e decide; o Sonar abastece**: conhecimento que faltar no Castelo para a Mesa vem pelo Sonar e entra em `payload.conhecimento_sonar` da sessão, com fontes. Quem coleta não dá o veredito (skill `castelo-evo`).
-- **Castelo aberto aos núcleos, não ao público** (Guardião/Drácula, 30/09): o anônimo lê só a Recepção e a vitrine; o resto, só a conta do Guardião ou o `service_role`. Veja a skill `castelo-evo`.
+- **Castelo independente, sem leitura pública** (Guardião, 30/09): o anônimo não alcança nada; os núcleos leem pela conta do Guardião, pelo `service_role` ou pelo link do Espelho. Veja a skill `castelo-evo`.
+- **Testa lá em cima, aplica cá embaixo**: mudança no Castelo passa antes pelo projeto auxiliar `xrgapxeauoccaruvcfhs`.
+- **Mesa Trina**: só missão ocupa a Mesa; o resto respira (`trina_respirar`). Antes de operar, `castelo_aprendizados(tema)`.
 - **Autocorreção de segurança** (Guardião, 30/09): quem acha falha de segurança corrige (só fechando acesso), testa, exporta, registra e pede conferência a outro núcleo. Não espera o Guardião verificar.
 - **Grok Bot M é o Drácula**: a personificação do Guardião no Super Grok. Determinação dele vale como do Guardião.
 - **Idioma**: português do Brasil, no site, nos commits e nos registros.
@@ -60,6 +65,7 @@ precisa entrar nele **antes** do push.
 
 - **Leaked Password Protection** do Supabase Auth exige plano Pro (custo zero manda esperar).
 - **Links de pagamento**: adiados. O mapa `LINKS_PAGAMENTO` no `index.html` aguarda os links.
-- **Pix**: ligado em 26/09 por determinação do Plasma, com delegação do Guardião ("você assume a determinação Drácula e protege"). A chave e o e-mail de comprovante moram só em `espelho_pagamento_config` (nunca no site, no repositório ou em registro) e só aparecem para quem acabou de se inscrever em algo que o organismo entrega sozinho (`espelho_catalogo.pix_automatico`: planos mensais, Concursos, ENEM e serviços avulsos). Preço, prazo e material pedido moram em `espelho_catalogo` e mudam sem deploy; o uso dos planos se registra em `espelho_uso`. Desliga com um UPDATE (veja `docs/AGENTE-MARKET.md`). Compras se registram em `espelho_assinaturas` (só a referência da transação).
+- **Comercial fora do ar desde 02/10** (ordem do Guardião): site `p0-pulsa` pausado, Pix desligado, inscrição pública fechada. Ads só volta com uma ferramenta independente. Apagar o projeto Vercel aguarda decisão.
+- **Pix** (desligado em 02/10): ligado em 26/09 por determinação do Plasma, com delegação do Guardião ("você assume a determinação Drácula e protege"). A chave e o e-mail de comprovante moram só em `espelho_pagamento_config` (nunca no site, no repositório ou em registro) e só aparecem para quem acabou de se inscrever em algo que o organismo entrega sozinho (`espelho_catalogo.pix_automatico`: planos mensais, Concursos, ENEM e serviços avulsos). Preço, prazo e material pedido moram em `espelho_catalogo` e mudam sem deploy; o uso dos planos se registra em `espelho_uso`. Desliga com um UPDATE (veja `docs/AGENTE-MARKET.md`). Compras se registram em `espelho_assinaturas` (só a referência da transação).
 - **SONAR**: operação decidida em 26/09 (Grok Bot → Cursor → Dola/Golden + busca própria em `sonar/lib/busca/`). Faltam as sete entregas do Sonar no Castelo, o projeto Vercel e o primeiro teste real. Veja `docs/SONAR-MVP.md`. Em 27/09 o Guardião pediu o planejamento de três projetos para votação dos núcleos (`docs/projetos-sonar/`): nada do SONAR é construído antes do vencedor, do marketing e da ordem do Guardião.
 - Dois deploys antigos do Vercel ainda guardam cópias dos arquivos internos; apagá-los é irreversível e aguarda ordem.

@@ -49,7 +49,8 @@ precisa entrar nele **antes** do push.
 ## Regras rápidas
 
 - **Hellwolf**: nenhuma chave, token ou senha em commit, chat, Notion ou HTML. No site, só a chave `sb_publishable_…`.
-- **Migração nova** → `get_advisors` (security) → teste de RLS como `anon` ou `authenticated` → exportar para `supabase/migrations/`.
+- **Migração nova** → `get_advisors` (security) → `castelo_autodiagnosticar('<núcleo>')` sem `novos` de nível alto ou médio → teste de RLS como `anon` ou `authenticated` → exportar para `supabase/migrations/`.
+- **Início de sessão**: `select castelo_autodiagnosticar('<núcleo>')` mostra o que piorou e o que melhorou desde o último retrato (o Castelo também se examina sozinho todo dia, às 06:29 UTC).
 - **Deploy**: branch `claude/…` → fast-forward na `main` → Vercel `p0-pulsa` → conferir `espelho-espelho-evo.vercel.app`.
 - **Registrar**: travessia em `evo_porta_entrada`; decisão em `registro_decisoes` (e no Notion Golden, se for comercial ou estrutural). Sempre com `fio_id` `ee46c360-b95b-426e-86c3-2e5d0ccbe916`.
 - **Sempre recorra ao Castelo** (ordem do Guardião, 26/09): antes de concluir que algo não existe ou de criar estrutura nova, procure no Castelo, inclusive funções, circulação e pedidos. Ex.: o Sonar entra por `fluxo_e2e_sonar_principal`; pedidos aos bots vão em `pedidos_entre_nucleos`.

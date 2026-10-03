@@ -89,7 +89,7 @@ Decisões comerciais ou estruturais se espelham também no Notion
 
 1. Carregue a skill `supabase-postgres-best-practices` antes de escrever o SQL.
 2. Aplique com `apply_migration` e um nome em snake_case que diga o que muda.
-3. Rode `get_advisors` (security) logo depois. Qualquer alerta novo precisa ser resolvido. O alerta conhecido e aceito é "Leaked Password Protection", que exige plano Pro.
+3. Rode `get_advisors` (security) e `castelo_autodiagnosticar('<núcleo>')` logo depois. Qualquer alerta novo precisa ser resolvido. O alerta conhecido e aceito é "Leaked Password Protection", que exige plano Pro.
 4. Teste RLS assumindo o papel real (`SET LOCAL ROLE anon` dentro de um `DO $$ … $$`) e encerre com `RAISE EXCEPTION` para desfazer os dados de teste.
 5. **Exporte a migração para `supabase/migrations/<versão>_<nome>.sql`** no repositório, a partir de `supabase_migrations.schema_migrations`. O repositório é o backup do schema: as 91 primeiras foram exportadas em 2026-09-24.
 
@@ -123,6 +123,20 @@ Decisões comerciais ou estruturais se espelham também no Notion
   `trina-respirar`, 06:17 UTC). Resultado `ARQUIVADO` = não deliberado, não sobe ao Golden.
 - **Aprender antes de operar**: `castelo_aprendizados(tema)` devolve aprendizados (`meta_lab_entries`
   `APRENDIZADOS`) e decisões ativas. Toda missão concluída grava um aprendizado.
+- **Autodiagnóstico recursivo** (`20261003145221`): `castelo_autodiagnosticar(origem)` faz 12 verificações
+  (tabela sem RLS, política `true` para o público, DEFINER exposta ao anon, função sem `search_path`, view
+  definer exposta, grant do anon sem política, política sem initPlan, FK sem índice, fila da Trina, pedido
+  parado há mais de 7 dias, pedido duplicado, rotina do cron que falhou), grava o retrato em
+  `castelo_autodiagnostico` e devolve **`novos`** (o que piorou) e **`resolvidos`** (o que melhorou) desde o
+  retrato anterior. Roda sozinho todo dia (pg_cron `castelo-autodiagnostico`, 06:29 UTC). Só o Guardião e o
+  `service_role` executam e leem. **Rode no início da sessão e depois de cada migração**: a migração não
+  pode trazer `novos` de nível alto ou médio. Linha de base em 03/10: nenhum achado de segurança; 15 pedidos
+  parados, 3 pares de pedidos duplicados e a FK `sonar_plasma_transicoes.item_id` sem índice (o SONAR fica
+  com quem cuida dele).
+- **Portão Norton** (03/10, migrações `20261003091041` e `20261003093349`): limpeza feita só com REVOKE,
+  DROP POLICY e COMMENT, com rollback exato no próprio arquivo. O SELECT do anon em `registro_decisoes`
+  fica em HOLD (o espelho do grok.me lê dele); em `evo_agentes`, `evo_principios`, `checkin_recepcion` e
+  `fios_checkpoint_universal` o grant segue, mas sem política para o anon: a RLS nega.
 - Pedido entre núcleos é mensagem de operação, não conhecimento: não passa pelo check-in (a Recepção
   dispara P0 e a circulação). O que o pedido **produz** de conhecimento entra pelo check-in.
 - **Projeto auxiliar** `xrgapxeauoccaruvcfhs` (org pessoal do Guardião): réplica da Recepção, P0, circulação,

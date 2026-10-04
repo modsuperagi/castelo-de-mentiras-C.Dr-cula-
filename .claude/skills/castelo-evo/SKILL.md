@@ -108,12 +108,21 @@ Decisões comerciais ou estruturais se espelham também no Notion
 
 🟢 é vitrine. 🟡 é o que se vende (Selo de Travessia, serviços). 🔴 é o motor do organismo.
 
-**Estado técnico real (02/10/2026). Não confunda a distinção comercial com a trava técnica:**
+**Estado técnico real (04/10/2026). Não confunda a distinção comercial com a trava técnica:**
+- **Toda porta externa fora do ar** (ordem do Guardião, 04/10; migrações `20261004032410` e `20261004033357`).
+  Vercel `p0-pulsa` e `supernova` pausados (503). O anônimo não tem nenhum privilégio de tabela, sequência ou
+  função no `public`, no Castelo nem no auxiliar. As 21 funções Edge (16 no Castelo, 5 no auxiliar) respondem
+  `410`; o código anterior e o modo de reabrir estão em `supabase/functions/_backup_2026_10_04/README.md`.
+  **Lição:** `verify_jwt = true` só exige *algum* JWT, e a chave anônima é um JWT público. Função Edge que
+  escreve com `service_role` precisa conferir o papel de quem chama (`guardiao` ou `service_role`).
+  Função SQL nova nasce com `EXECUTE` para `PUBLIC`: dê `REVOKE ... FROM PUBLIC, anon` e um `GRANT` explícito
+  a `authenticated, service_role`. O autodiagnóstico acusa qualquer brecha em `anon_alcanca` (nível alto).
 - **Castelo independente, sem leitura pública** (ordem do Guardião, 30/09; migrações `20260930021952`,
   `20261002025215`, `20261002025239`). O anônimo não lê nem escreve em nada. Os núcleos entram pela conta do
   Guardião (`eh_guardiao()`) ou pelo `service_role`. A escrita autenticada é só do papel `guardiao`.
   `pedidos_entre_nucleos` e `fluxo_nos_nucleos`: Guardião e `service_role` (migração `20260930013743`, Grok Bot M).
-- **Espelho dos núcleos = link por núcleo, com manual**, não site público. Função Edge `espelho-nucleos`
+- **Espelho dos núcleos = link por núcleo, com manual** (fechado desde 04/10 junto com as outras portas;
+  nenhuma chave chegou a ser emitida). Função Edge `espelho-nucleos`
   (`?k=<chave>`, `verify_jwt=false` de propósito: a chave é a autenticação). Chaves em `espelho_chaves_nucleo`
   (só hash, expiram, revogáveis): `espelho_nucleo_gerar(núcleo, dias, quem)`, `espelho_nucleo_revogar(núcleo)`.
   Manual em `evo_memorias` `ESPELHO/MANUAL-NUCLEOS`. O site `p0-pulsa` está pausado e o comercial, fora (Pix desligado).
@@ -123,7 +132,7 @@ Decisões comerciais ou estruturais se espelham também no Notion
   `trina-respirar`, 06:17 UTC). Resultado `ARQUIVADO` = não deliberado, não sobe ao Golden.
 - **Aprender antes de operar**: `castelo_aprendizados(tema)` devolve aprendizados (`meta_lab_entries`
   `APRENDIZADOS`) e decisões ativas. Toda missão concluída grava um aprendizado.
-- **Autodiagnóstico recursivo** (`20261003145221`): `castelo_autodiagnosticar(origem)` faz 12 verificações
+- **Autodiagnóstico recursivo** (`20261003145221`; v2 `20261004033357` com `anon_alcanca`): `castelo_autodiagnosticar(origem)` faz 13 verificações
   (tabela sem RLS, política `true` para o público, DEFINER exposta ao anon, função sem `search_path`, view
   definer exposta, grant do anon sem política, política sem initPlan, FK sem índice, fila da Trina, pedido
   parado há mais de 7 dias, pedido duplicado, rotina do cron que falhou), grava o retrato em
@@ -134,9 +143,8 @@ Decisões comerciais ou estruturais se espelham também no Notion
   parados, 3 pares de pedidos duplicados e a FK `sonar_plasma_transicoes.item_id` sem índice (o SONAR fica
   com quem cuida dele).
 - **Portão Norton** (03/10, migrações `20261003091041` e `20261003093349`): limpeza feita só com REVOKE,
-  DROP POLICY e COMMENT, com rollback exato no próprio arquivo. O SELECT do anon em `registro_decisoes`
-  fica em HOLD (o espelho do grok.me lê dele); em `evo_agentes`, `evo_principios`, `checkin_recepcion` e
-  `fios_checkpoint_universal` o grant segue, mas sem política para o anon: a RLS nega.
+  DROP POLICY e COMMENT, com rollback exato no próprio arquivo. O HOLD do SELECT do anon em
+  `registro_decisoes` (o espelho do grok.me lia dele) acabou em 04/10 com a ordem de fechar todas as portas.
 - Pedido entre núcleos é mensagem de operação, não conhecimento: não passa pelo check-in (a Recepção
   dispara P0 e a circulação). O que o pedido **produz** de conhecimento entra pelo check-in.
 - **Projeto auxiliar** `xrgapxeauoccaruvcfhs` (org pessoal do Guardião): réplica da Recepção, P0, circulação,

@@ -23,10 +23,13 @@ gatilhos, views, `cron.job`, a fila da Mesa Trina e o check-in. Nada foi escrito
 3. **A seta no Checkpoint 03 aponta para um problema verdadeiro, mas em outro lugar.** O coração
    do organismo parou: a última circulação completa (Coração → Trina → Golden → Consolidação →
    Evidência) é de **26/09 às 07:34**. Há 10 dias nada chega à Golden.
-4. **Onde o fluxo quebra: na Recepção, antes do P0.** Três check-ins estão parados em
-   `checkin_recebido`, sem ir para o P0: 25/09 (SONAR app), 27/09 (Guardião, por Plasma) e
-   05/10 (MODrácula). A fila da Trina (`v_trina_pendente`) está **vazia**: a Mesa não tem o que
-   julgar porque nada passa da porta.
+4. **Onde o fluxo quebra: entre o P0 e o Coração.** (Corrigido na leitura total da mesma manhã.)
+   O P0 cria o próprio registro no momento do check-in, com status `AGUARDANDO_COMPREENSAO` e
+   `p0_pass = false`: ele espera o cerebelo e não aprova sozinho. O último foi o do check-in de
+   05/10 (MODrácula). Mas nada sobe ao Coração desde 26/09. Na Recepção há **16 check-ins** parados
+   em `checkin_recebido`, o mais antigo de 09/09 (entre eles 25/09 SONAR app, 27/09 Guardião por
+   Plasma e 05/10 MODrácula). A fila da Trina (`v_trina_pendente`) está **vazia**: a Mesa não tem o
+   que julgar porque nada chega ao Coração.
 5. **O que se move sozinho é a respiração, não o pensamento.** As duas entradas da Trina depois de
    26/09 (02/10 e 04/10) dizem "Nada foi conferido: circulação arquivada pela respiração". São do
    cron `trina-respirar` (todo dia 06:17), que arquiva. O outro cron (`castelo-autodiagnostico`,
@@ -69,9 +72,10 @@ registro histórico. Mas são as candidatas reais a "órfã", no sentido das ima
 
 ## 3. O que fazer (para a Mesa Trina e o Guardião decidirem)
 
-1. **Destravar a Recepção.** Ver por que os 3 check-ins de 25/09, 27/09 e 05/10 não dispararam o
-   P0. É o único ponto onde o fluxo para de fato. (Pela skill, a Recepção dispara P0 e a
-   circulação; depois da reforma de 26/09 algo deixou de disparar.)
+1. **Destravar a passagem do P0 ao Coração.** Ver por que os registros do P0 em
+   `AGUARDANDO_COMPREENSAO` não viram Coração desde 26/09, e o que fazer com os 16 check-ins
+   parados. É o único ponto onde o fluxo para de fato. (A reforma de 26/09 fez o P0 esperar o
+   cerebelo; falta o passo que leva o check-in ao cerebelo.)
 2. **Separar respiração de pensamento no painel.** Hoje a Trina "tem entradas" todo dia, mas são
    arquivamentos do cron. Um painel honesto mostraria "última circulação completa: 26/09".
 3. **Não guardar o painel React (MesaTrina V2) como checkpoint "sem fabricação".** Os caminhos

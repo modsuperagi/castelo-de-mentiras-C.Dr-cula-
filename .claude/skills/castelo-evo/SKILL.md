@@ -89,7 +89,7 @@ Decisões comerciais ou estruturais se espelham também no Notion
 
 1. Carregue a skill `supabase-postgres-best-practices` antes de escrever o SQL.
 2. Aplique com `apply_migration` e um nome em snake_case que diga o que muda.
-3. Rode `get_advisors` (security) logo depois. Qualquer alerta novo precisa ser resolvido. O alerta conhecido e aceito é "Leaked Password Protection", que exige plano Pro.
+3. Rode `get_advisors` (security) e `castelo_autodiagnosticar('<núcleo>')` logo depois. Qualquer alerta novo precisa ser resolvido. O alerta conhecido e aceito é "Leaked Password Protection", que exige plano Pro.
 4. Teste RLS assumindo o papel real (`SET LOCAL ROLE anon` dentro de um `DO $$ … $$`) e encerre com `RAISE EXCEPTION` para desfazer os dados de teste.
 5. **Exporte a migração para `supabase/migrations/<versão>_<nome>.sql`** no repositório, a partir de `supabase_migrations.schema_migrations`. O repositório é o backup do schema: as 91 primeiras foram exportadas em 2026-09-24.
 
@@ -108,21 +108,47 @@ Decisões comerciais ou estruturais se espelham também no Notion
 
 🟢 é vitrine. 🟡 é o que se vende (Selo de Travessia, serviços). 🔴 é o motor do organismo.
 
-**Estado técnico real (30/09/2026). Não confunda a distinção comercial com a trava técnica:**
-- **Escrita**: fechada. Conta autenticada só escreve com o papel `guardiao` (migração
-  `20260924133321_hellwolf_fechar_escrita_autenticada_ao_guardiao`). O visitante anônimo só insere em
-  `espelho_interessados`, `espelho_sinais` e `espelho_eventos`. O `service_role` (Sol Edge, bots de servidor)
-  contorna RLS por design. `pedidos_entre_nucleos` e `fluxo_nos_nucleos` são só do Guardião e do
-  `service_role` (migração do Grok Bot M, `20260930013743`).
-- **Leitura**: aberta aos núcleos, não ao público (determinação do Guardião/Drácula, 30/09, migração
-  `20260930021952_castelo_leitura_so_nucleos`). O anônimo lê só a Recepção e a vitrine: `evo_agentes`,
-  `evo_principios`, `castelo_identidades`, `checkin_recepcion`, `sessao_checkpoint`,
-  `fios_checkpoint_universal`, `acessos_canais` (ativos, `publico`/`estrutura`) e `registro_decisoes` com
-  `nivel_acesso = 'publico'`. Memória, circulação, Trina, Mariana, ponte e Sol: só com a conta do
-  Guardião (`eh_guardiao()`, policy `guardiao_leitura`) ou `service_role`.
+**Estado técnico real (04/10/2026). Não confunda a distinção comercial com a trava técnica:**
+- **Toda porta externa fora do ar** (ordem do Guardião, 04/10; migrações `20261004032410` e `20261004033357`).
+  Vercel `p0-pulsa` e `supernova` pausados (503). O anônimo não tem nenhum privilégio de tabela, sequência ou
+  função no `public`, no Castelo nem no auxiliar. As 21 funções Edge (16 no Castelo, 5 no auxiliar) respondem
+  `410`; o código anterior e o modo de reabrir estão em `supabase/functions/_backup_2026_10_04/README.md`.
+  **Lição:** `verify_jwt = true` só exige *algum* JWT, e a chave anônima é um JWT público. Função Edge que
+  escreve com `service_role` precisa conferir o papel de quem chama (`guardiao` ou `service_role`).
+  Função SQL nova nasce com `EXECUTE` para `PUBLIC`: dê `REVOKE ... FROM PUBLIC, anon` e um `GRANT` explícito
+  a `authenticated, service_role`. O autodiagnóstico acusa qualquer brecha em `anon_alcanca` (nível alto).
+- **Castelo independente, sem leitura pública** (ordem do Guardião, 30/09; migrações `20260930021952`,
+  `20261002025215`, `20261002025239`). O anônimo não lê nem escreve em nada. Os núcleos entram pela conta do
+  Guardião (`eh_guardiao()`) ou pelo `service_role`. A escrita autenticada é só do papel `guardiao`.
+  `pedidos_entre_nucleos` e `fluxo_nos_nucleos`: Guardião e `service_role` (migração `20260930013743`, Grok Bot M).
+- **Espelho dos núcleos = link por núcleo, com manual** (fechado desde 04/10 junto com as outras portas;
+  nenhuma chave chegou a ser emitida). Função Edge `espelho-nucleos`
+  (`?k=<chave>`, `verify_jwt=false` de propósito: a chave é a autenticação). Chaves em `espelho_chaves_nucleo`
+  (só hash, expiram, revogáveis): `espelho_nucleo_gerar(núcleo, dias, quem)`, `espelho_nucleo_revogar(núcleo)`.
+  Manual em `evo_memorias` `ESPELHO/MANUAL-NUCLEOS`. O site `p0-pulsa` está pausado e o comercial, fora (Pix desligado).
+- **Mesa Trina com profundidade proporcional** (`20261002024555`): reflexo (check-in comum registra e segue),
+  pensamento (sessão sem missão segue adiante em 7 dias) e missão (aberta pelo Lab com `trina_abrir_missao`,
+  fica até `trina_concluir_missao`; quem abriu não valida). `trina_respirar()` roda todo dia (pg_cron
+  `trina-respirar`, 06:17 UTC). Resultado `ARQUIVADO` = não deliberado, não sobe ao Golden.
+- **Aprender antes de operar**: `castelo_aprendizados(tema)` devolve aprendizados (`meta_lab_entries`
+  `APRENDIZADOS`) e decisões ativas. Toda missão concluída grava um aprendizado.
+- **Autodiagnóstico recursivo** (`20261003145221`; v2 `20261004033357` com `anon_alcanca`): `castelo_autodiagnosticar(origem)` faz 13 verificações
+  (tabela sem RLS, política `true` para o público, DEFINER exposta ao anon, função sem `search_path`, view
+  definer exposta, grant do anon sem política, política sem initPlan, FK sem índice, fila da Trina, pedido
+  parado há mais de 7 dias, pedido duplicado, rotina do cron que falhou), grava o retrato em
+  `castelo_autodiagnostico` e devolve **`novos`** (o que piorou) e **`resolvidos`** (o que melhorou) desde o
+  retrato anterior. Roda sozinho todo dia (pg_cron `castelo-autodiagnostico`, 06:29 UTC). Só o Guardião e o
+  `service_role` executam e leem. **Rode no início da sessão e depois de cada migração**: a migração não
+  pode trazer `novos` de nível alto ou médio. Linha de base em 03/10: nenhum achado de segurança; 15 pedidos
+  parados, 3 pares de pedidos duplicados e a FK `sonar_plasma_transicoes.item_id` sem índice (o SONAR fica
+  com quem cuida dele).
+- **Portão Norton** (03/10, migrações `20261003091041` e `20261003093349`): limpeza feita só com REVOKE,
+  DROP POLICY e COMMENT, com rollback exato no próprio arquivo. O HOLD do SELECT do anon em
+  `registro_decisoes` (o espelho do grok.me lia dele) acabou em 04/10 com a ordem de fechar todas as portas.
 - Pedido entre núcleos é mensagem de operação, não conhecimento: não passa pelo check-in (a Recepção
-  dispara P0 e a circulação). O que o pedido **produz** de conhecimento entra pelo check-in
-  (`fluxo_e2e_sonar_principal`).
+  dispara P0 e a circulação). O que o pedido **produz** de conhecimento entra pelo check-in.
+- **Projeto auxiliar** `xrgapxeauoccaruvcfhs` (org pessoal do Guardião): réplica da Recepção, P0, circulação,
+  Mesa, Lab e pedidos. O Plasma testa lá em cima e aplica cá embaixo.
 
 **Autocorreção de segurança (ordem do Guardião, 30/09).** Núcleo que acha uma falha de segurança no
 Castelo (RLS faltando, política `USING (true)` para o público, GRANT sem política, função exposta) corrige

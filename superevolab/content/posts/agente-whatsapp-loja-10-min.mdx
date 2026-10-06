@@ -1,0 +1,227 @@
+---
+titulo: "Como criar agente de WhatsApp para loja em 10 min"
+resumo: "Um agente que responde clientes no WhatsApp da sua loja com IA: webhook em Python, a API oficial do WhatsApp e o Claude. São uns 10 minutos de código; a liberação da Meta é à parte."
+categoria: "WhatsApp"
+data: "2026-10-05"
+preview: |
+  @app.post("/webhook")
+  def receber():
+      msg = extrair_mensagem(request.json)
+      resposta = responder(msg["de"], msg["texto"])
+      enviar_whatsapp(msg["de"], resposta)
+# github: "https://github.com/SEU-USUARIO/agente-whatsapp-loja"  # ligar quando o repositório existir
+faq:
+  - pergunta: "Precisa de um número de WhatsApp novo?"
+    resposta: "Para a API oficial (Cloud API), o número não pode estar ativo no aplicativo WhatsApp comum ao mesmo tempo. Muita loja usa um número separado só para o atendimento."
+  - pergunta: "Quanto custa?"
+    resposta: "São dois custos separados: as mensagens da Meta (veja a tabela de preços atual no painel da Meta para o Brasil) e o uso do modelo de IA, cobrado por token. Para uma loja pequena, comece com um teto de gastos no painel de cada serviço."
+  - pergunta: "O agente pode mandar mensagem primeiro para o cliente?"
+    resposta: "Livremente, não. Fora da janela de 24 horas depois da última mensagem do cliente, a Meta só deixa enviar modelos (templates) aprovados. Este tutorial cobre o caso mais comum: responder quem chamou."
+  - pergunta: "Dá para fazer sem programar?"
+    resposta: "Dá, com ferramentas visuais como o n8n. A tabela do tutorial compara as três formas. Programar o webhook dá mais controle e custa menos em escala."
+  - pergunta: "E se a IA responder errado?"
+    resposta: "Limite o assunto no prompt, dê os dados da loja por escrito e mande o agente chamar um humano quando não souber. No exemplo, a palavra ATENDENTE faz exatamente isso."
+---
+
+Você vai sair daqui com um agente que **lê a mensagem do cliente no WhatsApp, entende o pedido e responde sozinho** com os dados da sua loja: horário, entrega, preço. Quando não souber, ele chama um humano.
+
+O código leva uns 10 minutos. A parte da Meta (criar o app e liberar o número) pode levar mais, porque depende da verificação deles.
+
+## Do que você precisa
+
+- Python 3.10 ou mais novo.
+- Uma conta de desenvolvedor da Meta com um app do tipo **Business** e o produto **WhatsApp** adicionado. O próprio painel dá um número de teste.
+- Uma chave da API da Anthropic (o Claude), criada no console da Anthropic.
+- Um endereço público com HTTPS para o webhook. Para testar, serve um túnel como o ngrok ou o Cloudflare Tunnel.
+
+## Qual caminho escolher
+
+| | Webhook próprio (este tutorial) | LangChain | n8n |
+|---|---|---|---|
+| Precisa programar? | Sim, pouco (Python) | Sim, mais | Não, é visual |
+| Controle sobre o fluxo | Total | Total, com mais abstrações | Médio |
+| Onde roda | Qualquer servidor | Qualquer servidor | Nuvem do n8n ou seu servidor |
+| Bom para | Loja que quer algo simples e barato | Agente com muitas ferramentas e memória | Quem não programa e quer ligar vários apps |
+| Ponto fraco | Você cuida do servidor | Curva de aprendizado | Fica caro ou limitado em volume alto |
+
+Para uma loja que só quer responder clientes, o webhook próprio é o caminho mais curto. Se depois você quiser que o agente consulte estoque, faça pedido e lembre de conversas antigas, aí vale olhar o LangChain.
+
+## Passo 1: instalar
+
+```bash
+mkdir agente-loja && cd agente-loja
+python -m venv .venv
+source .venv/bin/activate   # no Windows: .venv\Scripts\activate
+pip install flask anthropic requests
+```
+
+## Passo 2: guardar as chaves fora do código
+
+Nunca escreva chave dentro do arquivo `.py`. Use variáveis de ambiente:
+
+```bash
+export ANTHROPIC_API_KEY="sua-chave-da-anthropic"
+export WHATSAPP_TOKEN="token-do-painel-da-meta"
+export WHATSAPP_PHONE_ID="id-do-numero-no-painel"
+export VERIFY_TOKEN="uma-frase-que-so-voce-sabe"
+```
+
+O `VERIFY_TOKEN` é você que inventa. Ele só serve para a Meta confirmar que o webhook é seu.
+
+## Passo 3: o agente
+
+Crie o arquivo `app.py`:
+
+```python
+import os
+import requests
+import anthropic
+from flask import Flask, request
+
+app = Flask(__name__)
+claude = anthropic.Anthropic()  # lê ANTHROPIC_API_KEY do ambiente
+
+GRAPH = "https://graph.facebook.com/v21.0"  # use a versão que o painel da Meta mostrar
+TOKEN = os.environ["WHATSAPP_TOKEN"]
+PHONE_ID = os.environ["WHATSAPP_PHONE_ID"]
+VERIFY_TOKEN = os.environ["VERIFY_TOKEN"]
+
+# Tudo o que o agente pode dizer sobre a loja. Troque pelos seus dados.
+LOJA = """
+Loja: Etiqueta Certa, Ipatinga (MG).
+Horário: segunda a sexta, 8h às 18h; sábado, 8h às 12h.
+Entrega: Ipatinga, Coronel Fabriciano e Timóteo em até 2 dias úteis.
+Produtos: etiquetas adesivas para produto, para envio e de preço.
+Pedido mínimo: 100 unidades.
+Pagamento: Pix ou cartão.
+"""
+
+INSTRUCOES = f"""Você atende clientes da loja abaixo pelo WhatsApp.
+Responda em português, curto (até 3 frases), com educação.
+Use só as informações da loja. Se não souber, diga que vai chamar
+um atendente e termine a resposta com a palavra ATENDENTE.
+Nunca invente preço, prazo ou estoque.
+
+{LOJA}"""
+
+# Memória curta por cliente (some quando o servidor reinicia).
+conversas: dict[str, list[dict]] = {}
+
+
+def responder(cliente: str, texto: str) -> str:
+    historico = conversas.setdefault(cliente, [])
+    historico.append({"role": "user", "content": texto})
+
+    resposta = claude.beta.messages.create(
+        model="claude-opus-5-5",
+        max_tokens=1024,
+        system=INSTRUCOES,
+        messages=historico[-10:],  # as 10 últimas mensagens bastam
+        output_config={"effort": "low"},  # conversa simples: esforço baixo
+        betas=["server-side-fallback-2026-07-01"],
+        fallbacks="default",
+    )
+
+    if resposta.stop_reason == "refusal":
+        texto_resposta = "Vou chamar um atendente para te ajudar. ATENDENTE"
+    else:
+        texto_resposta = "".join(
+            bloco.text for bloco in resposta.content if bloco.type == "text"
+        ).strip()
+
+    historico.append({"role": "assistant", "content": texto_resposta})
+    return texto_resposta
+
+
+def enviar_whatsapp(para: str, texto: str) -> None:
+    requests.post(
+        f"{GRAPH}/{PHONE_ID}/messages",
+        headers={"Authorization": f"Bearer {TOKEN}"},
+        json={
+            "messaging_product": "whatsapp",
+            "to": para,
+            "type": "text",
+            "text": {"body": texto},
+        },
+        timeout=15,
+    )
+
+
+@app.get("/webhook")
+def verificar():
+    # A Meta chama isto uma vez para confirmar o webhook.
+    if (
+        request.args.get("hub.mode") == "subscribe"
+        and request.args.get("hub.verify_token") == VERIFY_TOKEN
+    ):
+        return request.args.get("hub.challenge", ""), 200
+    return "proibido", 403
+
+
+@app.post("/webhook")
+def receber():
+    dados = request.get_json(silent=True) or {}
+    for entrada in dados.get("entry", []):
+        for mudanca in entrada.get("changes", []):
+            for msg in mudanca.get("value", {}).get("messages", []):
+                if msg.get("type") != "text":
+                    continue  # áudio, foto etc. ficam para outro tutorial
+                cliente = msg["from"]
+                texto = msg["text"]["body"]
+                resposta = responder(cliente, texto)
+                enviar_whatsapp(cliente, resposta)
+                if resposta.endswith("ATENDENTE"):
+                    print(f"Chamar humano para {cliente}")  # troque por um aviso real
+    return "ok", 200
+
+
+if __name__ == "__main__":
+    app.run(port=5000)
+```
+
+O que cada parte faz:
+
+- `verificar()` responde à checagem da Meta quando você cadastra o webhook.
+- `receber()` pega cada mensagem de texto que chega, pede a resposta ao agente e devolve no WhatsApp.
+- `responder()` manda para o Claude as instruções, os dados da loja e as últimas mensagens daquele cliente.
+- O parâmetro `fallbacks="default"` faz a própria API tentar outro modelo se o primeiro recusar a pergunta. Se mesmo assim vier recusa, o cliente recebe uma mensagem educada e um humano é chamado.
+
+## Passo 4: rodar e ligar na Meta
+
+```bash
+python app.py
+# em outro terminal, abra o túnel:
+ngrok http 5000
+```
+
+1. Copie o endereço HTTPS que o túnel mostrar.
+2. No painel da Meta, em **WhatsApp → Configuração**, cadastre `https://SEU-ENDERECO/webhook` e o mesmo `VERIFY_TOKEN`.
+3. Assine o campo **messages**.
+4. Mande uma mensagem do seu celular para o número de teste.
+
+Se a resposta chegar, o agente está vivo.
+
+## Cenário: loja de etiquetas no Vale do Aço
+
+> Exemplo ilustrativo, para mostrar o fluxo. Não é um caso medido.
+
+A "Etiqueta Certa", em Ipatinga, recebe as mesmas perguntas o dia inteiro: "entrega em Timóteo?", "qual o mínimo?", "aceita Pix?". Com o agente:
+
+- **Cliente:** Oi, vocês entregam em Coronel Fabriciano?
+- **Agente:** Entregamos sim! Coronel Fabriciano recebe em até 2 dias úteis. O pedido mínimo é de 100 unidades.
+- **Cliente:** Quanto custa o milheiro da etiqueta de preço?
+- **Agente:** Não tenho o preço aqui, então vou chamar um atendente para te passar o valor certinho. ATENDENTE
+
+Repare na segunda resposta: o agente **não inventou preço**, porque o preço não estava nos dados da loja. É isso que você quer.
+
+## Antes de colocar para valer
+
+- **Troque a memória:** o dicionário `conversas` some quando o servidor reinicia. Para produção, use um banco (SQLite já serve).
+- **Responda rápido à Meta:** se o modelo demorar, a Meta pode reenviar a mensagem. Em volume maior, coloque o processamento numa fila e devolva `200` na hora.
+- **Confira a assinatura:** valide o cabeçalho `X-Hub-Signature-256` com o segredo do app, para ter certeza de que a chamada veio da Meta.
+- **Ponha teto de gastos** no console da Anthropic e no painel da Meta.
+- **Avise que é um assistente automático** na primeira mensagem. O cliente merece saber.
+
+## Próximo passo
+
+No próximo tutorial, o mesmo agente ganha ferramentas: consultar estoque numa planilha e registrar pedido. Deixe seu e-mail aqui embaixo para receber.

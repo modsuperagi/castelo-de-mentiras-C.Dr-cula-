@@ -14,5 +14,5 @@ LICENSE
 sonar/
 # Ferramentas internas (gerador do blog): não vão ao ar.
 ferramentas/
-# O blog Super Evo Lab é outro projeto (Root Directory = superevolab). Não vai ao ar pelo espelho.
+# O blog Super Evo Lab é outro projeto (Cloudflare Pages, Root directory = superevolab). Não vai ao ar pelo espelho.
 superevolab/

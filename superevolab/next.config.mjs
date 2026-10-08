@@ -1,19 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Gera um site estático em out/: roda em qualquer hospedagem gratuita
+  // (Cloudflare Pages, Netlify, GitHub Pages), sem servidor.
+  output: "export",
+  trailingSlash: true,
   poweredByHeader: false,
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "X-Frame-Options", value: "DENY" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-        ],
-      },
-    ];
-  },
 };
 
 export default nextConfig;

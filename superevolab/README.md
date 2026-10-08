@@ -71,6 +71,10 @@ O blog vira um site estático (pasta `out/`), então roda em hospedagem gratuita
 6. Se o nome não for `superevolab`, troque `NEXT_PUBLIC_SITE_URL` para o endereço real e publique de novo
    (o sitemap e o canonical usam esse valor).
 
+**Se a Cloudflare criar um Worker** (tela "Criar aplicativo → Importar repositório"), use:
+Diretório raiz `superevolab`, comando de build `npm run build`, comando de implantação `npx wrangler deploy`.
+O `wrangler.jsonc` já aponta para a pasta `out`.
+
 O arquivo `public/_headers` leva os cabeçalhos de segurança; a Cloudflare e a Netlify leem ele sozinhas.
 A Netlify também serve: mesmo comando de build, pasta `superevolab/out`.
 

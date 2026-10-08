@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: site.nome,
     description: site.descricao,
     url: "/",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: site.nome }],
   },
   twitter: { card: "summary_large_image" },
 };

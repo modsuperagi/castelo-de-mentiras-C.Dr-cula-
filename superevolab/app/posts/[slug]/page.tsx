@@ -31,6 +31,7 @@ export function generateMetadata({ params }: Params): Metadata {
       description: post.resumo,
       url,
       publishedTime: post.data,
+      images: [{ url: "/og.png", width: 1200, height: 630 }],
     },
   };
 }

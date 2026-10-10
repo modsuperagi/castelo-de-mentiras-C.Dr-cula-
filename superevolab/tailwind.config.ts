@@ -15,8 +15,9 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--fonte-texto)", "system-ui", "sans-serif"],
         mono: ["var(--fonte-codigo)", "ui-monospace", "monospace"],
+        serif: ["\"Iowan Old Style\"", "Palatino", "\"Palatino Linotype\"", "Georgia", "serif"],
       },
-      maxWidth: { leitura: "44rem" },
+      maxWidth: { leitura: "44rem", artigo: "54rem" },
     },
   },
   plugins: [],

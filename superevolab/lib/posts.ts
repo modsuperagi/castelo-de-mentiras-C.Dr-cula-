@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import type { Eixo } from "./site";
 
 const PASTA = path.join(process.cwd(), "content", "posts");
 
@@ -21,6 +22,10 @@ export type Post = {
   /** Menu de seções preso no topo; cada id tem de existir num <h2 id> do texto. */
   navegacao: Secao[];
   rascunho: boolean;
+  /** lab (tutorial) ou radar (análise do SONAR). */
+  eixo: Eixo;
+  /** Texto do selo de origem no topo do post (ex.: "Sinal SONAR · sintetizado em 3/10/2026"). */
+  selo?: string;
   conteudo: string;
 };
 
@@ -39,6 +44,8 @@ function ler(arquivo: string): Post {
     chapeu: data.chapeu ? String(data.chapeu) : undefined,
     navegacao: Array.isArray(data.navegacao) ? (data.navegacao as Secao[]) : [],
     rascunho: Boolean(data.rascunho),
+    eixo: data.eixo === "radar" ? "radar" : "lab",
+    selo: data.selo ? String(data.selo) : undefined,
     conteudo: content,
   };
 }

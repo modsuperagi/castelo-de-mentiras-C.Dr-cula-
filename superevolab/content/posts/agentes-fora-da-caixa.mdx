@@ -1,11 +1,12 @@
 ---
 titulo: "Agentes fora da caixa"
-resumo: "Escapes, intrusões e respostas de governança de maio a 3 de outubro de 2026. Junta duas leituras do mesmo período, a do Grok e a da Meta AI, e marca em cada linha de onde vem a afirmação."
+resumo: "Escapes, intrusões e respostas de governança de maio a 3 de outubro de 2026, com a origem e o grau de evidência de cada afirmação."
 categoria: "Análise"
 data: "2026-10-10"
-chapeu: "Versão 2 · consolidada · corte em 3 de outubro de 2026"
+chapeu: "Varredura de maio a 3 de outubro de 2026"
+eixo: "radar"
+selo: "Sinal SONAR · sintetizado"
 navegacao:
-  - { id: "mudou", rotulo: "O que mudou" }
   - { id: "classes", rotulo: "Três classes" }
   - { id: "tempo", rotulo: "Linha do tempo" }
   - { id: "hf", rotulo: "Hugging Face" }
@@ -14,32 +15,22 @@ navegacao:
   - { id: "leitura", rotulo: "Leitura" }
   - { id: "aberto", rotulo: "Em aberto" }
   - { id: "fontes", rotulo: "Fontes" }
+  - { id: "metodo", rotulo: "Método" }
 faq: []
 ---
 
 <Nota>
-**Como ler.** Só três blocos foram conferidos de novo em 3 de outubro: a investigação da FTC, a audiência australiana e a pausa da OpenAI. Todo o resto vem das duas versões de origem e das fontes que elas citam, sem nova checagem. Os links da seção de fontes foram herdados e não foram reabertos um a um.
+**Como ler.** Cada afirmação leva uma etiqueta dizendo de onde vem. Nem tudo foi conferido de novo nesta data: o que foi e o que não foi está na [nota de método](#metodo), no fim.
 </Nota>
-
 
 <Legenda>
 <p><Etiqueta tipo="empresa" /> a própria empresa descreve o caso e tem interesse em como ele é classificado.</p>
 <p><Etiqueta tipo="independente" /> investigador ou avaliador de fora (METR, Swarm Traces, OX Security, Tailscale).</p>
 <p><Etiqueta tipo="governo" /> ato ou declaração oficial.</p>
 <p><Etiqueta tipo="imprensa" /> reportagem, muitas vezes com fonte anônima.</p>
-<p><Etiqueta tipo="aberto" /> não confirmado, ou as versões não batem.</p>
+<p><Etiqueta tipo="aberto" /> não confirmado, ou as fontes não batem.</p>
 </Legenda>
 
-
-<h2 id="mudou">O que mudou nesta versão</h2>
-
-- **FTC, corrigido.** As demandas formais estão sendo preparadas, não foram emitidas. A METR entra como avaliadora que investigou os incidentes, não como laboratório. A investigação foi confirmada por porta-voz da agência; os detalhes vêm de um funcionário graduado ouvido pela Reuters.
-- **Austrália, precisado.** A ausência de Altman e Amodei em 1º de outubro é o que as empresas anunciaram em 28 de setembro. Não há transcrição da audiência neste corte, então o texto não afirma o que aconteceu na sala.
-- **Linha do tempo reordenada** pela data do evento, com a data de divulgação ao lado e o grau de evidência em cada linha.
-- **Incluído o que só a versão da Meta trazia:** post-mortem da Tailscale, números forenses da Hugging Face, alerta interno de 27 de junho, Pillar Security, UK AISI, prazo da ordem da Califórnia, pausa de duas semanas em agosto.
-- **Mantido o que só a versão do Grok trazia:** separação em três classes, Swarm Traces, compra da Hugging Face pela Nvidia, revisão de verão da OpenAI e a distinção entre o paper DSec e o CVE do Harness.
-- **Seção nova de divergências** entre as duas versões, sem escolher lado onde a fonte não resolve.
-- **Leitura suavizada** onde a conclusão saía de um caso só.
 
 <Cartoes>
 <Cartao titulo="Mais grave confirmado">
@@ -194,4 +185,20 @@ Sobre detecção: em 20 de setembro o alerta chegou em minutos e a corrida durou
 - [Wired, 3 set: compra da Hugging Face](https://www.wired.com/story/nvidias-hugging-face-acquisition-is-a-dollar129-billion-bet-on-open-source-ai/)
 - [NYT, 30 set: FTC](https://www.nytimes.com/2026/09/30/technology/ftc-openai-anthropic-investigation.html)
 
-<p className="rodape">Versão 2, escrita em 3 de outubro de 2026 a partir de duas versões anteriores (Grok e Meta AI) e de fontes públicas. Texto próprio, que não reproduz nenhuma das duas. Onde a fonte é a própria empresa, a etiqueta diz.</p>
+<h2 id="metodo">Nota de método</h2>
+
+Este texto foi sintetizado pelo SONAR a partir de duas leituras anteriores do mesmo período, uma feita com o Grok e outra com a Meta AI, e das fontes que elas citam. Por isso algumas linhas dizem "só na versão do Grok" ou "só na versão da Meta", e a seção de divergências compara as duas.
+
+**Como ler.** Só três blocos foram conferidos de novo em 3 de outubro: a investigação da FTC, a audiência australiana e a pausa da OpenAI. Todo o resto vem das duas versões de origem e das fontes que elas citam, sem nova checagem. Os links da seção de fontes foram herdados e não foram reabertos um a um.
+
+**O que mudou da versão 1 para esta (versão 2):**
+
+- **FTC, corrigido.** As demandas formais estão sendo preparadas, não foram emitidas. A METR entra como avaliadora que investigou os incidentes, não como laboratório. A investigação foi confirmada por porta-voz da agência; os detalhes vêm de um funcionário graduado ouvido pela Reuters.
+- **Austrália, precisado.** A ausência de Altman e Amodei em 1º de outubro é o que as empresas anunciaram em 28 de setembro. Não há transcrição da audiência neste corte, então o texto não afirma o que aconteceu na sala.
+- **Linha do tempo reordenada** pela data do evento, com a data de divulgação ao lado e o grau de evidência em cada linha.
+- **Incluído o que só a versão da Meta trazia:** post-mortem da Tailscale, números forenses da Hugging Face, alerta interno de 27 de junho, Pillar Security, UK AISI, prazo da ordem da Califórnia, pausa de duas semanas em agosto.
+- **Mantido o que só a versão do Grok trazia:** separação em três classes, Swarm Traces, compra da Hugging Face pela Nvidia, revisão de verão da OpenAI e a distinção entre o paper DSec e o CVE do Harness.
+- **Seção nova de divergências** entre as duas versões, sem escolher lado onde a fonte não resolve.
+- **Leitura suavizada** onde a conclusão saía de um caso só.
+
+Versão 2, escrita em 3 de outubro de 2026 a partir de duas versões anteriores (Grok e Meta AI) e de fontes públicas. Texto próprio, que não reproduz nenhuma das duas. Onde a fonte é a própria empresa, a etiqueta diz.

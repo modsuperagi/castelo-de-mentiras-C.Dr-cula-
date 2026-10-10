@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { dataBR, type Post } from "@/lib/posts";
+import { EIXOS } from "@/lib/site";
 
 export function CartaoPost({ post }: { post: Post }) {
   return (
@@ -24,7 +25,7 @@ export function CartaoPost({ post }: { post: Post }) {
         </pre>
       )}
       <span className="mt-4 text-sm font-semibold text-amarelo group-hover:underline">
-        Ler tutorial →
+        {EIXOS[post.eixo].botao} →
       </span>
     </article>
   );

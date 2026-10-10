@@ -11,6 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: site.url, lastModified: posts[0]?.lastModified },
     { url: `${site.url}/sobre` },
     { url: `${site.url}/newsletter` },
+    { url: `${site.url}/contato` },
+    { url: `${site.url}/memoria` },
     ...posts,
   ];
 }

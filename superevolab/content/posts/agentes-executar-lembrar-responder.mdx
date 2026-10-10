@@ -6,7 +6,7 @@ data: "2026-10-10"
 chapeu: "SONAR 001 · infraestrutura de agentes, modelos abertos e governança"
 eixo: "radar"
 selo: "Sinal SONAR · sintetizado"
-rascunho: true
+rascunho: false
 navegacao:
   - { id: "problema", rotulo: "O problema" }
   - { id: "execucao", rotulo: "Execução" }
@@ -52,7 +52,7 @@ A lição de engenharia é que continuidade e segurança precisam coexistir. Rec
 
 <Etiqueta tipo="empresa" /> O NVIDIA Nemotron 3 Super demonstra outra dimensão do problema. Sua arquitetura combina Mamba, atenção e Mixture of Experts, com 120 bilhões de parâmetros totais e cerca de 12 bilhões ativos. Os pesos são abertos, sob a licença própria da NVIDIA para modelos Nemotron.
 
-A família também explora quantização (como o formato NVFP4) e técnicas de aceleração da inferência. Essas características podem favorecer determinadas cargas de trabalho, mas não permitem concluir, por si só, que um modelo será mais barato ou melhor em qualquer aplicação. A própria ficha do modelo pede, no mínimo, oito GPUs H100 de 80 GB para a versão completa.
+A família também explora quantização (como o formato NVFP4) e técnicas de aceleração da inferência. Essas características podem favorecer determinadas cargas de trabalho, mas não permitem concluir, por si só, que um modelo será mais barato ou melhor em qualquer aplicação. A própria ficha do modelo pede, no mínimo, oito GPUs H100 de 80 GB para a versão completa. Já a versão comprimida em NVFP4 roda numa única DGX Spark, com contexto de até 1 milhão de tokens, segundo o guia de implantação da NVIDIA.
 
 O resultado depende do hardware, do tamanho do contexto, da concorrência, da latência, da qualidade das respostas e do custo operacional medido. Os números de desempenho divulgados variam conforme a fonte e o modelo usado na comparação.
 
@@ -109,6 +109,7 @@ Este texto foi sintetizado pelo SONAR, o sistema de varredura do Super Evo Lab, 
 | MicroVMs com isolamento, pausa e retomada com estado | Confirmado no blog da DigitalOcean. O produto MicroVMs avulso aparece em **pré-visualização privada**; o rascunho original falava em pré-visualização pública desde 9 de outubro, e essa data não foi encontrada. <Etiqueta tipo="aberto" /> |
 | Managed Agents em pré-visualização pública desde 21 de setembro, com Action Gateway e mais de 16 mil ferramentas | Confirmado na documentação e na nota de versão da DigitalOcean. <Etiqueta tipo="empresa" /> |
 | Nemotron 3 Super: 120 bilhões totais, 12 bilhões ativos, Mamba + atenção + MoE, pesos abertos | Confirmado no relatório técnico da NVIDIA e na ficha do modelo. <Etiqueta tipo="empresa" /> |
+| Versão NVFP4 numa única DGX Spark, com contexto de até 1 milhão de tokens | Confirmado no guia de implantação da NVIDIA. A velocidade e a memória usada variam com a montagem; os números que circulam são de usuários. <Etiqueta tipo="empresa" /> |
 | Artigo técnico no arXiv 2604.12374 | Não conferido: a página não abriu. O relatório técnico está no site de pesquisa da NVIDIA. <Etiqueta tipo="aberto" /> |
 | A arquitetura de observar, verificar e conter funciona | Proposta nossa, sem teste. <Etiqueta tipo="aberto" /> |
 
@@ -120,6 +121,7 @@ Este texto foi sintetizado pelo SONAR, o sistema de varredura do Super Evo Lab, 
 - [DigitalOcean: Action Gateway](https://docs.digitalocean.com/products/managed-agents/action-gateway/)
 - [NVIDIA: relatório técnico do Nemotron 3 Super](https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Super-Technical-Report.pdf)
 - [NVIDIA: ficha do modelo (NIM)](https://docs.api.nvidia.com/nim/reference/nvidia-nemotron-3-super-120b-a12b)
+- [NVIDIA: guia de implantação na DGX Spark](https://docs.nvidia.com/nemotron/nightly/usage-cookbook/Nemotron-3-Super/SparkDeploymentGuide/README.html)
 - [Hugging Face: checkpoint NVFP4](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4)
 - [arXiv 2604.12374](https://arxiv.org/abs/2604.12374) (não conferido)
 

@@ -5,6 +5,7 @@ import matter from "gray-matter";
 const PASTA = path.join(process.cwd(), "content", "posts");
 
 export type Pergunta = { pergunta: string; resposta: string };
+export type Secao = { id: string; rotulo: string };
 
 export type Post = {
   slug: string;
@@ -15,6 +16,10 @@ export type Post = {
   preview?: string;
   github?: string;
   faq: Pergunta[];
+  /** Linha acima do título (ex.: "Versão 2 · corte em 3 de outubro de 2026"). */
+  chapeu?: string;
+  /** Menu de seções preso no topo; cada id tem de existir num <h2 id> do texto. */
+  navegacao: Secao[];
   rascunho: boolean;
   conteudo: string;
 };
@@ -31,6 +36,8 @@ function ler(arquivo: string): Post {
     preview: data.preview ? String(data.preview) : undefined,
     github: data.github ? String(data.github) : undefined,
     faq: Array.isArray(data.faq) ? (data.faq as Pergunta[]) : [],
+    chapeu: data.chapeu ? String(data.chapeu) : undefined,
+    navegacao: Array.isArray(data.navegacao) ? (data.navegacao as Secao[]) : [],
     rascunho: Boolean(data.rascunho),
     conteudo: content,
   };

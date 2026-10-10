@@ -19,8 +19,19 @@ body {
 
 /* Corpo do post (MDX) */
 .conteudo {
+  font-family: "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
   font-size: 1.0625rem;
-  line-height: 1.75;
+  line-height: 1.7;
+}
+.conteudo > p,
+.conteudo > ul,
+.conteudo > ol {
+  max-width: 70ch;
+}
+.conteudo h2,
+.conteudo h3 {
+  font-family: var(--fonte-texto), system-ui, sans-serif;
+  scroll-margin-top: 4rem;
 }
 .conteudo > * + * {
   margin-top: 1.1em;
@@ -85,9 +96,17 @@ body {
 }
 .conteudo th {
   background: #141414;
-  color: #fff;
+  color: #a3a3a3;
   text-align: left;
-  font-weight: 700;
+  font-family: var(--fonte-texto), system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.conteudo td:first-child {
+  font-weight: 600;
+  color: #fff;
 }
 .conteudo th,
 .conteudo td {
@@ -104,4 +123,91 @@ body {
 pre,
 code {
   font-variant-ligatures: none;
+}
+
+/* Peças editoriais (components/Artigo.tsx) */
+.etiqueta {
+  display: inline-block;
+  margin: 0 4px 4px 0;
+  padding: 4px 7px;
+  border-radius: 3px;
+  font: 600 11px/1 var(--fonte-texto), system-ui, sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.etiqueta-empresa { color: #f0c47e; background: #3d2f17; }
+.etiqueta-independente { color: #8fd4b4; background: #173328; }
+.etiqueta-governo { color: #9cc0ee; background: #1a2a40; }
+.etiqueta-imprensa { color: #cfc7ba; background: #34302a; }
+.etiqueta-aberto { color: #f0a590; background: #40211a; }
+
+.nota {
+  max-width: 70ch;
+  border: 1px solid #262626;
+  border-top: 3px solid #ffd60a;
+  background: #141414;
+  padding: 14px 16px;
+  font-size: 0.97rem;
+}
+.legenda {
+  font-size: 0.93rem;
+}
+.legenda > * + * {
+  margin-top: 0.4em;
+}
+.cartoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.cartao {
+  min-width: 0;
+  border: 1px solid #262626;
+  background: #141414;
+  padding: 14px 16px;
+}
+.cartao strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #ffd60a;
+  font: 600 12px/1.3 var(--fonte-texto), system-ui, sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* No celular, tabela vira pilha de cartões; cada célula mostra o rótulo da coluna (lib/rehype-tabela.ts). */
+@media (max-width: 700px) {
+  .cartoes { grid-template-columns: 1fr; }
+  .conteudo .tabela { border: 0; overflow: visible; }
+  .conteudo table,
+  .conteudo tbody,
+  .conteudo tr,
+  .conteudo td { display: block; }
+  .conteudo thead { display: none; }
+  .conteudo tr {
+    margin: 0 0 10px;
+    border: 1px solid #262626;
+    border-radius: 6px;
+    background: #141414;
+    padding: 12px 14px;
+  }
+  .conteudo td { border: 0; padding: 0 0 6px; min-width: 0; }
+  .conteudo td:last-child { padding-bottom: 0; }
+  .conteudo td[data-l]::before {
+    content: attr(data-l);
+    display: block;
+    color: #a3a3a3;
+    font: 600 10.5px/1.4 var(--fonte-texto), system-ui, sans-serif;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+}
+
+.rodape {
+  margin-top: 2.5rem;
+  border-top: 1px solid #262626;
+  padding-top: 1rem;
+  color: #a3a3a3;
+  font-size: 0.9rem;
 }

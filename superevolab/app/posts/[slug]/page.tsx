@@ -3,9 +3,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import { Cartao, Cartoes, Etiqueta, Legenda, Nota } from "@/components/Artigo";
 import { BlocoCodigo } from "@/components/BlocoCodigo";
 import { FormularioNewsletter } from "@/components/FormularioNewsletter";
 import { buscarPost, dataBR, listarPosts } from "@/lib/posts";
+import rehypeTabela from "@/lib/rehype-tabela";
 import { site } from "@/lib/site";
 
 type Params = { params: { slug: string } };
@@ -38,6 +40,11 @@ export function generateMetadata({ params }: Params): Metadata {
 
 const componentes = {
   pre: BlocoCodigo,
+  Etiqueta,
+  Nota,
+  Cartoes,
+  Cartao,
+  Legenda,
   table: (props: React.ComponentPropsWithoutRef<"table">) => (
     <div className="tabela">
       <table {...props} />
@@ -76,37 +83,53 @@ export default function PaginaPost({ params }: Params) {
   ];
 
   return (
-    <article className="mx-auto max-w-leitura px-4 pt-10 sm:pt-14">
+    <article>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
-      <Link href="/" className="text-sm text-apagado hover:text-texto">
-        ← Todos os tutoriais
-      </Link>
 
-      <header className="mt-6 border-b border-borda pb-8">
-        <div className="flex items-center gap-3 text-xs">
-          <span className="rounded-full border border-amarelo/40 px-2.5 py-0.5 font-medium uppercase tracking-wide text-amarelo">
-            {post.categoria}
-          </span>
-          <time dateTime={post.data} className="text-apagado">
-            {dataBR(post.data)}
-          </time>
+      <header className="border-b border-borda bg-black">
+        <div className="mx-auto max-w-artigo px-4 pb-8 pt-8 sm:pt-12">
+          <Link href="/" className="text-sm text-apagado hover:text-texto">
+            ← Todos os textos
+          </Link>
+          <div className="mt-6 flex flex-wrap items-center gap-3 text-xs">
+            <span className="rounded-full border border-amarelo/40 px-2.5 py-0.5 font-medium uppercase tracking-wide text-amarelo">
+              {post.categoria}
+            </span>
+            <time dateTime={post.data} className="text-apagado">
+              {dataBR(post.data)}
+            </time>
+          </div>
+          {post.chapeu && (
+            <p className="mt-5 text-xs font-medium uppercase tracking-[0.14em] text-apagado">{post.chapeu}</p>
+          )}
+          <h1 className="mt-3 text-balance font-serif text-4xl font-medium leading-[1.1] text-white sm:text-5xl">
+            {post.titulo}
+          </h1>
+          <p className="mt-4 max-w-[64ch] font-serif text-lg leading-relaxed text-texto/85">{post.resumo}</p>
         </div>
-        <h1 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl">
-          {post.titulo}
-        </h1>
-        <p className="mt-4 rounded-lg border-l-4 border-amarelo bg-painel p-4 text-texto">
-          {post.resumo}
-        </p>
       </header>
 
+      {post.navegacao.length > 0 && (
+        <nav aria-label="Seções" className="sticky top-0 z-10 overflow-x-auto whitespace-nowrap border-b border-borda bg-painel/95 backdrop-blur">
+          <div className="mx-auto flex max-w-artigo gap-5 px-4 py-3 text-[13px]">
+            {post.navegacao.map((s) => (
+              <a key={s.id} href={`#${s.id}`} className="text-apagado hover:text-amarelo focus-visible:text-amarelo">
+                {s.rotulo}
+              </a>
+            ))}
+          </div>
+        </nav>
+      )}
+
+      <div className="mx-auto max-w-artigo px-4">
       <div className="conteudo mt-8">
         <MDXRemote
           source={post.conteudo}
           components={componentes}
-          options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+          options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeTabela] } }}
         />
       </div>
 
@@ -144,6 +167,7 @@ export default function PaginaPost({ params }: Params) {
         <p className="mb-5 mt-2 text-sm text-apagado">Um por vez, direto no e-mail.</p>
         <FormularioNewsletter />
       </section>
+      </div>
     </article>
   );
 }

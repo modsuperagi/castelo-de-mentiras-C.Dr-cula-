@@ -13,7 +13,8 @@ declare global {
 const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
 const CONVERSAO = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSAO;
 
-export function FormularioNewsletter() {
+export function FormularioNewsletter({ tipo = "newsletter" }: { tipo?: "newsletter" | "contato" }) {
+  const contato = tipo === "contato";
   const [estado, setEstado] = useState<Estado>("parado");
 
   async function enviar(e: FormEvent<HTMLFormElement>) {
@@ -43,7 +44,7 @@ export function FormularioNewsletter() {
   if (estado === "ok") {
     return (
       <p className="rounded-lg border border-amarelo/50 bg-amarelo/10 p-4 text-texto">
-        Pronto. Você vai receber os próximos tutoriais no seu e-mail.
+        {contato ? "Mensagem enviada. A gente responde no seu e-mail." : "Pronto. Você vai receber os próximos textos no seu e-mail."}
       </p>
     );
   }
@@ -61,12 +62,15 @@ export function FormularioNewsletter() {
           className="rounded-md border border-borda bg-black px-3 py-2.5 text-base text-texto placeholder:text-apagado/60 focus:border-amarelo focus:outline-none"
         />
       </label>
+      <input type="hidden" name="origem" value={tipo} />
       <label className="flex flex-col gap-1.5 text-sm">
         <span className="font-semibold text-texto">
-          O que você veio despertar em si mesmo? <span className="font-normal text-apagado">(opcional)</span>
+          {contato ? "Sua mensagem" : "O que você quer automatizar?"}{" "}
+          {!contato && <span className="font-normal text-apagado">(opcional)</span>}
         </span>
         <textarea
-          name="despertar"
+          name={contato ? "mensagem" : "automatizar"}
+          required={contato}
           rows={3}
           maxLength={500}
           className="rounded-md border border-borda bg-black px-3 py-2.5 text-base text-texto focus:border-amarelo focus:outline-none"
@@ -77,7 +81,7 @@ export function FormularioNewsletter() {
         disabled={estado === "enviando"}
         className="rounded-md bg-amarelo px-4 py-3 font-bold text-black hover:brightness-95 disabled:opacity-60"
       >
-        {estado === "enviando" ? "Enviando…" : "Quero receber os tutoriais"}
+        {estado === "enviando" ? "Enviando…" : contato ? "Enviar mensagem" : "Quero receber os textos"}
       </button>
       {estado === "erro" && (
         <p className="text-sm text-red-400" role="alert">
@@ -87,7 +91,9 @@ export function FormularioNewsletter() {
         </p>
       )}
       <p className="text-xs text-apagado">
-        Usamos seu e-mail só para mandar os tutoriais. Para sair, é só responder pedindo.
+        {contato
+          ? "Usamos seu e-mail só para responder esta mensagem."
+          : "Usamos seu e-mail só para mandar os textos. Para sair, é só responder pedindo."}
       </p>
     </form>
   );

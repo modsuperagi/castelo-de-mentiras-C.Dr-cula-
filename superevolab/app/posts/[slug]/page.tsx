@@ -8,7 +8,7 @@ import { BlocoCodigo } from "@/components/BlocoCodigo";
 import { FormularioNewsletter } from "@/components/FormularioNewsletter";
 import { buscarPost, dataBR, listarPosts } from "@/lib/posts";
 import rehypeTabela from "@/lib/rehype-tabela";
-import { site } from "@/lib/site";
+import { EIXOS, site } from "@/lib/site";
 
 type Params = { params: { slug: string } };
 
@@ -65,6 +65,7 @@ export default function PaginaPost({ params }: Params) {
       datePublished: post.data,
       inLanguage: "pt-BR",
       mainEntityOfPage: `${site.url}/posts/${post.slug}`,
+      author: { "@type": "Person", name: site.autor.nome },
       publisher: { "@type": "Organization", name: site.nome },
     },
     ...(post.faq.length
@@ -95,7 +96,10 @@ export default function PaginaPost({ params }: Params) {
             ← Todos os textos
           </Link>
           <div className="mt-6 flex flex-wrap items-center gap-3 text-xs">
-            <span className="rounded-full border border-amarelo/40 px-2.5 py-0.5 font-medium uppercase tracking-wide text-amarelo">
+            <span className="rounded-sm bg-amarelo px-2 py-1 font-bold uppercase tracking-wide text-black">
+              {post.selo ?? EIXOS[post.eixo].selo}
+            </span>
+            <span className="rounded-full border border-borda px-2.5 py-0.5 uppercase tracking-wide text-apagado">
               {post.categoria}
             </span>
             <time dateTime={post.data} className="text-apagado">
@@ -162,8 +166,19 @@ export default function PaginaPost({ params }: Params) {
         </section>
       )}
 
-      <section className="mt-16 rounded-2xl border border-borda bg-painel p-6 sm:p-8">
-        <h2 className="text-xl font-extrabold text-white">Gostou? Receba o próximo tutorial</h2>
+      <aside className="mt-14 flex gap-4 border-t border-borda pt-6" aria-label="Quem escreve">
+        <div aria-hidden="true" className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-amarelo font-mono font-bold text-black">
+          {site.autor.nome.slice(0, 1)}
+        </div>
+        <p className="text-sm text-apagado">
+          <strong className="block text-texto">{site.autor.nome}</strong>
+          {site.autor.frase}{" "}
+          <Link href="/contato/" className="text-amarelo underline underline-offset-4">Fale com a gente</Link>.
+        </p>
+      </aside>
+
+      <section className="mt-12 rounded-2xl border border-borda bg-painel p-6 sm:p-8">
+        <h2 className="text-xl font-extrabold text-white">Gostou? Receba o próximo texto</h2>
         <p className="mb-5 mt-2 text-sm text-apagado">Um por vez, direto no e-mail.</p>
         <FormularioNewsletter />
       </section>

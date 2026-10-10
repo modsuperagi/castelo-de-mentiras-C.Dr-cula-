@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 // Regra: nenhum item leva a uma página com menos de 2 itens.
 // Lab e Radar apontam para as seções da página inicial até terem 3 textos cada.
 const PRINCIPAL = [
+  { href: "/sonar/", rotulo: "SONAR · beta" },
   { href: "/#lab", rotulo: "Lab · Prática" },
   { href: "/#radar", rotulo: "Radar · SONAR" },
   { href: "/memoria/", rotulo: "Memória" },

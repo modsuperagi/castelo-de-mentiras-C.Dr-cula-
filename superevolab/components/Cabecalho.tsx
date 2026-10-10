@@ -14,7 +14,7 @@ export function Cabecalho() {
             href="/newsletter/"
             className="rounded-md bg-amarelo px-3 py-1.5 text-sm font-semibold text-black hover:brightness-95"
           >
-            Assinar
+            Newsletter
           </Link>
           <Menu />
         </div>

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Cormorant_Garamond, Inter, JetBrains_Mono } from "next/font/google";
 import { Cabecalho } from "@/components/Cabecalho";
 import { Rodape } from "@/components/Rodape";
 import { site } from "@/lib/site";
@@ -8,6 +8,13 @@ import "./globals.css";
 
 const texto = Inter({ subsets: ["latin"], variable: "--fonte-texto", display: "swap" });
 const codigo = JetBrains_Mono({ subsets: ["latin"], variable: "--fonte-codigo", display: "swap" });
+const titulo = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--fonte-titulo",
+  display: "swap",
+  preload: false,
+});
 
 const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 
@@ -36,7 +43,7 @@ export const viewport: Viewport = {
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${texto.variable} ${codigo.variable}`}>
+    <html lang="pt-BR" className={`${texto.variable} ${codigo.variable} ${titulo.variable}`}>
       <body className="min-h-screen font-sans">
         <Cabecalho />
         <main>{children}</main>

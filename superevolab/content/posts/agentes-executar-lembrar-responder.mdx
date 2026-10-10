@@ -1,0 +1,128 @@
+---
+titulo: "Agentes de IA: executar, lembrar e responder por suas ações"
+resumo: "Execução isolada, modelos abertos mais eficientes e ferramentas governadas: três sinais de outubro de 2026 mostram que o desafio dos agentes de IA já não é só responder bem."
+categoria: "Análise"
+data: "2026-10-10"
+chapeu: "SONAR 001 · infraestrutura de agentes, modelos abertos e governança"
+eixo: "radar"
+selo: "Sinal SONAR · sintetizado"
+rascunho: false
+navegacao:
+  - { id: "problema", rotulo: "O problema" }
+  - { id: "execucao", rotulo: "Execução" }
+  - { id: "eficiencia", rotulo: "Eficiência" }
+  - { id: "governanca", rotulo: "Governança" }
+  - { id: "arquitetura", rotulo: "Arquitetura" }
+  - { id: "aberto", rotulo: "Em aberto" }
+  - { id: "conclusao", rotulo: "Conclusão" }
+  - { id: "metodo", rotulo: "Método" }
+faq: []
+---
+
+<Nota>
+**Como ler.** Os fatos vêm de páginas públicas das empresas e foram conferidos por busca em 10 de outubro de 2026. A interpretação é nossa, não das empresas. O que foi e o que não foi conferido está na [nota de método](#metodo), no fim.
+</Nota>
+
+<Cartoes>
+<Cartao titulo="Três sinais">
+Execução isolada com memória durável (DigitalOcean), modelo aberto eficiente (NVIDIA Nemotron 3 Super) e acesso governado a ferramentas (DigitalOcean Managed Agents).
+</Cartao>
+<Cartao titulo="O que ainda não sabemos">
+Se a arquitetura proposta aqui funciona na prática. Ela não foi testada; os cinco testes estão no fim do texto.
+</Cartao>
+</Cartoes>
+
+<h2 id="problema">O problema mudou</h2>
+
+A discussão sobre agentes de inteligência artificial está avançando para além da qualidade das respostas. Um agente moderno pode escrever código, consultar serviços, chamar ferramentas, alterar dados e retomar uma tarefa depois de uma interrupção.
+
+Isso muda a pergunta central da engenharia: não basta saber se o modelo consegue produzir uma resposta correta. É necessário verificar se o sistema consegue executar a tarefa com segurança, preservar o estado necessário e demonstrar o que realmente aconteceu.
+
+Três movimentos recentes ajudam a entender essa transformação.
+
+<h2 id="execucao">1. Execução isolada e continuidade</h2>
+
+<Etiqueta tipo="empresa" /> A DigitalOcean apresentou microVMs destinadas a cargas de trabalho de agentes, com isolamento por máquina virtual, suspensão durante períodos ociosos e retomada de sessões com arquivos e estado preservados.
+
+A proposta responde a um problema concreto: agentes podem gerar código não confiável e alternar entre períodos intensos de execução e espera. Manter um servidor ativo permanentemente nem sempre é eficiente; executar código sem isolamento suficiente pode ser perigoso.
+
+A lição de engenharia é que continuidade e segurança precisam coexistir. Recuperar uma sessão não significa restaurar indiscriminadamente todas as permissões que ela possuía antes da interrupção.
+
+<h2 id="eficiencia">2. Eficiência dos modelos não substitui avaliação</h2>
+
+<Etiqueta tipo="empresa" /> O NVIDIA Nemotron 3 Super demonstra outra dimensão do problema. Sua arquitetura combina Mamba, atenção e Mixture of Experts, com 120 bilhões de parâmetros totais e cerca de 12 bilhões ativos. Os pesos são abertos, sob a licença própria da NVIDIA para modelos Nemotron.
+
+A família também explora quantização (como o formato NVFP4) e técnicas de aceleração da inferência. Essas características podem favorecer determinadas cargas de trabalho, mas não permitem concluir, por si só, que um modelo será mais barato ou melhor em qualquer aplicação. A própria ficha do modelo pede, no mínimo, oito GPUs H100 de 80 GB para a versão completa. Já a versão comprimida em NVFP4 roda numa única DGX Spark, com contexto de até 1 milhão de tokens, segundo o guia de implantação da NVIDIA.
+
+O resultado depende do hardware, do tamanho do contexto, da concorrência, da latência, da qualidade das respostas e do custo operacional medido. Os números de desempenho divulgados variam conforme a fonte e o modelo usado na comparação.
+
+A lição é simples: escolher um modelo exige experimentos comparáveis, e não apenas números de parâmetros ou promessas de desempenho.
+
+<h2 id="governanca">3. Ferramentas exigem governança</h2>
+
+<Etiqueta tipo="empresa" /> A plataforma Managed Agents da DigitalOcean, em pré-visualização pública desde 21 de setembro de 2026, reúne execução isolada, acesso governado a ferramentas (o Action Gateway, com mais de 16 mil ferramentas por um único endpoint MCP), inferência e preservação do estado das sessões. Por padrão, as ferramentas pedem aprovação humana antes de rodar.
+
+Essa integração evidencia um desafio arquitetural: cada nova capacidade de ação aumenta a importância de controlar identidade, autorização, credenciais e rastreabilidade.
+
+Um modelo não deveria receber automaticamente todos os privilégios necessários para concluir uma tarefa. O sistema deve conceder somente o acesso necessário, verificar as operações realizadas e manter registros que permitam investigar falhas.
+
+No caso de ferramentas conectadas por MCP, essa separação é especialmente importante: uma instrução recebida por um agente não deve se transformar automaticamente em autorização para executar qualquer ação oferecida por uma ferramenta.
+
+<h2 id="arquitetura">Uma arquitetura de referência: observar, verificar e conter</h2>
+
+A partir desses sinais, propomos uma arquitetura de investigação organizada em três funções complementares:
+
+- **Observação:** registrar fontes, entradas, versões, decisões e resultados de execução.
+- **Verificação:** confrontar afirmações com evidências independentes, executar testes e distinguir resultados reproduzíveis de hipóteses.
+- **Contenção:** limitar permissões, isolar operações e impedir que uma falha se propague para outros recursos.
+
+Essas funções podem ser complementadas por uma camada de desenvolvimento, responsável por implementar soluções, e por uma camada de governança, responsável por avaliar consequências, limites e critérios de aceitação.
+
+A divisão não precisa corresponder a cinco modelos diferentes. Pode ser implementada por componentes de software, agentes especializados ou uma combinação dos dois. O importante é que cada responsabilidade tenha entradas, saídas e critérios verificáveis.
+
+<h2 id="aberto">O que ainda precisa ser demonstrado</h2>
+
+Uma arquitetura consistente não é automaticamente uma arquitetura validada. Para avaliar sua eficácia, propomos testes que respondam a cinco perguntas:
+
+1. O sistema recupera corretamente o estado depois de uma interrupção?
+2. Uma ferramenta consegue ultrapassar as permissões concedidas?
+3. Uma instrução maliciosa pode alterar o comportamento de um agente por meio de conteúdo externo?
+4. As decisões e operações podem ser reconstruídas a partir dos registros?
+5. O sistema consegue interromper uma execução insegura sem perder evidências necessárias à investigação?
+
+Os resultados devem incluir condições do teste, versões, evidências, falhas encontradas e limitações. Até que esses experimentos sejam executados, as respostas permanecem <Etiqueta tipo="aberto" />.
+
+<h2 id="conclusao">Conclusão</h2>
+
+O próximo estágio dos agentes não depende exclusivamente de modelos mais capazes. Depende também de infraestrutura que preserve continuidade, ferramentas que respeitem limites de autorização e mecanismos que tornem a execução verificável.
+
+A questão relevante não é apenas se um agente consegue agir de forma autônoma, mas se conseguimos compreender, restringir, avaliar e auditar suas ações.
+
+É nesse ponto que desenvolvimento, segurança e filosofia deixam de ser disciplinas isoladas e passam a integrar o mesmo problema de engenharia.
+
+<h2 id="metodo">Nota de método</h2>
+
+Este texto foi sintetizado pelo SONAR, o sistema de varredura do Super Evo Lab, na missão SONAR 001 (10 de outubro de 2026). As fontes foram conferidas por busca nessa data; as páginas não foram arquivadas.
+
+| Afirmação | Situação em 10/10/2026 |
+|---|---|
+| MicroVMs com isolamento, pausa e retomada com estado | Confirmado no blog da DigitalOcean. O produto MicroVMs avulso aparece em **pré-visualização privada**; o rascunho original falava em pré-visualização pública desde 9 de outubro, e essa data não foi encontrada. <Etiqueta tipo="aberto" /> |
+| Managed Agents em pré-visualização pública desde 21 de setembro, com Action Gateway e mais de 16 mil ferramentas | Confirmado na documentação e na nota de versão da DigitalOcean. <Etiqueta tipo="empresa" /> |
+| Nemotron 3 Super: 120 bilhões totais, 12 bilhões ativos, Mamba + atenção + MoE, pesos abertos | Confirmado no relatório técnico da NVIDIA e na ficha do modelo. <Etiqueta tipo="empresa" /> |
+| Versão NVFP4 numa única DGX Spark, com contexto de até 1 milhão de tokens | Confirmado no guia de implantação da NVIDIA. A velocidade e a memória usada variam com a montagem; os números que circulam são de usuários. <Etiqueta tipo="empresa" /> |
+| Artigo técnico no arXiv 2604.12374 | Não conferido: a página não abriu. O relatório técnico está no site de pesquisa da NVIDIA. <Etiqueta tipo="aberto" /> |
+| A arquitetura de observar, verificar e conter funciona | Proposta nossa, sem teste. <Etiqueta tipo="aberto" /> |
+
+### Fontes
+
+- [DigitalOcean: MicroVMs, base de computação para agentes](https://www.digitalocean.com/blog/microvms-for-agents)
+- [DigitalOcean: documentação de Managed Agents](https://docs.digitalocean.com/products/managed-agents/)
+- [DigitalOcean: nota de versão, Managed Agents em pré-visualização pública](https://docs.digitalocean.com/notes/2026/managed-agents-public-preview/)
+- [DigitalOcean: Action Gateway](https://docs.digitalocean.com/products/managed-agents/action-gateway/)
+- [NVIDIA: relatório técnico do Nemotron 3 Super](https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3-Super-Technical-Report.pdf)
+- [NVIDIA: ficha do modelo (NIM)](https://docs.api.nvidia.com/nim/reference/nvidia-nemotron-3-super-120b-a12b)
+- [NVIDIA: guia de implantação na DGX Spark](https://docs.nvidia.com/nemotron/nightly/usage-cookbook/Nemotron-3-Super/SparkDeploymentGuide/README.html)
+- [Hugging Face: checkpoint NVFP4](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4)
+- [arXiv 2604.12374](https://arxiv.org/abs/2604.12374) (não conferido)
+
+<p className="rodape">SONAR · investigação aberta. As conclusões serão atualizadas à medida que novos testes e evidências forem obtidos.</p>

@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
   return [
     { url: site.url, lastModified: posts[0]?.lastModified },
+    { url: `${site.url}/sonar` },
     { url: `${site.url}/sobre` },
     { url: `${site.url}/newsletter` },
     { url: `${site.url}/contato` },

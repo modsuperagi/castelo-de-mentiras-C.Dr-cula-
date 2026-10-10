@@ -33,6 +33,13 @@ export default function Home() {
 
   return (
     <>
+      <Link
+        href="/sonar/"
+        className="block border-b border-[#3a1f6b] bg-[#0d0a1f] px-4 py-2.5 text-center text-sm text-[#eee7d7] hover:text-white"
+      >
+        <span className="text-[#e6b85c]">SONAR em beta:</span> monte a sua equipe de agentes de IA.{" "}
+        <span className="underline decoration-[#7fd8f2]/60 underline-offset-4">Conhecer o beta</span>
+      </Link>
       <section className="mx-auto max-w-5xl px-4 pb-4 pt-14 sm:pt-20">
         <p className="mb-4 font-mono text-sm text-amarelo">// agentes de IA, em português, na prática</p>
         <h1 className="max-w-3xl text-4xl font-extrabold leading-[1.1] tracking-tight text-white sm:text-6xl">

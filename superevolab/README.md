@@ -59,6 +59,17 @@ Texto em Markdown. Tabelas e blocos de código já ganham estilo e botão Copiar
 
 O blog vira um site estático (pasta `out/`), então roda em hospedagem gratuita, sem Vercel.
 
+**Como publicamos hoje:** pelo GitHub, sem `.zip`. O projeto da Cloudflare é o **castelo-blog**
+(`https://castelo-blog.pages.dev`), criado por envio direto. Quem publica é o workflow
+`.github/workflows/blog.yml`: a cada mudança em `superevolab/` que chega na `main`, ele monta o site e
+manda para o castelo-blog. Precisa de dois segredos no repositório (Settings → Secrets and variables →
+Actions): `CLOUDFLARE_API_TOKEN` (token com permissão *Cloudflare Pages: Edit*) e
+`CLOUDFLARE_ACCOUNT_ID`. Sem eles, o site é montado e fica para baixar na própria execução
+(aba Actions → Blog → arquivo `castelo-blog-site`). Para publicar de novo sem mudar nada:
+Actions → Blog → Run workflow.
+
+O caminho abaixo, de ligar a Cloudflare direto ao Git, serve para um projeto novo.
+
 1. Crie uma conta grátis em dash.cloudflare.com.
 2. **Workers & Pages → Create → Pages → Connect to Git** e autorize o GitHub neste repositório.
 3. Configure o build:

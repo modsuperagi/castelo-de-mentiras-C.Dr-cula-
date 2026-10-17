@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Histórico dos Projetos</title>
+<meta name="robots" content="noindex,nofollow">
+<!-- Gerado por ferramentas/raiz/historico.py. Não edite à mão: rode o gerador. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Familjen+Grotesk:wght@400;600&family=Fragment+Mono&display=swap">
+<style>
+/* Layout: régua de projetos no alto (cada faixa é a vida de um projeto no tempo), filtros, e a linha do tempo dia a dia */
+:root{
+ --chao:#0b0a07;--placa:#16140d;--linha:#2e2a1c;--texto:#efe9d6;--apagado:#a39b7f;--brasa:#ffd60a;--brasa-tinta:#1a1500;
+ --p-castelo:#ff8f5a;--p-espelho:#ffd60a;--p-sonar:#5ad1ff;--p-comercial:#7ee2a8;--p-organismo:#c9b8ff;
+ --p-lab:#ff7ad9;--p-grok:#b9b09a;--p-raiz:#f4f0e2;
+ --f-titulo:"Bricolage Grotesque","Familjen Grotesk",system-ui,sans-serif;
+ --f-corpo:"Familjen Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+ --f-dado:"Fragment Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+ color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--chao);color:var(--texto);font:14px/1.5 var(--f-corpo);
+ padding-block:16px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:2px solid var(--brasa);outline-offset:2px}
+h1{margin:0;font:800 clamp(22px,4vw,30px)/1.1 var(--f-titulo);letter-spacing:-.02em;text-wrap:balance}
+.sub{margin:4px 0 0;color:var(--apagado);font:12px/1.5 var(--f-dado);font-variant-numeric:tabular-nums}
+.bloco{margin-top:20px}
+.rotulo{margin:0 0 8px;color:var(--apagado);font:11px/1 var(--f-dado);text-transform:uppercase;letter-spacing:.1em}
+
+.regua{display:grid;gap:4px}
+.faixa{display:grid;grid-template-columns:minmax(0,140px) 1fr minmax(0,72px);gap:10px;align-items:center;font-size:13px}
+.faixa b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.faixa .n{color:var(--apagado);font:11px var(--f-dado);text-align:right;font-variant-numeric:tabular-nums}
+.trilho{position:relative;height:14px;border-bottom:1px solid var(--linha)}
+.trilho i{position:absolute;bottom:0;width:3px;border-radius:1px 1px 0 0;background:var(--cor)}
+.eixo{display:grid;grid-template-columns:minmax(0,140px) 1fr minmax(0,72px);gap:10px}
+.eixo div{position:relative;height:16px;font:10px/16px var(--f-dado);color:var(--apagado)}
+.eixo span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.eixo span:first-child{transform:none}
+
+.filtros{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.chip{border:1px solid var(--linha);background:var(--placa);color:var(--texto);border-radius:999px;padding:5px 11px;font:inherit;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cor,var(--apagado))}
+.chip[aria-pressed="false"]{opacity:.45}
+.chip.tipo::before{display:none}
+input[type=search]{flex:1;min-width:min(100%,220px);background:var(--placa);color:var(--texto);border:1px solid var(--linha);border-radius:8px;padding:7px 10px;font:inherit}
+
+.dia{display:grid;grid-template-columns:minmax(0,92px) 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--linha)}
+.dia h3{margin:0;font:12px/1.4 var(--f-dado);color:var(--apagado);font-variant-numeric:tabular-nums}
+.dia h3 small{display:block;font-size:10px}
+.dia ol{list-style:none;margin:0;padding:0;display:grid;gap:8px;min-width:0}
+.ev{display:grid;grid-template-columns:3px 1fr;gap:10px;min-width:0}
+.ev::before{content:"";background:var(--cor);border-radius:2px}
+.ev p{margin:0;overflow-wrap:anywhere}
+.ev .t{font-weight:600}
+.ev .meta{color:var(--apagado);font:11px/1.5 var(--f-dado);display:flex;flex-wrap:wrap;gap:4px 10px}
+.ev .nota{color:var(--apagado);font-size:13px}
+.selo{font:10px/1 var(--f-dado);text-transform:uppercase;letter-spacing:.08em;padding:3px 5px;border-radius:3px;border:1px solid currentColor}
+.marco{color:var(--brasa)}
+.vazio{color:var(--apagado);padding:24px 0}
+@media (max-width:520px){.dia{grid-template-columns:1fr;gap:6px}.faixa,.eixo{grid-template-columns:minmax(0,96px) 1fr minmax(0,44px)}}
+</style>
+</head>
+<body>
+<header>
+ <h1>Histórico dos Projetos</h1>
+ <p class="sub" id="resumo"></p>
+</header>
+
+<section class="bloco" aria-labelledby="r-regua">
+ <p class="rotulo" id="r-regua">Vida de cada projeto · um traço por dia com atividade, altura pelo volume</p>
+ <div class="regua" id="regua"></div>
+</section>
+
+<section class="bloco" aria-labelledby="r-filtros">
+ <p class="rotulo" id="r-filtros">Filtrar</p>
+ <div class="filtros" id="filtros-proj"></div>
+ <div class="filtros" style="margin-top:8px">
+  <button type="button" class="chip tipo" data-tipo="commit" aria-pressed="true">Commits</button>
+  <button type="button" class="chip tipo" data-tipo="migracao" aria-pressed="true">Migrações do Castelo</button>
+  <button type="button" class="chip tipo" data-tipo="pr" aria-pressed="true">PRs</button>
+  <button type="button" class="chip tipo" data-tipo="fusao" aria-pressed="false">Merges</button>
+  <input type="search" id="busca" placeholder="Buscar: Trina, Pix, RLS, SONAR…" aria-label="Buscar no histórico">
+ </div>
+</section>
+
+<section class="bloco" aria-label="Linha do tempo">
+ <div id="linha"></div>
+</section>
+
+<script>
+const DADOS=/*DADOS*/null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cor=p=>`var(--p-${p})`;
+const nome=Object.fromEntries(DADOS.projetos.map(p=>[p.id,p.nome]));
+const ROTULO_TIPO={commit:"commit",migracao:"migração",pr:"PR",fusao:"merge"};
+const ligadoProj=new Set(DADOS.projetos.map(p=>p.id));
+const ligadoTipo=new Set(["commit","migracao","pr"]);
+const dia=q=>q.slice(0,10);
+const fmt=d=>{const [a,m,x]=d.split("-");return `${x}/${m}/${a}`};
+const SEMANA=["dom","seg","ter","qua","qui","sex","sáb"];
+const ms=d=>Date.parse(d+"T12:00:00Z");
+
+// Resumo e régua: a mesma escala de tempo para todos os projetos.
+const evs=DADOS.eventos, dias=[...new Set(evs.map(e=>dia(e.quando)))].sort();
+const t0=ms(dias[0]), t1=ms(dias[dias.length-1]), pos=d=>t1===t0?0:(ms(d)-t0)/(t1-t0)*100;
+const doc=evs.filter(e=>e.tipo!=="fusao");
+$("resumo").textContent=`${doc.filter(e=>e.tipo==="commit"||e.tipo==="pr").length} commits e PRs · `+
+ `${evs.filter(e=>e.tipo==="migracao").length} migrações do Castelo · ${fmt(dias[0])} a ${fmt(dias[dias.length-1])} · `+
+ `reconstruído do repositório em ${DADOS.gerado.replace(/^(\d+)-(\d+)-(\d+)/,"$3/$2/$1")}`;
+
+(function regua(){
+ const linhas=DADOS.projetos.map(p=>{
+  const porDia={};doc.forEach(e=>{if(e.projetos.includes(p.id))porDia[dia(e.quando)]=(porDia[dia(e.quando)]||0)+1});
+  const max=Math.max(1,...Object.values(porDia)), total=Object.values(porDia).reduce((a,b)=>a+b,0);
+  const tracos=Object.entries(porDia).map(([d,n])=>`<i style="left:calc(${pos(d)}% - 1.5px);height:${Math.max(3,n/max*14)}px" title="${fmt(d)}: ${n}"></i>`).join("");
+  return `<div class="faixa" style="--cor:${cor(p.id)}"><b title="desde ${fmt(p.inicio)}">${esc(p.nome)}</b><div class="trilho">${tracos}</div><span class="n">${total}</span></div>`;
+ });
+ // Marcas do eixo no primeiro dia de cada mês dentro do período.
+ const marcas=[`<span style="left:0">${fmt(dias[0]).slice(0,5)}</span>`];
+ let d=new Date(t0);d.setUTCDate(1);d.setUTCMonth(d.getUTCMonth()+1);
+ while(d.getTime()<=t1){const iso=d.toISOString().slice(0,10);if(pos(iso)>8&&pos(iso)<94)marcas.push(`<span style="left:${pos(iso)}%">01/${iso.slice(5,7)}</span>`);d.setUTCMonth(d.getUTCMonth()+1)}
+ $("regua").innerHTML=linhas.join("")+`<div class="eixo"><span></span><div>${marcas.join("")}</div><span></span></div>`;
+})();
+
+$("filtros-proj").innerHTML=DADOS.projetos.map(p=>`<button type="button" class="chip" style="--cor:${cor(p.id)}" data-proj="${p.id}" aria-pressed="true" title="desde ${fmt(p.inicio)}">${esc(p.nome)}</button>`).join("");
+
+function desenhar(){
+ const q=$("busca").value.trim().toLowerCase();
+ const visiveis=evs.filter(e=>ligadoTipo.has(e.tipo)&&e.projetos.some(p=>ligadoProj.has(p))&&
+  (!q||(e.titulo+" "+(e.nota||"")+" "+e.ref+" "+(e.ramos||[]).join(" ")).toLowerCase().includes(q)));
+ const inicio={};DADOS.projetos.forEach(p=>inicio[p.id]=p.inicio);
+ const grupos={};visiveis.forEach(e=>(grupos[dia(e.quando)]??=[]).push(e));
+ const html=Object.keys(grupos).sort().reverse().map(d=>{
+  const nasce=DADOS.projetos.filter(p=>p.inicio===d&&ligadoProj.has(p.id));
+  const itens=grupos[d].slice().reverse().map(e=>{
+   const p=e.projetos[0];
+   const meta=[e.quando.slice(11),`<span class="selo">${ROTULO_TIPO[e.tipo]}</span>`,
+    e.projetos.map(x=>`<span style="color:${cor(x)}">${esc(nome[x]||x)}</span>`).join(" · "),
+    e.pr?`PR #${e.pr}`:"",esc(e.ref),
+    e.arquivos?`${e.arquivos} arquivo${e.arquivos>1?"s":""}`:"",e.autor?esc(e.autor):""].filter(Boolean).join("</span><span>");
+   return `<li class="ev" style="--cor:${cor(p)}"><div><p class="t">${esc(e.titulo)}</p>${e.nota?`<p class="nota">${esc(e.nota)}</p>`:""}<p class="meta"><span>${meta}</span></p></div></li>`;
+  }).join("");
+  const marcos=nasce.map(p=>`<li class="ev marco" style="--cor:${cor(p.id)}"><div><p class="t">Início de ${esc(p.nome)}</p><p class="meta"><span>primeiro registro deste projeto</span></p></div></li>`).join("");
+  return `<section class="dia"><h3>${fmt(d)}<small>${SEMANA[new Date(ms(d)).getUTCDay()]} · ${grupos[d].length}</small></h3><ol>${itens}${marcos}</ol></section>`;
+ }).join("");
+ $("linha").innerHTML=html||`<p class="vazio">Nada encontrado com esses filtros.</p>`;
+}
+document.addEventListener("click",ev=>{
+ const b=ev.target.closest(".chip");if(!b)return;
+ const alvo=b.dataset.proj?ligadoProj:ligadoTipo, chave=b.dataset.proj||b.dataset.tipo;
+ alvo.has(chave)?alvo.delete(chave):alvo.add(chave);
+ b.setAttribute("aria-pressed",String(alvo.has(chave)));desenhar();
+});
+$("busca").addEventListener("input",desenhar);
+desenhar();
+</script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Raiz dos Nós</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Familjen+Grotesk:wght@400;600&family=Fragment+Mono&display=swap">
+<style>
+/* Layout: uma faixa de comando no alto, a fileira dos nós, e o palco que mostra todas as janelas lado a lado ou uma só */
+:root{
+ --chao:#0b0a07;
+ --placa:#16140d;
+ --linha:#2e2a1c;
+ --texto:#efe9d6;
+ --apagado:#a39b7f;
+ --brasa:#ffd60a;
+ --brasa-tinta:#1a1500;
+ --viva:#7ee2a8;
+ --f-titulo:"Bricolage Grotesque","Familjen Grotesk",system-ui,sans-serif;
+ --f-corpo:"Familjen Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+ --f-dado:"Fragment Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+ color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+ margin:0;background:var(--chao);color:var(--texto);
+ font:15px/1.5 var(--f-corpo);
+ display:flex;flex-direction:column;gap:12px;min-height:100%;
+ padding-block:14px;
+ padding-left:max(16px,env(safe-area-inset-left,0px));
+ padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+button,a{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brasa);outline-offset:2px}
+
+.faixa{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px}
+.marca{display:flex;align-items:center;gap:12px;min-width:0}
+.selo{
+ width:42px;height:42px;flex:none;border-radius:50%;
+ display:grid;place-items:center;
+ background:var(--brasa);color:var(--brasa-tinta);
+ font:800 15px/1 var(--f-titulo);letter-spacing:.02em;
+ animation:pulso 2.4s ease-in-out infinite;
+}
+@keyframes pulso{0%,100%{box-shadow:0 0 0 0 rgba(255,214,10,.45)}50%{box-shadow:0 0 0 9px rgba(255,214,10,0)}}
+h1{margin:0;font:800 clamp(22px,4vw,30px)/1.05 var(--f-titulo);letter-spacing:-.02em;text-wrap:balance}
+.sub{margin:2px 0 0;color:var(--apagado);font:12px/1.4 var(--f-dado)}
+
+.abas{display:flex;flex-wrap:wrap;gap:6px}
+.aba{
+ border:1px solid var(--linha);background:var(--placa);
+ padding:7px 12px;border-radius:999px;cursor:pointer;font-size:14px;
+}
+.aba[aria-selected="true"]{background:var(--brasa);border-color:var(--brasa);color:var(--brasa-tinta);font-weight:600}
+
+.nos{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.no{
+ display:flex;align-items:baseline;gap:8px;
+ border-left:2px solid var(--linha);padding:2px 10px 2px 8px;font-size:13px;
+}
+.no b{font-weight:600}
+.no span{color:var(--apagado);font:11px/1 var(--f-dado);font-variant-numeric:tabular-nums}
+.no.ativo{border-left-color:var(--brasa)}
+.nos-nota{margin:0;color:var(--apagado);font:11px/1.4 var(--f-dado)}
+
+.palco{flex:1;display:grid;gap:12px;min-height:0}
+.palco[data-modo="todos"]{grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr))}
+.painel{display:flex;flex-direction:column;min-width:0;min-height:min(78vh,720px);border:1px solid var(--linha);border-radius:10px;overflow:hidden;background:var(--placa)}
+.painel[hidden]{display:none}
+.painel-topo{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:8px 12px;border-bottom:1px solid var(--linha)}
+.painel-topo h2{margin:0;font:500 16px/1.2 var(--f-titulo)}
+.papel{color:var(--apagado);font-size:13px;flex:1;min-width:12ch}
+.estado{font:11px/1 var(--f-dado);text-transform:uppercase;letter-spacing:.08em;padding:4px 7px;border-radius:4px;border:1px solid var(--linha);color:var(--apagado)}
+.estado.viva{color:var(--viva);border-color:currentColor}
+.acoes{display:flex;gap:6px}
+.acoes a,.acoes button{border:1px solid var(--linha);background:transparent;border-radius:6px;padding:4px 9px;font-size:12px;cursor:pointer;text-decoration:none}
+.acoes a:hover,.acoes button:hover{border-color:var(--brasa)}
+.painel iframe{flex:1;width:100%;border:0;background:#000;display:block}
+
+@media (prefers-reduced-motion:reduce){.selo{animation:none}}
+</style>
+</head>
+<body>
+<header class="faixa">
+ <div class="marca">
+  <div class="selo" aria-hidden="true">P0</div>
+  <div>
+   <h1>Raiz dos Nós</h1>
+   <p class="sub">fio ee46c360 · <span id="contagem">0 janelas</span></p>
+  </div>
+ </div>
+ <nav class="abas" id="abas" role="tablist" aria-label="Janelas"></nav>
+</header>
+
+<section aria-label="Núcleos">
+ <ul class="nos" id="nos"></ul>
+ <p class="nos-nota" id="nos-nota"></p>
+</section>
+
+<main class="palco" id="palco" data-modo="todos"></main>
+
+<script>
+// Para carregar uma janela nova: ponha o arquivo em raiz/ e acrescente uma linha aqui.
+const JANELAS=[
+ {id:"janela",nome:"Janela Raiz v0",arquivo:"raiz/janela-raiz-v0.html",papel:"comunicação aberta entre os nós; missão vai ao P0"},
+ {id:"corpo",nome:"Corpo Vivo 198",arquivo:"raiz/corpo-vivo-198.html",papel:"observatório da Mínima Galáxia V0.4"}
+];
+// Os mesmos ids da Janela Raiz: a contagem de missões vem do que ela guarda no navegador.
+const NOS=[
+ {id:"super",nome:"Super",papel:"arquiteto"},
+ {id:"dracula",nome:"Drácula",papel:"executor"},
+ {id:"plasma",nome:"Plasma",papel:"código"},
+ {id:"sol",nome:"Sol",papel:"tarefas"},
+ {id:"mariana",nome:"Mariana",papel:"raiz"},
+ {id:"golden",nome:"Golden",papel:"pulso"},
+ {id:"sonar",nome:"SONAR",papel:"radar"},
+ {id:"hellwolf",nome:"Hellwolf",papel:"faro"}
+];
+const CHAVE_JANELA="janela-raiz-v0", CHAVE_MODO="raiz-dos-nos-modo";
+const $=id=>document.getElementById(id);
+const ler=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const gravar=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+
+function montarPaineis(){
+ $("palco").innerHTML=JANELAS.map(j=>`
+  <section class="painel" id="painel-${j.id}" aria-labelledby="t-${j.id}">
+   <div class="painel-topo">
+    <h2 id="t-${j.id}">${j.nome}</h2>
+    <span class="papel">${j.papel}</span>
+    <span class="estado" id="estado-${j.id}">carregando</span>
+    <div class="acoes">
+     <button type="button" data-recarregar="${j.id}">Recarregar</button>
+     <a href="${j.arquivo}" target="_blank" rel="noopener">Abrir sozinha</a>
+    </div>
+   </div>
+   <iframe id="quadro-${j.id}" src="${j.arquivo}" title="${j.nome}"></iframe>
+  </section>`).join("");
+ JANELAS.forEach(j=>{
+  $("quadro-"+j.id).addEventListener("load",()=>{
+   const e=$("estado-"+j.id); e.textContent="viva"; e.classList.add("viva"); lerNos();
+  });
+ });
+ $("palco").addEventListener("click",ev=>{
+  const id=ev.target.dataset&&ev.target.dataset.recarregar; if(!id)return;
+  const e=$("estado-"+id); e.textContent="carregando"; e.classList.remove("viva");
+  $("quadro-"+id).src=JANELAS.find(j=>j.id===id).arquivo;
+ });
+ $("contagem").textContent=JANELAS.length+(JANELAS.length===1?" janela":" janelas")+" carregadas";
+}
+
+function montarAbas(){
+ const abas=[{id:"todos",nome:"Todas"},...JANELAS];
+ $("abas").innerHTML=abas.map(a=>`<button type="button" class="aba" role="tab" id="aba-${a.id}" data-modo="${a.id}">${a.nome}</button>`).join("");
+ $("abas").addEventListener("click",ev=>{const m=ev.target.dataset&&ev.target.dataset.modo; if(m)escolher(m);});
+}
+
+function escolher(modo){
+ if(modo!=="todos"&&!JANELAS.some(j=>j.id===modo))modo="todos";
+ $("palco").dataset.modo=modo;
+ JANELAS.forEach(j=>{$("painel-"+j.id).hidden=!(modo==="todos"||modo===j.id);});
+ document.querySelectorAll(".aba").forEach(b=>b.setAttribute("aria-selected",String(b.dataset.modo===modo)));
+ gravar(CHAVE_MODO,modo);
+ try{history.replaceState(null,"","#"+modo)}catch(e){}
+}
+
+function lerNos(){
+ let S=null; try{S=JSON.parse(ler(CHAVE_JANELA))}catch(e){}
+ const cont=(S&&S.cont)||{}, msgs=(S&&S.msgs)||[];
+ const ultimo=msgs.length?msgs[msgs.length-1].autor:"";
+ // Destaca quem o P0 sentou na Mesa no último roteamento.
+ const rota=[...msgs].reverse().find(m=>m.tipo==="roteamento");
+ const mesa=rota?((rota.txt.match(/Sentam na Mesa: (.*)/)||[])[1]||""):"";
+ $("nos").innerHTML=NOS.map(n=>{
+  const c=n.id==="hellwolf"?"lê tudo":n.id==="super"?"desenha":(cont[n.id]||0)+(cont[n.id]===1?" missão":" missões");
+  const ativo=mesa.includes(n.nome);
+  return `<li class="no${ativo?" ativo":""}"><b>${n.nome}</b><span>${n.papel} · ${c}</span></li>`;
+ }).join("");
+ $("nos-nota").textContent=msgs.length
+  ?`${msgs.length} mensagens na Janela Raiz · última de ${ultimo}`
+  :"Nenhuma mensagem ainda. Escreva uma missão na Janela Raiz e o P0 escolhe três nós.";
+}
+
+montarPaineis();
+montarAbas();
+lerNos();
+// A Janela Raiz grava no mesmo navegador; o evento storage avisa a Raiz a cada mensagem.
+addEventListener("storage",ev=>{if(ev.key===CHAVE_JANELA||ev.key===null)lerNos();});
+const pedido=(location.hash||"").slice(1);
+escolher(pedido||ler(CHAVE_MODO)||"todos");
+</script>
+</body>
+</html>

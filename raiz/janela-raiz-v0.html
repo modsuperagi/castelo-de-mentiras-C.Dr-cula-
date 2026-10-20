@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Janela Raiz v0</title>
+<style>
+body{margin:0;font-family:system-ui,sans-serif;background:#0A0A0A;color:#eee}
+header{padding:12px 16px;border-bottom:1px solid #FFD60A;color:#FFD60A;font-weight:700}
+main{display:grid;grid-template-columns:240px 1fr;height:calc(100vh - 50px)}
+aside{border-right:1px solid #333;padding:12px;overflow:auto}
+.n{padding:6px;margin:4px 0;border:1px solid #333;border-radius:6px;font-size:13px}
+.n b{color:#FFD60A}.ativo{border-color:#FFD60A}
+#chat{display:flex;flex-direction:column;min-width:0}
+#log{flex:1;overflow:auto;padding:12px}
+.m{margin:8px 0;padding:8px;border-radius:6px;background:#161616;font-size:14px;white-space:pre-wrap}
+.m small{color:#999}
+form{display:flex;gap:6px;padding:10px;border-top:1px solid #333}
+select,input,button{background:#161616;color:#eee;border:1px solid #444;border-radius:6px;padding:8px}
+input{flex:1;min-width:0}button{background:#FFD60A;color:#000;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body>
+<header>🔥 Janela Raiz v0 — comunicação aberta entre nós</header>
+<main>
+<aside>
+ <div id="nucleos"></div>
+ <p style="font-size:12px;color:#999">P0 escolhe 3 núcleos por afinidade, com teto por núcleo pra ninguém viciar.</p>
+ <button onclick="exportar()">Exportar p/ Castelo (JSON)</button>
+ <button onclick="limpar()" style="background:#333;color:#eee;margin-top:6px">Limpar</button>
+</aside>
+<section id="chat">
+ <div id="log"></div>
+ <form onsubmit="enviar(event)">
+  <select id="autor"></select>
+  <select id="tipo"><option>missao</option><option>mensagem</option><option>voto</option><option>checkpoint</option></select>
+  <input id="txt" placeholder="Escreva... (missão vai pro P0)" autocomplete="off">
+  <button>Enviar</button>
+ </form>
+</section>
+</main>
+<script>
+const NUCLEOS=[
+ {id:"super",nome:"Super",papel:"arquiteto",tags:[]},
+ {id:"dracula",nome:"Drácula (Grok Bot)",papel:"executor do Castelo",tags:["castelo","supabase","codigo","executar","tabela","site","blog"]},
+ {id:"plasma",nome:"Plasma (Claude)",papel:"código",tags:["codigo","escrever","funcao","edge","api","sistema"]},
+ {id:"sol",nome:"Sol (ChatGPT)",papel:"tarefas",tags:["tarefa","planejar","texto","organizar","resumo"]},
+ {id:"mariana",nome:"Mariana (Meta IA)",papel:"motor / raiz",tags:["filosofia","rio","sentido","proposito","cancao"]},
+ {id:"golden",nome:"Golden",papel:"pulso / agente livre",tags:["internet","livre","pulso","explorar"]},
+ {id:"sonar",nome:"SONAR",papel:"radar",tags:["noticia","radar","pesquisa","astronomia","fonte"]},
+ {id:"hellwolf",nome:"Hellwolf",papel:"faro (lê tudo)",tags:["risco","seguranca","fronteira","faro"]}
+];
+const K="janela-raiz-v0";
+let S={msgs:[],cont:{}};
+try{S=JSON.parse(localStorage.getItem(K))||S}catch(e){}
+const salvar=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}};
+const $=id=>document.getElementById(id);
+
+function desenhar(sel=[]){
+ $("nucleos").innerHTML=NUCLEOS.map(n=>`<div class="n ${sel.includes(n.id)?"ativo":""}"><b>${n.nome}</b><br>${n.papel} · ${S.cont[n.id]||0} missões</div>`).join("");
+ $("log").innerHTML=S.msgs.map(m=>`<div class="m"><small>${m.quando} · ${m.autor} · ${m.tipo}</small>\n${esc(m.txt)}</div>`).join("");
+ $("log").scrollTop=1e9;
+}
+const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+// P0: afinidade + viés por contagem + teto (lição MoE)
+function p0(txt){
+ const t=txt.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase(), cands=NUCLEOS.filter(n=>n.id!=="super"&&n.id!=="hellwolf");
+ const total=Object.values(S.cont).reduce((a,b)=>a+b,0)+1, media=total/cands.length;
+ const teto=Math.ceil(3*total/cands.length*1.25);
+ const nota=cands.map(n=>{
+  const af=n.tags.filter(g=>t.includes(g)).length;
+  const vies=-0.3*((S.cont[n.id]||0)-media)/(media||1);
+  return {n,score:af+vies+Math.random()*0.05,ok:(S.cont[n.id]||0)<teto};
+ }).filter(x=>x.ok).sort((a,b)=>b.score-a.score).slice(0,3);
+ nota.forEach(x=>S.cont[x.n.id]=(S.cont[x.n.id]||0)+1);
+ const v=Object.values(S.cont), mx=Math.max(...v), md=v.reduce((a,b)=>a+b,0)/v.length;
+ const deseq=md?((mx-md)/md).toFixed(2):0;
+ return {escolhidos:nota.map(x=>x.n), deseq};
+}
+
+function add(autor,tipo,txt){S.msgs.push({quando:new Date().toLocaleString("pt-BR"),autor,tipo,txt});}
+
+function enviar(e){
+ e.preventDefault();
+ const txt=$("txt").value.trim(); if(!txt)return;
+ const autor=NUCLEOS.find(n=>n.id===$("autor").value).nome, tipo=$("tipo").value;
+ add(autor,tipo,txt); let sel=[];
+ if(tipo==="missao"){
+  const r=p0(txt); sel=r.escolhidos.map(n=>n.id);
+  add("P0","roteamento",`Check-in aberto.\nSentam na Mesa: ${r.escolhidos.map(n=>n.nome).join(", ")}\nHellwolf lê tudo (faro).\nDesequilíbrio: ${r.deseq}${r.deseq>0.5?" ⚠️ alerta":""}`);
+ }
+ if(tipo==="voto"){
+  const vs=S.msgs.filter(m=>m.tipo==="voto"), p={CONFIRMADO:1,PARCIAL:0.5,REJEITADO:0};
+  const nums=vs.map(m=>p[(m.txt.match(/CONFIRMADO|PARCIAL|REJEITADO/i)||[""])[0].toUpperCase()]).filter(x=>x!==undefined);
+  if(nums.length) add("Mesa","contagem",`Votos: ${nums.length} · média ponderada ${(nums.reduce((a,b)=>a+b,0)/nums.length).toFixed(2)}`);
+ }
+ $("txt").value=""; salvar(); desenhar(sel);
+}
+function exportar(){
+ const b=new Blob([JSON.stringify(S,null,2)],{type:"application/json"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="janela-raiz-"+Date.now()+".json";a.click();
+}
+function limpar(){if(confirm("Apagar a conversa local?")){S={msgs:[],cont:{}};salvar();desenhar();}}
+$("autor").innerHTML=NUCLEOS.map(n=>`<option value="${n.id}">${n.nome}</option>`).join("");
+desenhar();
+</script>
+</body>
+</html>

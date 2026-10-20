@@ -12,6 +12,9 @@ LICENSE
 # O SONAR é outro produto, com projeto Vercel próprio (Root Directory = sonar).
 # Não vai ao ar pelo espelho.
 sonar/
+# Raiz dos Nós: janelas internas dos núcleos (Janela Raiz, Corpo Vivo). Não vão ao ar pelo espelho.
+raiz.html
+raiz/
 # Ferramentas internas (gerador do blog): não vão ao ar.
 ferramentas/
 # O blog Super Evo Lab é outro projeto (Cloudflare Pages, Root directory = superevolab). Não vai ao ar pelo espelho.
